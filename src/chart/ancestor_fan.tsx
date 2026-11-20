@@ -6,7 +6,7 @@ import {IndiInfo, JsonGedcomData, JsonIndi} from 'topola';
 import {ChartColors, ClickAction, Ids} from '../sidepanel/config/config';
 import {formatDateOrRange} from '../util/date_util';
 import {GedcomData} from '../util/gedcom_util';
-import {buildAncestorFan, fanSectorPath} from './ancestor_fan_data';
+import {buildAncestorFan, fanSectorPath, fanVisibleBounds} from './ancestor_fan_data';
 import {associatedEventLines, placesMatch} from './hover_helpers';
 
 interface Props {
@@ -104,14 +104,17 @@ export function AncestorFanChart(props: Props) {
     () => buildAncestorFan(props.data, props.selection.id, generations),
     [props.data, props.selection.id, generations],
   );
-  const radius = START_RADIUS + generations * RING_SIZE;
-  // Use the fan's actual visible extents, rather than the full
-  // enclosing circle (the bottom 120 degrees do not contain any sectors).
-  const margin = 36;
-  const width = Math.ceil(2 * (radius + margin));
-  const height = Math.ceil(1.5 * radius + 2 * margin);
-  const centerX = width / 2;
-  const centerY = radius + margin;
+  const {width, height, centerX, centerY} = useMemo(
+    () =>
+      fanVisibleBounds(
+        ancestors,
+        START_RADIUS,
+        RING_SIZE,
+        FAN_START,
+        FAN_ANGLE,
+      ),
+    [ancestors],
+  );
   useEffect(() => {
     const svg = svgRef.current;
     if (!svg) return;
@@ -186,7 +189,7 @@ export function AncestorFanChart(props: Props) {
 
   const sector = (node: (typeof ancestors)[number]) => {
     const {generation, index, person} = node;
-    if (generation === 0) return null;
+    if (generation === 0 || !person) return null;
     const count = 2 ** generation;
     const start = FAN_START + (index * FAN_ANGLE) / count;
     const end = FAN_START + ((index + 1) * FAN_ANGLE) / count;
@@ -218,7 +221,7 @@ export function AncestorFanChart(props: Props) {
       generation >= 5 ? middle - 90 + (middle < 0 ? 180 : 0) : middle;
     const born = person?.birth?.date?.year;
     const died = person?.death?.date?.year;
-    const life = [born ?? '?', died ?? '?'].join('–');
+    // Each outer life year gets its own hover target (birth versus death).
     const fullBirth = person
       ? shortMonthDate(formatDateOrRange(person.birth, intl), intl.locale)
       : '';
@@ -229,27 +232,22 @@ export function AncestorFanChart(props: Props) {
     const short = (value: string, limit: number) =>
       value.length > limit ? `${value.slice(0, limit - 1)}…` : value;
     const deathPlace = person?.death?.place || '';
-    const lines: Array<{
+    type DetailLine = {
       value: string;
-      kind: 'birth' | 'death' | 'birthPlace' | 'deathPlace' | 'life';
-    }> =
+      kind: 'birth' | 'death' | 'birthPlace' | 'deathPlace';
+    };
+    const lines: DetailLine[] =
       generation <= 3
-        ? ([
+        ? [
             {value: fullBirth ? `* ${fullBirth}` : '', kind: 'birth'},
-            {
-              value: birthPlace ? short(birthPlace, 26) : '',
-              kind: 'birthPlace',
-            },
+            {value: birthPlace ? short(birthPlace, 26) : '', kind: 'birthPlace'},
             {value: fullDeath ? `† ${fullDeath}` : '', kind: 'death'},
-            {
-              value: deathPlace ? short(deathPlace, 26) : '',
-              kind: 'deathPlace',
-            },
-          ].filter((line) => !!line.value) as Array<{
-            value: string;
-            kind: 'birth' | 'death' | 'birthPlace' | 'deathPlace' | 'life';
-          }>)
-        : [{value: life, kind: 'life'}];
+            {value: deathPlace ? short(deathPlace, 26) : '', kind: 'deathPlace'},
+          ].filter((line) => !!line.value) as DetailLine[]
+        : [
+            {value: born ? `* ${born}` : '', kind: 'birth'},
+            {value: died ? `† ${died}` : '', kind: 'death'},
+          ].filter((line) => !!line.value) as DetailLine[];
     const birthTooltip = [
       intl.formatMessage({id: 'fan.birth', defaultMessage: 'Birth'}),
       formatDateOrRange(person?.birth, intl),
@@ -341,24 +339,20 @@ export function AncestorFanChart(props: Props) {
     );
   };
 
-  // Marriage belongs to the family in which the two adjacent sectors
-  // are parents. The marker sits exactly on the boundary between partners.
+  // Marriage markers are derived directly from known children. This avoids
+  // searching thousands of empty ancestor positions at high depth.
   const marriageMarkers = ancestors
-    .filter((node) => node.generation > 0 && node.index % 2 === 0)
-    .flatMap((node) => {
-      const childIndex = node.index / 2;
-      const child = ancestors.find(
-        (ancestor) =>
-          ancestor.generation === node.generation - 1 &&
-          ancestor.index === childIndex,
-      )?.person;
+    .filter((node) => node.person && node.generation < generations)
+    .flatMap((childNode) => {
+      const child = childNode.person;
       const family = child?.famc ? familyById.get(child.famc) : undefined;
       const marriage = family?.marriage;
       if (!marriage) return [];
-      const count = 2 ** node.generation;
-      const boundary = FAN_START + ((node.index + 1) * FAN_ANGLE) / count;
+      const parentGeneration = childNode.generation + 1;
+      const count = 2 ** parentGeneration;
+      const boundary = FAN_START + ((2 * childNode.index + 1) * FAN_ANGLE) / count;
       const angle = ((boundary - 90) * Math.PI) / 180;
-      const r = START_RADIUS + (node.generation - 0.5) * RING_SIZE;
+      const r = START_RADIUS + (parentGeneration - 0.5) * RING_SIZE;
       const x = r * Math.cos(angle);
       const y = r * Math.sin(angle);
       const text = [
@@ -370,7 +364,7 @@ export function AncestorFanChart(props: Props) {
         .join('\n');
       return [
         {
-          key: `${node.generation}-${node.index}`,
+          key: `${parentGeneration}-${childNode.index}`,
           x,
           y,
           text,
@@ -444,7 +438,7 @@ export function AncestorFanChart(props: Props) {
         style={{width: '100%', height: '100%', maxWidth: 'none'}}
       >
         <g id="chart" transform={`translate(${centerX} ${centerY})`}>
-          {ancestors.slice(1).map(sector)}
+          {ancestors.filter((node) => node.person && node.generation > 0).map(sector)}
           {marriageMarkers.map((marker) => (
             <g
               key={marker.key}
