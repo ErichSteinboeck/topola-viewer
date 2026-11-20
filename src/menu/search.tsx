@@ -1,9 +1,9 @@
 import React, {useEffect, useRef} from 'react';
 import {IntlShape, useIntl} from 'react-intl';
 import {Search, SearchResultProps} from 'semantic-ui-react';
+import {FulltextResult} from './fulltext_search';
 import {JsonIndi} from 'topola';
 import {formatDateOrRange} from '../util/date_util';
-import {SearchResult} from './search_index';
 import {
   registerSearchInput,
   unregisterSearchInput,
@@ -35,19 +35,21 @@ function getDescriptionLine(indi: JsonIndi, currentIntl: IntlShape) {
 }
 
 function displaySearchResult(
-  result: SearchResult,
+  result: FulltextResult,
   currentIntl: IntlShape,
 ): SearchResultProps {
   return {
     id: result.id,
     key: result.id,
     title: getNameLine(result),
-    description: getDescriptionLine(result.indi, currentIntl),
+    description: result.context || getDescriptionLine(result.indi, currentIntl),
   } as SearchResultProps;
 }
 
 interface Props {
-  results: SearchResult[];
+  results: FulltextResult[];
+  mode: 'people' | 'fulltext';
+  onModeChange: (mode: 'people' | 'fulltext') => void;
   value: string;
   onSearchChange: (value: string) => void;
   onResultSelect: (id: string) => void;
@@ -71,7 +73,12 @@ export const SearchBar = React.memo(function SearchBar(props: Props) {
     }
   }, []);
 
-  const placeholder = props.hideShortcutHint
+  const placeholder = props.mode === 'fulltext'
+    ? intl.formatMessage({
+        id: 'menu.search.fulltext_placeholder',
+        defaultMessage: 'Search names, places and notes',
+      })
+    : props.hideShortcutHint
     ? intl.formatMessage({
         id: 'menu.search.placeholder',
         defaultMessage: 'Search for people',
@@ -86,7 +93,31 @@ export const SearchBar = React.memo(function SearchBar(props: Props) {
   );
 
   return (
-    <div ref={wrapperRef}>
+    <div ref={wrapperRef} className="topola-search-wrapper">
+      <select
+        className="topola-search-mode"
+        aria-label={intl.formatMessage({
+          id: 'menu.search.mode',
+          defaultMessage: 'Search mode',
+        })}
+        value={props.mode}
+        onChange={(event) =>
+          props.onModeChange(event.target.value as 'people' | 'fulltext')
+        }
+      >
+        <option value="people">
+          {intl.formatMessage({
+            id: 'menu.search.people',
+            defaultMessage: 'People',
+          })}
+        </option>
+        <option value="fulltext">
+          {intl.formatMessage({
+            id: 'menu.search.fulltext',
+            defaultMessage: 'Full text',
+          })}
+        </option>
+      </select>
       <Search
         onSearchChange={(_, data) => props.onSearchChange(data.value || '')}
         onResultSelect={(_, data) => props.onResultSelect(data.result.id)}
