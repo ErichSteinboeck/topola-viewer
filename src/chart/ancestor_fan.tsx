@@ -3,12 +3,15 @@ import {zoom as d3Zoom, ZoomBehavior, zoomIdentity} from 'd3-zoom';
 import {useEffect, useMemo, useRef, useState} from 'react';
 import {useIntl} from 'react-intl';
 import {IndiInfo, JsonGedcomData, JsonIndi} from 'topola';
+import {GedcomData} from '../util/gedcom_util';
+import {associatedEventLines} from './hover_helpers';
 import {ChartColors, ClickAction, Ids} from '../sidepanel/config/config';
 import {formatDateOrRange} from '../util/date_util';
 import {buildAncestorFan, fanSectorPath} from './ancestor_fan_data';
 
 interface Props {
   data: JsonGedcomData;
+  gedcom?: GedcomData;
   selection: IndiInfo;
   selectedPersonId?: string;
   colors?: ChartColors;
@@ -22,7 +25,7 @@ interface Props {
 const START_RADIUS = 78;
 const RING_SIZE = 105;
 const MAX_GENERATIONS = 7;
-const FAN_ANGLE = 270;
+const FAN_ANGLE = 240;
 const FAN_START = -FAN_ANGLE / 2;
 
 function personName(person: JsonIndi): string {
@@ -75,6 +78,10 @@ export function AncestorFanChart(props: Props) {
     null,
   );
   const [hoveredId, setHoveredId] = useState<string>();
+  const familyById = useMemo(
+    () => new Map(props.data.fams.map((fam) => [fam.id, fam])),
+    [props.data.fams],
+  );
   const ancestors = useMemo(
     () => buildAncestorFan(props.data, props.selection.id, generations),
     [props.data, props.selection.id, generations],
@@ -115,6 +122,18 @@ export function AncestorFanChart(props: Props) {
     }
   };
 
+  const describePerson = (person: JsonIndi, generation: number) =>
+    [
+      labels(person),
+      [intl.formatMessage({id: 'fan.birth', defaultMessage: 'Birth'}),
+       formatDateOrRange(person.birth, intl), person.birth?.place].filter(Boolean).join(' · '),
+      ...associatedEventLines(props.gedcom, person.id, 'birth', intl),
+      [intl.formatMessage({id: 'fan.death', defaultMessage: 'Death'}),
+       formatDateOrRange(person.death, intl), person.death?.place].filter(Boolean).join(' · '),
+      ...associatedEventLines(props.gedcom, person.id, 'death', intl),
+      `${intl.formatMessage({id: 'fan.generation', defaultMessage: 'Generation'})} ${generation}`,
+    ].filter(Boolean).join('\n');
+
   const labels = (person: JsonIndi) => {
     const text = personName(person);
     return props.hideIds === Ids.SHOW ? `${text} (${person.id})` : text;
@@ -152,11 +171,24 @@ export function AncestorFanChart(props: Props) {
       name.length > maxChars ? `${name.slice(0, maxChars - 1)}…` : name;
     // Tangential labels: turned 90 degrees relative to the first prototype.
     // Turn outer lower sectors upright rather than displaying upside-down text.
-    const rotation =
-      middle < -90 ? middle + 180 : middle > 90 ? middle - 180 : middle;
+    const rotation = generation >= 5
+      ? middle - 90 + (middle < 0 ? 180 : 0)
+      : middle;
     const born = person?.birth?.date?.year;
     const died = person?.death?.date?.year;
     const life = [born ?? '?', died ?? '?'].join('–');
+    const fullBirth = person ? formatDateOrRange(person.birth, intl) : '';
+    const fullDeath = person ? formatDateOrRange(person.death, intl) : '';
+    const birthPlace = person?.birth?.place || '';
+    const short = (value: string, limit: number) =>
+      value.length > limit ? `${value.slice(0, limit - 1)}…` : value;
+    const lines = generation <= 3
+      ? [
+          fullBirth ? `* ${fullBirth}` : '',
+          fullDeath ? `† ${fullDeath}` : '',
+          birthPlace ? short(birthPlace, 26) : '',
+        ].filter(Boolean)
+      : [life];
     return (
       <g
         key={`${generation}-${index}`}
@@ -184,33 +216,57 @@ export function AncestorFanChart(props: Props) {
             transform={`rotate(${rotation} ${x} ${y})`}
             pointerEvents="none"
           >
-            <tspan x={x} dy={-8}>
+            <tspan x={x} dy={-lines.length * 6}>
               {shortName}
             </tspan>
-            <tspan x={x} dy={16} fontSize="10" fontWeight="normal">
-              {life}
-            </tspan>
+            {lines.map((line, lineIndex) => (
+              <tspan
+                key={lineIndex}
+                x={x}
+                dy={generation <= 3 ? 13 : 16}
+                fontSize={generation <= 3 ? 9 : 10}
+                fontWeight="normal"
+              >
+                {line}
+              </tspan>
+            ))}
           </text>
         )}
-        {person && (
-          <title>
-            {[
-              labels(person),
-              person.birth
-                ? `${intl.formatMessage({id: 'fan.birth', defaultMessage: 'Birth'})}: ${formatDateOrRange(person.birth, intl)}`
-                : '',
-              person.death
-                ? `${intl.formatMessage({id: 'fan.death', defaultMessage: 'Death'})}: ${formatDateOrRange(person.death, intl)}`
-                : '',
-              `${intl.formatMessage({id: 'fan.generation', defaultMessage: 'Generation'})} ${generation}`,
-            ]
-              .filter(Boolean)
-              .join('\n')}
-          </title>
-        )}
+        {person && <title>{describePerson(person, generation)}</title>}
       </g>
     );
   };
+
+  // Marriage belongs to the family in which the two adjacent sectors
+  // are parents. The marker sits exactly on the boundary between partners.
+  const marriageMarkers = ancestors
+    .filter((node) => node.generation > 0 && node.index % 2 === 0)
+    .flatMap((node) => {
+      const childIndex = node.index / 2;
+      const child = ancestors.find(
+        (ancestor) =>
+          ancestor.generation === node.generation - 1 &&
+          ancestor.index === childIndex,
+      )?.person;
+      const family = child?.famc ? familyById.get(child.famc) : undefined;
+      const marriage = family?.marriage;
+      if (!marriage) return [];
+      const count = 2 ** node.generation;
+      const boundary = FAN_START + ((node.index + 1) * FAN_ANGLE) / count;
+      const angle = ((boundary - 90) * Math.PI) / 180;
+      const r = START_RADIUS + (node.generation - 0.5) * RING_SIZE;
+      const x = r * Math.cos(angle);
+      const y = r * Math.sin(angle);
+      const text = [
+        intl.formatMessage({id: 'fan.marriage', defaultMessage: 'Marriage'}),
+        formatDateOrRange(marriage, intl),
+        marriage.place,
+      ].filter(Boolean).join('\n');
+      return [{
+        key: `${node.generation}-${node.index}`,
+        x, y, text,
+      }];
+    });
 
   const root = ancestors[0].person;
   return (
@@ -236,14 +292,16 @@ export function AncestorFanChart(props: Props) {
             </option>
           ))}
         </select>
-        <button aria-label="Zoom in" onClick={() => changeZoom(1.3)}>
-          +
-        </button>
-        <button aria-label="Zoom out" onClick={() => changeZoom(1 / 1.3)}>
-          −
-        </button>
         <button onClick={resetZoom}>
           {intl.formatMessage({id: 'fan.reset_zoom', defaultMessage: 'Fit'})}
+        </button>
+      </div>
+      <div className="zoom ancestor-fan-zoom">
+        <button className="zoom-in" aria-label="Zoom in" onClick={() => changeZoom(1.3)}>
+          +
+        </button>
+        <button className="zoom-out" aria-label="Zoom out" onClick={() => changeZoom(1 / 1.3)}>
+          −
         </button>
       </div>
       <svg
@@ -262,6 +320,13 @@ export function AncestorFanChart(props: Props) {
       >
         <g id="chart" transform={`translate(${center} ${center})`}>
           {ancestors.slice(1).map(sector)}
+          {marriageMarkers.map((marker) => (
+            <g key={marker.key} className="fan-marriage" transform={`translate(${marker.x} ${marker.y})`}>
+              <circle r={8} fill="white" fillOpacity={0.92} stroke="#805f39" strokeWidth={1.2}/>
+              <path d="M -4 0 L 0 -4 L 4 0 L 0 4 Z" fill="#bb7930" />
+              <title>{marker.text}</title>
+            </g>
+          ))}
           <g
             className="fan-root"
             onClick={root ? (e) => handleClick(e, root) : undefined}
@@ -292,7 +357,7 @@ export function AncestorFanChart(props: Props) {
                 >
                   {formatDateOrRange(root.birth, intl)}
                 </text>
-                <title>{labels(root)}</title>
+                <title>{describePerson(root, 0)}</title>
               </>
             )}
           </g>
