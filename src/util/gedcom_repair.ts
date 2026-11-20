@@ -5,7 +5,7 @@
  * MyHeritage exports sometimes omit the numeric level and CONC tag entirely
  * for HTML paragraphs. The original file is never modified.
  */
-const GEDCOM_RECORD = /^(\\d+)\\s+(?:(?:@[^\\s@]+@)\\s+)?([A-Za-z0-9_]+)(?:\\s|$)/;
+const GEDCOM_RECORD = /^(\d+)\s+(?:(?:@[^\s@]+@)\s+)?([A-Za-z0-9_]+)(?:\s|$)/;
 const TEXT_TAGS = new Set(['NOTE', 'TEXT', 'BIO', '_BIO']);
 
 export interface GedcomRepairReport {
@@ -22,7 +22,7 @@ export interface GedcomRepairReport {
 export function repairGedcomTextLinesWithReport(
   input: string,
 ): GedcomRepairReport {
-  const lines = input.split(/\\r\\n|\\n|\\r/);
+  const lines = input.split(/\r\n|\n|\r/);
   const result: string[] = [];
   let activeTextLevel: number | undefined;
   let repairedLines = 0;
@@ -63,7 +63,7 @@ export function repairGedcomTextLinesWithReport(
   }
 
   return {
-    text: repairedLines ? result.join('\\n') : input,
+    text: repairedLines ? result.join('\n') : input,
     repairedLines,
     unrepairedLines,
     affectedLines,
