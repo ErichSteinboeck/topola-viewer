@@ -122,8 +122,12 @@ export class ChartWrapper {
     const source = props.originalData ?? props.data;
     const indiById = new Map(source.indis.map((indi) => [indi.id, indi]));
     const famById = new Map(source.fams.map((fam) => [fam.id, fam]));
-    const displayedIndiById = new Map(props.data.indis.map((indi) => [indi.id, indi]));
-    const displayedFamById = new Map(props.data.fams.map((fam) => [fam.id, fam]));
+    const displayedIndiById = new Map(
+      props.data.indis.map((indi) => [indi.id, indi]),
+    );
+    const displayedFamById = new Map(
+      props.data.fams.map((fam) => [fam.id, fam]),
+    );
 
     const addTitle = (element: Element, title: string) => {
       if (!title) return;
@@ -188,9 +192,8 @@ export class ChartWrapper {
           ['Geburt', 'birth', person.birth],
           ['Tod', 'death', person.death],
         ] as const) {
-          const displayedEvent = kind === 'birth'
-            ? displayedPerson?.birth
-            : displayedPerson?.death;
+          const displayedEvent =
+            kind === 'birth' ? displayedPerson?.birth : displayedPerson?.death;
           const date = formatDateOrRange(displayedEvent, intl);
           const place = displayedEvent?.place;
           const summary = eventSummary(
@@ -215,7 +218,9 @@ export class ChartWrapper {
       .each(function (record) {
         const id = record?.data?.family?.id;
         const marriage = id ? famById.get(id)?.marriage : undefined;
-        const displayedMarriage = id ? displayedFamById.get(id)?.marriage : undefined;
+        const displayedMarriage = id
+          ? displayedFamById.get(id)?.marriage
+          : undefined;
         if (!marriage || !displayedMarriage) return;
         const values = Array.from(this.querySelectorAll('text.details')).filter(
           (_element, index) => index % 2 === 1,
