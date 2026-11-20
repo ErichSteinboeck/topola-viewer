@@ -183,5 +183,12 @@
   "gedcom.diagnostic_unavailable": "GEDCOM-Prüfung für diesen zwischengespeicherten Import nicht verfügbar. Die Originaldatei erneut öffnen, um sie zu prüfen.",
   "gedcom.diagnostic_clear": "GEDCOM-Prüfung: Keine erkennbaren Struktur- oder Fortsetzungszeilenfehler. Dies ist keine vollständige Validierung.",
   "config.place_hover_header": "Orte beim Überfahren",
-  "config.highlight_matching_places": "Identische Orte beim Überfahren hervorheben"
+  "config.highlight_matching_places": "Identische Orte beim Überfahren hervorheben",
+  "menu.ancestor_fan": "Vorfahrenfächer",
+  "fan.title": "Kreisförmiger Vorfahrenfächer",
+  "fan.generations": "Vorfahren-Generationen",
+  "fan.reset_zoom": "Einpassen",
+  "fan.birth": "Geburt",
+  "fan.death": "Tod",
+  "fan.generation": "Generation"
 }
