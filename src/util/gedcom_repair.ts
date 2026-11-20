@@ -15,6 +15,8 @@ export interface GedcomRepairReport {
   repairedLines: number;
   /** Number of nonempty malformed lines left unchanged outside text records. */
   unrepairedLines: number;
+  /** Structural GEDCOM warnings detected before invoking the parser. */
+  parserWarnings: number;
   /** First few affected line numbers (1-based), for diagnosis. */
   affectedLines: number[];
 }
@@ -27,6 +29,16 @@ export function repairGedcomTextLinesWithReport(
   let activeTextLevel: number | undefined;
   let repairedLines = 0;
   let unrepairedLines = 0;
+  let parserWarnings = 0;
+  let previousLevel: number | undefined;
+  let seenHead = false;
+  let seenTrailer = false;
+  const flagIssue = (lineNumber: number) => {
+    parserWarnings++;
+    if (affectedLines.length < 10 && !affectedLines.includes(lineNumber)) {
+      affectedLines.push(lineNumber);
+    }
+  };
   const affectedLines: number[] = [];
 
   for (const [index, line] of lines.entries()) {
@@ -36,6 +48,19 @@ export function repairGedcomTextLinesWithReport(
     if (record) {
       const level = Number(record[1]);
       const tag = record[2].toUpperCase();
+      // Structural checks only. parse-gedcom does not expose recovery
+      // diagnostics for records it silently skips.
+      if (
+        (previousLevel === undefined && level !== 0) ||
+        (previousLevel !== undefined && level > previousLevel + 1)
+      ) {
+        flagIssue(index + 1);
+      }
+      if (level === 0) {
+        if (tag === 'HEAD') seenHead = true;
+        if (tag === 'TRLR') seenTrailer = true;
+      }
+      previousLevel = level;
       if (activeTextLevel !== undefined && level <= activeTextLevel) {
         activeTextLevel = undefined;
       }
@@ -56,9 +81,12 @@ export function repairGedcomTextLinesWithReport(
     }
   }
 
-  if (repairedLines || unrepairedLines) {
+  if (!seenHead) flagIssue(1);
+  if (!seenTrailer) flagIssue(lines.length);
+
+  if (repairedLines || unrepairedLines || parserWarnings) {
     console.warn(
-      `GEDCOM import: ${repairedLines} continuation line(s) repaired, ${unrepairedLines} unrecognized line(s) retained. Examples at line(s): ${affectedLines.join(', ')}`,
+      `GEDCOM import: ${repairedLines} continuation line(s) repaired, ${unrepairedLines} unrecognized line(s) retained, ${parserWarnings} structural warning(s). Examples at line(s): ${affectedLines.join(', ')}`,
     );
   }
 
@@ -66,6 +94,7 @@ export function repairGedcomTextLinesWithReport(
     text: repairedLines ? result.join('\n') : input,
     repairedLines,
     unrepairedLines,
+    parserWarnings,
     affectedLines,
   };
 }
