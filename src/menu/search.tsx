@@ -104,9 +104,11 @@ export const SearchBar = React.memo(function SearchBar(props: Props) {
           defaultMessage: 'Search mode',
         })}
         value={props.mode}
-        onChange={(event) =>
-          props.onModeChange(event.target.value as 'people' | 'fulltext')
-        }
+        onChange={(event) => {
+          props.onModeChange(event.target.value as 'people' | 'fulltext');
+          // Prevent the search-mode selector from swallowing the '/' shortcut.
+          event.currentTarget.blur();
+        }}
       >
         <option value="people">
           {intl.formatMessage({
