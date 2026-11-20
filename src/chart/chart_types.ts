@@ -8,7 +8,6 @@ import {
   RelativesChart,
   ChartColors as TopolaChartColors,
 } from 'topola';
-import {GedcomData} from '../util/gedcom_util';
 import {
   ChartColors,
   ClickAction,
@@ -16,6 +15,7 @@ import {
   PlaceDisplay,
   Sex,
 } from '../sidepanel/config/config';
+import {GedcomData} from '../util/gedcom_util';
 
 /** Supported chart types. */
 export enum ChartType {

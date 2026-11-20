@@ -1,7 +1,7 @@
 import {describe, expect, it} from '@jest/globals';
 import {readFileSync} from 'fs';
-import {createIntl, createIntlCache} from 'react-intl';
 import {parse as parseGedcom} from 'parse-gedcom';
+import {createIntl, createIntlCache} from 'react-intl';
 import {GedcomData} from '../util/gedcom_util';
 import {associatedEventLines, placeKey} from './hover_helpers';
 
@@ -21,7 +21,8 @@ describe('associatedEventLines', () => {
     const entries = parseGedcom(input);
     const indis: GedcomData['indis'] = {};
     for (const entry of entries) {
-      if (entry.tag === 'INDI') indis[entry.pointer.replaceAll('@', '')] = entry;
+      if (entry.tag === 'INDI')
+        indis[entry.pointer.replaceAll('@', '')] = entry;
     }
     const gedcom: GedcomData = {indis, fams: {}, other: {}};
     const christening = associatedEventLines(gedcom, 'I500003', 'birth', intl);

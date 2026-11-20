@@ -13,13 +13,13 @@ import {IntlShape} from 'react-intl';
 import {ChartHandle, ChartInfo, createChart} from 'topola';
 import {ClickAction} from '../sidepanel/config/config';
 import {formatDateOrRange} from '../util/date_util';
-import {associatedEventLines, placeKey} from './hover_helpers';
 import {
   chartColors,
   ChartProps,
   getChartType,
   getRendererType,
 } from './chart_types';
+import {associatedEventLines, placeKey} from './hover_helpers';
 
 /** How much to zoom when using the +/- buttons. */
 const ZOOM_FACTOR = 1.3;
@@ -147,11 +147,13 @@ export class ChartWrapper {
       const key = placeKey(fullPlace);
       const text = select(element);
       if (key && props.highlightMatchingPlaces !== false) {
-        text.attr('data-place-key', key)
+        text
+          .attr('data-place-key', key)
           .on('mouseenter.place-hover', () => highlight(key))
           .on('mouseleave.place-hover', () => highlight(''));
       } else {
-        text.attr('data-place-key', null)
+        text
+          .attr('data-place-key', null)
           .on('mouseenter.place-hover', null)
           .on('mouseleave.place-hover', null);
       }
@@ -164,10 +166,10 @@ export class ChartWrapper {
       event: {place?: string} | undefined,
       date: string,
       extra: string[] = [],
-    ) => [
-      [label, date, event?.place].filter(Boolean).join(' · '),
-      ...extra,
-    ].filter(Boolean).join('\n');
+    ) =>
+      [[label, date, event?.place].filter(Boolean).join(' · '), ...extra]
+        .filter(Boolean)
+        .join('\n');
 
     select('#chart')
       .selectAll<SVGGElement, {indi?: {id?: string}}>('g.indi')
@@ -208,9 +210,9 @@ export class ChartWrapper {
         const id = record?.data?.family?.id;
         const marriage = id ? famById.get(id)?.marriage : undefined;
         if (!marriage) return;
-        const values = Array.from(
-          this.querySelectorAll('text.details'),
-        ).filter((_element, index) => index % 2 === 1);
+        const values = Array.from(this.querySelectorAll('text.details')).filter(
+          (_element, index) => index % 2 === 1,
+        );
         const date = formatDateOrRange(marriage, intl);
         if (date && values[0]) {
           addTitle(values[0], eventSummary('Heirat', marriage, date));
