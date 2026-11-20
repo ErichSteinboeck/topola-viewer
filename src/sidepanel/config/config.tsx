@@ -2,6 +2,8 @@ import {ParsedQuery} from 'query-string';
 import {FormattedMessage, useIntl} from 'react-intl';
 import {Checkbox, Form, Header, Input, Item} from 'semantic-ui-react';
 import {GedcomData} from '../../util/gedcom_util';
+import {GedcomRepairReport} from '../../util/gedcom_repair';
+import {GedcomImportWarning} from './gedcom-import-warning';
 import {getPreferredLanguage, setPreferredLanguage} from '../../util/language';
 import {DEFAULT_PLACE_DISPLAY_COUNT, PlaceDisplay} from '../../util/place_util';
 import {SourceHead} from '../head/head';
@@ -142,12 +144,14 @@ export function configToArgs(config: Config): ParsedQuery {
 
 export function ConfigPanel(props: {
   gedcom: GedcomData;
+  repairReport?: Omit<GedcomRepairReport, 'text'>;
   config: Config;
   onChange: (config: Config) => void;
 }) {
   const intl = useIntl();
   return (
     <Form className="details">
+      <GedcomImportWarning repairReport={props.repairReport} />
       <Item.Group>
         {SourceHead(props.gedcom)}
         <Item>
