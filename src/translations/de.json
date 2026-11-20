@@ -161,5 +161,11 @@
   "google_auth.switch_account_button": "Konto wechseln",
   "error.GOOGLE_DRIVE_NOT_CONFIGURED": "Die Google Drive-Integration ist nicht konfiguriert.",
   "config.click_behavior": "Klickverhalten",
-  "config.invert_click_behavior": "Klickverhalten umkehren"
+  "config.invert_click_behavior": "Klickverhalten umkehren",
+  "config.event_notes": "Ereignisnotizen",
+  "config.gedcom_metadata": "GEDCOM-Metadaten",
+  "config.always_show_notes": "Notizen unter Ereignissen immer anzeigen",
+  "config.show_technical_fields": "Technische Felder anzeigen (RIN, UID, UPD)",
+  "config.show_identification": "Identifikation anzeigen (Stammbaum und Seitenleiste)",
+  "config.place_components": "Anzahl der Ortsbestandteile"
 }
