@@ -35,6 +35,7 @@ export interface ChartProps {
   hideIds?: Ids;
   hideSex?: Sex;
   clickAction?: ClickAction;
+  selectedPersonId?: string;
   placeDisplay?: PlaceDisplay;
   placeCount?: number;
   /** Called once after the initial D3 layout and SVG render completes. */
