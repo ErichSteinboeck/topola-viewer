@@ -13,6 +13,7 @@ import {IntlShape} from 'react-intl';
 import {ChartHandle, ChartInfo, createChart} from 'topola';
 import {ClickAction} from '../sidepanel/config/config';
 import {formatDateOrRange} from '../util/date_util';
+import {associatedEventLines, placeKey} from './hover_helpers';
 import {
   chartColors,
   ChartProps,
@@ -115,15 +116,13 @@ export class ChartWrapper {
       });
   }
 
-  /**
-   * First hover prototype: native SVG tooltips over the individual event
-   * lines and marriage lines. We attach these after D3 renders, without
-   * changing the Topola library or interfering with click handlers.
-   */
+  /** Add date information and transient same-place highlighting to SVG labels. */
   private attachEventTooltips(props: ChartProps, intl: IntlShape) {
     const svgNamespace = 'http://www.w3.org/2000/svg';
-    const indiById = new Map(props.data.indis.map((indi) => [indi.id, indi]));
-    const famById = new Map(props.data.fams.map((fam) => [fam.id, fam]));
+    const source = props.originalData ?? props.data;
+    const indiById = new Map(source.indis.map((indi) => [indi.id, indi]));
+    const famById = new Map(source.fams.map((fam) => [fam.id, fam]));
+
     const addTitle = (element: Element, title: string) => {
       if (!title) return;
       let node = element.querySelector(':scope > title');
@@ -133,36 +132,73 @@ export class ChartWrapper {
       }
       node.textContent = title;
     };
+
+    // A single matching string is shared by birth, death, and marriage
+    // locations. D3 replaces these namespaced callbacks on reattachment.
+    const highlight = (key: string) => {
+      select('#chart')
+        .selectAll<SVGTextElement, unknown>('text[data-place-key]')
+        .classed('matching-place', function () {
+          return !!key && this.getAttribute('data-place-key') === key;
+        });
+    };
+    const attachPlace = (element: Element | undefined, fullPlace?: string) => {
+      if (!element) return;
+      const key = placeKey(fullPlace);
+      const text = select(element);
+      if (key && props.highlightMatchingPlaces !== false) {
+        text.attr('data-place-key', key)
+          .on('mouseenter.place-hover', () => highlight(key))
+          .on('mouseleave.place-hover', () => highlight(''));
+      } else {
+        text.attr('data-place-key', null)
+          .on('mouseenter.place-hover', null)
+          .on('mouseleave.place-hover', null);
+      }
+    };
+    // Clean up any old markers if the setting was switched off.
+    if (props.highlightMatchingPlaces === false) highlight('');
+
     const eventSummary = (
       label: string,
       event: {place?: string} | undefined,
       date: string,
-    ) => [label, date, event?.place].filter(Boolean).join(' · ');
+      extra: string[] = [],
+    ) => [
+      [label, date, event?.place].filter(Boolean).join(' · '),
+      ...extra,
+    ].filter(Boolean).join('\n');
 
     select('#chart')
       .selectAll<SVGGElement, {indi?: {id?: string}}>('g.indi')
       .each(function (record) {
-        const person = record?.indi?.id
-          ? indiById.get(record.indi.id)
-          : undefined;
+        const id = record?.indi?.id;
+        const person = id ? indiById.get(id) : undefined;
         if (!person) return;
-        const details = Array.from(this.querySelectorAll('text.details'));
-        // DetailedRenderer emits one symbol and one text element per line.
-        const values = details.filter((_element, index) => index % 2 === 1);
+        const values = Array.from(
+          this.querySelectorAll('text.details:not(.sex)'),
+        ).filter((_element, index) => index % 2 === 1);
         let index = 0;
-        for (const [label, event] of [
-          ['Geburt', person.birth],
-          ['Tod', person.death],
+        for (const [label, kind, event] of [
+          ['Geburt', 'birth', person.birth],
+          ['Tod', 'death', person.death],
         ] as const) {
           const date = formatDateOrRange(event, intl);
           const place = event?.place;
-          const summary = eventSummary(label, event, date);
+          const summary = eventSummary(
+            label,
+            event,
+            date,
+            id ? associatedEventLines(props.gedcom, id, kind, intl) : [],
+          );
           if (date) {
             if (values[index]) addTitle(values[index], summary);
             index++;
           }
-          // Places are reserved for highlighting other occurrences on hover.
-          if (place) index++;
+          if (place) {
+            attachPlace(values[index], place);
+            index++;
+          }
         }
       });
 
@@ -172,18 +208,15 @@ export class ChartWrapper {
         const id = record?.data?.family?.id;
         const marriage = id ? famById.get(id)?.marriage : undefined;
         if (!marriage) return;
-        const values = Array.from(this.querySelectorAll('text.details')).filter(
-          (_element, index) => index % 2 === 1,
-        );
-        const summary = eventSummary(
-          'Heirat',
-          marriage,
-          formatDateOrRange(marriage, intl),
-        );
-        // Only the marriage date receives a tooltip, not the place line.
-        if (formatDateOrRange(marriage, intl) && values[0]) {
-          addTitle(values[0], summary);
+        const values = Array.from(
+          this.querySelectorAll('text.details'),
+        ).filter((_element, index) => index % 2 === 1);
+        const date = formatDateOrRange(marriage, intl);
+        if (date && values[0]) {
+          addTitle(values[0], eventSummary('Heirat', marriage, date));
         }
+        const placeIndex = date ? 1 : 0;
+        if (marriage.place) attachPlace(values[placeIndex], marriage.place);
       });
   }
 
@@ -213,6 +246,7 @@ export class ChartWrapper {
     // Keep event handlers and preferences current even when no SVG redraw is needed.
     this.currentProps = props;
     this.highlightPerson(props.selectedPersonId);
+    this.attachEventTooltips(props, intl);
     // Nothing changed — the SVG is already correct. Skip re-render.
     // This prevents repeated full D3 layout passes (500ms+ each) that happen
     // when React re-renders for unrelated state changes.
