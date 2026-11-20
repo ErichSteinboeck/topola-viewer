@@ -37,6 +37,7 @@ export interface Config {
   placeCount: number;
   clickAction: ClickAction;
   showTechnicalFields: boolean;
+  alwaysShowEventNotes: boolean;
 }
 
 export const DEFALUT_CONFIG: Config = {
@@ -47,6 +48,7 @@ export const DEFALUT_CONFIG: Config = {
   placeCount: DEFAULT_PLACE_DISPLAY_COUNT,
   clickAction: ClickAction.DETAILS,
   showTechnicalFields: false,
+  alwaysShowEventNotes: false,
 };
 
 const COLOR_ARG = new Map<string, ChartColors>([
@@ -94,6 +96,7 @@ export function argsToConfig(args: ParsedQuery<unknown>): Config {
     placeCount: placeCount >= 1 ? placeCount : DEFALUT_CONFIG.placeCount,
     clickAction: getParam('click') === 'focus' ? ClickAction.FOCUS : ClickAction.DETAILS,
     showTechnicalFields: getParam('technical') === 'true',
+    alwaysShowEventNotes: getParam('notes') === 'always',
   };
 }
 
@@ -122,6 +125,7 @@ export function configToArgs(config: Config): ParsedQuery {
     result.pn = String(config.placeCount);
   }
   result.click = config.clickAction;
+  result.notes = config.alwaysShowEventNotes ? 'always' : null;
   if (config.showTechnicalFields) {
     result.technical = 'true';
   } else {
@@ -172,6 +176,10 @@ export function ConfigPanel(props: {
         </Item>
         <Item>
           <Item.Content>
+            <Header sub>Event notes</Header>
+            <Form.Field className="no-margin">
+              <Checkbox label="Always show notes below events" checked={props.config.alwaysShowEventNotes} onChange={(_event, data) => props.onChange({...props.config, alwaysShowEventNotes: !!data.checked})} />
+            </Form.Field>
             <Header sub>GEDCOM metadata</Header>
             <Form.Field className="no-margin">
               <Checkbox label="Show technical fields (RIN, UID, UPD)" checked={props.config.showTechnicalFields} onChange={(_event, data) => props.onChange({...props.config, showTechnicalFields: !!data.checked})} />
