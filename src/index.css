@@ -590,3 +590,17 @@ div.zoom {
   stroke: #ac6c1c;
   stroke-width: 2.2;
 }
+
+/* The fan's viewBox already excludes the empty lower 120-degree arc. */
+.ancestor-fan-container .ancestor-fan-svg {
+  margin: 0 auto;
+}
+.ancestor-fan-svg .fan-place-match {
+  fill: #513000;
+  stroke: #ffe18a;
+  stroke-width: 3px;
+  paint-order: stroke fill;
+}
+.ancestor-fan-controls input[type='number'] {
+  width: 4em;
+}
