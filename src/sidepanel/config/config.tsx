@@ -40,6 +40,7 @@ export interface Config {
   clickAction: ClickAction;
   showTechnicalFields: boolean;
   alwaysShowEventNotes: boolean;
+  highlightMatchingPlaces: boolean;
 }
 
 export const DEFALUT_CONFIG: Config = {
@@ -51,6 +52,7 @@ export const DEFALUT_CONFIG: Config = {
   clickAction: ClickAction.DETAILS,
   showTechnicalFields: false,
   alwaysShowEventNotes: false,
+  highlightMatchingPlaces: true,
 };
 
 const COLOR_ARG = new Map<string, ChartColors>([
@@ -112,6 +114,7 @@ export function argsToConfig(args: ParsedQuery<unknown>): Config {
       preference('click') === 'focus' ? ClickAction.FOCUS : ClickAction.DETAILS,
     showTechnicalFields: preference('technical') === 'true',
     alwaysShowEventNotes: preference('notes') === 'always',
+    highlightMatchingPlaces: preference('placehover') !== 'off',
   };
 }
 
@@ -139,6 +142,7 @@ export function configToArgs(config: Config): ParsedQuery {
   result.click = config.clickAction;
   result.notes = config.alwaysShowEventNotes ? 'always' : 'collapsed';
   result.technical = config.showTechnicalFields ? 'true' : 'false';
+  result.placehover = config.highlightMatchingPlaces ? 'on' : 'off';
   return result;
 }
 
@@ -220,6 +224,27 @@ export function ConfigPanel(props: {
                   props.onChange({
                     ...props.config,
                     alwaysShowEventNotes: !!data.checked,
+                  })
+                }
+              />
+            </Form.Field>
+            <Header sub>
+              <FormattedMessage
+                id="config.place_hover_header"
+                defaultMessage="Place hover"
+              />
+            </Header>
+            <Form.Field className="no-margin">
+              <Checkbox
+                label={intl.formatMessage({
+                  id: 'config.highlight_matching_places',
+                  defaultMessage: 'Highlight identical places on hover',
+                })}
+                checked={props.config.highlightMatchingPlaces}
+                onChange={(_event, data) =>
+                  props.onChange({
+                    ...props.config,
+                    highlightMatchingPlaces: !!data.checked,
                   })
                 }
               />
