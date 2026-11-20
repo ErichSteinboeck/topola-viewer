@@ -33,10 +33,23 @@ function readable(text: string): string {
   }
   // Non-browser fallback for tests and server-side consumers.
   const names: Record<string, string> = {
-    auml: 'ä', Auml: 'Ä', ouml: 'ö', Ouml: 'Ö',
-    uuml: 'ü', Uuml: 'Ü', szlig: 'ß', nbsp: ' ',
-    amp: '&', quot: '"', apos: "'", lt: '<', gt: '>',
-    eacute: 'é', Eacute: 'É', agrave: 'à', egrave: 'è',
+    auml: 'ä',
+    Auml: 'Ä',
+    ouml: 'ö',
+    Ouml: 'Ö',
+    uuml: 'ü',
+    Uuml: 'Ü',
+    szlig: 'ß',
+    nbsp: ' ',
+    amp: '&',
+    quot: '"',
+    apos: "'",
+    lt: '<',
+    gt: '>',
+    eacute: 'é',
+    Eacute: 'É',
+    agrave: 'à',
+    egrave: 'è',
   };
   return spaced
     .replace(/<[^>]*>/g, ' ')
