@@ -11,7 +11,7 @@ import {
 } from 'semantic-ui-react';
 import {Source} from '../../util/gedcom_util';
 import {AdditionalFiles, FileEntry} from './additional-files';
-import {MultilineText} from './multiline-text';
+import {SafeNoteHtml} from './safe-note-html';
 import {Sources} from './sources';
 import {WrappedImage} from './wrapped-image';
 
@@ -51,11 +51,7 @@ function eventNotes(notes: string[][] | undefined) {
     !!notes?.length &&
     notes.map((note, index) => (
       <div key={index}>
-        <MultilineText
-          lines={note.map((line, index) => (
-            <i key={index}>{line}</i>
-          ))}
-        />
+        <SafeNoteHtml text={note.join('\n')} />
       </div>
     ))
   );
