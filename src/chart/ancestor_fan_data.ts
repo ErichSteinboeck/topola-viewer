@@ -73,3 +73,45 @@ export function fanSectorPath(
     'Z',
   ].join(' ');
 }
+
+/**
+ * SVG bounds of actual known ancestor sectors. Empty ancestor positions do
+ * not affect "Fit", but their original pedigree angles remain unchanged.
+ */
+export function fanVisibleBounds(
+  nodes: FanAncestor[],
+  startRadius: number,
+  ringSize: number,
+  startAngle: number,
+  totalAngle: number,
+  margin = 40,
+) {
+  let minX = -startRadius;
+  let maxX = startRadius;
+  let minY = -startRadius;
+  let maxY = startRadius;
+  const anglesAtExtrema = [-270, -180, -90, 0, 90, 180, 270];
+  for (const node of nodes) {
+    if (!node.person || node.generation === 0) continue;
+    const count = 2 ** node.generation;
+    const from = startAngle + (node.index * totalAngle) / count;
+    const to = startAngle + ((node.index + 1) * totalAngle) / count;
+    const radius = startRadius + node.generation * ringSize;
+    const angles = [from, to, ...anglesAtExtrema.filter((a) => a > from && a < to)];
+    for (const degrees of angles) {
+      const theta = ((degrees - 90) * Math.PI) / 180;
+      const x = radius * Math.cos(theta);
+      const y = radius * Math.sin(theta);
+      minX = Math.min(minX, x);
+      maxX = Math.max(maxX, x);
+      minY = Math.min(minY, y);
+      maxY = Math.max(maxY, y);
+    }
+  }
+  return {
+    width: Math.ceil(maxX - minX + 2 * margin),
+    height: Math.ceil(maxY - minY + 2 * margin),
+    centerX: margin - minX,
+    centerY: margin - minY,
+  };
+}
