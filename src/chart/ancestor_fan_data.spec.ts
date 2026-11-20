@@ -2,7 +2,11 @@ import {describe, expect, it} from '@jest/globals';
 import {readFileSync} from 'fs';
 import {parse as parseGedcom} from 'parse-gedcom';
 import {gedcomEntriesToJson} from 'topola';
-import {buildAncestorFan, fanSectorPath} from './ancestor_fan_data';
+import {
+  buildAncestorFan,
+  fanSectorPath,
+  fanVisibleBounds,
+} from './ancestor_fan_data';
 
 describe('buildAncestorFan', () => {
   const chart = gedcomEntriesToJson(
@@ -24,6 +28,29 @@ describe('buildAncestorFan', () => {
     const tree = buildAncestorFan(chart, 'I500001', 2);
     expect(tree).toHaveLength(7);
     expect(tree.slice(1).every((node) => node.person === undefined)).toBe(true);
+  });
+});
+
+describe('fanVisibleBounds', () => {
+  it('ignores outer generations with no known ancestors', () => {
+    const chart = gedcomEntriesToJson(
+      parseGedcom(readFileSync('public/examples/wienfluss-huber.ged', 'utf8')),
+    );
+    const boundsForThree = fanVisibleBounds(
+      buildAncestorFan(chart, 'I500003', 3),
+      78,
+      105,
+      -120,
+      240,
+    );
+    const boundsForNine = fanVisibleBounds(
+      buildAncestorFan(chart, 'I500003', 9),
+      78,
+      105,
+      -120,
+      240,
+    );
+    expect(boundsForNine).toEqual(boundsForThree);
   });
 });
 
