@@ -121,7 +121,7 @@ describe('url_args', () => {
       expect(args.showSidePanel).toBe(true); // default on desktop
       expect(args.config).toEqual({
         color: ChartColors.COLOR_BY_GENERATION,
-        id: Ids.SHOW,
+        id: Ids.HIDE,
         sex: Sex.SHOW,
         place: PlaceDisplay.FULL,
         placeCount: 2,
