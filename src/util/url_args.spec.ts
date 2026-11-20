@@ -139,6 +139,9 @@ describe('url_args', () => {
       expect(getArguments(createLocation('?view=fancy')).chartType).toBe(
         ChartType.Fancy,
       );
+      expect(getArguments(createLocation('?view=fan')).chartType).toBe(
+        ChartType.AncestorFan,
+      );
       expect(getArguments(createLocation('?view=donatso')).chartType).toBe(
         ChartType.Donatso,
       );
