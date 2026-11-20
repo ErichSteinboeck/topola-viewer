@@ -92,7 +92,6 @@ export function SidePanel({
           indi={selectedIndiId}
           config={config}
           images={data.images}
-          repairReport={data.repairReport}
         />
       ),
     },
@@ -104,6 +103,7 @@ export function SidePanel({
       render: () => (
         <ConfigPanel
           gedcom={data.gedcom}
+          repairReport={data.repairReport}
           config={config}
           onChange={onConfigChange}
         />
