@@ -145,7 +145,10 @@ export class ChartWrapper {
       select('#chart')
         .selectAll<SVGTextElement, unknown>('text[data-place-key]')
         .classed('matching-place', function () {
-          return !!key && placesMatch(key, this.getAttribute('data-place-key') || '');
+          return (
+            !!key &&
+            placesMatch(key, this.getAttribute('data-place-key') || '')
+          );
         });
     };
     const attachPlace = (element: Element | undefined, fullPlace?: string) => {
