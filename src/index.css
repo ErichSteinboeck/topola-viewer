@@ -443,3 +443,21 @@ div.zoom {
   width: 7em;
   max-width: 100%;
 }
+
+/* Long GEDCOM source URLs and HTML notes must wrap inside the side panel. */
+.gedcom-note,
+.gedcom-note a,
+.details .ui.items > .item > .content,
+.details .ui.items .item .description {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Highlight the most recently clicked individual, independent of chart focus. */
+#chart .selected-individual > rect.border {
+  stroke: #d17900;
+  stroke-width: 4px;
+  stroke-opacity: 1;
+}
