@@ -157,8 +157,12 @@ export class ChartWrapper {
           const date = formatDateOrRange(event, intl);
           const place = event?.place;
           const summary = eventSummary(label, event, date);
-          if (date && values[index]) addTitle(values[index++], summary);
-          if (place && values[index]) addTitle(values[index++], summary);
+          if (date) {
+            if (values[index]) addTitle(values[index], summary);
+            index++;
+          }
+          // Places are reserved for highlighting other occurrences on hover.
+          if (place) index++;
         }
       });
 
@@ -176,7 +180,10 @@ export class ChartWrapper {
           marriage,
           formatDateOrRange(marriage, intl),
         );
-        values.forEach((element) => addTitle(element, summary));
+        // Only the marriage date receives a tooltip, not the place line.
+        if (formatDateOrRange(marriage, intl) && values[0]) {
+          addTitle(values[0], summary);
+        }
       });
   }
 
