@@ -12,6 +12,7 @@ import {associatedEventLines, placesMatch} from './hover_helpers';
 interface Props {
   data: JsonGedcomData;
   gedcom?: GedcomData;
+  highlightMatchingPlaces?: boolean;
   selection: IndiInfo;
   selectedPersonId?: string;
   colors?: ChartColors;
@@ -198,7 +199,7 @@ export function AncestorFanChart(props: Props) {
       person?.id === (props.selectedPersonId || props.selection.id);
     const matchingPlace =
       !!person &&
-      !!hoveredPlace &&
+      !!hoveredPlace && props.highlightMatchingPlaces !== false &&
       ([person.birth?.place, person.death?.place].some(
         (place) => place && placesMatch(place, hoveredPlace),
       ));
@@ -287,7 +288,8 @@ export function AncestorFanChart(props: Props) {
               const place =
                 line.kind === 'birthPlace' ? birthPlace : deathPlace;
               const isMatch =
-                isPlace && !!hoveredPlace && placesMatch(place, hoveredPlace);
+                isPlace && !!hoveredPlace &&
+                props.highlightMatchingPlaces !== false && placesMatch(place, hoveredPlace);
               return (
                 <text
                   key={line.kind}
@@ -297,7 +299,9 @@ export function AncestorFanChart(props: Props) {
                   fontWeight={isMatch ? 700 : 'normal'}
                   className={isMatch ? 'fan-place-match' : undefined}
                   onMouseEnter={
-                    isPlace ? () => setHoveredPlace(place) : undefined
+                    isPlace && props.highlightMatchingPlaces !== false
+                      ? () => setHoveredPlace(place)
+                      : undefined
                   }
                   onMouseLeave={
                     isPlace ? () => setHoveredPlace(undefined) : undefined
@@ -426,7 +430,9 @@ export function AncestorFanChart(props: Props) {
               key={marker.key}
               className="fan-marriage"
               transform={`translate(${marker.x} ${marker.y})`}
-              onMouseEnter={() => setHoveredPlace(marker.place)}
+              onMouseEnter={() => {
+                if (props.highlightMatchingPlaces !== false) setHoveredPlace(marker.place);
+              }}
               onMouseLeave={() => setHoveredPlace(undefined)}
             >
               <circle
