@@ -1,5 +1,7 @@
 import {useCallback, useEffect, useRef, useState} from 'react';
 import {IndiInfo, JsonGedcomData} from 'topola';
+import {GedcomData} from '../util/gedcom_util';
+import {FulltextSearchIndex} from './fulltext_search';
 import {analyticsEvent} from '../util/analytics';
 import {buildSearchIndex, SearchIndex, SearchResult} from './search_index';
 import {useSearchShortcut} from './use_search_shortcut';
@@ -20,8 +22,11 @@ function scheduleIdleTask(callback: () => void, timeout = 5000): () => void {
 interface UseSearchProps {
   /** Data used for the search index. */
   data?: JsonGedcomData;
+  gedcom?: GedcomData;
+  mode: 'people' | 'fulltext';
   /** Callback triggered when a search result is selected. */
   onSelection?: (indiInfo: IndiInfo) => void;
+  onDetailSelection?: (indiInfo: IndiInfo) => void;
 }
 
 interface UseSearchResult {
@@ -42,19 +47,26 @@ interface UseSearchResult {
  */
 export function useSearch({
   data,
+  gedcom,
+  mode,
   onSelection,
+  onDetailSelection,
 }: UseSearchProps): UseSearchResult {
   useSearchShortcut();
 
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [searchString, setSearchString] = useState('');
   const searchIndex = useRef<SearchIndex | undefined>(undefined);
+  const fulltextIndex = useRef<FulltextSearchIndex | undefined>(undefined);
   const latestDataRef = useRef(data);
   latestDataRef.current = data;
+  const latestGedcomRef = useRef(gedcom);
+  latestGedcomRef.current = gedcom;
 
   // Build search index once for both desktop and mobile search bars
   useEffect(() => {
     searchIndex.current = undefined;
+    fulltextIndex.current = undefined;
     if (!data) {
       return;
     }
@@ -65,7 +77,7 @@ export function useSearch({
       }
     };
     return scheduleIdleTask(build);
-  }, [data]);
+  }, [data, gedcom]);
 
   // Debounced search effect
   useEffect(() => {
@@ -78,24 +90,36 @@ export function useSearch({
       if (!currentData) {
         return;
       }
-      if (!searchIndex.current) {
-        searchIndex.current = buildSearchIndex(currentData);
+      if (mode === 'fulltext' && latestGedcomRef.current) {
+        if (!fulltextIndex.current) {
+          fulltextIndex.current = new FulltextSearchIndex(
+            latestGedcomRef.current,
+            currentData,
+          );
+        }
+        setSearchResults(fulltextIndex.current.search(searchString));
+      } else {
+        if (!searchIndex.current) {
+          searchIndex.current = buildSearchIndex(currentData);
+        }
+        setSearchResults(searchIndex.current.search(searchString));
       }
-      const index = searchIndex.current;
-      const results = index.search(searchString);
-      setSearchResults(results);
     }, 200);
     return () => clearTimeout(handle);
-  }, [searchString]);
+  }, [searchString, mode]);
 
   const handleResultSelect = useCallback(
     (id: string) => {
       analyticsEvent('search_result_selected');
-      onSelection?.({id, generation: 0});
+      if (mode === 'fulltext' && onDetailSelection) {
+        onDetailSelection({id, generation: 0});
+      } else {
+        onSelection?.({id, generation: 0});
+      }
       setSearchString('');
       setSearchResults([]);
     },
-    [onSelection],
+    [mode, onSelection, onDetailSelection],
   );
 
   return {
