@@ -126,14 +126,14 @@ export function configToArgs(config: Config): ParsedQuery {
     result.s = sex;
   }
   const place = PLACE_ARG_INVERSE.get(config.place);
-  result.p = config.place === PlaceDisplay.FULL ? null : place;
+  result.p = place ?? 'f';
   result.pn =
     config.place === PlaceDisplay.SHORT &&
     config.placeCount !== DEFALUT_CONFIG.placeCount
       ? String(config.placeCount)
       : null;
   result.click = config.clickAction;
-  result.notes = config.alwaysShowEventNotes ? 'always' : null;
+  result.notes = config.alwaysShowEventNotes ? 'always' : 'collapsed';
   result.technical = config.showTechnicalFields ? 'true' : 'false';
   return result;
 }
@@ -198,7 +198,10 @@ export function ConfigPanel(props: {
         <Item>
           <Item.Content>
             <Header sub>
-              <FormattedMessage id="config.event_notes" defaultMessage="Event notes" />
+              <FormattedMessage
+                id="config.event_notes"
+                defaultMessage="Event notes"
+              />
             </Header>
             <Form.Field className="no-margin">
               <Checkbox
@@ -216,7 +219,10 @@ export function ConfigPanel(props: {
               />
             </Form.Field>
             <Header sub>
-              <FormattedMessage id="config.gedcom_metadata" defaultMessage="GEDCOM metadata" />
+              <FormattedMessage
+                id="config.gedcom_metadata"
+                defaultMessage="GEDCOM metadata"
+              />
             </Header>
             <Form.Field className="no-margin">
               <Checkbox
@@ -233,7 +239,6 @@ export function ConfigPanel(props: {
                 }
               />
             </Form.Field>
-
             <Form.Field className="no-margin">
               <Checkbox
                 label={intl.formatMessage({
@@ -402,7 +407,12 @@ export function ConfigPanel(props: {
               />
               {props.config.place === PlaceDisplay.SHORT && (
                 <div className="place-count-setting">
-                  <label htmlFor="placeCount">Number of place components</label>
+                  <label htmlFor="placeCount">
+                    <FormattedMessage
+                      id="config.place_components"
+                      defaultMessage="Number of place components"
+                    />
+                  </label>
                   <Input
                     id="placeCount"
                     type="number"
