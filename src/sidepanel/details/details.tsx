@@ -1,7 +1,7 @@
 import flatMap from 'array.prototype.flatmap';
 import {GedcomEntry} from 'parse-gedcom';
 import {FormattedMessage} from 'react-intl';
-import {Header, Item} from 'semantic-ui-react';
+import {Header, Item, Message} from 'semantic-ui-react';
 import {
   dereference,
   GedcomData,
@@ -13,6 +13,7 @@ import {
   resolveFileUrl,
 } from '../../util/gedcom_util';
 import {Config, Ids} from '../config/config';
+import {GedcomRepairReport} from '../../util/gedcom_repair';
 import {AdditionalFiles, FileEntry} from './additional-files';
 import {ALL_SUPPORTED_EVENT_TYPES, Events} from './events';
 import {ImmediateFamily} from './immediate-family';
@@ -354,6 +355,7 @@ interface Props {
   indi: string;
   config: Config;
   images?: Map<string, string>;
+  repairReport?: Omit<GedcomRepairReport, 'text'>;
 }
 
 export function Details(props: Props) {
@@ -361,6 +363,49 @@ export function Details(props: Props) {
 
   return (
     <div className="details" data-testid="details">
+      {props.repairReport &&
+        (props.repairReport.repairedLines > 0 ||
+          props.repairReport.unrepairedLines > 0) && (
+          <Message warning size="small" className="gedcom-import-warning" role="alert">
+            <Message.Header>
+              <FormattedMessage
+                id="gedcom.repair_warning"
+                defaultMessage="GEDCOM import warning"
+              />
+            </Message.Header>
+            {props.repairReport.repairedLines > 0 && (
+              <p>
+                <FormattedMessage
+                  id="gedcom.lines_repaired"
+                  defaultMessage="{count} malformed continuation line(s) automatically repaired."
+                  values={{count: props.repairReport.repairedLines}}
+                />
+              </p>
+            )}
+            {props.repairReport.unrepairedLines > 0 && (
+              <p>
+                <FormattedMessage
+                  id="gedcom.lines_unrepaired"
+                  defaultMessage="{count} unrecognized line(s) could not be safely repaired."
+                  values={{count: props.repairReport.unrepairedLines}}
+                />
+              </p>
+            )}
+            <p>
+              <FormattedMessage
+                id="gedcom.repair_caution"
+                defaultMessage="The original file was not modified. Please check the affected notes; automatic reconstruction may be ambiguous."
+              />
+            </p>
+            <p>
+              <FormattedMessage
+                id="gedcom.repair_line_numbers"
+                defaultMessage="Affected lines (first examples): {lines}"
+                values={{lines: props.repairReport.affectedLines.join(', ')}}
+              />
+            </p>
+          </Message>
+        )}
       <Item.Group divided>
         {getSectionForEachMatchingEntry(
           entries,
