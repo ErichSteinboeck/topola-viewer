@@ -72,7 +72,6 @@ export function AncestorFanChart(props: Props) {
   const [generations, setGenerations] = useState(5);
   const svgRef = useRef<SVGSVGElement>(null);
   const zoomBehavior = useRef<ZoomBehavior<SVGSVGElement, unknown> | null>(null);
-  const [zoomLevel, setZoomLevel] = useState(1);
   const [hoveredId, setHoveredId] = useState<string>();
   const ancestors = useMemo(
     () => buildAncestorFan(props.data, props.selection.id, generations),
@@ -94,7 +93,6 @@ export function AncestorFanChart(props: Props) {
           'transform',
           `translate(${x} ${y}) scale(${k}) translate(${center} ${center})`,
         );
-        setZoomLevel(k);
       });
     zoomBehavior.current = behavior;
     select(svg).call(behavior);
@@ -260,7 +258,6 @@ export function AncestorFanChart(props: Props) {
           defaultMessage: 'Circular ancestor fan chart',
         })}
         style={{width: '100%', height: 'auto', maxWidth: 'none'}}
-        data-zoom={zoomLevel}
       >
         <g id="chart" transform={`translate(${center} ${center})`}>
           {ancestors.slice(1).map(sector)}
