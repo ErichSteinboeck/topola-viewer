@@ -184,13 +184,13 @@ export function ConfigPanel(props: {
                   id: 'config.invert_click_behavior',
                   defaultMessage: 'Invert click behavior',
                 })}
-                checked={props.config.clickAction === ClickAction.FOCUS}
+                checked={props.config.clickAction === ClickAction.DETAILS}
                 onChange={(_event, data) =>
                   props.onChange({
                     ...props.config,
                     clickAction: data.checked
-                      ? ClickAction.FOCUS
-                      : ClickAction.DETAILS,
+                      ? ClickAction.DETAILS
+                      : ClickAction.FOCUS,
                   })
                 }
               />
