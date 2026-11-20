@@ -98,7 +98,6 @@ export function AncestorFanChart(props: Props) {
   const zoomBehavior = useRef<ZoomBehavior<SVGSVGElement, unknown> | null>(
     null,
   );
-  const [hoveredId, setHoveredId] = useState<string>();
   const [hoveredPlace, setHoveredPlace] = useState<string>();
   const familyById = useMemo(
     () => new Map(props.data.fams.map((fam) => [fam.id, fam])),
@@ -207,17 +206,8 @@ export function AncestorFanChart(props: Props) {
     const x = textRadius * Math.cos(angle);
     const y = textRadius * Math.sin(angle);
     const isSelected =
-      person?.id === (props.selectedPersonId || props.selection.id);
-    const matchingPlace =
-      !!person &&
-      !!hoveredPlace &&
-      props.highlightMatchingPlaces !== false &&
-      [person.birth?.place, person.death?.place].some(
-        (place) => place && placesMatch(place, hoveredPlace),
-      );
-    const emphasized =
-      isSelected || matchingPlace || (!!person && person.id === hoveredId);
-    const maxChars = generation > 4 ? 14 : 26;
+      person.id === (props.selectedPersonId || props.selection.id);
+    const maxChars = generation >= 7 ? 12 : generation >= 5 ? 17 : 26;
     const name = person ? labels(person) : '';
     const shortName =
       name.length > maxChars ? `${name.slice(0, maxChars - 1)}…` : name;
@@ -240,26 +230,35 @@ export function AncestorFanChart(props: Props) {
     const deathPlace = person?.death?.place || '';
     type DetailLine = {
       value: string;
-      kind: 'birth' | 'death' | 'birthPlace' | 'deathPlace';
+      kind: 'birth' | 'death';
+      date: string;
+      place: string;
     };
-    const lines: DetailLine[] =
-      generation <= 3
-        ? ([
-            {value: fullBirth ? `* ${fullBirth}` : '', kind: 'birth'},
-            {
-              value: birthPlace ? short(birthPlace, 26) : '',
-              kind: 'birthPlace',
-            },
-            {value: fullDeath ? `† ${fullDeath}` : '', kind: 'death'},
-            {
-              value: deathPlace ? short(deathPlace, 26) : '',
-              kind: 'deathPlace',
-            },
-          ].filter((line) => !!line.value) as DetailLine[])
-        : ([
-            {value: born ? `* ${born}` : '', kind: 'birth'},
-            {value: died ? `† ${died}` : '', kind: 'death'},
-          ].filter((line) => !!line.value) as DetailLine[]);
+    const compactLine = (
+      kind: 'birth' | 'death',
+      date: string,
+      place: string,
+      year?: number,
+    ): DetailLine | undefined => {
+      const prefix = kind === 'birth' ? '*' : '†';
+      const shownDate = generation <= 3 ? date : year ? String(year) : '';
+      if (!shownDate && !place) return undefined;
+      // Inner rings show a complete event on one line; outer rings retain
+      // short years so their text remains legible in narrow sectors.
+      const shownPlace = generation <= 3 && place ? short(place, 19) : '';
+      return {
+        kind,
+        date: shownDate ? `${prefix} ${shownDate}` : '',
+        place: shownPlace,
+        value: [shownDate ? `${prefix} ${shownDate}` : '', shownPlace]
+          .filter(Boolean)
+          .join(' · '),
+      };
+    };
+    const lines = [
+      compactLine('birth', fullBirth, birthPlace, born),
+      compactLine('death', fullDeath, deathPlace, died),
+    ].filter((line): line is DetailLine => !!line);
     const birthTooltip = [
       intl.formatMessage({id: 'fan.birth', defaultMessage: 'Birth'}),
       formatDateOrRange(person?.birth, intl),
@@ -280,73 +279,73 @@ export function AncestorFanChart(props: Props) {
     ]
       .filter(Boolean)
       .join('\n');
+    const spacing = generation <= 3 ? 16 : 14;
+    const nameY = -(lines.length * spacing) / 2;
     return (
       <g
         key={`${generation}-${index}`}
-        className={person ? 'fan-ancestor' : 'fan-missing'}
-        onClick={person ? (event) => handleClick(event, person) : undefined}
-        onMouseEnter={() => setHoveredId(person?.id)}
-        onMouseLeave={() => setHoveredId(undefined)}
-        style={{cursor: person ? 'pointer' : 'default'}}
+        className={isSelected ? 'fan-ancestor fan-selected' : 'fan-ancestor'}
+        onClick={(event) => handleClick(event, person)}
+        style={{cursor: 'pointer'}}
       >
         <path
           d={fanSectorPath(inner, outer, start, end)}
           fill={personFill(person, generation, props.colors)}
-          stroke={emphasized ? '#d18a13' : '#a7a7a7'}
-          strokeWidth={emphasized ? 3.5 : 0.85}
+          stroke={isSelected ? '#718699' : '#a7a7a7'}
+          strokeWidth={isSelected ? 2 : 0.85}
         />
-        {person && (
-          <g
-            transform={`translate(${x} ${y}) rotate(${rotation})`}
-            fontFamily="Arial, sans-serif"
-            textAnchor="middle"
+        <g
+          transform={`translate(${x} ${y}) rotate(${rotation})`}
+          fontFamily="Arial, sans-serif"
+          textAnchor="middle"
+        >
+          <text
+            y={nameY}
+            fontSize={generation > 6 ? 9 : generation > 4 ? 10 : 14}
+            fontWeight={isSelected ? 700 : 500}
           >
-            <text
-              y={-(lines.length * 6 + 2)}
-              fontSize={generation > 5 ? 9 : generation > 3 ? 11 : 13}
-              fontWeight={emphasized ? 700 : 500}
-            >
-              {shortName}
-              <title>{describePerson(person, generation)}</title>
-            </text>
-            {lines.map((line, lineIndex) => {
-              const isPlace =
-                line.kind === 'birthPlace' || line.kind === 'deathPlace';
-              const place =
-                line.kind === 'birthPlace' ? birthPlace : deathPlace;
-              const isMatch =
-                isPlace &&
-                !!hoveredPlace &&
-                props.highlightMatchingPlaces !== false &&
-                placesMatch(place, hoveredPlace);
-              return (
-                <text
-                  key={line.kind}
-                  y={
-                    -(lines.length * 6 + 2) +
-                    (lineIndex + 1) * (generation <= 3 ? 13 : 16)
-                  }
-                  fontSize={generation <= 3 ? 9 : 10}
-                  fontWeight={isMatch ? 700 : 'normal'}
-                  className={isMatch ? 'fan-place-match' : undefined}
-                  onMouseEnter={
-                    isPlace && props.highlightMatchingPlaces !== false
-                      ? () => setHoveredPlace(place)
-                      : undefined
-                  }
-                  onMouseLeave={
-                    isPlace ? () => setHoveredPlace(undefined) : undefined
-                  }
-                  style={{cursor: isPlace ? 'crosshair' : 'pointer'}}
-                >
-                  {line.value}
-                  {line.kind === 'birth' && <title>{birthTooltip}</title>}
-                  {line.kind === 'death' && <title>{deathTooltip}</title>}
-                </text>
+            {shortName}
+            <title>{describePerson(person, generation)}</title>
+          </text>
+          {lines.map((line, lineIndex) => {
+            const isPlaceMatch =
+              !!line.place &&
+              !!hoveredPlace &&
+              props.highlightMatchingPlaces !== false &&
+              placesMatch(
+                line.kind === 'birth' ? birthPlace : deathPlace,
+                hoveredPlace,
               );
-            })}
-          </g>
-        )}
+            const fullPlace = line.kind === 'birth' ? birthPlace : deathPlace;
+            return (
+              <text
+                key={line.kind}
+                y={nameY + (lineIndex + 1) * spacing}
+                fontSize={generation <= 3 ? 10.5 : 10}
+                fontWeight="normal"
+              >
+                <tspan>
+                  {line.date}
+                  <title>{line.kind === 'birth' ? birthTooltip : deathTooltip}</title>
+                </tspan>
+                {!!line.place && (
+                  <tspan
+                    className={isPlaceMatch ? 'fan-place-match' : undefined}
+                    onMouseEnter={() => {
+                      if (props.highlightMatchingPlaces !== false)
+                        setHoveredPlace(fullPlace);
+                    }}
+                    onMouseLeave={() => setHoveredPlace(undefined)}
+                    style={{cursor: 'crosshair'}}
+                  >
+                    {line.date ? ' · ' : ''}
+                    {line.place}
+                  </tspan>
+                )}
+              </text>
+            );
+          })}
+        </g>
       </g>
     );
   };
@@ -381,7 +380,6 @@ export function AncestorFanChart(props: Props) {
           x,
           y,
           text,
-          place: marriage.place,
         },
       ];
     });
@@ -449,6 +447,8 @@ export function AncestorFanChart(props: Props) {
           defaultMessage: 'Circular ancestor fan chart',
         })}
         style={{width: '100%', height: '100%', maxWidth: 'none'}}
+        onMouseLeave={() => setHoveredPlace(undefined)}
+        onPointerCancel={() => setHoveredPlace(undefined)}
       >
         <g id="chart" transform={`translate(${centerX} ${centerY})`}>
           {ancestors
@@ -459,11 +459,6 @@ export function AncestorFanChart(props: Props) {
               key={marker.key}
               className="fan-marriage"
               transform={`translate(${marker.x} ${marker.y})`}
-              onMouseEnter={() => {
-                if (props.highlightMatchingPlaces !== false)
-                  setHoveredPlace(marker.place);
-              }}
-              onMouseLeave={() => setHoveredPlace(undefined)}
             >
               <circle
                 r={8}
