@@ -3,11 +3,11 @@ import {zoom as d3Zoom, ZoomBehavior, zoomIdentity} from 'd3-zoom';
 import {useEffect, useMemo, useRef, useState} from 'react';
 import {useIntl} from 'react-intl';
 import {IndiInfo, JsonGedcomData, JsonIndi} from 'topola';
-import {GedcomData} from '../util/gedcom_util';
-import {associatedEventLines} from './hover_helpers';
 import {ChartColors, ClickAction, Ids} from '../sidepanel/config/config';
 import {formatDateOrRange} from '../util/date_util';
+import {GedcomData} from '../util/gedcom_util';
 import {buildAncestorFan, fanSectorPath} from './ancestor_fan_data';
+import {associatedEventLines} from './hover_helpers';
 
 interface Props {
   data: JsonGedcomData;
@@ -125,14 +125,26 @@ export function AncestorFanChart(props: Props) {
   const describePerson = (person: JsonIndi, generation: number) =>
     [
       labels(person),
-      [intl.formatMessage({id: 'fan.birth', defaultMessage: 'Birth'}),
-       formatDateOrRange(person.birth, intl), person.birth?.place].filter(Boolean).join(' · '),
+      [
+        intl.formatMessage({id: 'fan.birth', defaultMessage: 'Birth'}),
+        formatDateOrRange(person.birth, intl),
+        person.birth?.place,
+      ]
+        .filter(Boolean)
+        .join(' · '),
       ...associatedEventLines(props.gedcom, person.id, 'birth', intl),
-      [intl.formatMessage({id: 'fan.death', defaultMessage: 'Death'}),
-       formatDateOrRange(person.death, intl), person.death?.place].filter(Boolean).join(' · '),
+      [
+        intl.formatMessage({id: 'fan.death', defaultMessage: 'Death'}),
+        formatDateOrRange(person.death, intl),
+        person.death?.place,
+      ]
+        .filter(Boolean)
+        .join(' · '),
       ...associatedEventLines(props.gedcom, person.id, 'death', intl),
       `${intl.formatMessage({id: 'fan.generation', defaultMessage: 'Generation'})} ${generation}`,
-    ].filter(Boolean).join('\n');
+    ]
+      .filter(Boolean)
+      .join('\n');
 
   const labels = (person: JsonIndi) => {
     const text = personName(person);
@@ -171,9 +183,8 @@ export function AncestorFanChart(props: Props) {
       name.length > maxChars ? `${name.slice(0, maxChars - 1)}…` : name;
     // Tangential labels: turned 90 degrees relative to the first prototype.
     // Turn outer lower sectors upright rather than displaying upside-down text.
-    const rotation = generation >= 5
-      ? middle - 90 + (middle < 0 ? 180 : 0)
-      : middle;
+    const rotation =
+      generation >= 5 ? middle - 90 + (middle < 0 ? 180 : 0) : middle;
     const born = person?.birth?.date?.year;
     const died = person?.death?.date?.year;
     const life = [born ?? '?', died ?? '?'].join('–');
@@ -182,13 +193,14 @@ export function AncestorFanChart(props: Props) {
     const birthPlace = person?.birth?.place || '';
     const short = (value: string, limit: number) =>
       value.length > limit ? `${value.slice(0, limit - 1)}…` : value;
-    const lines = generation <= 3
-      ? [
-          fullBirth ? `* ${fullBirth}` : '',
-          fullDeath ? `† ${fullDeath}` : '',
-          birthPlace ? short(birthPlace, 26) : '',
-        ].filter(Boolean)
-      : [life];
+    const lines =
+      generation <= 3
+        ? [
+            fullBirth ? `* ${fullBirth}` : '',
+            fullDeath ? `† ${fullDeath}` : '',
+            birthPlace ? short(birthPlace, 26) : '',
+          ].filter(Boolean)
+        : [life];
     return (
       <g
         key={`${generation}-${index}`}
@@ -261,11 +273,17 @@ export function AncestorFanChart(props: Props) {
         intl.formatMessage({id: 'fan.marriage', defaultMessage: 'Marriage'}),
         formatDateOrRange(marriage, intl),
         marriage.place,
-      ].filter(Boolean).join('\n');
-      return [{
-        key: `${node.generation}-${node.index}`,
-        x, y, text,
-      }];
+      ]
+        .filter(Boolean)
+        .join('\n');
+      return [
+        {
+          key: `${node.generation}-${node.index}`,
+          x,
+          y,
+          text,
+        },
+      ];
     });
 
   const root = ancestors[0].person;
@@ -297,10 +315,18 @@ export function AncestorFanChart(props: Props) {
         </button>
       </div>
       <div className="zoom ancestor-fan-zoom">
-        <button className="zoom-in" aria-label="Zoom in" onClick={() => changeZoom(1.3)}>
+        <button
+          className="zoom-in"
+          aria-label="Zoom in"
+          onClick={() => changeZoom(1.3)}
+        >
           +
         </button>
-        <button className="zoom-out" aria-label="Zoom out" onClick={() => changeZoom(1 / 1.3)}>
+        <button
+          className="zoom-out"
+          aria-label="Zoom out"
+          onClick={() => changeZoom(1 / 1.3)}
+        >
           −
         </button>
       </div>
@@ -321,8 +347,18 @@ export function AncestorFanChart(props: Props) {
         <g id="chart" transform={`translate(${center} ${center})`}>
           {ancestors.slice(1).map(sector)}
           {marriageMarkers.map((marker) => (
-            <g key={marker.key} className="fan-marriage" transform={`translate(${marker.x} ${marker.y})`}>
-              <circle r={8} fill="white" fillOpacity={0.92} stroke="#805f39" strokeWidth={1.2}/>
+            <g
+              key={marker.key}
+              className="fan-marriage"
+              transform={`translate(${marker.x} ${marker.y})`}
+            >
+              <circle
+                r={8}
+                fill="white"
+                fillOpacity={0.92}
+                stroke="#805f39"
+                strokeWidth={1.2}
+              />
               <path d="M -4 0 L 0 -4 L 4 0 L 0 4 Z" fill="#bb7930" />
               <title>{marker.text}</title>
             </g>
