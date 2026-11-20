@@ -19,7 +19,7 @@ import {
   getChartType,
   getRendererType,
 } from './chart_types';
-import {associatedEventLines, placeKey} from './hover_helpers';
+import {associatedEventLines, placeKey, placesMatch} from './hover_helpers';
 
 /** How much to zoom when using the +/- buttons. */
 const ZOOM_FACTOR = 1.3;
@@ -145,7 +145,7 @@ export class ChartWrapper {
       select('#chart')
         .selectAll<SVGTextElement, unknown>('text[data-place-key]')
         .classed('matching-place', function () {
-          return !!key && this.getAttribute('data-place-key') === key;
+          return !!key && placesMatch(key, this.getAttribute('data-place-key') || '');
         });
     };
     const attachPlace = (element: Element | undefined, fullPlace?: string) => {
