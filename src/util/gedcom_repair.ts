@@ -19,7 +19,10 @@ export function repairGedcomTextLines(input: string): string {
   let repaired = 0;
 
   for (const line of lines) {
-    const record = GEDCOM_RECORD.exec(line);
+    const parsed = GEDCOM_RECORD.exec(line);
+    // GEDCOM levels are nonnegative small integers (0..99 in GEDCOM 7).
+    // A note line such as '1855 H' is not a GEDCOM record.
+    const record = parsed && Number(parsed[1]) <= 99 ? parsed : null;
     if (record) {
       const level = Number(record[1]);
       const tag = record[2].toUpperCase();
@@ -44,7 +47,9 @@ export function repairGedcomTextLines(input: string): string {
   }
 
   if (repaired) {
-    console.warn(`Repaired ${repaired} untagged GEDCOM text continuation line(s).`);
+    console.warn(
+      `Repaired ${repaired} untagged GEDCOM text continuation line(s).`,
+    );
   }
   return repaired ? result.join('\n') : input;
 }
