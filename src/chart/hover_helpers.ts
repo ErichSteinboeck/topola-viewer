@@ -39,21 +39,26 @@ export function placesMatch(left: string, right: string): boolean {
   return matchesEdge(a, b) || matchesEdge(b, a);
 }
 
-function eventLine(entry: GedcomEntry, label: string, intl: IntlShape): string {
+export interface AssociatedEvent {
+  label: string;
+  value: string;
+}
+
+function eventLine(entry: GedcomEntry, label: string, intl: IntlShape): AssociatedEvent {
   const dateEntry = entry.tree.find((part) => part.tag === 'DATE');
   const placeEntry = entry.tree.find((part) => part.tag === 'PLAC');
   const date = dateEntry?.data ? translateDate(dateEntry.data, intl) : '';
   const place = placeEntry ? getData(placeEntry).join('\n') : '';
-  return [label, date, place].filter(Boolean).join(' · ');
+  return {label, value: [date, place].filter(Boolean).join(' · ')};
 }
 
 /** Additional church events shown with birth/death, when present. */
-export function associatedEventLines(
+export function associatedEventDetails(
   gedcom: GedcomData | undefined,
   individualId: string,
   kind: 'birth' | 'death',
   intl: IntlShape,
-): string[] {
+): AssociatedEvent[] {
   const person = gedcom?.indis[individualId];
   if (!person) return [];
   const german = intl.locale.toLowerCase().startsWith('de');
@@ -71,4 +76,16 @@ export function associatedEventLines(
     const match = events.find((event) => event.tag === entry.tag);
     return match ? [eventLine(entry, match.label, intl)] : [];
   });
+}
+
+/** Backwards-compatible string output for the original event hover. */
+export function associatedEventLines(
+  gedcom: GedcomData | undefined,
+  individualId: string,
+  kind: 'birth' | 'death',
+  intl: IntlShape,
+): string[] {
+  return associatedEventDetails(gedcom, individualId, kind, intl).map(
+    ({label, value}) => [label, value].filter(Boolean).join(' · '),
+  );
 }
