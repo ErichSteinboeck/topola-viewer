@@ -97,7 +97,11 @@ export function fanVisibleBounds(
     const from = startAngle + (node.index * totalAngle) / count;
     const to = startAngle + ((node.index + 1) * totalAngle) / count;
     const radius = startRadius + node.generation * ringSize;
-    const angles = [from, to, ...anglesAtExtrema.filter((a) => a > from && a < to)];
+    const angles = [
+      from,
+      to,
+      ...anglesAtExtrema.filter((a) => a > from && a < to),
+    ];
     for (const degrees of angles) {
       const theta = ((degrees - 90) * Math.PI) / 180;
       const x = radius * Math.cos(theta);

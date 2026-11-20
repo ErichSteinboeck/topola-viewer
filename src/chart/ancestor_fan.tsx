@@ -6,7 +6,11 @@ import {IndiInfo, JsonGedcomData, JsonIndi} from 'topola';
 import {ChartColors, ClickAction, Ids} from '../sidepanel/config/config';
 import {formatDateOrRange} from '../util/date_util';
 import {GedcomData} from '../util/gedcom_util';
-import {buildAncestorFan, fanSectorPath, fanVisibleBounds} from './ancestor_fan_data';
+import {
+  buildAncestorFan,
+  fanSectorPath,
+  fanVisibleBounds,
+} from './ancestor_fan_data';
 import {associatedEventLines, placesMatch} from './hover_helpers';
 
 interface Props {
@@ -240,16 +244,22 @@ export function AncestorFanChart(props: Props) {
     };
     const lines: DetailLine[] =
       generation <= 3
-        ? [
+        ? ([
             {value: fullBirth ? `* ${fullBirth}` : '', kind: 'birth'},
-            {value: birthPlace ? short(birthPlace, 26) : '', kind: 'birthPlace'},
+            {
+              value: birthPlace ? short(birthPlace, 26) : '',
+              kind: 'birthPlace',
+            },
             {value: fullDeath ? `† ${fullDeath}` : '', kind: 'death'},
-            {value: deathPlace ? short(deathPlace, 26) : '', kind: 'deathPlace'},
-          ].filter((line) => !!line.value) as DetailLine[]
-        : [
+            {
+              value: deathPlace ? short(deathPlace, 26) : '',
+              kind: 'deathPlace',
+            },
+          ].filter((line) => !!line.value) as DetailLine[])
+        : ([
             {value: born ? `* ${born}` : '', kind: 'birth'},
             {value: died ? `† ${died}` : '', kind: 'death'},
-          ].filter((line) => !!line.value) as DetailLine[];
+          ].filter((line) => !!line.value) as DetailLine[]);
     const birthTooltip = [
       intl.formatMessage({id: 'fan.birth', defaultMessage: 'Birth'}),
       formatDateOrRange(person?.birth, intl),
@@ -352,7 +362,8 @@ export function AncestorFanChart(props: Props) {
       if (!marriage) return [];
       const parentGeneration = childNode.generation + 1;
       const count = 2 ** parentGeneration;
-      const boundary = FAN_START + ((2 * childNode.index + 1) * FAN_ANGLE) / count;
+      const boundary =
+        FAN_START + ((2 * childNode.index + 1) * FAN_ANGLE) / count;
       const angle = ((boundary - 90) * Math.PI) / 180;
       const r = START_RADIUS + (parentGeneration - 0.5) * RING_SIZE;
       const x = r * Math.cos(angle);
@@ -440,7 +451,9 @@ export function AncestorFanChart(props: Props) {
         style={{width: '100%', height: '100%', maxWidth: 'none'}}
       >
         <g id="chart" transform={`translate(${centerX} ${centerY})`}>
-          {ancestors.filter((node) => node.person && node.generation > 0).map(sector)}
+          {ancestors
+            .filter((node) => node.person && node.generation > 0)
+            .map(sector)}
           {marriageMarkers.map((marker) => (
             <g
               key={marker.key}
