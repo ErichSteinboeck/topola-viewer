@@ -9,7 +9,10 @@ import {
   JsonIndi,
 } from 'topola';
 import {compareDates} from './date_util';
-import {repairGedcomTextLines} from './gedcom_repair';
+import {
+  GedcomRepairReport,
+  repairGedcomTextLinesWithReport,
+} from './gedcom_repair';
 import {TopolaError} from './error';
 
 export interface GedcomData {
@@ -27,6 +30,7 @@ export interface TopolaData {
   chartData: JsonGedcomData;
   gedcom: GedcomData;
   images?: Map<string, string>;
+  repairReport?: Omit<GedcomRepairReport, 'text'>;
 }
 
 export interface Source {
@@ -312,7 +316,8 @@ export async function convertGedcom(
 ): Promise<TopolaData> {
   await yieldToEventLoop(onProgress, 'Step 1/4: parsing GEDCOM…');
 
-  const entries = parseGedcom(repairGedcomTextLines(gedcom));
+  const repair = repairGedcomTextLinesWithReport(gedcom);
+  const entries = parseGedcom(repair.text);
 
   await yieldToEventLoop(onProgress, 'Step 2/4: building family graph…');
 
@@ -340,6 +345,11 @@ export async function convertGedcom(
     chartData,
     gedcom: gedcomData,
     images,
+    repairReport: {
+      repairedLines: repair.repairedLines,
+      unrepairedLines: repair.unrepairedLines,
+      affectedLines: repair.affectedLines,
+    },
   };
 }
 
