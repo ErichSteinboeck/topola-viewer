@@ -1,4 +1,6 @@
 import {useEffect, useMemo, useRef, useState} from 'react';
+import {select} from 'd3-selection';
+import {zoom as d3Zoom, zoomIdentity, ZoomBehavior} from 'd3-zoom';
 import {useIntl} from 'react-intl';
 import {IndiInfo, JsonGedcomData, JsonIndi} from 'topola';
 import {ChartColors, ClickAction, Ids} from '../sidepanel/config/config';
@@ -20,6 +22,8 @@ interface Props {
 const START_RADIUS = 78;
 const RING_SIZE = 105;
 const MAX_GENERATIONS = 7;
+const FAN_ANGLE = 270;
+const FAN_START = -FAN_ANGLE / 2;
 
 function personName(person: JsonIndi): string {
   return (
@@ -54,7 +58,7 @@ function personFill(
   return palette[generation % palette.length];
 }
 
-/** A 360-degree ancestor wheel. Each sector is one ancestor *position*,
+/** A 270-degree ancestor fan, open at the bottom. Each sector is one ancestor *position*,
  * so pedigree collapse remains visible and unknown parents retain their slots. */
 export function AncestorFanChart(props: Props) {
   const intl = useIntl();
@@ -66,7 +70,9 @@ export function AncestorFanChart(props: Props) {
     }
   }, [props.onFirstRender]);
   const [generations, setGenerations] = useState(5);
-  const [zoom, setZoom] = useState(1);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const zoomBehavior = useRef<ZoomBehavior<SVGSVGElement, unknown> | null>(null);
+  const [zoomLevel, setZoomLevel] = useState(1);
   const [hoveredId, setHoveredId] = useState<string>();
   const ancestors = useMemo(
     () => buildAncestorFan(props.data, props.selection.id, generations),
@@ -75,6 +81,43 @@ export function AncestorFanChart(props: Props) {
   const radius = START_RADIUS + generations * RING_SIZE;
   const size = 2 * (radius + 48);
   const center = size / 2;
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return;
+    const behavior = d3Zoom<SVGSVGElement, unknown>()
+      .scaleExtent([0.25, 4])
+      .on('zoom', (event) => {
+        const chart = svg.querySelector('#chart');
+        if (!chart) return;
+        const {x, y, k} = event.transform;
+        chart.setAttribute(
+          'transform',
+          `translate(${x} ${y}) scale(${k}) translate(${center} ${center})`,
+        );
+        setZoomLevel(k);
+      });
+    zoomBehavior.current = behavior;
+    select(svg).call(behavior);
+    return () => {
+      select(svg).on('.zoom', null);
+      zoomBehavior.current = null;
+    };
+  }, [center]);
+
+  const changeZoom = (factor: number) => {
+    if (svgRef.current && zoomBehavior.current) {
+      select(svgRef.current).call(zoomBehavior.current.scaleBy, factor);
+    }
+  };
+  const resetZoom = () => {
+    if (svgRef.current && zoomBehavior.current) {
+      select(svgRef.current).call(
+        zoomBehavior.current.transform,
+        zoomIdentity,
+      );
+    }
+  };
+
   const labels = (person: JsonIndi) => {
     const text = personName(person);
     return props.hideIds === Ids.SHOW ? `${text} (${person.id})` : text;
@@ -94,8 +137,8 @@ export function AncestorFanChart(props: Props) {
     const {generation, index, person} = node;
     if (generation === 0) return null;
     const count = 2 ** generation;
-    const start = (index * 360) / count;
-    const end = ((index + 1) * 360) / count;
+    const start = FAN_START + (index * FAN_ANGLE) / count;
+    const end = FAN_START + ((index + 1) * FAN_ANGLE) / count;
     const middle = (start + end) / 2;
     const inner = START_RADIUS + (generation - 1) * RING_SIZE;
     const outer = inner + RING_SIZE - 2;
@@ -110,8 +153,13 @@ export function AncestorFanChart(props: Props) {
     const name = person ? labels(person) : '';
     const shortName =
       name.length > maxChars ? `${name.slice(0, maxChars - 1)}…` : name;
-    // Text remains radial. Reverse it on the left half so it is never upside down.
-    const rotation = middle >= 180 ? middle - 270 : middle - 90;
+    // Tangential labels: turned 90 degrees relative to the first prototype.
+    // Turn outer lower sectors upright rather than displaying upside-down text.
+    const rotation =
+      middle < -90 ? middle + 180 : middle > 90 ? middle - 180 : middle;
+    const born = person?.birth?.date?.year;
+    const died = person?.death?.date?.year;
+    const life = [born ?? '?', died ?? '?'].join('–');
     return (
       <g
         key={`${generation}-${index}`}
@@ -132,14 +180,17 @@ export function AncestorFanChart(props: Props) {
             x={x}
             y={y}
             fontFamily="Arial, sans-serif"
-            fontSize={generation > 5 ? 10 : generation > 3 ? 12 : 15}
+            fontSize={generation > 5 ? 9 : generation > 3 ? 11 : 13}
             fontWeight={emphasized ? 700 : 500}
             textAnchor="middle"
             dominantBaseline="middle"
             transform={`rotate(${rotation} ${x} ${y})`}
             pointerEvents="none"
           >
-            {shortName}
+            <tspan x={x} dy={-8}>{shortName}</tspan>
+            <tspan x={x} dy={16} fontSize="10" fontWeight="normal">
+              {life}
+            </tspan>
           </text>
         )}
         {person && (
@@ -186,23 +237,18 @@ export function AncestorFanChart(props: Props) {
             </option>
           ))}
         </select>
-        <button
-          aria-label="Zoom in"
-          onClick={() => setZoom((n) => Math.min(n * 1.25, 4))}
-        >
+        <button aria-label="Zoom in" onClick={() => changeZoom(1.3)}>
           +
         </button>
-        <button
-          aria-label="Zoom out"
-          onClick={() => setZoom((n) => Math.max(n / 1.25, 0.3))}
-        >
+        <button aria-label="Zoom out" onClick={() => changeZoom(1 / 1.3)}>
           −
         </button>
-        <button onClick={() => setZoom(1)}>
+        <button onClick={resetZoom}>
           {intl.formatMessage({id: 'fan.reset_zoom', defaultMessage: 'Fit'})}
         </button>
       </div>
       <svg
+        ref={svgRef}
         id="chartSvg"
         className="ancestor-fan-svg"
         width={size}
@@ -213,11 +259,8 @@ export function AncestorFanChart(props: Props) {
           id: 'fan.title',
           defaultMessage: 'Circular ancestor fan chart',
         })}
-        style={{
-          width: `${zoom * 100}%`,
-          height: 'auto',
-          maxWidth: 'none',
-        }}
+        style={{width: '100%', height: 'auto', maxWidth: 'none'}}
+        data-zoom={zoomLevel}
       >
         <g id="chart" transform={`translate(${center} ${center})`}>
           {ancestors.slice(1).map(sector)}
