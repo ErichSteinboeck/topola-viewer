@@ -9,7 +9,12 @@ export function ancestorNameLines(
   const family = (lastName || '').trim();
   const joined = [given, family].filter(Boolean).join(' ');
   if (joined.length <= maxChars) return [joined];
-  if (allowWrap && family && family.length <= maxChars && given.length <= maxChars) {
+  if (
+    allowWrap &&
+    family &&
+    family.length <= maxChars &&
+    given.length <= maxChars
+  ) {
     return [given, family];
   }
   const initials = given
