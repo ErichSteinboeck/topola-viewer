@@ -1,0 +1,29 @@
+name: Final format place hover
+on:
+  push:
+    paths:
+      - .github/workflows/format-place-hover-final.yml
+permissions:
+  contents: write
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx prettier --write src/chart/chart_wrapper.ts src/util/url_args.spec.ts
+      - name: Commit formatted sources
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet; then
+            git add src
+            git commit -m "Format place hover adjustment"
+            git push origin HEAD:master
+          fi
