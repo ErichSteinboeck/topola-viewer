@@ -159,5 +159,7 @@
   "google_auth.cancel": "Abbrechen",
   "google_auth.grant_button": "Zugriff gewähren & Datei auswählen",
   "google_auth.switch_account_button": "Konto wechseln",
-  "error.GOOGLE_DRIVE_NOT_CONFIGURED": "Die Google Drive-Integration ist nicht konfiguriert."
+  "error.GOOGLE_DRIVE_NOT_CONFIGURED": "Die Google Drive-Integration ist nicht konfiguriert.",
+  "config.click_behavior": "Klickverhalten",
+  "config.invert_click_behavior": "Klickverhalten umkehren"
 }
