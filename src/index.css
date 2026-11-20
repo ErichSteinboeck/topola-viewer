@@ -649,3 +649,20 @@ div.zoom {
 }
 .ancestor-fan-popup-row b { flex: none; }
 .ancestor-fan-svg .fan-marriage { cursor: pointer; }
+
+/* Inform readers when the chosen root has no recorded ancestor links. */
+.ancestor-fan-no-ancestors {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100% - 24px);
+  padding: 7px 12px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: #555;
+  text-align: center;
+  font-size: 12px;
+}
