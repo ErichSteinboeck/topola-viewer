@@ -341,7 +341,9 @@ function getSectionForId(indi: string): React.ReactNode {
         <Header sub>
           <FormattedMessage id="config.ids" defaultMessage="Identification" />
         </Header>
-        <div><i>{indi}</i></div>
+        <div>
+          <i>{indi}</i>
+        </div>
       </Item.Content>
     </Item>
   );

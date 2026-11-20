@@ -91,7 +91,9 @@ export function argsToConfig(args: ParsedQuery<unknown>): Config {
   let stored: Record<string, string> = {};
   try {
     if (typeof window !== 'undefined') {
-      stored = JSON.parse(window.localStorage.getItem('topola-ui-settings') || '{}');
+      stored = JSON.parse(
+        window.localStorage.getItem('topola-ui-settings') || '{}',
+      );
     }
   } catch {
     // Storage is optional.
