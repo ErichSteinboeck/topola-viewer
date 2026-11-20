@@ -307,7 +307,7 @@ div.zoom {
 }
 
 #content #sidebar.wide ~ .pusher {
-  width: calc(100% - 350px);
+  width: calc(100% - var(--topola-sidebar-width, 350px));
   transform: none;
 }
 
@@ -460,4 +460,28 @@ div.zoom {
   stroke: #d17900;
   stroke-width: 4px;
   stroke-opacity: 1;
+}
+
+/* Adjustable desktop sidebar; chart always keeps the remaining width. */
+#sidebar.wide {
+  width: var(--topola-sidebar-width, 350px) !important;
+}
+#sidebar .sidebar-resize-handle {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 8px;
+  cursor: col-resize;
+  touch-action: none;
+  background: transparent;
+}
+#sidebar .sidebar-resize-handle:hover,
+#sidebar .sidebar-resize-handle:focus-visible {
+  background: rgba(64, 126, 193, .28);
+}
+@media (max-width: 767px) {
+  #sidebar.wide { width: 100% !important; }
+  #sidebar .sidebar-resize-handle { display: none; }
 }
