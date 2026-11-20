@@ -34,7 +34,12 @@ export function buildAncestorFan(
       current.push(family?.husb, family?.wife);
     }
     current.forEach((id, index) => {
-      output.push({generation, index, id, person: id ? people.get(id) : undefined});
+      output.push({
+        generation,
+        index,
+        id,
+        person: id ? people.get(id) : undefined,
+      });
     });
     previous = current;
   }

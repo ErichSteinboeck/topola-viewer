@@ -2,8 +2,8 @@ import {useCallback, useMemo, useState} from 'react';
 import {useIntl} from 'react-intl';
 import {Loader, SidebarPushable, SidebarPusher} from 'semantic-ui-react';
 import {IndiInfo} from 'topola';
-import {Chart} from '../chart/chart';
 import {AncestorFanChart} from '../chart/ancestor_fan';
+import {Chart} from '../chart/chart';
 import {
   downloadPdf,
   downloadPng,

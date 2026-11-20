@@ -22,16 +22,35 @@ const RING_SIZE = 105;
 const MAX_GENERATIONS = 7;
 
 function personName(person: JsonIndi): string {
-  return [person.firstName, person.lastName].filter(Boolean).join(' ') || person.id;
+  return (
+    [person.firstName, person.lastName].filter(Boolean).join(' ') || person.id
+  );
 }
 
-function personFill(person: JsonIndi | undefined, generation: number, colors?: ChartColors): string {
+function personFill(
+  person: JsonIndi | undefined,
+  generation: number,
+  colors?: ChartColors,
+): string {
   if (!person) return '#f1f1f1';
   if (colors === ChartColors.NO_COLOR) return '#f9f7f2';
   if (colors === ChartColors.COLOR_BY_SEX) {
-    return person.sex === 'F' ? '#f4dce1' : person.sex === 'M' ? '#dbe8f4' : '#ece7da';
+    return person.sex === 'F'
+      ? '#f4dce1'
+      : person.sex === 'M'
+        ? '#dbe8f4'
+        : '#ece7da';
   }
-  const palette = ['#f5e8ca', '#f8e0bb', '#e6eacf', '#dbe8ef', '#f2dfe5', '#eadff2', '#e8ede0', '#e1e8f4'];
+  const palette = [
+    '#f5e8ca',
+    '#f8e0bb',
+    '#e6eacf',
+    '#dbe8ef',
+    '#f2dfe5',
+    '#eadff2',
+    '#e8ede0',
+    '#e1e8f4',
+  ];
   return palette[generation % palette.length];
 }
 
@@ -61,7 +80,10 @@ export function AncestorFanChart(props: Props) {
     return props.hideIds === Ids.SHOW ? `${text} (${person.id})` : text;
   };
 
-  const handleClick = (event: React.MouseEvent<SVGElement>, person: JsonIndi) => {
+  const handleClick = (
+    event: React.MouseEvent<SVGElement>,
+    person: JsonIndi,
+  ) => {
     const info = {id: person.id, generation: 0};
     const focusOnClick = props.clickAction === ClickAction.FOCUS;
     if (event.shiftKey === focusOnClick) props.onDetailSelection(info);
@@ -81,11 +103,13 @@ export function AncestorFanChart(props: Props) {
     const textRadius = inner + RING_SIZE * 0.5;
     const x = textRadius * Math.cos(angle);
     const y = textRadius * Math.sin(angle);
-    const isSelected = person?.id === (props.selectedPersonId || props.selection.id);
+    const isSelected =
+      person?.id === (props.selectedPersonId || props.selection.id);
     const emphasized = isSelected || (!!person && person.id === hoveredId);
     const maxChars = generation > 4 ? 14 : 26;
     const name = person ? labels(person) : '';
-    const shortName = name.length > maxChars ? `${name.slice(0, maxChars - 1)}…` : name;
+    const shortName =
+      name.length > maxChars ? `${name.slice(0, maxChars - 1)}…` : name;
     // Text remains radial. Reverse it on the left half so it is never upside down.
     const rotation = middle >= 180 ? middle - 270 : middle - 90;
     return (
@@ -120,11 +144,18 @@ export function AncestorFanChart(props: Props) {
         )}
         {person && (
           <title>
-            {[labels(person),
-              person.birth ? `${intl.formatMessage({id: 'fan.birth', defaultMessage: 'Birth'})}: ${formatDateOrRange(person.birth, intl)}` : '',
-              person.death ? `${intl.formatMessage({id: 'fan.death', defaultMessage: 'Death'})}: ${formatDateOrRange(person.death, intl)}` : '',
+            {[
+              labels(person),
+              person.birth
+                ? `${intl.formatMessage({id: 'fan.birth', defaultMessage: 'Birth'})}: ${formatDateOrRange(person.birth, intl)}`
+                : '',
+              person.death
+                ? `${intl.formatMessage({id: 'fan.death', defaultMessage: 'Death'})}: ${formatDateOrRange(person.death, intl)}`
+                : '',
               `${intl.formatMessage({id: 'fan.generation', defaultMessage: 'Generation'})} ${generation}`,
-            ].filter(Boolean).join('\n')}
+            ]
+              .filter(Boolean)
+              .join('\n')}
           </title>
         )}
       </g>
@@ -136,20 +167,40 @@ export function AncestorFanChart(props: Props) {
     <div id="svgContainer" className="ancestor-fan-container">
       <div className="ancestor-fan-controls">
         <label htmlFor="fanGenerations">
-          {intl.formatMessage({id: 'fan.generations', defaultMessage: 'Ancestor generations'})}
+          {intl.formatMessage({
+            id: 'fan.generations',
+            defaultMessage: 'Ancestor generations',
+          })}
         </label>
         <select
           id="fanGenerations"
           value={generations}
           onChange={(e) => setGenerations(Number(e.target.value))}
         >
-          {Array.from({length: MAX_GENERATIONS - 2}, (_, index) => index + 3).map((n) => (
-            <option key={n} value={n}>{n}</option>
+          {Array.from(
+            {length: MAX_GENERATIONS - 2},
+            (_, index) => index + 3,
+          ).map((n) => (
+            <option key={n} value={n}>
+              {n}
+            </option>
           ))}
         </select>
-        <button aria-label="Zoom in" onClick={() => setZoom((n) => Math.min(n * 1.25, 4))}>+</button>
-        <button aria-label="Zoom out" onClick={() => setZoom((n) => Math.max(n / 1.25, 0.3))}>−</button>
-        <button onClick={() => setZoom(1)}>{intl.formatMessage({id: 'fan.reset_zoom', defaultMessage: 'Fit'})}</button>
+        <button
+          aria-label="Zoom in"
+          onClick={() => setZoom((n) => Math.min(n * 1.25, 4))}
+        >
+          +
+        </button>
+        <button
+          aria-label="Zoom out"
+          onClick={() => setZoom((n) => Math.max(n / 1.25, 0.3))}
+        >
+          −
+        </button>
+        <button onClick={() => setZoom(1)}>
+          {intl.formatMessage({id: 'fan.reset_zoom', defaultMessage: 'Fit'})}
+        </button>
       </div>
       <svg
         id="chartSvg"
@@ -158,8 +209,15 @@ export function AncestorFanChart(props: Props) {
         height={size}
         viewBox={`0 0 ${size} ${size}`}
         role="img"
-        aria-label={intl.formatMessage({id: 'fan.title', defaultMessage: 'Circular ancestor fan chart'})}
-        style={{width: `${size * zoom}px`, height: `${size * zoom}px`, maxWidth: 'none'}}
+        aria-label={intl.formatMessage({
+          id: 'fan.title',
+          defaultMessage: 'Circular ancestor fan chart',
+        })}
+        style={{
+          width: `${size * zoom}px`,
+          height: `${size * zoom}px`,
+          maxWidth: 'none',
+        }}
       >
         <g id="chart" transform={`translate(${center} ${center})`}>
           {ancestors.slice(1).map(sector)}
@@ -168,15 +226,29 @@ export function AncestorFanChart(props: Props) {
             onClick={root ? (e) => handleClick(e, root) : undefined}
             style={{cursor: root ? 'pointer' : 'default'}}
           >
-            <circle r={START_RADIUS - 4} fill={personFill(root, 0, props.colors)}
+            <circle
+              r={START_RADIUS - 4}
+              fill={personFill(root, 0, props.colors)}
               stroke={root?.id === props.selectedPersonId ? '#d18a13' : '#666'}
-              strokeWidth={root?.id === props.selectedPersonId ? 4 : 1.5} />
+              strokeWidth={root?.id === props.selectedPersonId ? 4 : 1.5}
+            />
             {root && (
               <>
-                <text textAnchor="middle" y="-8" fontWeight="bold" fontSize="14" pointerEvents="none">
+                <text
+                  textAnchor="middle"
+                  y="-8"
+                  fontWeight="bold"
+                  fontSize="14"
+                  pointerEvents="none"
+                >
                   {personName(root).slice(0, 22)}
                 </text>
-                <text textAnchor="middle" y="14" fontSize="11" pointerEvents="none">
+                <text
+                  textAnchor="middle"
+                  y="14"
+                  fontSize="11"
+                  pointerEvents="none"
+                >
                   {formatDateOrRange(root.birth, intl)}
                 </text>
                 <title>{labels(root)}</title>
