@@ -146,8 +146,7 @@ export class ChartWrapper {
         .selectAll<SVGTextElement, unknown>('text[data-place-key]')
         .classed('matching-place', function () {
           return (
-            !!key &&
-            placesMatch(key, this.getAttribute('data-place-key') || '')
+            !!key && placesMatch(key, this.getAttribute('data-place-key') || '')
           );
         });
     };
