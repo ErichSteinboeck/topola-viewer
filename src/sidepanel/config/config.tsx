@@ -271,7 +271,7 @@ export function ConfigPanel(props: {
                     defaultMessage="none"
                   />
                 }
-                name="checkboxRadioGroup"
+                name="chartColors"
                 value="none"
                 checked={props.config.color === ChartColors.NO_COLOR}
                 onClick={() =>
@@ -292,7 +292,7 @@ export function ConfigPanel(props: {
                     defaultMessage="by generation"
                   />
                 }
-                name="checkboxRadioGroup"
+                name="chartColors"
                 value="generation"
                 checked={props.config.color === ChartColors.COLOR_BY_GENERATION}
                 onClick={() =>
@@ -313,7 +313,7 @@ export function ConfigPanel(props: {
                     defaultMessage="by sex"
                   />
                 }
-                name="checkboxRadioGroup"
+                name="chartColors"
                 value="gender"
                 checked={props.config.color === ChartColors.COLOR_BY_SEX}
                 onClick={() =>
@@ -341,7 +341,7 @@ export function ConfigPanel(props: {
                     defaultMessage="hide"
                   />
                 }
-                name="checkboxRadioGroup"
+                name="chartSex"
                 value="hide"
                 checked={props.config.sex === Sex.HIDE}
                 onClick={() => props.onChange({...props.config, sex: Sex.HIDE})}
@@ -357,7 +357,7 @@ export function ConfigPanel(props: {
                     defaultMessage="show"
                   />
                 }
-                name="checkboxRadioGroup"
+                name="chartSex"
                 value="show"
                 checked={props.config.sex === Sex.SHOW}
                 onClick={() => props.onChange({...props.config, sex: Sex.SHOW})}
@@ -380,7 +380,7 @@ export function ConfigPanel(props: {
                     defaultMessage="hide"
                   />
                 }
-                name="checkboxRadioGroup"
+                name="chartPlaces"
                 value="hide"
                 checked={props.config.place === PlaceDisplay.HIDE}
                 onClick={() =>
@@ -398,7 +398,7 @@ export function ConfigPanel(props: {
                     defaultMessage="short"
                   />
                 }
-                name="checkboxRadioGroup"
+                name="chartPlaces"
                 value="short"
                 checked={props.config.place === PlaceDisplay.SHORT}
                 onClick={() =>
@@ -441,7 +441,7 @@ export function ConfigPanel(props: {
                     defaultMessage="full"
                   />
                 }
-                name="checkboxRadioGroup"
+                name="chartPlaces"
                 value="full"
                 checked={props.config.place === PlaceDisplay.FULL}
                 onClick={() =>
