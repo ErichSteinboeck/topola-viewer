@@ -195,6 +195,7 @@ export function ViewPage() {
         hideIds={config.id}
         hideSex={config.sex}
         clickAction={config.clickAction}
+        selectedPersonId={detailIndi || selection.id}
         placeDisplay={config.place}
         placeCount={config.placeCount}
         onFirstRender={() => setLoadingStatus('')}
