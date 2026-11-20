@@ -198,6 +198,8 @@ export function ViewPage() {
         selectedPersonId={detailIndi || selection.id}
         placeDisplay={config.place}
         placeCount={config.placeCount}
+        gedcom={data.gedcom}
+        highlightMatchingPlaces={config.highlightMatchingPlaces}
         onFirstRender={() => setLoadingStatus('')}
       />
     );
