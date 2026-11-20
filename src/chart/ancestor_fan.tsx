@@ -1,4 +1,4 @@
-import {useMemo, useState} from 'react';
+import {useEffect, useMemo, useRef, useState} from 'react';
 import {useIntl} from 'react-intl';
 import {IndiInfo, JsonGedcomData, JsonIndi} from 'topola';
 import {ChartColors, ClickAction, Ids} from '../sidepanel/config/config';
@@ -39,6 +39,13 @@ function personFill(person: JsonIndi | undefined, generation: number, colors?: C
  * so pedigree collapse remains visible and unknown parents retain their slots. */
 export function AncestorFanChart(props: Props) {
   const intl = useIntl();
+  const notified = useRef(false);
+  useEffect(() => {
+    if (!notified.current) {
+      notified.current = true;
+      props.onFirstRender?.();
+    }
+  }, [props.onFirstRender]);
   const [generations, setGenerations] = useState(5);
   const [zoom, setZoom] = useState(1);
   const [hoveredId, setHoveredId] = useState<string>();
@@ -146,6 +153,7 @@ export function AncestorFanChart(props: Props) {
       </div>
       <svg
         id="chartSvg"
+        className="ancestor-fan-svg"
         width={size}
         height={size}
         viewBox={`0 0 ${size} ${size}`}
@@ -153,7 +161,7 @@ export function AncestorFanChart(props: Props) {
         aria-label={intl.formatMessage({id: 'fan.title', defaultMessage: 'Circular ancestor fan chart'})}
         style={{width: `${size * zoom}px`, height: `${size * zoom}px`, maxWidth: 'none'}}
       >
-        <g id="chart" transform={`translate(${center} ${center}) scale(${zoom})`}>
+        <g id="chart" transform={`translate(${center} ${center})`}>
           {ancestors.slice(1).map(sector)}
           <g
             className="fan-root"
