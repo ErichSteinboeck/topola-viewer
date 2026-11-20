@@ -87,10 +87,9 @@ function getStrippedSvg() {
     svg.removeAttribute('style');
     const centerX = Number(svg.getAttribute('data-center-x'));
     const centerY = Number(svg.getAttribute('data-center-y'));
-    svg.querySelector('#chart')?.setAttribute(
-      'transform',
-      `translate(${centerX} ${centerY})`,
-    );
+    svg
+      .querySelector('#chart')
+      ?.setAttribute('transform', `translate(${centerX} ${centerY})`);
     return svg;
   }
 

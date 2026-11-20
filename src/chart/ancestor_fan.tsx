@@ -35,7 +35,9 @@ function shortMonthDate(value: string, locale: string): string {
   for (let month = 0; month < 12; month++) {
     const date = new Date(2020, month, 15);
     const full = new Intl.DateTimeFormat(locale, {month: 'long'}).format(date);
-    const short = new Intl.DateTimeFormat(locale, {month: 'short'}).format(date);
+    const short = new Intl.DateTimeFormat(locale, {month: 'short'}).format(
+      date,
+    );
     if (full !== short) {
       value = value.replace(new RegExp(`\\b${full}\\b`, 'gu'), short);
     }
@@ -199,10 +201,11 @@ export function AncestorFanChart(props: Props) {
       person?.id === (props.selectedPersonId || props.selection.id);
     const matchingPlace =
       !!person &&
-      !!hoveredPlace && props.highlightMatchingPlaces !== false &&
-      ([person.birth?.place, person.death?.place].some(
+      !!hoveredPlace &&
+      props.highlightMatchingPlaces !== false &&
+      [person.birth?.place, person.death?.place].some(
         (place) => place && placesMatch(place, hoveredPlace),
-      ));
+      );
     const emphasized =
       isSelected || matchingPlace || (!!person && person.id === hoveredId);
     const maxChars = generation > 4 ? 14 : 26;
@@ -216,8 +219,12 @@ export function AncestorFanChart(props: Props) {
     const born = person?.birth?.date?.year;
     const died = person?.death?.date?.year;
     const life = [born ?? '?', died ?? '?'].join('–');
-    const fullBirth = person ? shortMonthDate(formatDateOrRange(person.birth, intl), intl.locale) : '';
-    const fullDeath = person ? shortMonthDate(formatDateOrRange(person.death, intl), intl.locale) : '';
+    const fullBirth = person
+      ? shortMonthDate(formatDateOrRange(person.birth, intl), intl.locale)
+      : '';
+    const fullDeath = person
+      ? shortMonthDate(formatDateOrRange(person.death, intl), intl.locale)
+      : '';
     const birthPlace = person?.birth?.place || '';
     const short = (value: string, limit: number) =>
       value.length > limit ? `${value.slice(0, limit - 1)}…` : value;
@@ -227,15 +234,21 @@ export function AncestorFanChart(props: Props) {
       kind: 'birth' | 'death' | 'birthPlace' | 'deathPlace' | 'life';
     }> =
       generation <= 3
-        ? [
+        ? ([
             {value: fullBirth ? `* ${fullBirth}` : '', kind: 'birth'},
-            {value: birthPlace ? short(birthPlace, 26) : '', kind: 'birthPlace'},
+            {
+              value: birthPlace ? short(birthPlace, 26) : '',
+              kind: 'birthPlace',
+            },
             {value: fullDeath ? `† ${fullDeath}` : '', kind: 'death'},
-            {value: deathPlace ? short(deathPlace, 26) : '', kind: 'deathPlace'},
+            {
+              value: deathPlace ? short(deathPlace, 26) : '',
+              kind: 'deathPlace',
+            },
           ].filter((line) => !!line.value) as Array<{
             value: string;
             kind: 'birth' | 'death' | 'birthPlace' | 'deathPlace' | 'life';
-          }>
+          }>)
         : [{value: life, kind: 'life'}];
     const birthTooltip = [
       intl.formatMessage({id: 'fan.birth', defaultMessage: 'Birth'}),
@@ -244,7 +257,9 @@ export function AncestorFanChart(props: Props) {
       ...(person
         ? associatedEventLines(props.gedcom, person.id, 'birth', intl)
         : []),
-    ].filter(Boolean).join('\n');
+    ]
+      .filter(Boolean)
+      .join('\n');
     const deathTooltip = [
       intl.formatMessage({id: 'fan.death', defaultMessage: 'Death'}),
       formatDateOrRange(person?.death, intl),
@@ -252,7 +267,9 @@ export function AncestorFanChart(props: Props) {
       ...(person
         ? associatedEventLines(props.gedcom, person.id, 'death', intl)
         : []),
-    ].filter(Boolean).join('\n');
+    ]
+      .filter(Boolean)
+      .join('\n');
     return (
       <g
         key={`${generation}-${index}`}
@@ -288,13 +305,17 @@ export function AncestorFanChart(props: Props) {
               const place =
                 line.kind === 'birthPlace' ? birthPlace : deathPlace;
               const isMatch =
-                isPlace && !!hoveredPlace &&
-                props.highlightMatchingPlaces !== false && placesMatch(place, hoveredPlace);
+                isPlace &&
+                !!hoveredPlace &&
+                props.highlightMatchingPlaces !== false &&
+                placesMatch(place, hoveredPlace);
               return (
                 <text
                   key={line.kind}
-                  y={-(lines.length * 6 + 2) +
-                    (lineIndex + 1) * (generation <= 3 ? 13 : 16)}
+                  y={
+                    -(lines.length * 6 + 2) +
+                    (lineIndex + 1) * (generation <= 3 ? 13 : 16)
+                  }
                   fontSize={generation <= 3 ? 9 : 10}
                   fontWeight={isMatch ? 700 : 'normal'}
                   className={isMatch ? 'fan-place-match' : undefined}
@@ -316,7 +337,6 @@ export function AncestorFanChart(props: Props) {
             })}
           </g>
         )}
-
       </g>
     );
   };
@@ -431,7 +451,8 @@ export function AncestorFanChart(props: Props) {
               className="fan-marriage"
               transform={`translate(${marker.x} ${marker.y})`}
               onMouseEnter={() => {
-                if (props.highlightMatchingPlaces !== false) setHoveredPlace(marker.place);
+                if (props.highlightMatchingPlaces !== false)
+                  setHoveredPlace(marker.place);
               }}
               onMouseLeave={() => setHoveredPlace(undefined)}
             >
