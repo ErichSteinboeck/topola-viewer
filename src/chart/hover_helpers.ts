@@ -44,7 +44,11 @@ export interface AssociatedEvent {
   value: string;
 }
 
-function eventLine(entry: GedcomEntry, label: string, intl: IntlShape): AssociatedEvent {
+function eventLine(
+  entry: GedcomEntry,
+  label: string,
+  intl: IntlShape,
+): AssociatedEvent {
   const dateEntry = entry.tree.find((part) => part.tag === 'DATE');
   const placeEntry = entry.tree.find((part) => part.tag === 'PLAC');
   const date = dateEntry?.data ? translateDate(dateEntry.data, intl) : '';

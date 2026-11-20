@@ -305,10 +305,11 @@ export function AncestorFanChart(props: Props) {
     const fontSize = generation > 6 ? 9 : generation > 4 ? 10 : 12;
     // Tangential text is bounded by the radial thickness of a ring.
     // For radial text, the arc length at the segment's midpoint limits it.
-    const arcWidth = textRadius * (end - start) * Math.PI / 180;
-    const availableLength = generation >= 5
-      ? Math.max(9, RING_SIZE - 12)
-      : Math.max(9, Math.min(RING_SIZE - 12, arcWidth - 5));
+    const arcWidth = (textRadius * (end - start) * Math.PI) / 180;
+    const availableLength =
+      generation >= 5
+        ? Math.max(9, RING_SIZE - 12)
+        : Math.max(9, Math.min(RING_SIZE - 12, arcWidth - 5));
     const totalLines = nameLines.length + lines.length;
     const startY = -((totalLines - 1) * spacing) / 2;
     const matchingPlace =
@@ -422,7 +423,7 @@ export function AncestorFanChart(props: Props) {
       const partnerNames = [
         family?.husb ? personById.get(family.husb) : undefined,
         family?.wife ? personById.get(family.wife) : undefined,
-      ].map((person) => person ? personName(person) : '?');
+      ].map((person) => (person ? personName(person) : '?'));
       return [
         {
           key: `${parentGeneration}-${childNode.index}`,
@@ -517,13 +518,15 @@ export function AncestorFanChart(props: Props) {
                 setHoveredPlace(undefined);
                 setPopup({
                   heading: marker.partnerNames,
-                  rows: [{
-                    label: intl.formatMessage({
-                      id: 'fan.marriage',
-                      defaultMessage: 'Marriage',
-                    }),
-                    value: marker.text,
-                  }],
+                  rows: [
+                    {
+                      label: intl.formatMessage({
+                        id: 'fan.marriage',
+                        defaultMessage: 'Marriage',
+                      }),
+                      value: marker.text,
+                    },
+                  ],
                   x: event.clientX,
                   y: event.clientY,
                 });
@@ -580,7 +583,10 @@ export function AncestorFanChart(props: Props) {
                   fontFamily="Arial, sans-serif"
                   pointerEvents="none"
                 >
-                  {shortMonthDate(formatDateOrRange(root.birth, intl), intl.locale)}
+                  {shortMonthDate(
+                    formatDateOrRange(root.birth, intl),
+                    intl.locale,
+                  )}
                 </text>
               </>
             )}
