@@ -178,6 +178,7 @@ export function ViewPage() {
       return (
         <AncestorFanChart
           data={data.chartData}
+          gedcom={data.gedcom}
           selection={selection}
           selectedPersonId={detailIndi || selection.id}
           colors={config.color}
