@@ -610,3 +610,42 @@ div.zoom {
   stroke: #718699;
   stroke-width: 2px;
 }
+
+/* The fan highlights known relatives by the complete GEDCOM place,
+   even where the visible place text is abbreviated or omitted. */
+.ancestor-fan-svg .fan-ancestor.fan-related-place > path {
+  stroke: #bf8c29;
+  stroke-width: 2px;
+}
+.ancestor-fan-svg .fan-ancestor.fan-related-place text {
+  font-weight: 600;
+}
+.ancestor-fan-popup {
+  z-index: 2000;
+  max-width: min(340px, calc(100vw - 20px));
+  min-width: 190px;
+  max-height: min(260px, calc(100vh - 20px));
+  overflow: hidden;
+  padding: 10px 12px;
+  color: #252c35;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid #b8bec6;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(25, 32, 45, 0.22);
+  font-size: 12px;
+  line-height: 1.45;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.ancestor-fan-popup > strong {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+.ancestor-fan-popup-row {
+  display: flex;
+  gap: 4px;
+  margin-top: 3px;
+}
+.ancestor-fan-popup-row b { flex: none; }
+.ancestor-fan-svg .fan-marriage { cursor: pointer; }
