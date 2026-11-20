@@ -28,6 +28,7 @@ interface Props {
   indi: string;
   entries: GedcomEntry[];
   images?: Map<string, string>;
+  alwaysShowNotes?: boolean;
 }
 
 interface EventData {
@@ -308,7 +309,7 @@ function toFamilyEvents(
   });
 }
 
-function Event(props: {event: EventData}) {
+function Event(props: {event: EventData; alwaysShowNotes?: boolean}) {
   return (
     <Item>
       <Item.Content>
@@ -326,6 +327,7 @@ function Event(props: {event: EventData}) {
           sources={props.event.sources}
           indi={props.event.indi}
           files={props.event.files}
+          alwaysShowNotes={props.alwaysShowNotes}
         />
       </Item.Content>
     </Item>
@@ -348,7 +350,7 @@ export function Events(props: Props) {
     return (
       <>
         {events.map((event, index) => (
-          <Event event={event} key={index} />
+          <Event event={event} key={index} alwaysShowNotes={props.alwaysShowNotes} />
         ))}
       </>
     );
