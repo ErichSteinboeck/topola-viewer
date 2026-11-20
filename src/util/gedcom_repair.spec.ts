@@ -1,4 +1,4 @@
-import {describe, expect, it, jest} from '@jest/globals';
+import {describe, expect, it} from '@jest/globals';
 import {parse as parseGedcom} from 'parse-gedcom';
 import {getData} from './gedcom_util';
 import {repairGedcomTextLines} from './gedcom_repair';
