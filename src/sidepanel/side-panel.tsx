@@ -73,7 +73,10 @@ export function SidePanel({
     event.preventDefault();
     const direction = event.key === 'ArrowLeft' ? 20 : -20;
     setSidebarWidth((width) =>
-      Math.max(280, Math.min(Math.min(1000, window.innerWidth - 280), width + direction)),
+      Math.max(
+        280,
+        Math.min(Math.min(1000, window.innerWidth - 280), width + direction),
+      ),
     );
   }
 
