@@ -166,31 +166,17 @@ export function ConfigPanel(props: {
         </Item>
         <Item>
           <Item.Content>
-            <Header sub>Click behavior</Header>
+            <Header sub>
+              <FormattedMessage id="config.click_behavior" defaultMessage="Click behavior" />
+            </Header>
             <Form.Field className="no-margin">
               <Checkbox
-                radio
-                label="Click: show details; Shift+click: focus chart"
-                name="clickAction"
-                checked={props.config.clickAction === ClickAction.DETAILS}
-                onChange={() =>
-                  props.onChange({
-                    ...props.config,
-                    clickAction: ClickAction.DETAILS,
-                  })
-                }
-              />
-            </Form.Field>
-            <Form.Field className="no-margin">
-              <Checkbox
-                radio
-                label="Click: focus chart; Shift+click: show details"
-                name="clickAction"
+                label={<FormattedMessage id="config.invert_click_behavior" defaultMessage="Invert click behavior" />}
                 checked={props.config.clickAction === ClickAction.FOCUS}
-                onChange={() =>
+                onChange={(_event, data) =>
                   props.onChange({
                     ...props.config,
-                    clickAction: ClickAction.FOCUS,
+                    clickAction: data.checked ? ClickAction.FOCUS : ClickAction.DETAILS,
                   })
                 }
               />
