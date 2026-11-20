@@ -416,6 +416,9 @@ export function AncestorFanChart(props: Props) {
     });
 
   const root = ancestors[0].person;
+  const rootNameLines = root
+    ? ancestorNameLines(root.firstName, root.lastName, 21, true)
+    : [];
   return (
     <div id="svgContainer" className="ancestor-fan-container">
       <div className="ancestor-fan-controls">
@@ -536,17 +539,12 @@ export function AncestorFanChart(props: Props) {
               <>
                 <text
                   textAnchor="middle"
-                  y="-8"
+                  y={rootNameLines.length > 1 ? -20 : -8}
                   fontWeight="bold"
                   fontSize="13"
                   pointerEvents="none"
                 >
-                  {ancestorNameLines(
-                    root.firstName,
-                    root.lastName,
-                    21,
-                    true,
-                  ).map((namePart, i) => (
+                  {rootNameLines.map((namePart, i) => (
                     <tspan key={i} x="0" dy={i === 0 ? 0 : 14}>
                       {namePart}
                     </tspan>
@@ -554,7 +552,7 @@ export function AncestorFanChart(props: Props) {
                 </text>
                 <text
                   textAnchor="middle"
-                  y="14"
+                  y={rootNameLines.length > 1 ? 21 : 14}
                   fontSize="11"
                   pointerEvents="none"
                 >
