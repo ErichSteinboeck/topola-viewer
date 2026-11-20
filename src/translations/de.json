@@ -191,5 +191,6 @@
   "fan.birth": "Geburt",
   "fan.death": "Tod",
   "fan.generation": "Generation",
-  "fan.marriage": "Heirat"
+  "fan.marriage": "Heirat",
+  "fan.no_known_ancestors": "Für diese Person sind keine Eltern oder weiteren Vorfahren erfasst. Eine andere Person auswählen, um deren Vorfahrenfächer anzuzeigen."
 }
