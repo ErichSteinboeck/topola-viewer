@@ -1,11 +1,12 @@
 import {describe, expect, it} from '@jest/globals';
 import {parse as parseGedcom} from 'parse-gedcom';
-import {getData} from './gedcom_util';
 import {repairGedcomTextLines} from './gedcom_repair';
+import {getData} from './gedcom_util';
 
 describe('repairGedcomTextLines', () => {
   it('leaves a valid GEDCOM unchanged, including explicit CONC and CONT', () => {
-    const input = '0 @I1@ INDI\r\n1 NOTE Line 1\r\n2 CONC and more\r\n2 CONT second line\r\n0 TRLR';
+    const input =
+      '0 @I1@ INDI\r\n1 NOTE Line 1\r\n2 CONC and more\r\n2 CONT second line\r\n0 TRLR';
     expect(repairGedcomTextLines(input)).toBe(input);
   });
 
@@ -51,7 +52,8 @@ describe('repairGedcomTextLines', () => {
   });
 
   it('does not attach text following the next sibling or person to the prior note', () => {
-    const input = '0 @I1@ INDI\n1 NOTE first\n1 BIRT\n2 DATE 1900\n2 PLAC Vienna\n0 @I2@ INDI\n1 NAME X /Y/';
+    const input =
+      '0 @I1@ INDI\n1 NOTE first\n1 BIRT\n2 DATE 1900\n2 PLAC Vienna\n0 @I2@ INDI\n1 NAME X /Y/';
     expect(repairGedcomTextLines(input)).toBe(input);
   });
 

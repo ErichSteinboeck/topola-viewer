@@ -9,11 +9,11 @@ import {
   JsonIndi,
 } from 'topola';
 import {compareDates} from './date_util';
+import {TopolaError} from './error';
 import {
   GedcomRepairReport,
   repairGedcomTextLinesWithReport,
 } from './gedcom_repair';
-import {TopolaError} from './error';
 
 export interface GedcomData {
   /** The HEAD entry. */

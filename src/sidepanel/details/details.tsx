@@ -2,6 +2,7 @@ import flatMap from 'array.prototype.flatmap';
 import {GedcomEntry} from 'parse-gedcom';
 import {FormattedMessage} from 'react-intl';
 import {Header, Item, Message} from 'semantic-ui-react';
+import {GedcomRepairReport} from '../../util/gedcom_repair';
 import {
   dereference,
   GedcomData,
@@ -13,7 +14,6 @@ import {
   resolveFileUrl,
 } from '../../util/gedcom_util';
 import {Config, Ids} from '../config/config';
-import {GedcomRepairReport} from '../../util/gedcom_repair';
 import {AdditionalFiles, FileEntry} from './additional-files';
 import {ALL_SUPPORTED_EVENT_TYPES, Events} from './events';
 import {ImmediateFamily} from './immediate-family';
@@ -367,7 +367,12 @@ export function Details(props: Props) {
         (props.repairReport.repairedLines > 0 ||
           props.repairReport.unrepairedLines > 0 ||
           props.repairReport.parserWarnings > 0) && (
-          <Message warning size="small" className="gedcom-import-warning" role="alert">
+          <Message
+            warning
+            size="small"
+            className="gedcom-import-warning"
+            role="alert"
+          >
             <Message.Header>
               <FormattedMessage
                 id="gedcom.repair_warning"
