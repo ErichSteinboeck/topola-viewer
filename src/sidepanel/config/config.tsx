@@ -1,5 +1,5 @@
 import {ParsedQuery} from 'query-string';
-import {FormattedMessage} from 'react-intl';
+import {FormattedMessage, useIntl} from 'react-intl';
 import {Checkbox, Form, Header, Input, Item} from 'semantic-ui-react';
 import {GedcomData} from '../../util/gedcom_util';
 import {getPreferredLanguage, setPreferredLanguage} from '../../util/language';
@@ -42,7 +42,7 @@ export interface Config {
 
 export const DEFALUT_CONFIG: Config = {
   color: ChartColors.COLOR_BY_GENERATION,
-  id: Ids.SHOW,
+  id: Ids.HIDE,
   sex: Sex.SHOW,
   place: PlaceDisplay.FULL,
   placeCount: DEFAULT_PLACE_DISPLAY_COUNT,
@@ -87,17 +87,27 @@ export function argsToConfig(args: ParsedQuery<unknown>): Config {
     return typeof value === 'string' ? value : undefined;
   };
 
-  const placeCount = parseInt(getParam('pn') ?? '', 10);
+  // Keep preferences across reloads and GEDCOM file changes.
+  let stored: Record<string, string> = {};
+  try {
+    if (typeof window !== 'undefined') {
+      stored = JSON.parse(window.localStorage.getItem('topola-ui-settings') || '{}');
+    }
+  } catch {
+    // Storage is optional.
+  }
+  const preference = (name: string) => getParam(name) ?? stored[name];
+  const placeCount = parseInt(preference('pn') ?? '', 10);
   return {
     color: COLOR_ARG.get(getParam('c') ?? '') ?? DEFALUT_CONFIG.color,
-    id: ID_ARG.get(getParam('i') ?? '') ?? DEFALUT_CONFIG.id,
+    id: ID_ARG.get(preference('i') ?? '') ?? DEFALUT_CONFIG.id,
     sex: SEX_ARG.get(getParam('s') ?? '') ?? DEFALUT_CONFIG.sex,
-    place: PLACE_ARG.get(getParam('p') ?? '') ?? DEFALUT_CONFIG.place,
+    place: PLACE_ARG.get(preference('p') ?? '') ?? DEFALUT_CONFIG.place,
     placeCount: placeCount >= 1 ? placeCount : DEFALUT_CONFIG.placeCount,
     clickAction:
-      getParam('click') === 'focus' ? ClickAction.FOCUS : ClickAction.DETAILS,
-    showTechnicalFields: getParam('technical') === 'true',
-    alwaysShowEventNotes: getParam('notes') === 'always',
+      preference('click') === 'focus' ? ClickAction.FOCUS : ClickAction.DETAILS,
+    showTechnicalFields: preference('technical') === 'true',
+    alwaysShowEventNotes: preference('notes') === 'always',
   };
 }
 
@@ -116,22 +126,15 @@ export function configToArgs(config: Config): ParsedQuery {
     result.s = sex;
   }
   const place = PLACE_ARG_INVERSE.get(config.place);
-  if (place && config.place !== PlaceDisplay.FULL) {
-    result.p = place;
-  }
-  if (
+  result.p = config.place === PlaceDisplay.FULL ? null : place;
+  result.pn =
     config.place === PlaceDisplay.SHORT &&
     config.placeCount !== DEFALUT_CONFIG.placeCount
-  ) {
-    result.pn = String(config.placeCount);
-  }
+      ? String(config.placeCount)
+      : null;
   result.click = config.clickAction;
   result.notes = config.alwaysShowEventNotes ? 'always' : null;
-  if (config.showTechnicalFields) {
-    result.technical = 'true';
-  } else {
-    result.technical = null;
-  }
+  result.technical = config.showTechnicalFields ? 'true' : 'false';
   return result;
 }
 
@@ -140,6 +143,7 @@ export function ConfigPanel(props: {
   config: Config;
   onChange: (config: Config) => void;
 }) {
+  const intl = useIntl();
   return (
     <Form className="details">
       <Item.Group>
@@ -174,12 +178,10 @@ export function ConfigPanel(props: {
             </Header>
             <Form.Field className="no-margin">
               <Checkbox
-                label={
-                  <FormattedMessage
-                    id="config.invert_click_behavior"
-                    defaultMessage="Invert click behavior"
-                  />
-                }
+                label={intl.formatMessage({
+                  id: 'config.invert_click_behavior',
+                  defaultMessage: 'Invert click behavior',
+                })}
                 checked={props.config.clickAction === ClickAction.FOCUS}
                 onChange={(_event, data) =>
                   props.onChange({
@@ -195,10 +197,15 @@ export function ConfigPanel(props: {
         </Item>
         <Item>
           <Item.Content>
-            <Header sub>Event notes</Header>
+            <Header sub>
+              <FormattedMessage id="config.event_notes" defaultMessage="Event notes" />
+            </Header>
             <Form.Field className="no-margin">
               <Checkbox
-                label="Always show notes below events"
+                label={intl.formatMessage({
+                  id: 'config.always_show_notes',
+                  defaultMessage: 'Always show notes below events',
+                })}
                 checked={props.config.alwaysShowEventNotes}
                 onChange={(_event, data) =>
                   props.onChange({
@@ -208,10 +215,31 @@ export function ConfigPanel(props: {
                 }
               />
             </Form.Field>
-            <Header sub>GEDCOM metadata</Header>
+            <Header sub>
+              <FormattedMessage id="config.gedcom_metadata" defaultMessage="GEDCOM metadata" />
+            </Header>
             <Form.Field className="no-margin">
               <Checkbox
-                label="Show technical fields (RIN, UID, UPD)"
+                label={intl.formatMessage({
+                  id: 'config.show_identification',
+                  defaultMessage: 'Show identification (chart and sidebar)',
+                })}
+                checked={props.config.id === Ids.SHOW}
+                onChange={(_event, data) =>
+                  props.onChange({
+                    ...props.config,
+                    id: data.checked ? Ids.SHOW : Ids.HIDE,
+                  })
+                }
+              />
+            </Form.Field>
+
+            <Form.Field className="no-margin">
+              <Checkbox
+                label={intl.formatMessage({
+                  id: 'config.show_technical_fields',
+                  defaultMessage: 'Show technical fields (RIN, UID, UPD)',
+                })}
                 checked={props.config.showTechnicalFields}
                 onChange={(_event, data) =>
                   props.onChange({
@@ -296,45 +324,6 @@ export function ConfigPanel(props: {
         <Item>
           <Item.Content>
             <Header sub>
-              <FormattedMessage id="config.ids" defaultMessage="IDs" />
-            </Header>
-            <Form.Field className="no-margin">
-              <Checkbox
-                radio
-                label={
-                  <FormattedMessage
-                    tagName="label"
-                    id="config.ids.HIDE"
-                    defaultMessage="hide"
-                  />
-                }
-                name="checkboxRadioGroup"
-                value="hide"
-                checked={props.config.id === Ids.HIDE}
-                onClick={() => props.onChange({...props.config, id: Ids.HIDE})}
-              />
-            </Form.Field>
-            <Form.Field className="no-margin">
-              <Checkbox
-                radio
-                label={
-                  <FormattedMessage
-                    tagName="label"
-                    id="config.ids.SHOW"
-                    defaultMessage="show"
-                  />
-                }
-                name="checkboxRadioGroup"
-                value="show"
-                checked={props.config.id === Ids.SHOW}
-                onClick={() => props.onChange({...props.config, id: Ids.SHOW})}
-              />
-            </Form.Field>
-          </Item.Content>
-        </Item>
-        <Item>
-          <Item.Content>
-            <Header sub>
               <FormattedMessage id="config.sex" defaultMessage="Sex" />
             </Header>
             <Form.Field className="no-margin">
@@ -412,20 +401,24 @@ export function ConfigPanel(props: {
                 }
               />
               {props.config.place === PlaceDisplay.SHORT && (
-                <Input
-                  type="number"
-                  min={1}
-                  max={10}
-                  size="mini"
-                  style={{width: '4em', marginLeft: '1.5em'}}
-                  value={props.config.placeCount}
-                  onChange={(_e, {value}) => {
-                    const n = parseInt(value, 10);
-                    if (n >= 1) {
-                      props.onChange({...props.config, placeCount: n});
-                    }
-                  }}
-                />
+                <div className="place-count-setting">
+                  <label htmlFor="placeCount">Number of place components</label>
+                  <Input
+                    id="placeCount"
+                    type="number"
+                    min={1}
+                    max={10}
+                    size="mini"
+                    style={{width: '6em'}}
+                    value={props.config.placeCount}
+                    onChange={(_e, {value}) => {
+                      const n = parseInt(value, 10);
+                      if (n >= 1 && n <= 10) {
+                        props.onChange({...props.config, placeCount: n});
+                      }
+                    }}
+                  />
+                </div>
               )}
             </Form.Field>
             <Form.Field className="no-margin">
