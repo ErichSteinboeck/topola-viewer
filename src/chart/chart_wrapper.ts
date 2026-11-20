@@ -104,6 +104,16 @@ export class ChartWrapper {
   private rerenderResetPosition?: boolean;
   private currentProps?: ChartProps;
 
+  /** Highlight a person without recentering or redrawing the chart. */
+  private highlightPerson(id?: string) {
+    select('#chart')
+      .selectAll<SVGGElement, unknown>('g.indi')
+      .classed('selected-individual', function () {
+        const record = select(this).datum() as {indi?: {id?: string}};
+        return !!id && record?.indi?.id === id;
+      });
+  }
+
   zoom(factor: number) {
     const parent = select('#svgContainer') as Selection<
       Element,
@@ -129,6 +139,7 @@ export class ChartWrapper {
   ) {
     // Keep event handlers and preferences current even when no SVG redraw is needed.
     this.currentProps = props;
+    this.highlightPerson(props.selectedPersonId);
     // Nothing changed — the SVG is already correct. Skip re-render.
     // This prevents repeated full D3 layout passes (500ms+ each) that happen
     // when React re-renders for unrelated state changes.
@@ -159,6 +170,7 @@ export class ChartWrapper {
         indiCallback: (info) => {
           // ths is called when an individual is selected in the chart
           const handlers = this.currentProps ?? props;
+          this.highlightPerson(info.id);
           const shift = !!info.modifiers?.shiftKey;
           const focusOnClick = handlers.clickAction === ClickAction.FOCUS;
           if (shift === focusOnClick) {
@@ -182,6 +194,7 @@ export class ChartWrapper {
       startIndi: props.selection.id,
       baseGeneration: props.selection.generation,
     });
+    this.highlightPerson(props.selectedPersonId);
     const svg = select('#chartSvg');
     const parent = select('#svgContainer').node() as Element;
     const scale = zoomTransform(parent).k;
