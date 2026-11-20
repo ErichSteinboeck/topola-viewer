@@ -137,7 +137,13 @@ export async function loadAndPrepareFile(
 ): Promise<TopolaData> {
   const {gedcom, images} = await loadFile(blob);
   try {
-    return await prepareData(gedcom, cacheId, images, onProgress, useSessionCache);
+    return await prepareData(
+      gedcom,
+      cacheId,
+      images,
+      onProgress,
+      useSessionCache,
+    );
   } catch (error) {
     revokeObjectUrls(images);
     throw error;
@@ -153,7 +159,8 @@ export async function loadFromUrl(
   // Built-in example files are editable in our GitHub Pages repository.
   // Never reuse a parsed copy of a same-origin GEDCOM by URL: otherwise users
   // can see an outdated note even after the GEDCOM file has been corrected.
-  const sameOrigin = new URL(url, window.location.href).origin === window.location.origin;
+  const sameOrigin =
+    new URL(url, window.location.href).origin === window.location.origin;
   if (!sameOrigin) {
     try {
       const cachedData = sessionStorage.getItem(url);
@@ -188,7 +195,12 @@ export async function loadFromUrl(
     throw new Error(response.statusText);
   }
 
-  return loadAndPrepareFile(await response.blob(), url, onProgress, !sameOrigin);
+  return loadAndPrepareFile(
+    await response.blob(),
+    url,
+    onProgress,
+    !sameOrigin,
+  );
 }
 
 /** Loads GEDCOM data from the cache or the in-memory store by its hash. */
