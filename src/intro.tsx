@@ -50,7 +50,6 @@ function Contents() {
           }
         />
       </p>
-
       <p>
         <FormattedMessage
           id="intro.improved"
@@ -67,14 +66,12 @@ function Contents() {
             handleCors: 'false',
           }}
           text="Wienfluss – Familie Huber (3 Personen)"
-        />
-        {' '}
+        />{' '}
         <FormattedMessage
           id="intro.sample_details"
           defaultMessage="A small historical GEDCOM showing births, marriage, deaths, and HTML-formatted source notes."
         />
       </p>
-
       <h3>
         <FormattedMessage id="intro.whats_new" defaultMessage="What's new" />
       </h3>
