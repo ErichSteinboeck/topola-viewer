@@ -99,6 +99,7 @@ export function AncestorFanChart(props: Props) {
     null,
   );
   const [hoveredPlace, setHoveredPlace] = useState<string>();
+  useEffect(() => setHoveredPlace(undefined), [props.selection.id, generations]);
   const familyById = useMemo(
     () => new Map(props.data.fams.map((fam) => [fam.id, fam])),
     [props.data.fams],
@@ -245,7 +246,9 @@ export function AncestorFanChart(props: Props) {
       if (!shownDate && !place) return undefined;
       // Inner rings show a complete event on one line; outer rings retain
       // short years so their text remains legible in narrow sectors.
-      const shownPlace = generation <= 3 && place ? short(place, 19) : '';
+      const shownPlace = generation <= 3 && place
+        ? short(place, generation === 3 ? 15 : generation === 2 ? 19 : 25)
+        : '';
       return {
         kind,
         date: shownDate ? `${prefix} ${shownDate}` : '',
@@ -449,6 +452,7 @@ export function AncestorFanChart(props: Props) {
         style={{width: '100%', height: '100%', maxWidth: 'none'}}
         onMouseLeave={() => setHoveredPlace(undefined)}
         onPointerCancel={() => setHoveredPlace(undefined)}
+        onPointerDown={() => setHoveredPlace(undefined)}
       >
         <g id="chart" transform={`translate(${centerX} ${centerY})`}>
           {ancestors
