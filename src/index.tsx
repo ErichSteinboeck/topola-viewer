@@ -15,6 +15,7 @@ import messages_pl from './translations/pl.json';
 import messages_ru from './translations/ru.json';
 import messages_sv from './translations/sv.json';
 import {MediaContextProvider, mediaStyles} from './util/media';
+import {getPreferredLanguage} from './util/language';
 
 const messages: {[language: string]: {[message_id: string]: string}} = {
   bg: messages_bg,
@@ -26,7 +27,7 @@ const messages: {[language: string]: {[message_id: string]: string}} = {
   ru: messages_ru,
   sv: messages_sv,
 };
-const language = navigator.language && navigator.language.split(/[-_]/)[0];
+const language = getPreferredLanguage();
 
 const browser = detect();
 
