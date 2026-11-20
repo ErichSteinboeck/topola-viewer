@@ -27,10 +27,10 @@ export function placesMatch(left: string, right: string): boolean {
   const matchesEdge = (longer: string, shorter: string) => {
     if (longer.length <= shorter.length) return false;
     if (longer.startsWith(shorter)) {
-      return !/[\\p{L}\\p{N}]/u.test(longer.charAt(shorter.length));
+      return !/[\p{L}\p{N}]/u.test(longer.charAt(shorter.length));
     }
     if (longer.endsWith(shorter)) {
-      return !/[\\p{L}\\p{N}]/u.test(
+      return !/[\p{L}\p{N}]/u.test(
         longer.charAt(longer.length - shorter.length - 1),
       );
     }
