@@ -179,7 +179,7 @@ export function TopBar(props: Props) {
             <SearchBar
               results={searchResults}
               mode={searchMode}
-            showIds={!!props.showIds}
+              showIds={!!props.showIds}
               onModeChange={setSearchMode}
               value={searchString}
               onSearchChange={setSearchString}
@@ -378,6 +378,7 @@ export function TopBar(props: Props) {
           <SearchBar
             results={searchResults}
             mode={searchMode}
+            showIds={!!props.showIds}
             onModeChange={setSearchMode}
             value={searchString}
             onSearchChange={setSearchString}
