@@ -1,0 +1,31 @@
+name: Format current UI fixes
+on:
+  push:
+    paths:
+      - .github/workflows/format-ui-fixes.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Run Prettier on modified files
+        run: npx prettier --write src/sidepanel/config/config.tsx src/sidepanel/details/details.tsx src/pages/view_page.tsx src/sidepanel/side-panel.tsx src/hooks/use_url_state.ts src/util/url_args.spec.ts src/translations/de.json
+      - name: Commit formatted code
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet; then
+            git add src
+            git commit -m "Format UI usability improvements"
+            git push origin HEAD:master
+          fi
