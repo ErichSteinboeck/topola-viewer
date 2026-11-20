@@ -214,8 +214,8 @@ export function AncestorFanChart(props: Props) {
           defaultMessage: 'Circular ancestor fan chart',
         })}
         style={{
-          width: `${size * zoom}px`,
-          height: `${size * zoom}px`,
+          width: `${zoom * 100}%`,
+          height: 'auto',
           maxWidth: 'none',
         }}
       >
