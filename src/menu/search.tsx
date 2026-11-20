@@ -1,8 +1,8 @@
 import React, {useEffect, useRef} from 'react';
 import {IntlShape, useIntl} from 'react-intl';
 import {Search, SearchResultProps} from 'semantic-ui-react';
-import {FulltextResult} from './fulltext_search';
 import {JsonIndi} from 'topola';
+import {FulltextResult} from './fulltext_search';
 import {formatDateOrRange} from '../util/date_util';
 import {
   registerSearchInput,
@@ -13,7 +13,7 @@ const SHORTCUT_INPUT_PROP = {
   'aria-keyshortcuts': '/',
 };
 
-function getNameLine(result: SearchResult) {
+function getNameLine(result: FulltextResult) {
   const name = [result.indi.firstName, result.indi.lastName].join(' ').trim();
   if (result.id.length > 8) {
     return name;
