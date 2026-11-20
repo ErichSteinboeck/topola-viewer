@@ -58,6 +58,7 @@ export function useUrlState() {
     (selection: IndiInfo) => {
       updateUrl({
         detail: selection.id,
+        sidePanel: 'true',
       });
     },
     [updateUrl],
