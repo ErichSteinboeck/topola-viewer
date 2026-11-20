@@ -514,3 +514,16 @@ div.zoom {
 #chart g.indi > rect.border {
   pointer-events: none;
 }
+
+/* All places that exactly match the hovered complete GEDCOM place. */
+#chart text[data-place-key] {
+  cursor: crosshair;
+}
+#chart text.matching-place {
+  fill: #513000;
+  stroke: #ffe18a;
+  stroke-width: 5px;
+  stroke-linejoin: round;
+  paint-order: stroke fill;
+  font-weight: 700;
+}
