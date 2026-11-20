@@ -7,7 +7,7 @@ import {ChartColors, ClickAction, Ids} from '../sidepanel/config/config';
 import {formatDateOrRange} from '../util/date_util';
 import {GedcomData} from '../util/gedcom_util';
 import {buildAncestorFan, fanSectorPath} from './ancestor_fan_data';
-import {associatedEventLines} from './hover_helpers';
+import {associatedEventLines, placesMatch} from './hover_helpers';
 
 interface Props {
   data: JsonGedcomData;
@@ -24,7 +24,7 @@ interface Props {
 
 const START_RADIUS = 78;
 const RING_SIZE = 105;
-const MAX_GENERATIONS = 7;
+const MAX_GENERATIONS = 12;
 const FAN_ANGLE = 240;
 const FAN_START = -FAN_ANGLE / 2;
 
@@ -39,7 +39,7 @@ function personFill(
   generation: number,
   colors?: ChartColors,
 ): string {
-  if (!person) return '#f1f1f1';
+  if (!person) return '#fff';
   if (colors === ChartColors.NO_COLOR) return '#f9f7f2';
   if (colors === ChartColors.COLOR_BY_SEX) {
     return person.sex === 'F'
@@ -61,7 +61,7 @@ function personFill(
   return palette[generation % palette.length];
 }
 
-/** A 270-degree ancestor fan, open at the bottom. Each sector is one ancestor *position*,
+/** An open ancestor fan, with a 120-degree gap at the bottom. Each sector is one ancestor *position*,
  * so pedigree collapse remains visible and unknown parents retain their slots. */
 export function AncestorFanChart(props: Props) {
   const intl = useIntl();
@@ -78,6 +78,7 @@ export function AncestorFanChart(props: Props) {
     null,
   );
   const [hoveredId, setHoveredId] = useState<string>();
+  const [hoveredPlace, setHoveredPlace] = useState<string>();
   const familyById = useMemo(
     () => new Map(props.data.fams.map((fam) => [fam.id, fam])),
     [props.data.fams],
@@ -87,8 +88,13 @@ export function AncestorFanChart(props: Props) {
     [props.data, props.selection.id, generations],
   );
   const radius = START_RADIUS + generations * RING_SIZE;
-  const size = 2 * (radius + 48);
-  const center = size / 2;
+  // Use the fan's actual visible extents, rather than the full
+  // enclosing circle (the bottom 120 degrees do not contain any sectors).
+  const margin = 36;
+  const width = Math.ceil(2 * (radius + margin));
+  const height = Math.ceil(1.5 * radius + 2 * margin);
+  const centerX = width / 2;
+  const centerY = radius + margin;
   useEffect(() => {
     const svg = svgRef.current;
     if (!svg) return;
@@ -100,7 +106,7 @@ export function AncestorFanChart(props: Props) {
         const {x, y, k} = event.transform;
         chart.setAttribute(
           'transform',
-          `translate(${x} ${y}) scale(${k}) translate(${center} ${center})`,
+          `translate(${x} ${y}) scale(${k}) translate(${centerX} ${centerY})`,
         );
       });
     zoomBehavior.current = behavior;
@@ -109,7 +115,7 @@ export function AncestorFanChart(props: Props) {
       select(svg).on('.zoom', null);
       zoomBehavior.current = null;
     };
-  }, [center]);
+  }, [centerX, centerY]);
 
   const changeZoom = (factor: number) => {
     if (svgRef.current && zoomBehavior.current) {
@@ -176,7 +182,14 @@ export function AncestorFanChart(props: Props) {
     const y = textRadius * Math.sin(angle);
     const isSelected =
       person?.id === (props.selectedPersonId || props.selection.id);
-    const emphasized = isSelected || (!!person && person.id === hoveredId);
+    const matchingPlace =
+      !!person &&
+      !!hoveredPlace &&
+      ([person.birth?.place, person.death?.place].some(
+        (place) => place && placesMatch(place, hoveredPlace),
+      ));
+    const emphasized =
+      isSelected || matchingPlace || (!!person && person.id === hoveredId);
     const maxChars = generation > 4 ? 14 : 26;
     const name = person ? labels(person) : '';
     const shortName =
@@ -193,14 +206,35 @@ export function AncestorFanChart(props: Props) {
     const birthPlace = person?.birth?.place || '';
     const short = (value: string, limit: number) =>
       value.length > limit ? `${value.slice(0, limit - 1)}…` : value;
-    const lines =
+    const deathPlace = person?.death?.place || '';
+    const lines: Array<{
+      value: string;
+      kind: 'birth' | 'death' | 'birthPlace' | 'deathPlace' | 'life';
+    }> =
       generation <= 3
         ? [
-            fullBirth ? `* ${fullBirth}` : '',
-            fullDeath ? `† ${fullDeath}` : '',
-            birthPlace ? short(birthPlace, 26) : '',
-          ].filter(Boolean)
-        : [life];
+            {value: fullBirth ? `* ${fullBirth}` : '', kind: 'birth'},
+            {value: birthPlace ? short(birthPlace, 26) : '', kind: 'birthPlace'},
+            {value: fullDeath ? `† ${fullDeath}` : '', kind: 'death'},
+            {value: deathPlace ? short(deathPlace, 26) : '', kind: 'deathPlace'},
+          ].filter((line) => !!line.value) as typeof lines
+        : [{value: life, kind: 'life'}];
+    const birthTooltip = [
+      intl.formatMessage({id: 'fan.birth', defaultMessage: 'Birth'}),
+      formatDateOrRange(person?.birth, intl),
+      birthPlace,
+      ...(person
+        ? associatedEventLines(props.gedcom, person.id, 'birth', intl)
+        : []),
+    ].filter(Boolean).join('\n');
+    const deathTooltip = [
+      intl.formatMessage({id: 'fan.death', defaultMessage: 'Death'}),
+      formatDateOrRange(person?.death, intl),
+      deathPlace,
+      ...(person
+        ? associatedEventLines(props.gedcom, person.id, 'death', intl)
+        : []),
+    ].filter(Boolean).join('\n');
     return (
       <g
         key={`${generation}-${index}`}
@@ -217,34 +251,55 @@ export function AncestorFanChart(props: Props) {
           strokeWidth={emphasized ? 3.5 : 0.85}
         />
         {person && (
-          <text
-            x={x}
-            y={y}
+          <g
+            transform={`translate(${x} ${y}) rotate(${rotation})`}
             fontFamily="Arial, sans-serif"
-            fontSize={generation > 5 ? 9 : generation > 3 ? 11 : 13}
-            fontWeight={emphasized ? 700 : 500}
             textAnchor="middle"
-            dominantBaseline="middle"
-            transform={`rotate(${rotation} ${x} ${y})`}
-            pointerEvents="none"
           >
-            <tspan x={x} dy={-lines.length * 6}>
+            <text
+              y={-(lines.length * 6 + 2)}
+              fontSize={generation > 5 ? 9 : generation > 3 ? 11 : 13}
+              fontWeight={emphasized ? 700 : 500}
+            >
               {shortName}
-            </tspan>
-            {lines.map((line, lineIndex) => (
-              <tspan
-                key={lineIndex}
-                x={x}
-                dy={generation <= 3 ? 13 : 16}
-                fontSize={generation <= 3 ? 9 : 10}
-                fontWeight="normal"
-              >
-                {line}
-              </tspan>
-            ))}
-          </text>
+              <title>{describePerson(person, generation)}</title>
+            </text>
+            {lines.map((line, lineIndex) => {
+              const isPlace =
+                line.kind === 'birthPlace' || line.kind === 'deathPlace';
+              const place =
+                line.kind === 'birthPlace' ? birthPlace : deathPlace;
+              const isMatch =
+                isPlace && !!hoveredPlace && placesMatch(place, hoveredPlace);
+              return (
+                <text
+                  key={line.kind}
+                  y={-(lines.length * 6 + 2) +
+                    (lineIndex + 1) * (generation <= 3 ? 13 : 16)}
+                  fontSize={generation <= 3 ? 9 : 10}
+                  fontWeight={isMatch ? 700 : 'normal'}
+                  className={isMatch ? 'fan-place-match' : undefined}
+                  onMouseEnter={
+                    isPlace ? () => setHoveredPlace(place) : undefined
+                  }
+                  onMouseLeave={
+                    isPlace ? () => setHoveredPlace(undefined) : undefined
+                  }
+                  style={{cursor: isPlace ? 'crosshair' : 'pointer'}}
+                >
+                  {line.value}
+                  {(line.kind === 'birth' || line.kind === 'birthPlace') &&
+                    <title>{birthTooltip}</title>}
+                  {(line.kind === 'death' || line.kind === 'deathPlace') &&
+                    <title>{deathTooltip}</title>}
+                </text>
+              );
+            })}
+          </g>
         )}
-        {person && <title>{describePerson(person, generation)}</title>}
+        {/* The background sector keeps the summary tooltip; each event line
+            provides its own dedicated event tooltip. */}
+        <path d={fanSectorPath(inner, outer, start, end)} fill="transparent" pointerEvents="none" />
       </g>
     );
   };
@@ -282,6 +337,7 @@ export function AncestorFanChart(props: Props) {
           x,
           y,
           text,
+          place: marriage.place,
         },
       ];
     });
@@ -296,20 +352,24 @@ export function AncestorFanChart(props: Props) {
             defaultMessage: 'Ancestor generations',
           })}
         </label>
-        <select
+        <input
           id="fanGenerations"
+          type="number"
+          min={1}
+          max={MAX_GENERATIONS}
+          step={1}
           value={generations}
-          onChange={(e) => setGenerations(Number(e.target.value))}
-        >
-          {Array.from(
-            {length: MAX_GENERATIONS - 2},
-            (_, index) => index + 3,
-          ).map((n) => (
-            <option key={n} value={n}>
-              {n}
-            </option>
-          ))}
-        </select>
+          aria-label={intl.formatMessage({
+            id: 'fan.generations',
+            defaultMessage: 'Ancestor generations',
+          })}
+          onChange={(e) => {
+            const value = Number(e.target.value);
+            if (Number.isInteger(value) && value >= 1) {
+              setGenerations(Math.min(MAX_GENERATIONS, value));
+            }
+          }}
+        />
         <button onClick={resetZoom}>
           {intl.formatMessage({id: 'fan.reset_zoom', defaultMessage: 'Fit'})}
         </button>
@@ -334,23 +394,27 @@ export function AncestorFanChart(props: Props) {
         ref={svgRef}
         id="chartSvg"
         className="ancestor-fan-svg"
-        width={size}
-        height={size}
-        viewBox={`0 0 ${size} ${size}`}
+        width={width}
+        height={height}
+        viewBox={`0 0 ${width} ${height}`}
+        data-center-x={centerX}
+        data-center-y={centerY}
         role="img"
         aria-label={intl.formatMessage({
           id: 'fan.title',
           defaultMessage: 'Circular ancestor fan chart',
         })}
-        style={{width: '100%', height: 'auto', maxWidth: 'none'}}
+        style={{width: '100%', height: '100%', maxWidth: 'none'}}
       >
-        <g id="chart" transform={`translate(${center} ${center})`}>
+        <g id="chart" transform={`translate(${centerX} ${centerY})`}>
           {ancestors.slice(1).map(sector)}
           {marriageMarkers.map((marker) => (
             <g
               key={marker.key}
               className="fan-marriage"
               transform={`translate(${marker.x} ${marker.y})`}
+              onMouseEnter={() => setHoveredPlace(marker.place)}
+              onMouseLeave={() => setHoveredPlace(undefined)}
             >
               <circle
                 r={8}
