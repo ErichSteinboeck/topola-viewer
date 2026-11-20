@@ -252,6 +252,7 @@ export function ViewPage() {
       <ProgressPill loadingStatus={loadingStatus} state={state} />
       <TopBar
         data={data?.chartData}
+        gedcom={data?.gedcom}
         allowAllRelativesChart={sourceSpec?.source !== DataSourceEnum.WIKITREE}
         allowPrintAndDownload={chartType !== ChartType.Donatso}
         showingChart={
@@ -259,7 +260,8 @@ export function ViewPage() {
         }
         standalone={standalone}
         eventHandlers={{
-          onSelection,
+          onSelection: selectPerson,
+          onDetailSelection: showPersonDetails,
           onPrint,
           onDownloadPdf,
           onDownloadPng,
