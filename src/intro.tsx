@@ -64,6 +64,7 @@ function Contents() {
           params={{
             url: new URL('examples/wienfluss-huber.ged', document.baseURI).href,
             handleCors: 'false',
+            indi: 'I500003',
           }}
           text="Wienfluss – Familie Huber (3 Personen)"
         />{' '}
