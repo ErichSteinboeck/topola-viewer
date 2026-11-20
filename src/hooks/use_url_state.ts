@@ -82,7 +82,24 @@ export function useUrlState() {
    */
   const onConfigChange = useCallback(
     (config: Config) => {
-      updateUrl(configToArgs(config), {replace: true});
+      const preferences = configToArgs(config);
+      try {
+        if (typeof window !== 'undefined') {
+          window.localStorage.setItem(
+            'topola-ui-settings',
+            JSON.stringify(
+              Object.fromEntries(
+                Object.entries(preferences).filter(
+                  ([, value]) => typeof value === 'string',
+                ),
+              ),
+            ),
+          );
+        }
+      } catch {
+        // The URL continues to work even when browser storage is disabled.
+      }
+      updateUrl(preferences, {replace: true});
     },
     [updateUrl],
   );
