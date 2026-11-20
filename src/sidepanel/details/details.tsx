@@ -375,6 +375,7 @@ export function Details(props: Props) {
           entries={entries}
           indi={props.indi}
           images={props.images}
+          alwaysShowNotes={props.config.alwaysShowEventNotes}
         />
         {props.config.id === Ids.SHOW ? getSectionForId(props.indi) : null}
         {getSectionForEachMatchingEntry(
