@@ -8,6 +8,7 @@ import {
   RelativesChart,
   ChartColors as TopolaChartColors,
 } from 'topola';
+import {GedcomData} from '../util/gedcom_util';
 import {
   ChartColors,
   ClickAction,
@@ -26,6 +27,10 @@ export enum ChartType {
 
 export interface ChartProps {
   data: JsonGedcomData;
+  /** Unmodified data for matching full place names even when labels are shortened. */
+  originalData?: JsonGedcomData;
+  gedcom?: GedcomData;
+  highlightMatchingPlaces?: boolean;
   selection: IndiInfo;
   chartType: ChartType;
   onSelection: (indiInfo: IndiInfo) => void;
