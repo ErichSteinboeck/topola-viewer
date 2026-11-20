@@ -11,7 +11,7 @@ import {
 } from 'semantic-ui-react';
 import {Source} from '../../util/gedcom_util';
 import {AdditionalFiles, FileEntry} from './additional-files';
-import {MultilineText} from './multiline-text';
+import {SafeNoteHtml} from './safe-note-html';
 import {Sources} from './sources';
 import {WrappedImage} from './wrapped-image';
 
@@ -27,6 +27,7 @@ interface Props {
   sources?: Source[];
   indi: string;
   files?: FileEntry[];
+  alwaysShowNotes?: boolean;
 }
 
 function eventImages(images: Image[] | undefined) {
@@ -51,11 +52,7 @@ function eventNotes(notes: string[][] | undefined) {
     !!notes?.length &&
     notes.map((note, index) => (
       <div key={index}>
-        <MultilineText
-          lines={note.map((line, index) => (
-            <i key={index}>{line}</i>
-          ))}
-        />
+        <SafeNoteHtml text={note.join('\n')} />
       </div>
     ))
   );
@@ -95,21 +92,22 @@ export function EventExtras(props: Props) {
     render: () => <Tab.Pane>{eventImages(props.images)}</Tab.Pane>,
   };
 
-  const noteTab = props.notes?.length && {
-    menuItem: (
-      <Menu.Item fitted key="notes" onClick={handleTabOnClick}>
-        <Popup
-          content={
-            <FormattedMessage id="extras.notes" defaultMessage="Notes" />
-          }
-          size="mini"
-          position="bottom center"
-          trigger={<Icon circular name="sticky note outline" />}
-        />
-      </Menu.Item>
-    ),
-    render: () => <Tab.Pane>{eventNotes(props.notes)}</Tab.Pane>,
-  };
+  const noteTab = !props.alwaysShowNotes &&
+    props.notes?.length && {
+      menuItem: (
+        <Menu.Item fitted key="notes" onClick={handleTabOnClick}>
+          <Popup
+            content={
+              <FormattedMessage id="extras.notes" defaultMessage="Notes" />
+            }
+            size="mini"
+            position="bottom center"
+            trigger={<Icon circular name="sticky note outline" />}
+          />
+        </Menu.Item>
+      ),
+      render: () => <Tab.Pane>{eventNotes(props.notes)}</Tab.Pane>,
+    };
 
   const sourceTab = props.sources?.length && {
     menuItem: (
@@ -161,6 +159,7 @@ export function EventExtras(props: Props) {
   if (panes.length) {
     return (
       <Item.Description>
+        {props.alwaysShowNotes && eventNotes(props.notes)}
         <Tab
           className="event-extras"
           activeIndex={activeIndex}
@@ -176,5 +175,7 @@ export function EventExtras(props: Props) {
       </Item.Description>
     );
   }
-  return null;
+  return props.alwaysShowNotes ? (
+    <Item.Description>{eventNotes(props.notes)}</Item.Description>
+  ) : null;
 }

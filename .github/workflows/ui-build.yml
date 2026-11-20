@@ -1,0 +1,29 @@
+name: Verify UI improvements
+
+on:
+  push:
+    branches:
+      - feature/ui-improvements
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Type-check and build
+        run: npm run build
+      - name: Lint
+        run: npm run lint
+      - name: Format check
+        run: npx prettier --check src/chart/chart_types.ts src/chart/chart_wrapper.ts src/hooks/use_url_state.ts src/index.tsx src/pages/view_page.tsx src/sidepanel/config/config.tsx src/sidepanel/details/details.tsx src/sidepanel/details/events.tsx src/sidepanel/details/event-extras.tsx src/sidepanel/details/safe-note-html.tsx src/util/language.ts
+      - name: Unit tests
+        run: npm test -- --runInBand

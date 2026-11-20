@@ -17,6 +17,7 @@ import {AdditionalFiles, FileEntry} from './additional-files';
 import {ALL_SUPPORTED_EVENT_TYPES, Events} from './events';
 import {ImmediateFamily} from './immediate-family';
 import {MultilineText} from './multiline-text';
+import {SafeNoteHtml} from './safe-note-html';
 import {Sources} from './sources';
 import {TranslatedTag} from './translated-tag';
 import {WrappedImage} from './wrapped-image';
@@ -31,6 +32,8 @@ const EXCLUDED_TAGS = [
   'SOUR',
   'FACT',
 ];
+
+const TECHNICAL_TAGS = new Set(['UPD', '_UPD', 'RIN', '_RIN', 'UID', '_UID']);
 
 function dataDetails(entry: GedcomEntry) {
   const lines = [];
@@ -191,13 +194,7 @@ function noteDetails(noteEntryReference: GedcomEntry, gedcom: GedcomData) {
     return null;
   }
 
-  return (
-    <MultilineText
-      lines={getData(noteEntry).map((line, index) => (
-        <i key={index}>{line}</i>
-      ))}
-    />
-  );
+  return <SafeNoteHtml text={getData(noteEntry).join('\n')} />;
 }
 
 function nameDetails(entry: GedcomEntry) {
@@ -314,9 +311,14 @@ function hasData(entry: GedcomEntry) {
   return entry.tree.length > 0 || (entry.data && !entry.data.startsWith('@'));
 }
 
-function getOtherSections(entries: GedcomEntry[], gedcom: GedcomData) {
+function getOtherSections(
+  entries: GedcomEntry[],
+  gedcom: GedcomData,
+  showTechnicalFields: boolean,
+) {
   return entries
     .filter((entry) => !EXCLUDED_TAGS.includes(entry.tag))
+    .filter((entry) => showTechnicalFields || !TECHNICAL_TAGS.has(entry.tag))
     .map((entry) => dereference(entry, gedcom, (gedcom) => gedcom.other))
     .filter(hasData)
     .map((entry) => dataDetails(entry))
@@ -375,6 +377,7 @@ export function Details(props: Props) {
           entries={entries}
           indi={props.indi}
           images={props.images}
+          alwaysShowNotes={props.config.alwaysShowEventNotes}
         />
         {props.config.id === Ids.SHOW ? getSectionForId(props.indi) : null}
         {getSectionForEachMatchingEntry(
@@ -383,7 +386,11 @@ export function Details(props: Props) {
           ['FACT'],
           attributeDetails,
         )}
-        {getOtherSections(entries, props.gedcom)}
+        {getOtherSections(
+          entries,
+          props.gedcom,
+          props.config.showTechnicalFields,
+        )}
         {getSectionForEachMatchingEntry(
           entries,
           props.gedcom,

@@ -2,6 +2,7 @@ import {ParsedQuery} from 'query-string';
 import {FormattedMessage} from 'react-intl';
 import {Checkbox, Form, Header, Input, Item} from 'semantic-ui-react';
 import {GedcomData} from '../../util/gedcom_util';
+import {getPreferredLanguage, setPreferredLanguage} from '../../util/language';
 import {DEFAULT_PLACE_DISPLAY_COUNT, PlaceDisplay} from '../../util/place_util';
 import {SourceHead} from '../head/head';
 
@@ -23,12 +24,20 @@ export enum Sex {
   SHOW,
 }
 
+export enum ClickAction {
+  DETAILS = 'details',
+  FOCUS = 'focus',
+}
+
 export interface Config {
   color: ChartColors;
   id: Ids;
   sex: Sex;
   place: PlaceDisplay;
   placeCount: number;
+  clickAction: ClickAction;
+  showTechnicalFields: boolean;
+  alwaysShowEventNotes: boolean;
 }
 
 export const DEFALUT_CONFIG: Config = {
@@ -37,6 +46,9 @@ export const DEFALUT_CONFIG: Config = {
   sex: Sex.SHOW,
   place: PlaceDisplay.FULL,
   placeCount: DEFAULT_PLACE_DISPLAY_COUNT,
+  clickAction: ClickAction.DETAILS,
+  showTechnicalFields: false,
+  alwaysShowEventNotes: false,
 };
 
 const COLOR_ARG = new Map<string, ChartColors>([
@@ -82,6 +94,10 @@ export function argsToConfig(args: ParsedQuery<unknown>): Config {
     sex: SEX_ARG.get(getParam('s') ?? '') ?? DEFALUT_CONFIG.sex,
     place: PLACE_ARG.get(getParam('p') ?? '') ?? DEFALUT_CONFIG.place,
     placeCount: placeCount >= 1 ? placeCount : DEFALUT_CONFIG.placeCount,
+    clickAction:
+      getParam('click') === 'focus' ? ClickAction.FOCUS : ClickAction.DETAILS,
+    showTechnicalFields: getParam('technical') === 'true',
+    alwaysShowEventNotes: getParam('notes') === 'always',
   };
 }
 
@@ -109,6 +125,13 @@ export function configToArgs(config: Config): ParsedQuery {
   ) {
     result.pn = String(config.placeCount);
   }
+  result.click = config.clickAction;
+  result.notes = config.alwaysShowEventNotes ? 'always' : null;
+  if (config.showTechnicalFields) {
+    result.technical = 'true';
+  } else {
+    result.technical = null;
+  }
   return result;
 }
 
@@ -121,6 +144,89 @@ export function ConfigPanel(props: {
     <Form className="details">
       <Item.Group>
         {SourceHead(props.gedcom)}
+        <Item>
+          <Item.Content>
+            <Header sub>Language / Sprache</Header>
+            <select
+              aria-label="Language / Sprache"
+              defaultValue={getPreferredLanguage()}
+              onChange={(event) => setPreferredLanguage(event.target.value)}
+            >
+              <option value="en">English</option>
+              <option value="de">Deutsch</option>
+              <option value="bg">Български</option>
+              <option value="cs">Čeština</option>
+              <option value="fr">Français</option>
+              <option value="it">Italiano</option>
+              <option value="pl">Polski</option>
+              <option value="ru">Русский</option>
+              <option value="sv">Svenska</option>
+            </select>
+          </Item.Content>
+        </Item>
+        <Item>
+          <Item.Content>
+            <Header sub>Click behavior</Header>
+            <Form.Field className="no-margin">
+              <Checkbox
+                radio
+                label="Click: show details; Shift+click: focus chart"
+                name="clickAction"
+                checked={props.config.clickAction === ClickAction.DETAILS}
+                onChange={() =>
+                  props.onChange({
+                    ...props.config,
+                    clickAction: ClickAction.DETAILS,
+                  })
+                }
+              />
+            </Form.Field>
+            <Form.Field className="no-margin">
+              <Checkbox
+                radio
+                label="Click: focus chart; Shift+click: show details"
+                name="clickAction"
+                checked={props.config.clickAction === ClickAction.FOCUS}
+                onChange={() =>
+                  props.onChange({
+                    ...props.config,
+                    clickAction: ClickAction.FOCUS,
+                  })
+                }
+              />
+            </Form.Field>
+          </Item.Content>
+        </Item>
+        <Item>
+          <Item.Content>
+            <Header sub>Event notes</Header>
+            <Form.Field className="no-margin">
+              <Checkbox
+                label="Always show notes below events"
+                checked={props.config.alwaysShowEventNotes}
+                onChange={(_event, data) =>
+                  props.onChange({
+                    ...props.config,
+                    alwaysShowEventNotes: !!data.checked,
+                  })
+                }
+              />
+            </Form.Field>
+            <Header sub>GEDCOM metadata</Header>
+            <Form.Field className="no-margin">
+              <Checkbox
+                label="Show technical fields (RIN, UID, UPD)"
+                checked={props.config.showTechnicalFields}
+                onChange={(_event, data) =>
+                  props.onChange({
+                    ...props.config,
+                    showTechnicalFields: !!data.checked,
+                  })
+                }
+              />
+            </Form.Field>
+          </Item.Content>
+        </Item>
         <Item>
           <Item.Content>
             <Header sub>
