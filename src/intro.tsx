@@ -6,7 +6,6 @@ import {Card, Grid, Image} from 'semantic-ui-react';
 import {getChangelog, updateSeenVersion} from './changelog';
 import logo from './topola.jpg';
 import {Media} from './util/media';
-import {isOnWikitreeDomain, WIKITREE_TOPOLA_URL} from './util/wikitree_util';
 
 /** Link that loads a view. */
 function ViewLink(props: {params: {[key: string]: string}; text: string}) {
@@ -52,67 +51,35 @@ function Contents() {
         />
       </p>
 
+      <p>
+        <FormattedMessage
+          id="intro.improved"
+          defaultMessage="This enhanced edition of Topola adds customizable click behavior, German language settings, optional identification fields, and formatted genealogy notes with source links."
+        />
+      </p>
       <h3>
-        <FormattedMessage id="intro.examples" defaultMessage="Examples" />
+        <FormattedMessage id="intro.examples" defaultMessage="Example" />
       </h3>
-      <ul>
-        <li>
-          <ViewLink
-            params={{
-              url: 'https://chronoplexsoftware.com/myfamilytree/samples/The%20Kennedy%20Family.gdz',
-            }}
-            text="J. F. Kennedy"
-          />{' '}
-          (<FormattedMessage id="intro.from" defaultMessage="from" />{' '}
-          <a href="https://chronoplexsoftware.com/myfamilytree/samples/">
-            chronoplexsoftware.com
-          </a>
-          )
-        </li>
-        <li>
-          <ViewLink
-            params={{
-              url: 'https://webtreeprint.com/tp_downloader.php?path=famous_gedcoms/shakespeare.ged&file=shakespeare.ged',
-            }}
-            text="Shakespeare"
-          />{' '}
-          (<FormattedMessage id="intro.from" defaultMessage="from" />{' '}
-          <a href="https://webtreeprint.com/tp_famous_gedcoms.php">
-            webtreeprint.com
-          </a>
-          )
-        </li>
-        <li>
-          {isOnWikitreeDomain() ? (
-            <ViewLink
-              params={{
-                indi: 'Skłodowska-2',
-                source: 'wikitree',
-              }}
-              text="Maria Skłodowska-Curie"
-            />
-          ) : (
-            <a
-              href={`${WIKITREE_TOPOLA_URL}/#/view?source=wikitree&indi=Sk%C5%82odowska-2`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Maria Skłodowska-Curie ↗
-            </a>
-          )}{' '}
-          (<FormattedMessage id="intro.from" defaultMessage="from" />{' '}
-          <a href="https://www.wikitree.com/wiki/Sk%C5%82odowska-2">
-            wikitree.com
-          </a>
-          )
-        </li>
-      </ul>
+      <p>
+        <ViewLink
+          params={{
+            url: new URL('examples/wienfluss-huber.ged', document.baseURI).href,
+            handleCors: 'false',
+          }}
+          text="Wienfluss – Familie Huber (3 Personen)"
+        />
+        {' '}
+        <FormattedMessage
+          id="intro.sample_details"
+          defaultMessage="A small historical GEDCOM showing births, marriage, deaths, and HTML-formatted source notes."
+        />
+      </p>
 
       <h3>
         <FormattedMessage id="intro.whats_new" defaultMessage="What's new" />
       </h3>
       <span dangerouslySetInnerHTML={{__html: changelog}} />
-      <a href="https://github.com/PeWu/topola-viewer/blob/master/CHANGELOG.md">
+      <a href="https://github.com/ErichSteinboeck/topola-viewer/blob/master/CHANGELOG.md">
         <FormattedMessage
           id="intro.full_changelog"
           defaultMessage="See full changelog"
@@ -139,7 +106,7 @@ function Contents() {
       <p className="ui right aligned version">
         version: {formatBuildDate(import.meta.env.VITE_GIT_TIME)} (
         <a
-          href={`https://github.com/PeWu/topola-viewer/commit/${import.meta.env.VITE_GIT_SHA}`}
+          href={`https://github.com/ErichSteinboeck/topola-viewer/commit/${import.meta.env.VITE_GIT_SHA}`}
         >
           {import.meta.env.VITE_GIT_SHA}
         </a>
