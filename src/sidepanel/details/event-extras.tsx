@@ -27,6 +27,7 @@ interface Props {
   sources?: Source[];
   indi: string;
   files?: FileEntry[];
+  alwaysShowNotes?: boolean;
 }
 
 function eventImages(images: Image[] | undefined) {
@@ -91,7 +92,7 @@ export function EventExtras(props: Props) {
     render: () => <Tab.Pane>{eventImages(props.images)}</Tab.Pane>,
   };
 
-  const noteTab = props.notes?.length && {
+  const noteTab = !props.alwaysShowNotes && props.notes?.length && {
     menuItem: (
       <Menu.Item fitted key="notes" onClick={handleTabOnClick}>
         <Popup
@@ -157,6 +158,7 @@ export function EventExtras(props: Props) {
   if (panes.length) {
     return (
       <Item.Description>
+        {props.alwaysShowNotes && eventNotes(props.notes)}
         <Tab
           className="event-extras"
           activeIndex={activeIndex}
@@ -172,5 +174,5 @@ export function EventExtras(props: Props) {
       </Item.Description>
     );
   }
-  return null;
+  return props.alwaysShowNotes ? <Item.Description>{eventNotes(props.notes)}</Item.Description> : null;
 }
