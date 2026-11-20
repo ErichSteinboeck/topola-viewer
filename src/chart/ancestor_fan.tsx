@@ -131,6 +131,8 @@ export function AncestorFanChart(props: Props) {
       });
     zoomBehavior.current = behavior;
     select(svg).call(behavior);
+    // Refit when the generation count or selected root changes.
+    select(svg).call(behavior.transform, zoomIdentity);
     return () => {
       select(svg).on('.zoom', null);
       zoomBehavior.current = null;
