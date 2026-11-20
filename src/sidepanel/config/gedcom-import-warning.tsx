@@ -2,7 +2,9 @@ import {FormattedMessage} from 'react-intl';
 import {Message} from 'semantic-ui-react';
 import {GedcomRepairReport} from '../../util/gedcom_repair';
 
-export function GedcomImportWarning({repairReport}: {
+export function GedcomImportWarning({
+  repairReport,
+}: {
   repairReport?: Omit<GedcomRepairReport, 'text'>;
 }) {
   return (

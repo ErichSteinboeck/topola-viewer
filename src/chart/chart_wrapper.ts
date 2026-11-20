@@ -137,8 +137,7 @@ export class ChartWrapper {
       label: string,
       event: {place?: string} | undefined,
       date: string,
-    ) =>
-      [label, date, event?.place].filter(Boolean).join(' · ');
+    ) => [label, date, event?.place].filter(Boolean).join(' · ');
 
     select('#chart')
       .selectAll<SVGGElement, {indi?: {id?: string}}>('g.indi')
@@ -169,9 +168,9 @@ export class ChartWrapper {
         const id = record?.data?.family?.id;
         const marriage = id ? famById.get(id)?.marriage : undefined;
         if (!marriage) return;
-        const values = Array.from(
-          this.querySelectorAll('text.details'),
-        ).filter((_element, index) => index % 2 === 1);
+        const values = Array.from(this.querySelectorAll('text.details')).filter(
+          (_element, index) => index % 2 === 1,
+        );
         const summary = eventSummary(
           'Heirat',
           marriage,
