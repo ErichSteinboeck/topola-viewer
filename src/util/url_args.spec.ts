@@ -2,7 +2,7 @@ import {afterEach, beforeEach, describe, expect, it, jest} from '@jest/globals';
 import * as H from 'history';
 import {ChartType} from '../chart/chart_types';
 import {DataSourceEnum} from '../datasource/data_source';
-import {ChartColors, Ids, PlaceDisplay, Sex} from '../sidepanel/config/config';
+import {ChartColors, ClickAction, Ids, PlaceDisplay, Sex} from '../sidepanel/config/config';
 import {
   getArguments,
   getParamFromSearch,
@@ -119,6 +119,9 @@ describe('url_args', () => {
         sex: Sex.SHOW,
         place: PlaceDisplay.FULL,
         placeCount: 2,
+        clickAction: ClickAction.DETAILS,
+        showTechnicalFields: false,
+        alwaysShowEventNotes: false,
       });
     });
 
@@ -271,6 +274,13 @@ describe('url_args', () => {
       expect(args.freezeAnimation).toBe(true);
     });
 
+    it('parses UI preferences from query parameters', () => {
+      const args = getArguments(createLocation('?click=focus&technical=true&notes=always'));
+      expect(args.config.clickAction).toBe(ClickAction.FOCUS);
+      expect(args.config.showTechnicalFields).toBe(true);
+      expect(args.config.alwaysShowEventNotes).toBe(true);
+    });
+
     it('parses config object from query parameters', () => {
       const args = getArguments(createLocation('?c=s&i=h&s=h&p=s&pn=5'));
       expect(args.config).toEqual({
@@ -279,6 +289,9 @@ describe('url_args', () => {
         sex: Sex.HIDE,
         place: PlaceDisplay.SHORT,
         placeCount: 5,
+        clickAction: ClickAction.DETAILS,
+        showTechnicalFields: false,
+        alwaysShowEventNotes: false,
       });
     });
   });
