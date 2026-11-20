@@ -28,6 +28,20 @@ const MAX_GENERATIONS = 12;
 const FAN_ANGLE = 240;
 const FAN_START = -FAN_ANGLE / 2;
 
+/** Compact dates on the wheel; the native tooltip retains full dates. */
+function shortMonthDate(value: string, locale: string): string {
+  if (!value) return value;
+  for (let month = 0; month < 12; month++) {
+    const date = new Date(2020, month, 15);
+    const full = new Intl.DateTimeFormat(locale, {month: 'long'}).format(date);
+    const short = new Intl.DateTimeFormat(locale, {month: 'short'}).format(date);
+    if (full !== short) {
+      value = value.replace(new RegExp(`\\b${full}\\b`, 'gu'), short);
+    }
+  }
+  return value;
+}
+
 function personName(person: JsonIndi): string {
   return (
     [person.firstName, person.lastName].filter(Boolean).join(' ') || person.id
@@ -201,8 +215,8 @@ export function AncestorFanChart(props: Props) {
     const born = person?.birth?.date?.year;
     const died = person?.death?.date?.year;
     const life = [born ?? '?', died ?? '?'].join('–');
-    const fullBirth = person ? formatDateOrRange(person.birth, intl) : '';
-    const fullDeath = person ? formatDateOrRange(person.death, intl) : '';
+    const fullBirth = person ? shortMonthDate(formatDateOrRange(person.birth, intl), intl.locale) : '';
+    const fullDeath = person ? shortMonthDate(formatDateOrRange(person.death, intl), intl.locale) : '';
     const birthPlace = person?.birth?.place || '';
     const short = (value: string, limit: number) =>
       value.length > limit ? `${value.slice(0, limit - 1)}…` : value;
@@ -217,7 +231,10 @@ export function AncestorFanChart(props: Props) {
             {value: birthPlace ? short(birthPlace, 26) : '', kind: 'birthPlace'},
             {value: fullDeath ? `† ${fullDeath}` : '', kind: 'death'},
             {value: deathPlace ? short(deathPlace, 26) : '', kind: 'deathPlace'},
-          ].filter((line) => !!line.value) as typeof lines
+          ].filter((line) => !!line.value) as Array<{
+            value: string;
+            kind: 'birth' | 'death' | 'birthPlace' | 'deathPlace' | 'life';
+          }>
         : [{value: life, kind: 'life'}];
     const birthTooltip = [
       intl.formatMessage({id: 'fan.birth', defaultMessage: 'Birth'}),
@@ -288,18 +305,14 @@ export function AncestorFanChart(props: Props) {
                   style={{cursor: isPlace ? 'crosshair' : 'pointer'}}
                 >
                   {line.value}
-                  {(line.kind === 'birth' || line.kind === 'birthPlace') &&
-                    <title>{birthTooltip}</title>}
-                  {(line.kind === 'death' || line.kind === 'deathPlace') &&
-                    <title>{deathTooltip}</title>}
+                  {line.kind === 'birth' && <title>{birthTooltip}</title>}
+                  {line.kind === 'death' && <title>{deathTooltip}</title>}
                 </text>
               );
             })}
           </g>
         )}
-        {/* The background sector keeps the summary tooltip; each event line
-            provides its own dedicated event tooltip. */}
-        <path d={fanSectorPath(inner, outer, start, end)} fill="transparent" pointerEvents="none" />
+
       </g>
     );
   };
