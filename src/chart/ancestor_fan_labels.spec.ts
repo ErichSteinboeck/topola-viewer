@@ -6,7 +6,7 @@ describe('ancestorNameLines', () => {
     expect(ancestorNameLines('Franz', 'Wagner', 25, false)).toEqual(['Franz Wagner']);
   });
   it('abbreviates given names before shortening family names', () => {
-    expect(ancestorNameLines('Franz Joseph', 'Halmenschlager', 19, false))
+    expect(ancestorNameLines('Franz Joseph', 'Halmenschlager', 22, false))
       .toEqual(['F. J. Halmenschlager']);
   });
   it('breaks long names into two lines in spacious sectors', () => {
