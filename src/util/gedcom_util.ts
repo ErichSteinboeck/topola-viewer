@@ -9,6 +9,7 @@ import {
   JsonIndi,
 } from 'topola';
 import {compareDates} from './date_util';
+import {repairGedcomTextLines} from './gedcom_repair';
 import {TopolaError} from './error';
 
 export interface GedcomData {
@@ -311,7 +312,7 @@ export async function convertGedcom(
 ): Promise<TopolaData> {
   await yieldToEventLoop(onProgress, 'Step 1/4: parsing GEDCOM…');
 
-  const entries = parseGedcom(gedcom);
+  const entries = parseGedcom(repairGedcomTextLines(gedcom));
 
   await yieldToEventLoop(onProgress, 'Step 2/4: building family graph…');
 
