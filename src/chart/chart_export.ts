@@ -81,6 +81,13 @@ function getStrippedSvg() {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const svg = document.getElementById('chartSvg')!.cloneNode(true) as Element;
 
+  // The fan wheel has a fixed SVG viewBox and an essential center
+  // translation. Its interactive zoom changes only the CSS display size.
+  if (svg.classList.contains('ancestor-fan-svg')) {
+    svg.removeAttribute('style');
+    return svg;
+  }
+
   svg.removeAttribute('transform');
   const parent = select('#svgContainer').node() as Element;
   const scale = zoomTransform(parent).k;
