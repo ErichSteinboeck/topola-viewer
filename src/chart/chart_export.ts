@@ -86,10 +86,9 @@ function getStrippedSvg() {
   if (svg.classList.contains('ancestor-fan-svg')) {
     svg.removeAttribute('style');
     const size = Number(svg.getAttribute('width'));
-    svg.querySelector('#chart')?.setAttribute(
-      'transform',
-      `translate(${size / 2} ${size / 2})`,
-    );
+    svg
+      .querySelector('#chart')
+      ?.setAttribute('transform', `translate(${size / 2} ${size / 2})`);
     return svg;
   }
 

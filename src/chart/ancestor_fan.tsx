@@ -1,6 +1,6 @@
-import {useEffect, useMemo, useRef, useState} from 'react';
 import {select} from 'd3-selection';
-import {zoom as d3Zoom, zoomIdentity, ZoomBehavior} from 'd3-zoom';
+import {zoom as d3Zoom, ZoomBehavior, zoomIdentity} from 'd3-zoom';
+import {useEffect, useMemo, useRef, useState} from 'react';
 import {useIntl} from 'react-intl';
 import {IndiInfo, JsonGedcomData, JsonIndi} from 'topola';
 import {ChartColors, ClickAction, Ids} from '../sidepanel/config/config';
@@ -71,7 +71,9 @@ export function AncestorFanChart(props: Props) {
   }, [props.onFirstRender]);
   const [generations, setGenerations] = useState(5);
   const svgRef = useRef<SVGSVGElement>(null);
-  const zoomBehavior = useRef<ZoomBehavior<SVGSVGElement, unknown> | null>(null);
+  const zoomBehavior = useRef<ZoomBehavior<SVGSVGElement, unknown> | null>(
+    null,
+  );
   const [hoveredId, setHoveredId] = useState<string>();
   const ancestors = useMemo(
     () => buildAncestorFan(props.data, props.selection.id, generations),
@@ -109,10 +111,7 @@ export function AncestorFanChart(props: Props) {
   };
   const resetZoom = () => {
     if (svgRef.current && zoomBehavior.current) {
-      select(svgRef.current).call(
-        zoomBehavior.current.transform,
-        zoomIdentity,
-      );
+      select(svgRef.current).call(zoomBehavior.current.transform, zoomIdentity);
     }
   };
 
@@ -185,7 +184,9 @@ export function AncestorFanChart(props: Props) {
             transform={`rotate(${rotation} ${x} ${y})`}
             pointerEvents="none"
           >
-            <tspan x={x} dy={-8}>{shortName}</tspan>
+            <tspan x={x} dy={-8}>
+              {shortName}
+            </tspan>
             <tspan x={x} dy={16} fontSize="10" fontWeight="normal">
               {life}
             </tspan>
