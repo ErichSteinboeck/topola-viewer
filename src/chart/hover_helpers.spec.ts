@@ -3,7 +3,7 @@ import {readFileSync} from 'fs';
 import {parse as parseGedcom} from 'parse-gedcom';
 import {createIntl, createIntlCache} from 'react-intl';
 import {GedcomData} from '../util/gedcom_util';
-import {associatedEventLines, placeKey} from './hover_helpers';
+import {associatedEventLines, placeKey, placesMatch} from './hover_helpers';
 
 const intl = createIntl({locale: 'de', messages: {}}, createIntlCache());
 
@@ -12,6 +12,25 @@ describe('placeKey', () => {
     expect(placeKey('  Wien   Wieden 327  ')).toBe(placeKey('wien wieden 327'));
     expect(placeKey('Wieden 327')).not.toBe(placeKey('Wieden 327, Wien'));
     expect(placeKey('')).toBe('');
+  });
+});
+
+describe('placesMatch', () => {
+  it('matches complete places at the start or end of composite marriage places in either direction', () => {
+    const combined = 'Germanns / Rudmanns 63';
+    expect(placesMatch(combined, 'Germanns')).toBe(true);
+    expect(placesMatch('Germanns', combined)).toBe(true);
+    expect(placesMatch(combined, 'Rudmanns 63')).toBe(true);
+    expect(placesMatch('Rudmanns 63', combined)).toBe(true);
+    expect(placesMatch(combined, 'Rudmanns')).toBe(false);
+  });
+
+  it('requires a boundary and never matches only part of a name', () => {
+    expect(placesMatch('Wien', 'Wiener Neustadt')).toBe(false);
+    expect(placesMatch('Germanns', 'Altgermanns')).toBe(false);
+    expect(placesMatch('Wieden 327', 'Wieden 327, Wien')).toBe(true);
+    expect(placesMatch('Rudmanns 63', 'Rudmanns 64')).toBe(false);
+    expect(placesMatch('', '')).toBe(false);
   });
 });
 
