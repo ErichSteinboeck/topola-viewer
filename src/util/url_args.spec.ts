@@ -2,7 +2,13 @@ import {afterEach, beforeEach, describe, expect, it, jest} from '@jest/globals';
 import * as H from 'history';
 import {ChartType} from '../chart/chart_types';
 import {DataSourceEnum} from '../datasource/data_source';
-import {ChartColors, ClickAction, Ids, PlaceDisplay, Sex} from '../sidepanel/config/config';
+import {
+  ChartColors,
+  ClickAction,
+  Ids,
+  PlaceDisplay,
+  Sex,
+} from '../sidepanel/config/config';
 import {
   getArguments,
   getParamFromSearch,
@@ -275,7 +281,9 @@ describe('url_args', () => {
     });
 
     it('parses UI preferences from query parameters', () => {
-      const args = getArguments(createLocation('?click=focus&technical=true&notes=always'));
+      const args = getArguments(
+        createLocation('?click=focus&technical=true&notes=always'),
+      );
       expect(args.config.clickAction).toBe(ClickAction.FOCUS);
       expect(args.config.showTechnicalFields).toBe(true);
       expect(args.config.alwaysShowEventNotes).toBe(true);
