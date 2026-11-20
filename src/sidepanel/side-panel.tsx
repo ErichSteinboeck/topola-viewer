@@ -92,6 +92,7 @@ export function SidePanel({
           indi={selectedIndiId}
           config={config}
           images={data.images}
+          repairReport={data.repairReport}
         />
       ),
     },
