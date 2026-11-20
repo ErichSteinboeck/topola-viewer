@@ -1,9 +1,11 @@
 import queryString from 'query-string';
+import {useState} from 'react';
 import {FormattedMessage} from 'react-intl';
 import {Link, useLocation, useNavigate} from 'react-router';
 import {Dropdown, Icon, Menu} from 'semantic-ui-react';
 import {IndiInfo, JsonGedcomData} from 'topola';
 import {isGoogleDriveConfigured} from '../datasource/google_drive_service';
+import {GedcomData} from '../util/gedcom_util';
 import {Media} from '../util/media';
 import {isOnWikitreeDomain} from '../util/wikitree_util';
 import {GoogleDriveMenu} from './google_drive_menu';
@@ -21,6 +23,7 @@ enum ScreenSize {
 
 interface EventHandlers {
   onSelection: (indiInfo: IndiInfo) => void;
+  onDetailSelection?: (indiInfo: IndiInfo) => void;
   onPrint: () => void;
   onDownloadPdf: () => void;
   onDownloadPng: () => void;
@@ -32,6 +35,7 @@ interface Props {
   showingChart: boolean;
   /** Data used for the search index. */
   data?: JsonGedcomData;
+  gedcom?: GedcomData;
   standalone: boolean;
   /** Whether to show the "All relatives" chart type in the menu. */
   allowAllRelativesChart?: boolean;
@@ -48,6 +52,7 @@ interface Props {
 }
 
 export function TopBar(props: Props) {
+  const [searchMode, setSearchMode] = useState<'people' | 'fulltext'>('people');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -59,7 +64,10 @@ export function TopBar(props: Props) {
   const {searchResults, searchString, setSearchString, handleResultSelect} =
     useSearch({
       data: props.data,
+      gedcom: props.gedcom,
+      mode: searchMode,
       onSelection: props.eventHandlers?.onSelection,
+      onDetailSelection: props.eventHandlers?.onDetailSelection,
     });
 
   function changeView(view: string) {
@@ -169,6 +177,8 @@ export function TopBar(props: Props) {
             </Dropdown>
             <SearchBar
               results={searchResults}
+              mode={searchMode}
+              onModeChange={setSearchMode}
               value={searchString}
               onSearchChange={setSearchString}
               onResultSelect={handleResultSelect}
@@ -365,6 +375,8 @@ export function TopBar(props: Props) {
         {props.showingChart && props.data && (
           <SearchBar
             results={searchResults}
+            mode={searchMode}
+            onModeChange={setSearchMode}
             value={searchString}
             onSearchChange={setSearchString}
             onResultSelect={handleResultSelect}
