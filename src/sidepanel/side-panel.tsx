@@ -11,6 +11,8 @@ interface SidePanelProps {
   config: Config;
   onConfigChange: (config: Config) => void;
   expanded: boolean;
+  activeTab: number;
+  onTabChange: (index: number) => void;
   onToggle: () => void;
 }
 
@@ -20,6 +22,8 @@ export function SidePanel({
   config,
   onConfigChange,
   expanded,
+  activeTab,
+  onTabChange,
   onToggle,
 }: SidePanelProps) {
   const intl = useIntl();
@@ -64,7 +68,16 @@ export function SidePanel({
       visible={true}
     >
       {expanded ? (
-        <Tab id="sideTabs" panes={tabs} />
+        <Tab
+          id="sideTabs"
+          panes={tabs}
+          activeIndex={activeTab}
+          onTabChange={(_event, data) => {
+            if (typeof data.activeIndex === 'number') {
+              onTabChange(data.activeIndex);
+            }
+          }}
+        />
       ) : (
         <CollapsedDetails gedcom={data.gedcom} indi={selectedIndiId} />
       )}
