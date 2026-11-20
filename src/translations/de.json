@@ -175,5 +175,9 @@
   "gedcom.lines_unrepaired": "{count} nicht erkannte Zeile(n) konnten nicht sicher repariert werden.",
   "gedcom.parser_warnings": "{count} strukturelle Auffälligkeit(en) im GEDCOM erkannt.",
   "gedcom.repair_caution": "Die Originaldatei wurde nicht verändert. Bitte die betroffenen Stellen überprüfen; eine automatische Rekonstruktion ist nicht immer eindeutig.",
-  "gedcom.repair_line_numbers": "Betroffene Zeilen (erste Beispiele): {lines}"
+  "gedcom.repair_line_numbers": "Betroffene Zeilen (erste Beispiele): {lines}",
+  "menu.search.mode": "Suchmodus",
+  "menu.search.people": "Personen",
+  "menu.search.fulltext": "Volltext",
+  "menu.search.fulltext_placeholder": "Namen, Orte und Notizen durchsuchen"
 }
