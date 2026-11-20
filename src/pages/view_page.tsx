@@ -253,6 +253,7 @@ export function ViewPage() {
       <TopBar
         data={data?.chartData}
         gedcom={data?.gedcom}
+        showIds={config.id === Ids.SHOW}
         allowAllRelativesChart={sourceSpec?.source !== DataSourceEnum.WIKITREE}
         allowPrintAndDownload={chartType !== ChartType.Donatso}
         showingChart={
