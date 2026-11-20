@@ -3,6 +3,7 @@ import {useIntl} from 'react-intl';
 import {Loader, SidebarPushable, SidebarPusher} from 'semantic-ui-react';
 import {IndiInfo} from 'topola';
 import {Chart} from '../chart/chart';
+import {AncestorFanChart} from '../chart/ancestor_fan';
 import {
   downloadPdf,
   downloadPng,
@@ -172,6 +173,21 @@ export function ViewPage() {
   function renderChart(selection: IndiInfo) {
     if (!data) {
       return null;
+    }
+    if (chartType === ChartType.AncestorFan) {
+      return (
+        <AncestorFanChart
+          data={data.chartData}
+          selection={selection}
+          selectedPersonId={detailIndi || selection.id}
+          colors={config.color}
+          hideIds={config.id}
+          clickAction={config.clickAction}
+          onSelection={selectPerson}
+          onDetailSelection={showPersonDetails}
+          onFirstRender={() => setLoadingStatus('')}
+        />
+      );
     }
     if (chartType === ChartType.Donatso) {
       return (
