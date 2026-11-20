@@ -568,3 +568,25 @@ div.zoom {
 .ancestor-fan-svg text {
   user-select: none;
 }
+
+/* Position fan zoom buttons like those in the hourglass view. */
+.ancestor-fan-container .ancestor-fan-zoom {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  margin: 0;
+  z-index: 5;
+}
+.ancestor-fan-container .ancestor-fan-controls {
+  top: 12px;
+  left: 55px;
+  margin-left: 55px;
+}
+.ancestor-fan-svg .fan-marriage {
+  cursor: help;
+}
+.ancestor-fan-svg .fan-marriage:hover circle {
+  fill: #ffedbc;
+  stroke: #ac6c1c;
+  stroke-width: 2.2;
+}
