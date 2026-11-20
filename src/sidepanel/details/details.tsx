@@ -365,7 +365,8 @@ export function Details(props: Props) {
     <div className="details" data-testid="details">
       {props.repairReport &&
         (props.repairReport.repairedLines > 0 ||
-          props.repairReport.unrepairedLines > 0) && (
+          props.repairReport.unrepairedLines > 0 ||
+          props.repairReport.parserWarnings > 0) && (
           <Message warning size="small" className="gedcom-import-warning" role="alert">
             <Message.Header>
               <FormattedMessage
@@ -388,6 +389,15 @@ export function Details(props: Props) {
                   id="gedcom.lines_unrepaired"
                   defaultMessage="{count} unrecognized line(s) could not be safely repaired."
                   values={{count: props.repairReport.unrepairedLines}}
+                />
+              </p>
+            )}
+            {props.repairReport.parserWarnings > 0 && (
+              <p>
+                <FormattedMessage
+                  id="gedcom.parser_warnings"
+                  defaultMessage="{count} structural GEDCOM warning(s) detected during parsing."
+                  values={{count: props.repairReport.parserWarnings}}
                 />
               </p>
             )}
