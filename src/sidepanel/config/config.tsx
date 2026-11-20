@@ -4,6 +4,7 @@ import {Checkbox, Form, Header, Input, Item} from 'semantic-ui-react';
 import {GedcomData} from '../../util/gedcom_util';
 import {DEFAULT_PLACE_DISPLAY_COUNT, PlaceDisplay} from '../../util/place_util';
 import {SourceHead} from '../head/head';
+import {getPreferredLanguage, setPreferredLanguage} from '../../util/language';
 
 export {PlaceDisplay};
 
@@ -138,6 +139,26 @@ export function ConfigPanel(props: {
     <Form className="details">
       <Item.Group>
         {SourceHead(props.gedcom)}
+        <Item>
+          <Item.Content>
+            <Header sub>Language / Sprache</Header>
+            <select
+              aria-label="Language / Sprache"
+              defaultValue={getPreferredLanguage()}
+              onChange={(event) => setPreferredLanguage(event.target.value)}
+            >
+              <option value="en">English</option>
+              <option value="de">Deutsch</option>
+              <option value="bg">Български</option>
+              <option value="cs">Čeština</option>
+              <option value="fr">Français</option>
+              <option value="it">Italiano</option>
+              <option value="pl">Polski</option>
+              <option value="ru">Русский</option>
+              <option value="sv">Svenska</option>
+            </select>
+          </Item.Content>
+        </Item>
         <Item>
           <Item.Content>
             <Header sub>Click behavior</Header>
