@@ -179,6 +179,7 @@ export function ViewPage() {
         <AncestorFanChart
           data={data.chartData}
           gedcom={data.gedcom}
+          highlightMatchingPlaces={config.highlightMatchingPlaces}
           selection={selection}
           selectedPersonId={detailIndi || selection.id}
           colors={config.color}
