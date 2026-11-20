@@ -51,7 +51,9 @@ export class FulltextSearchIndex {
     Object.entries(gedcom.fams).forEach(([id, family]) => {
       const chunks: string[] = [];
       family.tree.forEach((entry) => {
-        if (!['HUSB', 'WIFE', 'CHIL', 'RIN', '_UID', '_UPD'].includes(entry.tag)) {
+        if (
+          !['HUSB', 'WIFE', 'CHIL', 'RIN', '_UID', '_UPD'].includes(entry.tag)
+        ) {
           collect(entry, chunks);
         }
       });
@@ -85,7 +87,10 @@ export class FulltextSearchIndex {
         return {
           id: entry.id,
           indi: entry.indi,
-          context: (start ? '…' : '') + context + (start + 165 < entry.text.length ? '…' : ''),
+          context:
+            (start ? '…' : '') +
+            context +
+            (start + 165 < entry.text.length ? '…' : ''),
         };
       });
   }

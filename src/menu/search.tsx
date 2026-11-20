@@ -2,8 +2,8 @@ import React, {useEffect, useRef} from 'react';
 import {IntlShape, useIntl} from 'react-intl';
 import {Search, SearchResultProps} from 'semantic-ui-react';
 import {JsonIndi} from 'topola';
-import {FulltextResult} from './fulltext_search';
 import {formatDateOrRange} from '../util/date_util';
+import {FulltextResult} from './fulltext_search';
 import {
   registerSearchInput,
   unregisterSearchInput,
@@ -73,20 +73,21 @@ export const SearchBar = React.memo(function SearchBar(props: Props) {
     }
   }, []);
 
-  const placeholder = props.mode === 'fulltext'
-    ? intl.formatMessage({
-        id: 'menu.search.fulltext_placeholder',
-        defaultMessage: 'Search names, places and notes',
-      })
-    : props.hideShortcutHint
-    ? intl.formatMessage({
-        id: 'menu.search.placeholder',
-        defaultMessage: 'Search for people',
-      })
-    : intl.formatMessage({
-        id: 'menu.search.placeholder_with_shortcut',
-        defaultMessage: "Search for people (press '/')",
-      });
+  const placeholder =
+    props.mode === 'fulltext'
+      ? intl.formatMessage({
+          id: 'menu.search.fulltext_placeholder',
+          defaultMessage: 'Search names, places and notes',
+        })
+      : props.hideShortcutHint
+        ? intl.formatMessage({
+            id: 'menu.search.placeholder',
+            defaultMessage: 'Search for people',
+          })
+        : intl.formatMessage({
+            id: 'menu.search.placeholder_with_shortcut',
+            defaultMessage: "Search for people (press '/')",
+          });
 
   const transformedResults = props.results.map((r) =>
     displaySearchResult(r, intl),

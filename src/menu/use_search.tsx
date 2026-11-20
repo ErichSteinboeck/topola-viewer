@@ -1,8 +1,8 @@
 import {useCallback, useEffect, useRef, useState} from 'react';
 import {IndiInfo, JsonGedcomData} from 'topola';
+import {analyticsEvent} from '../util/analytics';
 import {GedcomData} from '../util/gedcom_util';
 import {FulltextSearchIndex} from './fulltext_search';
-import {analyticsEvent} from '../util/analytics';
 import {buildSearchIndex, SearchIndex, SearchResult} from './search_index';
 import {useSearchShortcut} from './use_search_shortcut';
 
