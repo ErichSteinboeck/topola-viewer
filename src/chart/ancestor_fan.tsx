@@ -436,7 +436,9 @@ export function AncestorFanChart(props: Props) {
     });
 
   const root = ancestors[0].person;
-  const hasAncestors = ancestors.some((node) => node.generation > 0 && node.person);
+  const hasAncestors = ancestors.some(
+    (node) => node.generation > 0 && node.person,
+  );
   const rootNameLines = root
     ? ancestorNameLines(root.firstName, root.lastName, 21, true)
     : [];
