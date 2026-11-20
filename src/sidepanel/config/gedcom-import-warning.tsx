@@ -7,6 +7,30 @@ export function GedcomImportWarning({
 }: {
   repairReport?: Omit<GedcomRepairReport, 'text'>;
 }) {
+  if (!repairReport) {
+    return (
+      <p className="gedcom-diagnostic-status">
+        <FormattedMessage
+          id="gedcom.diagnostic_unavailable"
+          defaultMessage="GEDCOM check unavailable for this cached import. Reload the original file to run the check."
+        />
+      </p>
+    );
+  }
+  if (
+    !repairReport.repairedLines &&
+    !repairReport.unrepairedLines &&
+    !repairReport.parserWarnings
+  ) {
+    return (
+      <p className="gedcom-diagnostic-status">
+        <FormattedMessage
+          id="gedcom.diagnostic_clear"
+          defaultMessage="GEDCOM check: No detectable structural or continuation-line issues. This is not a complete validation."
+        />
+      </p>
+    );
+  }
   return (
     <>
       {repairReport &&
