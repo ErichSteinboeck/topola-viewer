@@ -431,3 +431,15 @@ div.zoom {
     right: 0;
   }
 }
+/* Keep the place abbreviation input clear of its label and spinner. */
+.place-count-setting {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 8px 0 10px 26px;
+}
+.place-count-setting .ui.input,
+.place-count-setting .ui.input input {
+  width: 7em;
+  max-width: 100%;
+}
