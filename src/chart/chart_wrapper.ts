@@ -124,7 +124,7 @@ export class ChartWrapper {
     const svgNamespace = 'http://www.w3.org/2000/svg';
     const indiById = new Map(props.data.indis.map((indi) => [indi.id, indi]));
     const famById = new Map(props.data.fams.map((fam) => [fam.id, fam]));
-    const addTitle = (element: SVGElement, title: string) => {
+    const addTitle = (element: Element, title: string) => {
       if (!title) return;
       let node = element.querySelector(':scope > title');
       if (!node) {
