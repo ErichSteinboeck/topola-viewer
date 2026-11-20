@@ -23,6 +23,7 @@ export enum ChartType {
   Relatives,
   Donatso,
   Fancy,
+  AncestorFan,
 }
 
 export interface ChartProps {
