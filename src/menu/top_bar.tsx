@@ -36,6 +36,7 @@ interface Props {
   /** Data used for the search index. */
   data?: JsonGedcomData;
   gedcom?: GedcomData;
+  showIds?: boolean;
   standalone: boolean;
   /** Whether to show the "All relatives" chart type in the menu. */
   allowAllRelativesChart?: boolean;
@@ -178,6 +179,7 @@ export function TopBar(props: Props) {
             <SearchBar
               results={searchResults}
               mode={searchMode}
+            showIds={!!props.showIds}
               onModeChange={setSearchMode}
               value={searchString}
               onSearchChange={setSearchString}
