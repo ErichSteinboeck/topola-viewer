@@ -1,27 +1,37 @@
 /**
- * Repair physical lines that some GEDCOM exporters (notably MyHeritage)
- * accidentally emit without a GEDCOM level and tag inside NOTE/BIO/TEXT.
+ * Repair malformed, untagged physical lines within GEDCOM text records.
  *
- * GEDCOM CONC joins text with NO separator. In contrast, CONT inserts a line
- * break. We never infer spaces based on line length: a broken HTML tag, entity,
- * word, or URL can span physical lines at an arbitrary character.
- *
- * Deliberately conservative: malformed lines outside text records are left
- * untouched rather than silently corrupting the family structure.
+ * CONC appends characters without a separator, while CONT adds a line break.
+ * MyHeritage exports sometimes omit the numeric level and CONC tag entirely
+ * for HTML paragraphs. The original file is never modified.
  */
-const GEDCOM_RECORD = /^(\d+)\s+(?:(?:@[^\s@]+@)\s+)?([A-Za-z0-9_]+)(?:\s|$)/;
+const GEDCOM_RECORD = /^(\\d+)\\s+(?:(?:@[^\\s@]+@)\\s+)?([A-Za-z0-9_]+)(?:\\s|$)/;
 const TEXT_TAGS = new Set(['NOTE', 'TEXT', 'BIO', '_BIO']);
 
-export function repairGedcomTextLines(input: string): string {
-  const lines = input.split(/\r\n|\n|\r/);
+export interface GedcomRepairReport {
+  /** Text for the GEDCOM parser (original when no repair was needed). */
+  text: string;
+  /** Number of malformed physical lines repaired as GEDCOM CONC. */
+  repairedLines: number;
+  /** Number of nonempty malformed lines left unchanged outside text records. */
+  unrepairedLines: number;
+  /** First few affected line numbers (1-based), for diagnosis. */
+  affectedLines: number[];
+}
+
+export function repairGedcomTextLinesWithReport(
+  input: string,
+): GedcomRepairReport {
+  const lines = input.split(/\\r\\n|\\n|\\r/);
   const result: string[] = [];
   let activeTextLevel: number | undefined;
-  let repaired = 0;
+  let repairedLines = 0;
+  let unrepairedLines = 0;
+  const affectedLines: number[] = [];
 
-  for (const line of lines) {
+  for (const [index, line] of lines.entries()) {
     const parsed = GEDCOM_RECORD.exec(line);
-    // GEDCOM levels are nonnegative small integers (0..99 in GEDCOM 7).
-    // A note line such as '1855 H' is not a GEDCOM record.
+    // The GEDCOM level is a small nonnegative integer, not a year such as 1855.
     const record = parsed && Number(parsed[1]) <= 99 ? parsed : null;
     if (record) {
       const level = Number(record[1]);
@@ -29,27 +39,38 @@ export function repairGedcomTextLines(input: string): string {
       if (activeTextLevel !== undefined && level <= activeTextLevel) {
         activeTextLevel = undefined;
       }
-      if (TEXT_TAGS.has(tag)) {
-        activeTextLevel = level;
-      }
+      if (TEXT_TAGS.has(tag)) activeTextLevel = level;
       result.push(line);
     } else if (line.trim() === '') {
-      // An empty physical line is commonly an exporter formatting artifact.
-      // HTML paragraph breaks are represented by <p>/<br> in the note itself.
-      // Do not guess a GEDCOM CONT, which would change the recorded text.
+      // Empty physical lines cannot be reconstructed unambiguously. In the
+      // MyHeritage HTML examples, paragraph breaks are already encoded in HTML.
       result.push(line);
     } else if (activeTextLevel !== undefined) {
       result.push(`${activeTextLevel + 1} CONC ${line}`);
-      repaired++;
+      repairedLines++;
+      if (affectedLines.length < 10) affectedLines.push(index + 1);
     } else {
       result.push(line);
+      unrepairedLines++;
+      if (affectedLines.length < 10) affectedLines.push(index + 1);
     }
   }
 
-  if (repaired) {
+  if (repairedLines || unrepairedLines) {
     console.warn(
-      `Repaired ${repaired} untagged GEDCOM text continuation line(s).`,
+      `GEDCOM import: ${repairedLines} continuation line(s) repaired, ${unrepairedLines} unrecognized line(s) retained. Examples at line(s): ${affectedLines.join(', ')}`,
     );
   }
-  return repaired ? result.join('\n') : input;
+
+  return {
+    text: repairedLines ? result.join('\\n') : input,
+    repairedLines,
+    unrepairedLines,
+    affectedLines,
+  };
+}
+
+/** Compatibility function for callers that only need the repaired text. */
+export function repairGedcomTextLines(input: string): string {
+  return repairGedcomTextLinesWithReport(input).text;
 }
