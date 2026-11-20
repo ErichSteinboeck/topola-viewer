@@ -21,12 +21,35 @@ function normalize(text: string): string {
     .replace(/[\u0300-\u036f]/g, '');
 }
 
-/** Strip markup for searching while preserving recognizable plain-text notes. */
+/** Decode HTML entities and remove markup for both indexing and previews. */
 function readable(text: string): string {
-  return text
+  // Convert layout tags to spaces before textContent removes the HTML nodes.
+  const spaced = text
     .replace(/<br\s*\/?>/gi, ' ')
+    .replace(/<\/?(?:p|div|li|h[1-6]|tr)\b[^>]*>/gi, ' ');
+  if (typeof DOMParser !== 'undefined') {
+    const doc = new DOMParser().parseFromString(spaced, 'text/html');
+    return (doc.body.textContent || '').replace(/\s+/g, ' ').trim();
+  }
+  // Non-browser fallback for tests and server-side consumers.
+  const names: Record<string, string> = {
+    auml: 'ä', Auml: 'Ä', ouml: 'ö', Ouml: 'Ö',
+    uuml: 'ü', Uuml: 'Ü', szlig: 'ß', nbsp: ' ',
+    amp: '&', quot: '"', apos: "'", lt: '<', gt: '>',
+    eacute: 'é', Eacute: 'É', agrave: 'à', egrave: 'è',
+  };
+  return spaced
     .replace(/<[^>]*>/g, ' ')
-    .replace(/&(?:nbsp|amp|quot|lt|gt);/gi, ' ')
+    .replace(/&(#x[\da-f]+|#\d+|[a-z][a-z\d]+);/gi, (entity, code: string) => {
+      if (code.startsWith('#')) {
+        const hex = code.charAt(1).toLowerCase() === 'x';
+        const number = parseInt(code.slice(hex ? 2 : 1), hex ? 16 : 10);
+        return number > 0 && number <= 0x10ffff
+          ? String.fromCodePoint(number)
+          : entity;
+      }
+      return names[code] ?? entity;
+    })
     .replace(/\s+/g, ' ')
     .trim();
 }
