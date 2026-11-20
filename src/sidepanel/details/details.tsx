@@ -12,7 +12,7 @@ import {
   mapToSource,
   resolveFileUrl,
 } from '../../util/gedcom_util';
-import {Config, Ids} from '../config/config';
+import {Config} from '../config/config';
 import {AdditionalFiles, FileEntry} from './additional-files';
 import {ALL_SUPPORTED_EVENT_TYPES, Events} from './events';
 import {ImmediateFamily} from './immediate-family';
@@ -330,21 +330,6 @@ function getOtherSections(
     ));
 }
 
-function getSectionForId(indi: string): React.ReactNode {
-  return (
-    <Item>
-      <Item.Content>
-        <Header sub>
-          <FormattedMessage id="config.ids" defaultMessage="Identification" />
-        </Header>
-        <div>
-          <i>{indi}</i>
-        </div>
-      </Item.Content>
-    </Item>
-  );
-}
-
 interface Props {
   gedcom: GedcomData;
   indi: string;
@@ -379,7 +364,6 @@ export function Details(props: Props) {
           images={props.images}
           alwaysShowNotes={props.config.alwaysShowEventNotes}
         />
-        {props.config.id === Ids.SHOW ? getSectionForId(props.indi) : null}
         {getSectionForEachMatchingEntry(
           entries,
           props.gedcom,
