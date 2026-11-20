@@ -12,6 +12,7 @@ import {
 import {IntlShape} from 'react-intl';
 import {ChartHandle, ChartInfo, createChart} from 'topola';
 import {ClickAction} from '../sidepanel/config/config';
+import {formatDateOrRange} from '../util/date_util';
 import {
   chartColors,
   ChartProps,
@@ -114,6 +115,72 @@ export class ChartWrapper {
       });
   }
 
+  /**
+   * First hover prototype: native SVG tooltips over the individual event
+   * lines and marriage lines. We attach these after D3 renders, without
+   * changing the Topola library or interfering with click handlers.
+   */
+  private attachEventTooltips(props: ChartProps, intl: IntlShape) {
+    const svgNamespace = 'http://www.w3.org/2000/svg';
+    const indiById = new Map(props.data.indis.map((indi) => [indi.id, indi]));
+    const famById = new Map(props.data.fams.map((fam) => [fam.id, fam]));
+    const addTitle = (element: SVGElement, title: string) => {
+      if (!title) return;
+      let node = element.querySelector(':scope > title');
+      if (!node) {
+        node = document.createElementNS(svgNamespace, 'title');
+        element.appendChild(node);
+      }
+      node.textContent = title;
+    };
+    const eventSummary = (
+      label: string,
+      event: {place?: string} | undefined,
+      date: string,
+    ) =>
+      [label, date, event?.place].filter(Boolean).join(' · ');
+
+    select('#chart')
+      .selectAll<SVGGElement, {indi?: {id?: string}}>('g.indi')
+      .each(function (record) {
+        const person = record?.indi?.id
+          ? indiById.get(record.indi.id)
+          : undefined;
+        if (!person) return;
+        const details = Array.from(this.querySelectorAll('text.details'));
+        // DetailedRenderer emits one symbol and one text element per line.
+        const values = details.filter((_element, index) => index % 2 === 1);
+        let index = 0;
+        for (const [label, event] of [
+          ['Geburt', person.birth],
+          ['Tod', person.death],
+        ] as const) {
+          const date = formatDateOrRange(event, intl);
+          const place = event?.place;
+          const summary = eventSummary(label, event, date);
+          if (date && values[index]) addTitle(values[index++], summary);
+          if (place && values[index]) addTitle(values[index++], summary);
+        }
+      });
+
+    select('#chart')
+      .selectAll<SVGGElement, {data?: {family?: {id?: string}}}>('g.family')
+      .each(function (record) {
+        const id = record?.data?.family?.id;
+        const marriage = id ? famById.get(id)?.marriage : undefined;
+        if (!marriage) return;
+        const values = Array.from(
+          this.querySelectorAll('text.details'),
+        ).filter((_element, index) => index % 2 === 1);
+        const summary = eventSummary(
+          'Heirat',
+          marriage,
+          formatDateOrRange(marriage, intl),
+        );
+        values.forEach((element) => addTitle(element, summary));
+      });
+  }
+
   zoom(factor: number) {
     const parent = select('#svgContainer') as Selection<
       Element,
@@ -195,6 +262,7 @@ export class ChartWrapper {
       baseGeneration: props.selection.generation,
     });
     this.highlightPerson(props.selectedPersonId);
+    this.attachEventTooltips(props, intl);
     const svg = select('#chartSvg');
     const parent = select('#svgContainer').node() as Element;
     const scale = zoomTransform(parent).k;
@@ -257,6 +325,7 @@ export class ChartWrapper {
     // After the animation is finished, rerender the chart if required.
     this.animating = true;
     chartInfo.animationPromise.then(() => {
+      this.attachEventTooltips(this.currentProps ?? props, intl);
       this.animating = false;
       if (this.rerenderRequired) {
         this.rerenderRequired = false;
