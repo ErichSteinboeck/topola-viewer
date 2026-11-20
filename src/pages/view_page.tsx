@@ -1,4 +1,4 @@
-import {useCallback, useMemo} from 'react';
+import {useCallback, useMemo, useState} from 'react';
 import {useIntl} from 'react-intl';
 import {Loader, SidebarPushable, SidebarPusher} from 'semantic-ui-react';
 import {IndiInfo} from 'topola';
@@ -57,6 +57,7 @@ function updateChartWithConfig(config: Config, data: TopolaData | undefined) {
  */
 export function ViewPage() {
   const intl = useIntl();
+  const [activeSideTab, setActiveSideTab] = useState(0);
 
   const {
     chartType,
@@ -158,6 +159,16 @@ export function ViewPage() {
     downloadSvg();
   }
 
+  function selectPerson(info: IndiInfo) {
+    setActiveSideTab(0);
+    onSelection(info);
+  }
+
+  function showPersonDetails(info: IndiInfo) {
+    setActiveSideTab(0);
+    onDetailSelection(info);
+  }
+
   function renderChart(selection: IndiInfo) {
     if (!data) {
       return null;
@@ -167,7 +178,7 @@ export function ViewPage() {
         <DonatsoChart
           data={data.chartData}
           selection={selection}
-          onSelection={onSelection}
+          onSelection={selectPerson}
           onFirstRender={() => setLoadingStatus('')}
         />
       );
@@ -177,8 +188,8 @@ export function ViewPage() {
         data={data.chartData}
         selection={selection}
         chartType={chartType}
-        onSelection={onSelection}
-        onDetailSelection={onDetailSelection}
+        onSelection={selectPerson}
+        onDetailSelection={showPersonDetails}
         freezeAnimation={freezeAnimation}
         colors={config.color}
         hideIds={config.id}
@@ -217,6 +228,8 @@ export function ViewPage() {
                 expanded={showSidePanel}
                 onToggle={onToggleSidePanel}
                 onConfigChange={onConfigChange}
+                activeTab={activeSideTab}
+                onTabChange={setActiveSideTab}
               />
               <SidebarPusher>{renderChart(selection)}</SidebarPusher>
             </SidebarPushable>
