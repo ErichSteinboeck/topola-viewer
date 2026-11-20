@@ -17,6 +17,7 @@ import {AdditionalFiles, FileEntry} from './additional-files';
 import {ALL_SUPPORTED_EVENT_TYPES, Events} from './events';
 import {ImmediateFamily} from './immediate-family';
 import {MultilineText} from './multiline-text';
+import {SafeNoteHtml} from './safe-note-html';
 import {Sources} from './sources';
 import {TranslatedTag} from './translated-tag';
 import {WrappedImage} from './wrapped-image';
@@ -194,11 +195,7 @@ function noteDetails(noteEntryReference: GedcomEntry, gedcom: GedcomData) {
   }
 
   return (
-    <MultilineText
-      lines={getData(noteEntry).map((line, index) => (
-        <i key={index}>{line}</i>
-      ))}
-    />
+    <SafeNoteHtml text={getData(noteEntry).join('\n')} />
   );
 }
 
