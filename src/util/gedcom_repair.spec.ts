@@ -1,6 +1,6 @@
 import {describe, expect, it} from '@jest/globals';
-import {parse as parseGedcom} from 'parse-gedcom';
 import {readFileSync} from 'fs';
+import {parse as parseGedcom} from 'parse-gedcom';
 import {repairGedcomTextLines} from './gedcom_repair';
 import {getData} from './gedcom_util';
 
