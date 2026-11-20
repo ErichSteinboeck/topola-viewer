@@ -12,6 +12,33 @@ export function placeKey(place: string | undefined): string {
     .toLocaleLowerCase();
 }
 
+/**
+ * Match equal places, or a complete place at the beginning/end of the other
+ * name. A boundary is required so "Wien" never matches "Wiener Neustadt".
+ * In particular, "Germanns / Rudmanns 63" matches both "Germanns"
+ * and "Rudmanns 63" independently.
+ */
+export function placesMatch(left: string, right: string): boolean {
+  const a = placeKey(left);
+  const b = placeKey(right);
+  if (!a || !b) return false;
+  if (a === b) return true;
+
+  const matchesEdge = (longer: string, shorter: string) => {
+    if (longer.length <= shorter.length) return false;
+    if (longer.startsWith(shorter)) {
+      return !/[\\p{L}\\p{N}]/u.test(longer.charAt(shorter.length));
+    }
+    if (longer.endsWith(shorter)) {
+      return !/[\\p{L}\\p{N}]/u.test(
+        longer.charAt(longer.length - shorter.length - 1),
+      );
+    }
+    return false;
+  };
+  return matchesEdge(a, b) || matchesEdge(b, a);
+}
+
 function eventLine(entry: GedcomEntry, label: string, intl: IntlShape): string {
   const dateEntry = entry.tree.find((part) => part.tag === 'DATE');
   const placeEntry = entry.tree.find((part) => part.tag === 'PLAC');
