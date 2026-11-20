@@ -485,3 +485,25 @@ div.zoom {
   #sidebar.wide { width: 100% !important; }
   #sidebar .sidebar-resize-handle { display: none; }
 }
+
+/* Search mode selector and field share the top bar without changing '/' focus. */
+.topola-search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.topola-search-mode {
+  background: #fff;
+  border: 0;
+  border-radius: 3px;
+  padding: 8px 4px;
+  max-width: 115px;
+}
+.topola-search-wrapper .ui.search {
+  min-width: 0;
+}
+.topola-search-wrapper .ui.search .results .description {
+  overflow-wrap: anywhere;
+  max-width: 420px;
+}
