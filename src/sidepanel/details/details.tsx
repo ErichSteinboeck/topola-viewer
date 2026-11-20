@@ -194,9 +194,7 @@ function noteDetails(noteEntryReference: GedcomEntry, gedcom: GedcomData) {
     return null;
   }
 
-  return (
-    <SafeNoteHtml text={getData(noteEntry).join('\n')} />
-  );
+  return <SafeNoteHtml text={getData(noteEntry).join('\n')} />;
 }
 
 function nameDetails(entry: GedcomEntry) {
@@ -313,7 +311,11 @@ function hasData(entry: GedcomEntry) {
   return entry.tree.length > 0 || (entry.data && !entry.data.startsWith('@'));
 }
 
-function getOtherSections(entries: GedcomEntry[], gedcom: GedcomData, showTechnicalFields: boolean) {
+function getOtherSections(
+  entries: GedcomEntry[],
+  gedcom: GedcomData,
+  showTechnicalFields: boolean,
+) {
   return entries
     .filter((entry) => !EXCLUDED_TAGS.includes(entry.tag))
     .filter((entry) => showTechnicalFields || !TECHNICAL_TAGS.has(entry.tag))
@@ -384,7 +386,11 @@ export function Details(props: Props) {
           ['FACT'],
           attributeDetails,
         )}
-        {getOtherSections(entries, props.gedcom, props.config.showTechnicalFields)}
+        {getOtherSections(
+          entries,
+          props.gedcom,
+          props.config.showTechnicalFields,
+        )}
         {getSectionForEachMatchingEntry(
           entries,
           props.gedcom,

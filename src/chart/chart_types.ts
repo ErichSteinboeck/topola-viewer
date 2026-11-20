@@ -8,7 +8,13 @@ import {
   RelativesChart,
   ChartColors as TopolaChartColors,
 } from 'topola';
-import {ChartColors, ClickAction, Ids, PlaceDisplay, Sex} from '../sidepanel/config/config';
+import {
+  ChartColors,
+  ClickAction,
+  Ids,
+  PlaceDisplay,
+  Sex,
+} from '../sidepanel/config/config';
 
 /** Supported chart types. */
 export enum ChartType {

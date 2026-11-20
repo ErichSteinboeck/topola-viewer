@@ -350,7 +350,11 @@ export function Events(props: Props) {
     return (
       <>
         {events.map((event, index) => (
-          <Event event={event} key={index} alwaysShowNotes={props.alwaysShowNotes} />
+          <Event
+            event={event}
+            key={index}
+            alwaysShowNotes={props.alwaysShowNotes}
+          />
         ))}
       </>
     );

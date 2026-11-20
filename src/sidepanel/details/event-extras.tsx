@@ -92,21 +92,22 @@ export function EventExtras(props: Props) {
     render: () => <Tab.Pane>{eventImages(props.images)}</Tab.Pane>,
   };
 
-  const noteTab = !props.alwaysShowNotes && props.notes?.length && {
-    menuItem: (
-      <Menu.Item fitted key="notes" onClick={handleTabOnClick}>
-        <Popup
-          content={
-            <FormattedMessage id="extras.notes" defaultMessage="Notes" />
-          }
-          size="mini"
-          position="bottom center"
-          trigger={<Icon circular name="sticky note outline" />}
-        />
-      </Menu.Item>
-    ),
-    render: () => <Tab.Pane>{eventNotes(props.notes)}</Tab.Pane>,
-  };
+  const noteTab = !props.alwaysShowNotes &&
+    props.notes?.length && {
+      menuItem: (
+        <Menu.Item fitted key="notes" onClick={handleTabOnClick}>
+          <Popup
+            content={
+              <FormattedMessage id="extras.notes" defaultMessage="Notes" />
+            }
+            size="mini"
+            position="bottom center"
+            trigger={<Icon circular name="sticky note outline" />}
+          />
+        </Menu.Item>
+      ),
+      render: () => <Tab.Pane>{eventNotes(props.notes)}</Tab.Pane>,
+    };
 
   const sourceTab = props.sources?.length && {
     menuItem: (
@@ -174,5 +175,7 @@ export function EventExtras(props: Props) {
       </Item.Description>
     );
   }
-  return props.alwaysShowNotes ? <Item.Description>{eventNotes(props.notes)}</Item.Description> : null;
+  return props.alwaysShowNotes ? (
+    <Item.Description>{eventNotes(props.notes)}</Item.Description>
+  ) : null;
 }

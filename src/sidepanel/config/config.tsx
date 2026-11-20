@@ -2,9 +2,9 @@ import {ParsedQuery} from 'query-string';
 import {FormattedMessage} from 'react-intl';
 import {Checkbox, Form, Header, Input, Item} from 'semantic-ui-react';
 import {GedcomData} from '../../util/gedcom_util';
+import {getPreferredLanguage, setPreferredLanguage} from '../../util/language';
 import {DEFAULT_PLACE_DISPLAY_COUNT, PlaceDisplay} from '../../util/place_util';
 import {SourceHead} from '../head/head';
-import {getPreferredLanguage, setPreferredLanguage} from '../../util/language';
 
 export {PlaceDisplay};
 
@@ -94,7 +94,8 @@ export function argsToConfig(args: ParsedQuery<unknown>): Config {
     sex: SEX_ARG.get(getParam('s') ?? '') ?? DEFALUT_CONFIG.sex,
     place: PLACE_ARG.get(getParam('p') ?? '') ?? DEFALUT_CONFIG.place,
     placeCount: placeCount >= 1 ? placeCount : DEFALUT_CONFIG.placeCount,
-    clickAction: getParam('click') === 'focus' ? ClickAction.FOCUS : ClickAction.DETAILS,
+    clickAction:
+      getParam('click') === 'focus' ? ClickAction.FOCUS : ClickAction.DETAILS,
     showTechnicalFields: getParam('technical') === 'true',
     alwaysShowEventNotes: getParam('notes') === 'always',
   };
@@ -167,10 +168,32 @@ export function ConfigPanel(props: {
           <Item.Content>
             <Header sub>Click behavior</Header>
             <Form.Field className="no-margin">
-              <Checkbox radio label="Click: show details; Shift+click: focus chart" name="clickAction" checked={props.config.clickAction === ClickAction.DETAILS} onChange={() => props.onChange({...props.config, clickAction: ClickAction.DETAILS})} />
+              <Checkbox
+                radio
+                label="Click: show details; Shift+click: focus chart"
+                name="clickAction"
+                checked={props.config.clickAction === ClickAction.DETAILS}
+                onChange={() =>
+                  props.onChange({
+                    ...props.config,
+                    clickAction: ClickAction.DETAILS,
+                  })
+                }
+              />
             </Form.Field>
             <Form.Field className="no-margin">
-              <Checkbox radio label="Click: focus chart; Shift+click: show details" name="clickAction" checked={props.config.clickAction === ClickAction.FOCUS} onChange={() => props.onChange({...props.config, clickAction: ClickAction.FOCUS})} />
+              <Checkbox
+                radio
+                label="Click: focus chart; Shift+click: show details"
+                name="clickAction"
+                checked={props.config.clickAction === ClickAction.FOCUS}
+                onChange={() =>
+                  props.onChange({
+                    ...props.config,
+                    clickAction: ClickAction.FOCUS,
+                  })
+                }
+              />
             </Form.Field>
           </Item.Content>
         </Item>
@@ -178,11 +201,29 @@ export function ConfigPanel(props: {
           <Item.Content>
             <Header sub>Event notes</Header>
             <Form.Field className="no-margin">
-              <Checkbox label="Always show notes below events" checked={props.config.alwaysShowEventNotes} onChange={(_event, data) => props.onChange({...props.config, alwaysShowEventNotes: !!data.checked})} />
+              <Checkbox
+                label="Always show notes below events"
+                checked={props.config.alwaysShowEventNotes}
+                onChange={(_event, data) =>
+                  props.onChange({
+                    ...props.config,
+                    alwaysShowEventNotes: !!data.checked,
+                  })
+                }
+              />
             </Form.Field>
             <Header sub>GEDCOM metadata</Header>
             <Form.Field className="no-margin">
-              <Checkbox label="Show technical fields (RIN, UID, UPD)" checked={props.config.showTechnicalFields} onChange={(_event, data) => props.onChange({...props.config, showTechnicalFields: !!data.checked})} />
+              <Checkbox
+                label="Show technical fields (RIN, UID, UPD)"
+                checked={props.config.showTechnicalFields}
+                onChange={(_event, data) =>
+                  props.onChange({
+                    ...props.config,
+                    showTechnicalFields: !!data.checked,
+                  })
+                }
+              />
             </Form.Field>
           </Item.Content>
         </Item>

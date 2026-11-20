@@ -14,8 +14,8 @@ import messages_it from './translations/it.json';
 import messages_pl from './translations/pl.json';
 import messages_ru from './translations/ru.json';
 import messages_sv from './translations/sv.json';
-import {MediaContextProvider, mediaStyles} from './util/media';
 import {getPreferredLanguage} from './util/language';
+import {MediaContextProvider, mediaStyles} from './util/media';
 
 const messages: {[language: string]: {[message_id: string]: string}} = {
   bg: messages_bg,

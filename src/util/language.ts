@@ -1,5 +1,15 @@
 /** Resolve UI language: URL, saved preference, browser. */
-const SUPPORTED = new Set(['en', 'de', 'bg', 'cs', 'fr', 'it', 'pl', 'ru', 'sv']);
+const SUPPORTED = new Set([
+  'en',
+  'de',
+  'bg',
+  'cs',
+  'fr',
+  'it',
+  'pl',
+  'ru',
+  'sv',
+]);
 function normalized(value: string | null | undefined): string | undefined {
   const lang = value?.split(/[-_]/)[0].toLowerCase();
   return lang && SUPPORTED.has(lang) ? lang : undefined;
@@ -7,15 +17,22 @@ function normalized(value: string | null | undefined): string | undefined {
 export function getPreferredLanguage(): string {
   const topLevel = new URLSearchParams(window.location.search).get('lang');
   const hashQuery = window.location.hash.split('?')[1];
-  const hashLanguage = hashQuery ? new URLSearchParams(hashQuery).get('lang') : null;
+  const hashLanguage = hashQuery
+    ? new URLSearchParams(hashQuery).get('lang')
+    : null;
   let saved: string | null = null;
   try {
     saved = window.localStorage.getItem('topola-language');
   } catch {
     // Storage can be disabled.
   }
-  return normalized(topLevel) || normalized(hashLanguage) ||
-    normalized(saved) || normalized(navigator.language) || 'en';
+  return (
+    normalized(topLevel) ||
+    normalized(hashLanguage) ||
+    normalized(saved) ||
+    normalized(navigator.language) ||
+    'en'
+  );
 }
 /** Reload with a different language, preserving current chart parameters. */
 export function setPreferredLanguage(language: string): void {
