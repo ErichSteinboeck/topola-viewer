@@ -128,6 +128,7 @@ describe('url_args', () => {
         clickAction: ClickAction.DETAILS,
         showTechnicalFields: false,
         alwaysShowEventNotes: false,
+        highlightMatchingPlaces: true,
       });
     });
 
@@ -300,6 +301,7 @@ describe('url_args', () => {
         clickAction: ClickAction.DETAILS,
         showTechnicalFields: false,
         alwaysShowEventNotes: false,
+        highlightMatchingPlaces: true,
       });
     });
   });
