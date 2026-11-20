@@ -181,5 +181,7 @@
   "menu.search.fulltext": "Volltext",
   "menu.search.fulltext_placeholder": "Namen, Orte und Notizen durchsuchen",
   "gedcom.diagnostic_unavailable": "GEDCOM-Prüfung für diesen zwischengespeicherten Import nicht verfügbar. Die Originaldatei erneut öffnen, um sie zu prüfen.",
-  "gedcom.diagnostic_clear": "GEDCOM-Prüfung: Keine erkennbaren Struktur- oder Fortsetzungszeilenfehler. Dies ist keine vollständige Validierung."
+  "gedcom.diagnostic_clear": "GEDCOM-Prüfung: Keine erkennbaren Struktur- oder Fortsetzungszeilenfehler. Dies ist keine vollständige Validierung.",
+  "config.place_hover_header": "Orte beim Überfahren",
+  "config.highlight_matching_places": "Identische Orte beim Überfahren hervorheben"
 }
