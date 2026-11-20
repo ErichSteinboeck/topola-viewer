@@ -169,5 +169,11 @@
   "config.show_identification": "Identifikation anzeigen (Stammbaum und Seitenleiste)",
   "config.place_components": "Anzahl der Ortsbestandteile",
   "intro.improved": "Diese erweiterte Topola-Version bietet umschaltbares Klickverhalten, deutsche Spracheinstellungen, einblendbare Identifikationsdaten und formatierte Forschungsnotizen mit Quellenlinks.",
-  "intro.sample_details": " – Eine kleine historische GEDCOM-Datei mit Geburten, Heirat, Sterbefällen und HTML-formatierten Quellenangaben."
+  "intro.sample_details": " – Eine kleine historische GEDCOM-Datei mit Geburten, Heirat, Sterbefällen und HTML-formatierten Quellenangaben.",
+  "gedcom.repair_warning": "GEDCOM-Import: Warnungen",
+  "gedcom.lines_repaired": "{count} fehlerhafte Fortsetzungszeile(n) automatisch repariert.",
+  "gedcom.lines_unrepaired": "{count} nicht erkannte Zeile(n) konnten nicht sicher repariert werden.",
+  "gedcom.parser_warnings": "{count} strukturelle Auffälligkeit(en) im GEDCOM erkannt.",
+  "gedcom.repair_caution": "Die Originaldatei wurde nicht verändert. Bitte die betroffenen Stellen überprüfen; eine automatische Rekonstruktion ist nicht immer eindeutig.",
+  "gedcom.repair_line_numbers": "Betroffene Zeilen (erste Beispiele): {lines}"
 }
