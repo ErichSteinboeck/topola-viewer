@@ -348,6 +348,7 @@ export async function convertGedcom(
     repairReport: {
       repairedLines: repair.repairedLines,
       unrepairedLines: repair.unrepairedLines,
+      parserWarnings: repair.parserWarnings,
       affectedLines: repair.affectedLines,
     },
   };
