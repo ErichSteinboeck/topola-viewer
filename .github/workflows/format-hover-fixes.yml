@@ -1,0 +1,29 @@
+name: Format hover and search fixes
+on:
+  push:
+    paths:
+      - .github/workflows/format-hover-fixes.yml
+permissions:
+  contents: write
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx prettier --write src/chart/chart_wrapper.ts src/menu/search.tsx src/menu/top_bar.tsx src/pages/view_page.tsx src/sidepanel/config/config.tsx src/sidepanel/config/gedcom-import-warning.tsx src/sidepanel/details/details.tsx src/sidepanel/side-panel.tsx
+      - name: Commit formatting
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet; then
+            git add src
+            git commit -m "Format hover and search fixes"
+            git push origin HEAD:master
+          fi
