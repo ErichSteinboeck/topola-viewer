@@ -13,9 +13,9 @@ const SHORTCUT_INPUT_PROP = {
   'aria-keyshortcuts': '/',
 };
 
-function getNameLine(result: FulltextResult) {
+function getNameLine(result: FulltextResult, showIds: boolean) {
   const name = [result.indi.firstName, result.indi.lastName].join(' ').trim();
-  if (result.id.length > 8) {
+  if (!showIds || result.id.length > 8) {
     return name;
   }
   return (
@@ -37,17 +37,19 @@ function getDescriptionLine(indi: JsonIndi, currentIntl: IntlShape) {
 function displaySearchResult(
   result: FulltextResult,
   currentIntl: IntlShape,
+  showIds: boolean,
 ): SearchResultProps {
   return {
     id: result.id,
     key: result.id,
-    title: getNameLine(result),
+    title: getNameLine(result, showIds),
     description: result.context || getDescriptionLine(result.indi, currentIntl),
   } as SearchResultProps;
 }
 
 interface Props {
   results: FulltextResult[];
+  showIds: boolean;
   mode: 'people' | 'fulltext';
   onModeChange: (mode: 'people' | 'fulltext') => void;
   value: string;
@@ -71,7 +73,7 @@ export const SearchBar = React.memo(function SearchBar(props: Props) {
       registerSearchInput(input);
       return () => unregisterSearchInput(input);
     }
-  }, []);
+  }, [props.mode]);
 
   const placeholder =
     props.mode === 'fulltext'
@@ -90,7 +92,7 @@ export const SearchBar = React.memo(function SearchBar(props: Props) {
           });
 
   const transformedResults = props.results.map((r) =>
-    displaySearchResult(r, intl),
+    displaySearchResult(r, intl, props.showIds),
   );
 
   return (
