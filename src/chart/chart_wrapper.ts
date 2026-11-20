@@ -11,6 +11,7 @@ import {
 } from 'd3-zoom';
 import {IntlShape} from 'react-intl';
 import {ChartHandle, ChartInfo, createChart} from 'topola';
+import {ClickAction} from '../sidepanel/config/config';
 import {
   chartColors,
   ChartProps,
@@ -101,6 +102,7 @@ export class ChartWrapper {
   /** Props that will be used for rerendering. */
   private rerenderProps?: ChartProps;
   private rerenderResetPosition?: boolean;
+  private currentProps?: ChartProps;
 
   zoom(factor: number) {
     const parent = select('#svgContainer') as Selection<
@@ -125,6 +127,8 @@ export class ChartWrapper {
       resetPosition: false,
     },
   ) {
+    // Keep event handlers and preferences current even when no SVG redraw is needed.
+    this.currentProps = props;
     // Nothing changed — the SVG is already correct. Skip re-render.
     // This prevents repeated full D3 layout passes (500ms+ each) that happen
     // when React re-renders for unrelated state changes.
@@ -154,13 +158,13 @@ export class ChartWrapper {
         svgSelector: '#chart',
         indiCallback: (info) => {
           // ths is called when an individual is selected in the chart
-          if (info.modifiers?.shiftKey) {
-            // If the shift key is pressed, we just update the details tab without changing the selection in the chart.
-            // This allows users to quickly view details of multiple individuals without losing their place in the chart.
-            props.onDetailSelection(info);
+          const handlers = this.currentProps ?? props;
+          const shift = !!info.modifiers?.shiftKey;
+          const focusOnClick = handlers.clickAction === ClickAction.FOCUS;
+          if (shift === focusOnClick) {
+            handlers.onDetailSelection(info);
           } else {
-            // If the shift key is not pressed, we update the selection in the chart as usual.
-            props.onSelection(info);
+            handlers.onSelection(info);
           }
         },
         colors:
