@@ -1,5 +1,6 @@
 import {describe, expect, it} from '@jest/globals';
 import {parse as parseGedcom} from 'parse-gedcom';
+import {readFileSync} from 'fs';
 import {repairGedcomTextLines} from './gedcom_repair';
 import {getData} from './gedcom_util';
 
@@ -61,5 +62,21 @@ describe('repairGedcomTextLines', () => {
     const input = '0 @I1@ INDI\n1 NOTE <p>Altersschw&au\nml;che</p>\n0 TRLR';
     const note = parseGedcom(repairGedcomTextLines(input))[0].tree[0];
     expect(getData(note)).toEqual(['<p>Altersschw&auml;che</p>']);
+  });
+});
+
+describe('bundled Huber GEDCOM', () => {
+  it('preserves the ANNO paragraph and split URL in the death note', () => {
+    const input = readFileSync('public/examples/wienfluss-huber.ged', 'utf8');
+    const entries = parseGedcom(repairGedcomTextLines(input));
+    const person = entries.find(
+      (entry) => entry.tag === 'INDI' && entry.pointer === '@I500001@',
+    );
+    expect(person).toBeDefined();
+    const death = person?.tree.find((entry) => entry.tag === 'DEAT');
+    const notes = death?.tree.filter((entry) => entry.tag === 'NOTE') || [];
+    const combined = notes.map((note) => getData(note).join('\n')).join('\n');
+    expect(combined).toContain('<p>ANNO<br />');
+    expect(combined).toContain('seit' + 'e=11<br />25. M&auml;rz 1855');
   });
 });
