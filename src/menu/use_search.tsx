@@ -111,7 +111,9 @@ export function useSearch({
   const handleResultSelect = useCallback(
     (id: string) => {
       analyticsEvent('search_result_selected');
-      if (mode === 'fulltext' && onDetailSelection) {
+      // Selecting a search result opens details without recentering the chart,
+      // regardless of whether the search mode is people or fulltext.
+      if (onDetailSelection) {
         onDetailSelection({id, generation: 0});
       } else {
         onSelection?.({id, generation: 0});
@@ -119,7 +121,7 @@ export function useSearch({
       setSearchString('');
       setSearchResults([]);
     },
-    [mode, onSelection, onDetailSelection],
+    [onSelection, onDetailSelection],
   );
 
   return {
