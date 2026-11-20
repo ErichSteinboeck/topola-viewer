@@ -10,7 +10,7 @@ describe('FulltextSearchIndex', () => {
     const entries = parseGedcom(
       readFileSync('public/examples/wienfluss-huber.ged', 'utf8').replace(
         '0 @I500002@ INDI',
-        '1 NOTE <p>J&auml;gerstra&szlig;e 18 &amp; Haus</p>\\n0 @I500002@ INDI'.replace('\\n', '\\n'),
+        '1 NOTE <p>J&auml;gerstra&szlig;e 18 &amp; Haus</p>\n0 @I500002@ INDI',
       ),
     );
     const indis: GedcomData['indis'] = {};
