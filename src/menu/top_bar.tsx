@@ -102,6 +102,13 @@ export function TopBar(props: Props) {
             />
           </Dropdown.Item>
         ) : null}
+        <Dropdown.Item onClick={() => changeView('fan')}>
+          <Icon name="circle outline" />
+          <FormattedMessage
+            id="menu.ancestor_fan"
+            defaultMessage="Ancestor fan chart"
+          />
+        </Dropdown.Item>
         <Dropdown.Item onClick={() => changeView('donatso')}>
           <Icon name="users" />
           <FormattedMessage
