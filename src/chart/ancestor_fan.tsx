@@ -112,6 +112,7 @@ export function AncestorFanChart(props: Props) {
     setPopup(undefined);
   };
   const movePopup = (event: React.MouseEvent<SVGElement>) => {
+    // Move without remeasuring or repainting the chart's sectors.
     setPopup((current) =>
       current ? {...current, x: event.clientX, y: event.clientY} : current,
     );
@@ -185,35 +186,6 @@ export function AncestorFanChart(props: Props) {
     if (svgRef.current && zoomBehavior.current) {
       select(svgRef.current).call(zoomBehavior.current.transform, zoomIdentity);
     }
-  };
-
-  const describePerson = (person: JsonIndi, generation: number) =>
-    [
-      labels(person),
-      [
-        intl.formatMessage({id: 'fan.birth', defaultMessage: 'Birth'}),
-        formatDateOrRange(person.birth, intl),
-        person.birth?.place,
-      ]
-        .filter(Boolean)
-        .join(' · '),
-      ...associatedEventLines(props.gedcom, person.id, 'birth', intl),
-      [
-        intl.formatMessage({id: 'fan.death', defaultMessage: 'Death'}),
-        formatDateOrRange(person.death, intl),
-        person.death?.place,
-      ]
-        .filter(Boolean)
-        .join(' · '),
-      ...associatedEventLines(props.gedcom, person.id, 'death', intl),
-      `${intl.formatMessage({id: 'fan.generation', defaultMessage: 'Generation'})} ${generation}`,
-    ]
-      .filter(Boolean)
-      .join('\n');
-
-  const labels = (person: JsonIndi) => {
-    const text = personName(person);
-    return props.hideIds === Ids.SHOW ? `${text} (${person.id})` : text;
   };
 
   const handleClick = (
