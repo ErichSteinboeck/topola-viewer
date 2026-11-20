@@ -8,7 +8,7 @@ import {
   RelativesChart,
   ChartColors as TopolaChartColors,
 } from 'topola';
-import {ChartColors, Ids, PlaceDisplay, Sex} from '../sidepanel/config/config';
+import {ChartColors, ClickAction, Ids, PlaceDisplay, Sex} from '../sidepanel/config/config';
 
 /** Supported chart types. */
 export enum ChartType {
@@ -28,6 +28,7 @@ export interface ChartProps {
   colors?: ChartColors;
   hideIds?: Ids;
   hideSex?: Sex;
+  clickAction?: ClickAction;
   placeDisplay?: PlaceDisplay;
   placeCount?: number;
   /** Called once after the initial D3 layout and SVG render completes. */
