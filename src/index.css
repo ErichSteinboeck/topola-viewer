@@ -507,3 +507,10 @@ div.zoom {
   overflow-wrap: anywhere;
   max-width: 420px;
 }
+
+/* Person cards have a transparent border painted above their detail text.
+   Let pointer events reach birth/death text so native SVG titles can appear;
+   the underlying card still receives clicks outside the text. */
+#chart g.indi > rect.border {
+  pointer-events: none;
+}
