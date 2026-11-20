@@ -49,7 +49,11 @@ export function Chart(props: ChartProps) {
   }, [props.data, placeDisplay, placeCount]);
 
   useEffect(() => {
-    const propsWithProcessedData: ChartProps = {...props, data: processedData};
+    const propsWithProcessedData: ChartProps = {
+      ...props,
+      originalData: props.data,
+      data: processedData,
+    };
     if (prevProps) {
       const initialRender =
         props.chartType !== prevProps?.chartType ||
