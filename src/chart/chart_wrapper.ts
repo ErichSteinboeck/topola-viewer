@@ -299,9 +299,9 @@ export class ChartWrapper {
           const shift = !!info.modifiers?.shiftKey;
           const focusOnClick = handlers.clickAction === ClickAction.FOCUS;
           if (shift === focusOnClick) {
-            handlers.onDetailSelection(info);
-          } else {
             handlers.onSelection(info);
+          } else {
+            handlers.onDetailSelection(info);
           }
         },
         colors:
