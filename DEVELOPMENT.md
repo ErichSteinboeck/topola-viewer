@@ -104,6 +104,15 @@ aktuellen Quellcode prüfen.
 - Gemeinsam festlegen, ob und wo diese Inhalte in **DETAILS**, in den **Ereignis-Popups** und gegebenenfalls in Diagrammfeldern erscheinen sollen; doppelte Anzeigen vermeiden.
 - **Noch keine Entscheidung oder automatische Umwandlung vornehmen.** Forschungs-TXT bleibt die maßgebliche Grundlage.
 
+### Mobile/Touch-Bedienung (offene Entscheidung, 22.11.2026)
+
+- **Beobachtung am Smartphone:** Die großen Fächer-Ereignis-Popups können den Bildschirm und die Details-Seitenleiste verdecken (Screenshot aus dem Gespräch). Scrollbare lange Notizen sind so schwer bedienbar.
+- **Original-Topola (Codeprüfung in `PeWu/topola-viewer/src/chart/chart_wrapper.ts`):** `indiCallback` prüft `info.modifiers?.shiftKey`. Ohne Shift wird die Hauptperson neu gewählt, mit Shift werden nur die Details geöffnet. In diesem Codepfad gibt es keine spezielle mobile Alternative für Shift-Klick. Die Seitenleiste wird auf schmalen Bildschirmen (`max-width: 767px`) standardmäßig eingeklappt; das ist keine eigene Shift-Ersatzgeste.
+- **Unser Fork:** Klickbelegung kann mit `click=details|focus` umgekehrt werden. Die Fächer-Popups verwenden Maus-Hover (`onMouseEnter`); auf Touch-Geräten ist das nicht zuverlässig oder hilfreich.
+- **Zur Diskussion, noch nicht implementiert:** Auf Geräten mit Touch-/Hover-unfähiger Eingabe keine automatischen Hover-Popups; einfaches Antippen öffnet DETAILS. Neuausrichtung des Baums über eine gut erkennbare Schaltfläche/Aktion **„Als Hauptperson festlegen“**, auch mobil erreichbar. Geburt/Tod/Heirat samt Quellnotizen weiterhin in DETAILS zugänglich machen. Desktop-Hover-Popups und die dortige Klick-Konfiguration bleiben erhalten.
+- **Technische Prüfung offen:** Fähigkeitserkennung nach `(hover: none)` / `(pointer: coarse)` statt allein nach Bildschirmbreite; Test auf Android, iOS, Touch-Laptop sowie mit externer Maus/Tastatur.
+- **Weitere Popup-Korrekturen (Desktop):** Position an tatsächlichen Popup-Abmessungen statt fester Höhe berechnen (besonders bei Personen ohne Daten); beim Weg zum Popup andere Hover-Popups nicht sofort darüberlegen; Verlassen mit sinnvoller Verzögerung. Zusätzlich gerade/gebogene Leserichtung am unteren Fächer kontrollieren und Heiratssymbol mit Sanduhr-Darstellung vereinheitlichen.
+
 ### Darstellung und gemeinsame Popups
 
 - **Überarbeitet 22.11.2026:** Fächer: gleiche Namensschriftgröße innerhalb
