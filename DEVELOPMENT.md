@@ -61,11 +61,11 @@ aktuellen Quellcode prüfen.
 
 ### Menü und Personenauswahl
 
-- **Erledigt 22.11.2026:** Unter **Ansicht** sind `Donatso` und
-  `Zierbaum` (intern `fancy`) ausgeblendet; beide bleiben im Code und
-  über bestehende `view=`-Links erreichbar.
-- **Erledigt 22.11.2026:** **Alle Verwandten** bleibt als
-  „Sanduhrkarte (alle Verwandten)“ im Menü.
+- **Erledigt 22.11.2026:** Unter **Ansicht** sind `Donatso` und `Zierbaum`
+  (intern `fancy`) ausgeblendet; beide bleiben im Code und über bestehende
+  `view=`-Links erreichbar.
+- **Erledigt 22.11.2026:** **Alle Verwandten** bleibt als „Sanduhrkarte (alle
+  Verwandten)“ im Menü.
 - Startperson nicht automatisch gleich dem ersten GEDCOM-Datensatz/`I500001`.
   Vereinbarte Präferenz: URL-Parameter `indi` zuerst, dann eindeutiger Name aus
   dem GEDCOM-Dateinamen (z. B. `reinhold-halmenschlager.ged`), danach sinnvoller
@@ -86,12 +86,12 @@ aktuellen Quellcode prüfen.
 - **Erledigt 22.11.2026:** **SPRACHE** vor **DATENQUELLE**; zusätzliche
   Einstellungen nach **ORTE**.
 - **Erledigt 22.11.2026:** Checkboxtexte **Klick / Shift-Klick umkehren**,
-  **Identische Orte hervorheben**, **Felder RIN, UID, UPD verbergen** und
-  **Feld IDENTIFIKATION verbergen**. Die beiden Verbergen-Checkboxen sind
-  angekreuzt, wenn die Felder ausgeblendet sind; Klick/Shift-Klick ist
-  angekreuzt, wenn ein normaler Klick fokussiert. Alte URL- und
-  localStorage-Werte (`technical`, `i`, `click`) behalten unverändert ihre
-  Bedeutung. Kein Datenmigrationsschritt notwendig.
+  **Identische Orte hervorheben**, **Felder RIN, UID, UPD verbergen** und **Feld
+  IDENTIFIKATION verbergen**. Die beiden Verbergen-Checkboxen sind angekreuzt,
+  wenn die Felder ausgeblendet sind; Klick/Shift-Klick ist angekreuzt, wenn ein
+  normaler Klick fokussiert. Alte URL- und localStorage-Werte (`technical`, `i`,
+  `click`) behalten unverändert ihre Bedeutung. Kein Datenmigrationsschritt
+  notwendig.
 
 ### Darstellung und gemeinsame Popups
 
@@ -154,8 +154,8 @@ aktuellen Quellcode prüfen.
 > Die Menü- und Seitenleistenänderungen sind umgesetzt. Offen sind der
 > gemeinsame Diagrammstil, die noch nicht entschiedene automatische
 > Hauptperson-Auswahl, diagrammübergreifendes Auswahlverhalten und gemeinsame
-> Popups. Die neueste hochgeladene GEDCOM vom 21.11.2026 darf nicht
-> ohne Datenschutz-/Versionsprüfung die bereits veröffentlichte Kopie ersetzen.
+> Popups. Die neueste hochgeladene GEDCOM vom 21.11.2026 darf nicht ohne
+> Datenschutz-/Versionsprüfung die bereits veröffentlichte Kopie ersetzen.
 
 **Pflege:** Nach jedem abgeschlossenen Entwicklungsschritt Status und offene
 Entscheidungen hier aktualisieren.
