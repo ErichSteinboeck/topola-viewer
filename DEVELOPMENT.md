@@ -99,6 +99,18 @@ aktuellen Quellcode prüfen.
 
 ### Darstellung und gemeinsame Popups
 
+- **Überarbeitet 22.11.2026:** Fächer: gleiche Namensschriftgröße innerhalb
+  eines Rings; Geburtsdatum, Geburtsort, Sterbedatum, Sterbeort auf eigenen
+  Zeilen (Platz wird bedarfsabhängig gekürzt); **innere Ringe gebogen entlang
+  des Kreisbogens, äußere radial und gerade**. Beschriftung
+  „Generationen“, schmales Zahlenfeld bis zwölf. Klick/Shift-Klick
+  entsprechend der konfigurierten Funktion geprüft.
+- **Erste Popup-Version 22.11.2026:** Im Fächer separate Ereignisinhalte
+  für Geburt/Taufe, Tod/Beerdigung und Heirat, einschließlich
+  gegebenenfalls vorhandener sicher gerenderter HTML-Ereignisnotizen.
+  Das Design und die Integration in die Sanduhr müssen noch im Browser
+  beurteilt und vereinheitlicht werden.
+
 - **Erledigt 22.11.2026 (Diagrammstil):** Gemeinsame Schriftfamilie und
   orangefarbene Auswahlkontur; Ortsmarkierung ohne Fettwechsel und mit normalem
   Hand-Cursor. Fächer ohne Glyphenkomprimierung: lange Namen umbrechen bzw. bei
@@ -108,9 +120,8 @@ aktuellen Quellcode prüfen.
 - **Erledigt 22.11.2026:** Beschriftung der Ereignisnotiz-Checkbox auf „Immer
   anzeigen“ verkürzt (Überschrift ist „Ereignisnotizen“).
 
-- Gemeinsame Popup-Komponente und Datenaufbereitung für Sanduhr/Fächer:
-  Geburt/Taufe, Heirat, Tod/Beerdigung, allgemeine GEDCOM-Felder und **sicher
-  gerendertes NOTE-HTML** mit Links.
+- **Offen:** Auch in der Sanduhr dieselben Ereignis-Popups einsetzen;
+  zusätzliche allgemeine GEDCOM-Felder und weitere Notizinhalte prüfen.
 - Wenn Popups zu groß werden, in separate Ereignis-Popups aufteilen und Notizen
   begrenzen; vollständige Informationen in DETAILS belassen.
 
