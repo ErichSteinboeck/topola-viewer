@@ -12,7 +12,8 @@ import {
   fanVisibleBounds,
 } from './ancestor_fan_data';
 import {ancestorNameLines} from './ancestor_fan_labels';
-import {associatedEventDetails, placesMatch} from './hover_helpers';
+import {associatedEventDetails, eventNoteHtml, placesMatch} from './hover_helpers';
+import {EventPopup, EventPopupData} from './event_popup';
 
 interface Props {
   data: JsonGedcomData;
@@ -33,13 +34,6 @@ const RING_SIZE = 105;
 const MAX_GENERATIONS = 12;
 const FAN_ANGLE = 240;
 const FAN_START = -FAN_ANGLE / 2;
-interface FanPopup {
-  heading: string;
-  rows: Array<{label: string; value: string}>;
-  x: number;
-  y: number;
-}
-
 /** Compact dates on the wheel; the native tooltip retains full dates. */
 function shortMonthDate(value: string, locale: string): string {
   if (!value) return value;
@@ -106,10 +100,19 @@ export function AncestorFanChart(props: Props) {
     null,
   );
   const [hoveredPlace, setHoveredPlace] = useState<string>();
-  const [popup, setPopup] = useState<FanPopup>();
+  const [popup, setPopup] = useState<EventPopupData>();
+  const dismissRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const cancelDismiss = () => {
+    if (dismissRef.current) clearTimeout(dismissRef.current);
+    dismissRef.current = null;
+  };
+  const dismissPopupSoon = () => {
+    cancelDismiss();
+    dismissRef.current = setTimeout(() => setPopup(undefined), 250);
+  };
   const clearHover = () => {
     setHoveredPlace(undefined);
-    setPopup(undefined);
+    dismissPopupSoon();
   };
   const movePopup = (event: React.MouseEvent<SVGElement>) => {
     // Move without remeasuring or repainting the chart's sectors.
@@ -120,26 +123,30 @@ export function AncestorFanChart(props: Props) {
   const personPopup = (
     person: JsonIndi,
     event: React.MouseEvent<SVGElement>,
+    kind: 'birth' | 'death',
   ) => {
+    cancelDismiss();
+    const gedcomTags =
+      kind === 'birth' ? ['BIRT', 'CHR', 'BAPM'] : ['DEAT', 'BURI', 'CREM'];
     const rows = [
       {
-        label: intl.formatMessage({id: 'fan.birth', defaultMessage: 'Birth'}),
-        value: [formatDateOrRange(person.birth, intl), person.birth?.place]
+        label: intl.formatMessage({
+          id: kind === 'birth' ? 'fan.birth' : 'fan.death',
+          defaultMessage: kind === 'birth' ? 'Birth' : 'Death',
+        }),
+        value: [
+          formatDateOrRange(person[kind], intl),
+          person[kind]?.place,
+        ]
           .filter(Boolean)
           .join(' · '),
       },
-      ...associatedEventDetails(props.gedcom, person.id, 'birth', intl),
-      {
-        label: intl.formatMessage({id: 'fan.death', defaultMessage: 'Death'}),
-        value: [formatDateOrRange(person.death, intl), person.death?.place]
-          .filter(Boolean)
-          .join(' · '),
-      },
-      ...associatedEventDetails(props.gedcom, person.id, 'death', intl),
+      ...associatedEventDetails(props.gedcom, person.id, kind, intl),
     ].filter((row) => !!row.value);
     setPopup({
       heading: personName(person),
       rows,
+      notes: eventNoteHtml(props.gedcom, props.gedcom?.indis[person.id], gedcomTags),
       x: event.clientX,
       y: event.clientY,
     });
@@ -334,7 +341,7 @@ export function AncestorFanChart(props: Props) {
           .filter(Boolean)
           .join(' ')}
         onClick={(event) => handleClick(event, person)}
-        onMouseEnter={(event) => personPopup(person, event)}
+        onMouseEnter={(event) => personPopup(person, event, 'birth')}
         onMouseMove={movePopup}
         onMouseLeave={clearHover}
         style={{cursor: 'pointer'}}
@@ -350,8 +357,8 @@ export function AncestorFanChart(props: Props) {
             {allLines.map((line, row) => {
               const r = Math.max(15, textRadius + (row - (allLines.length - 1) / 2) * spacing);
               const id = `fan-arc-${generation}-${index}-${row}`;
-              const isPlace = line.kind !== 'name' && line.kind !== 'id' && line.type === 'place';
-              const fullPlace = isPlace ? line.fullPlace || '' : '';
+              const isPlace = 'type' in line && line.type === 'place';
+              const fullPlace = 'fullPlace' in line ? line.fullPlace || '' : '';
               const isPlaceMatch =
                 isPlace &&
                 !!hoveredPlace &&
@@ -364,9 +371,10 @@ export function AncestorFanChart(props: Props) {
                     className={line.kind === 'id' ? 'fan-identification' : undefined}
                     fontSize={line.kind === 'id' ? 8 : line.kind === 'name' ? fontSize : dateFontSize}
                     fontWeight={line.kind === 'name' ? 600 : 400}
-                    onMouseEnter={isPlace ? () => {
-                      if (props.highlightMatchingPlaces !== false) setHoveredPlace(fullPlace);
-                    } : undefined}
+                    onMouseEnter={(event) => {
+                      if (line.kind === 'birth' || line.kind === 'death') personPopup(person, event, line.kind);
+                      if (isPlace && props.highlightMatchingPlaces !== false) setHoveredPlace(fullPlace);
+                    }}
                     onMouseLeave={isPlace ? () => setHoveredPlace(undefined) : undefined}
                   >
                     <textPath
@@ -405,9 +413,10 @@ export function AncestorFanChart(props: Props) {
                   }
                   fontSize={line.kind === 'id' ? 8 : line.kind === 'name' ? fontSize : dateFontSize}
                   fontWeight={line.kind === 'name' ? 600 : 400}
-                  onMouseEnter={isPlace ? () => {
-                    if (props.highlightMatchingPlaces !== false) setHoveredPlace(fullPlace);
-                  } : undefined}
+                  onMouseEnter={(event) => {
+                    if (line.kind === 'birth' || line.kind === 'death') personPopup(person, event, line.kind);
+                    if (isPlace && props.highlightMatchingPlaces !== false) setHoveredPlace(fullPlace);
+                  }}
                   onMouseLeave={isPlace ? () => setHoveredPlace(undefined) : undefined}
                 >{line.text}</text>
               );
@@ -449,6 +458,7 @@ export function AncestorFanChart(props: Props) {
           y,
           text,
           partnerNames: partnerNames.join(' & '),
+          familyId: family?.id,
         },
       ];
     });
@@ -563,8 +573,12 @@ export function AncestorFanChart(props: Props) {
               transform={`translate(${marker.x} ${marker.y})`}
               onMouseEnter={(event) => {
                 setHoveredPlace(undefined);
+                cancelDismiss();
                 setPopup({
                   heading: marker.partnerNames,
+                  notes: marker.familyId
+                    ? eventNoteHtml(props.gedcom, props.gedcom?.fams[marker.familyId], ['MARR', 'MARB', 'MARC', 'MARL', 'MARS'])
+                    : [],
                   rows: [
                     {
                       label: intl.formatMessage({
@@ -579,7 +593,7 @@ export function AncestorFanChart(props: Props) {
                 });
               }}
               onMouseMove={movePopup}
-              onMouseLeave={() => setPopup(undefined)}
+              onMouseLeave={dismissPopupSoon}
             >
               <circle
                 r={8}
@@ -595,7 +609,7 @@ export function AncestorFanChart(props: Props) {
             className="fan-root"
             onClick={root ? (e) => handleClick(e, root) : undefined}
             onMouseEnter={
-              root ? (event) => personPopup(root, event) : undefined
+              root ? (event) => personPopup(root, event, 'birth') : undefined
             }
             onMouseMove={movePopup}
             onMouseLeave={clearHover}
@@ -636,7 +650,18 @@ export function AncestorFanChart(props: Props) {
                         : 9.5
                   }
                   fontWeight={index < rootNameLines.length ? 600 : 400}
-                  pointerEvents="none"
+                  onMouseEnter={
+                    index >= rootNameLines.length &&
+                    index < rootNameLines.length + rootEvents.length
+                      ? (event) => personPopup(
+                          root,
+                          event,
+                          index < rootNameLines.length + Math.ceil(rootEvents.length / 2)
+                            ? 'birth'
+                            : 'death',
+                        )
+                      : undefined
+                  }
                 >
                   {label}
                 </text>
@@ -655,23 +680,14 @@ export function AncestorFanChart(props: Props) {
         </p>
       )}
       {popup && (
-        <div
-          className="ancestor-fan-popup"
-          role="tooltip"
-          style={{
-            position: 'fixed',
-            left: Math.max(8, Math.min(popup.x + 14, window.innerWidth - 350)),
-            top: Math.max(8, Math.min(popup.y + 14, window.innerHeight - 220)),
-            pointerEvents: 'none',
+        <EventPopup
+          data={popup}
+          onMouseEnter={cancelDismiss}
+          onMouseLeave={() => {
+            cancelDismiss();
+            setPopup(undefined);
           }}
-        >
-          <strong>{popup.heading}</strong>
-          {popup.rows.map((row, index) => (
-            <div className="ancestor-fan-popup-row" key={index}>
-              {row.label && <b>{row.label}:</b>} {row.value}
-            </div>
-          ))}
-        </div>
+        />
       )}
     </div>
   );
