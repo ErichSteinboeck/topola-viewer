@@ -1,5 +1,5 @@
 import {FormattedMessage} from 'react-intl';
-import {Message} from 'semantic-ui-react';
+import {Item, Message} from 'semantic-ui-react';
 import {GedcomRepairReport} from '../../util/gedcom_repair';
 
 export function GedcomImportWarning({
@@ -7,37 +7,19 @@ export function GedcomImportWarning({
 }: {
   repairReport?: Omit<GedcomRepairReport, 'text'>;
 }) {
-  if (!repairReport) {
-    return (
-      <p className="gedcom-diagnostic-status">
-        <FormattedMessage
-          id="gedcom.diagnostic_unavailable"
-          defaultMessage="GEDCOM check unavailable for this cached import. Reload the original file to run the check."
-        />
-      </p>
-    );
-  }
+  // A clean or unavailable diagnostic should not clutter the settings pane.
   if (
-    !repairReport.repairedLines &&
-    !repairReport.unrepairedLines &&
-    !repairReport.parserWarnings
+    !repairReport ||
+    (!repairReport.repairedLines &&
+      !repairReport.unrepairedLines &&
+      !repairReport.parserWarnings)
   ) {
-    return (
-      <p className="gedcom-diagnostic-status">
-        <FormattedMessage
-          id="gedcom.diagnostic_clear"
-          defaultMessage="GEDCOM check: No detectable structural or continuation-line issues. This is not a complete validation."
-        />
-      </p>
-    );
+    return null;
   }
   return (
-    <>
-      {repairReport &&
-        (repairReport.repairedLines > 0 ||
-          repairReport.unrepairedLines > 0 ||
-          repairReport.parserWarnings > 0) && (
-          <Message
+    <Item>
+      <Item.Content>
+        <Message
             warning
             size="small"
             className="gedcom-import-warning"
@@ -89,8 +71,8 @@ export function GedcomImportWarning({
                 values={{lines: repairReport.affectedLines.join(', ')}}
               />
             </p>
-          </Message>
-        )}
-    </>
+        </Message>
+      </Item.Content>
+    </Item>
   );
 }
