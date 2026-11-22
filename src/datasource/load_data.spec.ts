@@ -43,12 +43,14 @@ describe('resolveGedcomFetchUrl', () => {
   });
 
   it('loads external GEDCOM directly when proxy was not requested', () => {
-    expect(resolveGedcomFetchUrl('https://example.org/people.ged', false, origin))
-      .toBe('https://example.org/people.ged');
+    expect(
+      resolveGedcomFetchUrl('https://example.org/people.ged', false, origin),
+    ).toBe('https://example.org/people.ged');
   });
 
   it('uses the proxy only when explicitly requested for an external URL', () => {
-    expect(resolveGedcomFetchUrl('https://example.org/tree.zip', true, origin))
-      .toBe('https://topolaproxy.bieda.it/https://example.org/tree.zip');
+    expect(
+      resolveGedcomFetchUrl('https://example.org/tree.zip', true, origin),
+    ).toBe('https://topolaproxy.bieda.it/https://example.org/tree.zip');
   });
 });

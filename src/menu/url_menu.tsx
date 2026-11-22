@@ -2,7 +2,15 @@ import queryString from 'query-string';
 import {useEffect, useRef, useState} from 'react';
 import {FormattedMessage} from 'react-intl';
 import {useNavigate} from 'react-router';
-import {Button, Checkbox, Form, Header, Icon, Input, Modal} from 'semantic-ui-react';
+import {
+  Button,
+  Checkbox,
+  Form,
+  Header,
+  Icon,
+  Input,
+  Modal,
+} from 'semantic-ui-react';
 import {analyticsEvent} from '../util/analytics';
 import {MenuItem, MenuType} from './menu_item';
 
