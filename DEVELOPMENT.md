@@ -120,7 +120,7 @@ aktuellen Quellcode prüfen.
 - **Erledigt 22.11.2026:** Beschriftung der Ereignisnotiz-Checkbox auf „Immer
   anzeigen“ verkürzt (Überschrift ist „Ereignisnotizen“).
 
-- **Browserbestätigung 22.11.2026:** Scrollleisten und Links in den Popups sind bedienbar. Noch beanstandet: einzelne umgedrehte gebogene Texte unterhalb der x-Achse.
+- **Browserbestätigung 22.11.2026:** Scrollleisten und Links in den Popups sind bedienbar. Bei gebogenen Texten unterhalb der x-Achse wurde die Richtungswahl an den Grenzwinkeln ±90° nachgebessert; Browserkontrolle noch offen.
 - **Nachbesserung 22.11.2026:** Die Klick-Checkbox ist jetzt angehakt bei normalem Klick = DETAILS und Shift-Klick = Neuausrichtung; URL-Werte `click=details` / `click=focus` unverändert.
 - **Nachbesserung 22.11.2026:** Fächer-Popups folgen nicht mehr jeder Mausbewegung, werden über ein React-Portal direkt im Dokument angezeigt und haben einen vollständig weißen Hintergrund (auch über der Seitenleiste). Gerade Fächerbeschriftungen erhalten normalisierte, aufrechte Drehwinkel. Browser- und Scrolltest noch ausständig.
 - **Offen:** Auch in der Sanduhr dieselben Ereignis-Popups einsetzen;
