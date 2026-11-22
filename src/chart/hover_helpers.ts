@@ -1,7 +1,7 @@
 import {GedcomEntry} from 'parse-gedcom';
 import {IntlShape} from 'react-intl';
 import {translateDate} from '../util/date_util';
-import {GedcomData, getData} from '../util/gedcom_util';
+import {dereference, GedcomData, getData} from '../util/gedcom_util';
 
 /** Compare full GEDCOM place names, not the shortened labels on screen. */
 export function placeKey(place: string | undefined): string {
@@ -92,4 +92,29 @@ export function associatedEventLines(
   return associatedEventDetails(gedcom, individualId, kind, intl).map(
     ({label, value}) => [label, value].filter(Boolean).join(' · '),
   );
+}
+
+/**
+ * The HTML notes associated with the specified GEDCOM event tags.
+ * References to shared NOTE records are resolved exactly as in the sidebar.
+ * Rendering must use SafeNoteHtml (never dangerouslySetInnerHTML).
+ */
+export function eventNoteHtml(
+  gedcom: GedcomData | undefined,
+  record: GedcomEntry | undefined,
+  tags: string[],
+): string[] {
+  if (!gedcom || !record) return [];
+  return record.tree
+    .filter((entry) => tags.includes(entry.tag))
+    .flatMap((event) =>
+      event.tree
+        .filter((part) => part.tag === 'NOTE')
+        .map((note) =>
+          dereference(note, gedcom, (data) => data.other),
+        )
+        .filter((note) => !!note.data)
+        .map((note) => getData(note).join('\n'))
+        .filter(Boolean),
+    );
 }
