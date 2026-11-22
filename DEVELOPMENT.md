@@ -93,7 +93,7 @@ aktuellen Quellcode prüfen.
   **Identische Orte hervorheben**, **Felder RIN, UID, UPD verbergen** und **Feld
   IDENTIFIKATION verbergen**. Die beiden Verbergen-Checkboxen sind angekreuzt,
   wenn die Felder ausgeblendet sind; Klick/Shift-Klick ist angekreuzt, wenn ein
-  normaler Klick fokussiert. Alte URL- und localStorage-Werte (`technical`, `i`,
+  normaler Klick die Details öffnet (Shift-Klick fokussiert). Alte URL- und localStorage-Werte (`technical`, `i`,
   `click`) behalten unverändert ihre Bedeutung. Kein Datenmigrationsschritt
   notwendig.
 
@@ -120,11 +120,64 @@ aktuellen Quellcode prüfen.
 - **Erledigt 22.11.2026:** Beschriftung der Ereignisnotiz-Checkbox auf „Immer
   anzeigen“ verkürzt (Überschrift ist „Ereignisnotizen“).
 
+- **Browserbestätigung 22.11.2026:** Scrollleisten und Links in den Popups sind bedienbar. Noch beanstandet: einzelne umgedrehte gebogene Texte unterhalb der x-Achse.
+- **Nachbesserung 22.11.2026:** Die Klick-Checkbox ist jetzt angehakt bei normalem Klick = DETAILS und Shift-Klick = Neuausrichtung; URL-Werte `click=details` / `click=focus` unverändert.
 - **Nachbesserung 22.11.2026:** Fächer-Popups folgen nicht mehr jeder Mausbewegung, werden über ein React-Portal direkt im Dokument angezeigt und haben einen vollständig weißen Hintergrund (auch über der Seitenleiste). Gerade Fächerbeschriftungen erhalten normalisierte, aufrechte Drehwinkel. Browser- und Scrolltest noch ausständig.
 - **Offen:** Auch in der Sanduhr dieselben Ereignis-Popups einsetzen;
   zusätzliche allgemeine GEDCOM-Felder und weitere Notizinhalte prüfen.
 - Wenn Popups zu groß werden, in separate Ereignis-Popups aufteilen und Notizen
   begrenzen; vollständige Informationen in DETAILS belassen.
+
+## URL-Parameter (geprüft im Quellcode am 22.11.2026)
+
+Die Parameter stehen in der **Hash-Router-Adresse** hinter `#/view?`, zum Beispiel
+`https://erichsteinboeck.github.io/topola-viewer/#/view?view=fan&indi=I500003&click=details&notes=always&p=f`.
+Wichtig: Parameter **vor** `#/view` sind nicht die normalen Diagrammparameter.
+Das Einstellungsmenü schreibt die Einstellungen bei Änderungen ebenfalls in die URL;
+einige Einstellungen bleiben zusätzlich im lokalen Browser-Speicher erhalten.
+Explizite URL-Parameter gehen den gespeicherten Einstellungen vor.
+
+| Parameter | Mögliche Werte | Wirkung |
+| --- | --- | --- |
+| `url` | kodierte HTTPS-URL einer GEDCOM-/ZIP-Datei | Quelle per Webadresse öffnen |
+| `handleCors` | `true`, `false` (Standard) | Drittanbieter-CORS-Proxy nur bei `true` |
+| `file` | interner Datei-Hash | Bereits lokal geladene Datei wiederfinden (browserabhängig) |
+| `source` | `wikitree`, `google-drive` | Alternative Quelle; Google Drive benötigt `fileId`, WikiTree ggf. `authcode` |
+| `embedded` | `true` | Eingebettete Datenquelle; ändert auch Standalone-Verhalten |
+| `view` | `fan`, `relatives`, `fancy`, `donatso`; weglassen = Sanduhr | Diagrammtyp, auch für ausgeblendete Menütypen |
+| `indi` | GEDCOM-Personen-ID, z. B. `I500003` | Hauptperson |
+| `gen` | Zahl, z. B. `0` | Generation zur gewählten Hauptperson |
+| `detail` | Personen-ID | Person in der Details-Seitenleiste |
+| `sidePanel` | `true`, `false` | Seitenleiste ein-/ausblenden; Standard hängt von Bildschirmbreite ab |
+| `c` | `n` = keine Farben, `g` = Generation, `s` = Geschlecht | Diagrammfarben |
+| `i` | `h` = IDENTIFIKATION verbergen, `s` = anzeigen | Personen-ID/Identifikation |
+| `s` | `h` = Geschlecht verbergen, `s` = anzeigen | Geschlechtsangabe |
+| `p` | `f` = voller Ort, `s` = kurzer Ort, `h` = verbergen | Ortsanzeige (vor allem Sanduhr; Fächer hat eigene Textkürzung) |
+| `pn` | Ganzzahl ab `1` (Eingabefeld 1–10) | Zahl der Ortsbestandteile bei `p=s` |
+| `click` | `details`, `focus` | `details`: Klick zeigt DETAILS, Shift-Klick fokussiert; `focus`: umgekehrt |
+| `technical` | `false` (verbergen), `true` (zeigen) | Technische Felder RIN, UID, UPD |
+| `notes` | `always`, `collapsed` | Ereignisnotizen immer oder nur eingeklappt anzeigen |
+| `placehover` | `on`, `off` | Identische Orte beim Darüberfahren hervorheben |
+| `standalone` | `false` zum Abschalten; sonst aktiv | Standalone-Oberfläche |
+| `freeze` | `true` | Diagrammanimation einfrieren |
+| `showWikiTreeMenus` | `false` | WikiTree-Menüs ausblenden |
+
+**Klick-Checkbox (Stand 22.11.2026):** Wenn angehakt, bedeutet sie
+`click=details`: einfacher Klick zeigt Personendetails,
+Shift-Klick richtet den Baum neu aus. Ohne Häkchen (`click=focus`) umgekehrt.
+Achtung: Im Browser gespeicherte Alt-Einstellungen können den Standard ohne
+expliziten Parameter überschreiben.
+
+**Beispiel (alle vier angefragten Themen):**
+`#/view?view=fan&click=details&technical=false&i=h&notes=always&p=f&placehover=on`.
+Damit: normaler Klick = Details; technische Felder und Identifikation verborgen;
+Ereignisnotizen aufgeklappt; Orte vollständig und Orts-Hover-Markierung aktiv.
+Die `p`-Einstellung steuert die regulären Diagramm-Ortsfelder; die
+Fächerbeschriftungen werden aus Platzgründen unabhängig davon gekürzt.
+
+**Hinweis:** Die maximale Zahl der im Fächer angezeigten Generationen wird
+derzeit über das Bedienfeld im Fächer geregelt (bis 12); hierfür ist in
+`getArguments` kein eigener URL-Parameter vorgesehen.
 
 ## Deployment und Workflows
 
