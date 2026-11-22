@@ -150,6 +150,18 @@ export async function loadAndPrepareFile(
   }
 }
 
+/** Resolve the fetch endpoint without ever proxying same-origin URLs. */
+export function resolveGedcomFetchUrl(
+  url: string,
+  handleCors: boolean,
+  currentOrigin: string,
+): string {
+  const sameOrigin = new URL(url, currentOrigin).origin === currentOrigin;
+  return handleCors && !sameOrigin
+    ? 'https://topolaproxy.bieda.it/' + url
+    : url;
+}
+
 /** Fetches a GEDCOM or ZIP from the given URL. A third-party CORS proxy is opt-in. */
 export async function loadFromUrl(
   url: string,
@@ -187,9 +199,11 @@ export async function loadFromUrl(
     url = `https://drive.google.com/uc?id=${driveUrlMatch2[1]}&export=download`;
   }
 
-  const urlToFetch = handleCors && !sameOrigin
-    ? 'https://topolaproxy.bieda.it/' + url
-    : url;
+  const urlToFetch = resolveGedcomFetchUrl(
+    url,
+    handleCors,
+    window.location.origin,
+  );
 
   const response = await window.fetch(
     urlToFetch,
