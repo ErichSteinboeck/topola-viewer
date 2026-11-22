@@ -304,6 +304,22 @@ describe('url_args', () => {
       expect(args.config.alwaysShowEventNotes).toBe(true);
     });
 
+    it('preserves older visibility and click URL settings with the new inverse checkbox labels', () => {
+      const shown = getArguments(
+        createLocation('?i=s&technical=true&click=focus'),
+      ).config;
+      expect(shown.id).toBe(Ids.SHOW);
+      expect(shown.showTechnicalFields).toBe(true);
+      expect(shown.clickAction).toBe(ClickAction.FOCUS);
+
+      const hidden = getArguments(
+        createLocation('?i=h&technical=false&click=details'),
+      ).config;
+      expect(hidden.id).toBe(Ids.HIDE);
+      expect(hidden.showTechnicalFields).toBe(false);
+      expect(hidden.clickAction).toBe(ClickAction.DETAILS);
+    });
+
     it('parses config object from query parameters', () => {
       const args = getArguments(createLocation('?c=s&i=h&s=h&p=s&pn=5'));
       expect(args.config).toEqual({
