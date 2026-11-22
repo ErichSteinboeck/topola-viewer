@@ -120,6 +120,7 @@ aktuellen Quellcode prüfen.
 - **Erledigt 22.11.2026:** Beschriftung der Ereignisnotiz-Checkbox auf „Immer
   anzeigen“ verkürzt (Überschrift ist „Ereignisnotizen“).
 
+- **Nachbesserung 22.11.2026:** Fächer-Popups folgen nicht mehr jeder Mausbewegung, werden über ein React-Portal direkt im Dokument angezeigt und haben einen vollständig weißen Hintergrund (auch über der Seitenleiste). Gerade Fächerbeschriftungen erhalten normalisierte, aufrechte Drehwinkel. Browser- und Scrolltest noch ausständig.
 - **Offen:** Auch in der Sanduhr dieselben Ereignis-Popups einsetzen;
   zusätzliche allgemeine GEDCOM-Felder und weitere Notizinhalte prüfen.
 - Wenn Popups zu groß werden, in separate Ereignis-Popups aufteilen und Notizen
