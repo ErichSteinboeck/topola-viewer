@@ -102,14 +102,14 @@ aktuellen Quellcode prüfen.
 - **Überarbeitet 22.11.2026:** Fächer: gleiche Namensschriftgröße innerhalb
   eines Rings; Geburtsdatum, Geburtsort, Sterbedatum, Sterbeort auf eigenen
   Zeilen (Platz wird bedarfsabhängig gekürzt); **innere Ringe gebogen entlang
-  des Kreisbogens, äußere radial und gerade**. Beschriftung
-  „Generationen“, schmales Zahlenfeld bis zwölf. Klick/Shift-Klick
-  entsprechend der konfigurierten Funktion geprüft.
-- **Erste Popup-Version 22.11.2026:** Im Fächer separate Ereignisinhalte
-  für Geburt/Taufe, Tod/Beerdigung und Heirat, einschließlich
-  gegebenenfalls vorhandener sicher gerenderter HTML-Ereignisnotizen.
-  Das Design und die Integration in die Sanduhr müssen noch im Browser
-  beurteilt und vereinheitlicht werden.
+  des Kreisbogens, äußere radial und gerade**. Beschriftung „Generationen“,
+  schmales Zahlenfeld bis zwölf. Klick/Shift-Klick entsprechend der
+  konfigurierten Funktion geprüft.
+- **Erste Popup-Version 22.11.2026:** Im Fächer separate Ereignisinhalte für
+  Geburt/Taufe, Tod/Beerdigung und Heirat, einschließlich gegebenenfalls
+  vorhandener sicher gerenderter HTML-Ereignisnotizen. Das Design und die
+  Integration in die Sanduhr müssen noch im Browser beurteilt und
+  vereinheitlicht werden.
 
 - **Erledigt 22.11.2026 (Diagrammstil):** Gemeinsame Schriftfamilie und
   orangefarbene Auswahlkontur; Ortsmarkierung ohne Fettwechsel und mit normalem
