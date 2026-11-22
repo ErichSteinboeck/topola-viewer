@@ -62,7 +62,9 @@ Diese Datei ist die **dauerhafte Übergabe zwischen Gesprächen**. Sie untersche
 
 - `.github/workflows/pages.yml` baut und veröffentlicht GitHub Pages aus `master`.
 - `.github/workflows/node.js.yml` führt Format-, Lint-, Build-, Unit- und Browserprüfungen aus. Playwright war wiederholt fehlerhaft; bei jedem Lauf tatsächliche Logs prüfen.
-- Vier **täglich** getriggerte Workflows (jeweils `schedule: cron: '0 5 * * *'`): **Prober - GitHub Pages**, **Prober - WikiTree**, **Prober - WikiTree CORS**, **Prober - Docker**. Sie liefen unabhängig von Commits und schlugen zuletzt fehl. Ob und welche wir deaktivieren, ist noch zu entscheiden.
+- **Erledigt 22.11.2026:** Bei den vier Prober-Workflows (**GitHub Pages**, **WikiTree**, **WikiTree CORS**, **Docker**) wurden die täglichen `schedule`-Auslöser entfernt. `workflow_dispatch` und `workflow_call` bleiben erhalten; sie sind weiter manuell oder über das optionale `deploy-everywhere.yml` ausführbar.
+- **Erledigt 22.11.2026:** Der Benutzer hat bestätigt, dass die öffentliche, bereinigte Halmenschlager-GEDCOM **und ZIP** per URL in Topola funktionieren und die Geburtsdaten der zwei lebenden Personen fehlen. Die beiden Dateien bleiben unter `public/examples/reinhold-halmenschlager.ged` und `.zip`.
+- **Erledigt 22.11.2026:** `Öffne URL` verwendet standardmäßig direkten Abruf (`handleCors=false`), Proxy nur nach explizitem Opt-in im Dialog bzw. `handleCors=true` bei fremden Servern; dieselbe Domain wird niemals über den Drittanbieter-Proxy geladen. `Öffne Datei` verarbeitet GEDCOM/ZIP lokal (kein CORS). URL-Ladeverhalten mit Unit-Tests abgesichert; Browserergebnis nach Deployment weiter prüfen.
 - GEDCOM/ZIP bleiben bei Updates am selben Pfad in `public/examples/`. Vorgehen: geprüfte öffentliche Kopie erzeugen, Dateien ersetzen, Commit/Push, Deployment prüfen, Abruf von GEDCOM und ZIP per URL testen.
 
 ## Vorgesehene Arbeitsfolge
@@ -72,7 +74,7 @@ Diese Datei ist die **dauerhafte Übergabe zwischen Gesprächen**. Sie untersche
 3. Gemeinsamer Diagrammstil, IDENTIFIKATION und Ortsmarkierung.
 4. Gemeinsame Popups mit ergänzenden GEDCOM-Daten und gekürzten HTML-Notizen.
 5. Neueste GEDCOM gegen veröffentlichte GED/ZIP-Dateien vergleichen, Datenschutz überprüfen, ggf. aktualisieren.
-6. Zeitgesteuerte Prober prüfen und bei Bedarf einschränken/deaktivieren.
+6. **Erledigt:** Tägliche Prober-Auslöser deaktiviert; manueller Start bleibt möglich.
 
 ## Fortsetzung in einem neuen Chat
 
