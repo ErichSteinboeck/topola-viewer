@@ -11,8 +11,6 @@ on:
       wait_for_propagation:
         type: boolean
         default: false
-  schedule:
-    - cron: '0 5 * * *'
 
 permissions:
   contents: read
