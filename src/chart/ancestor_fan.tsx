@@ -231,92 +231,92 @@ export function AncestorFanChart(props: Props) {
     const y = textRadius * Math.sin(angle);
     const isSelected =
       person.id === (props.selectedPersonId || props.selection.id);
-    const maxChars = generation >= 7 ? 13 : generation >= 5 ? 18 : 28;
-    // Allow wrapped names in every generation; the available width in the
-    // segment, not a fixed character limit, determines the actual font fit.
+    const isCurved = generation >= 5;
+    // Keep the same font size within a generation, including long names.
+    // Wrap names rather than compressing individual glyphs.
+    const fontSize = generation <= 2 ? 12 : generation <= 4 ? 11 : 9;
+    const dateFontSize = generation <= 2 ? 10.5 : generation <= 4 ? 10 : 9;
+    const arcWidth = (textRadius * (end - start) * Math.PI) / 180;
+    const textWidth = isCurved ? Math.max(12, arcWidth - 8) : RING_SIZE - 12;
+    const charLimit = Math.max(4, Math.floor(textWidth / (fontSize * 0.55)));
     const nameLines = ancestorNameLines(
       person.firstName,
       person.lastName,
-      maxChars,
+      Math.min(16, charLimit),
       true,
     );
-    const showId = props.hideIds === Ids.SHOW;
-    // Tangential labels: turned 90 degrees relative to the first prototype.
-    // Turn outer lower sectors upright rather than displaying upside-down text.
-    const rotation =
-      generation >= 5 ? middle - 90 + (middle < 0 ? 180 : 0) : middle;
-    const born = person?.birth?.date?.year;
-    const died = person?.death?.date?.year;
-    // Each outer life year gets its own hover target (birth versus death).
-    const fullBirth = person
-      ? shortMonthDate(formatDateOrRange(person.birth, intl), intl.locale)
-      : '';
-    const fullDeath = person
-      ? shortMonthDate(formatDateOrRange(person.death, intl), intl.locale)
-      : '';
-    const birthPlace = person?.birth?.place || '';
-    const short = (value: string, limit: number) =>
-      value.length > limit ? `${value.slice(0, limit - 1)}…` : value;
-    const deathPlace = person?.death?.place || '';
-    type DetailLine = {
-      value: string;
-      kind: 'birth' | 'death';
-      date: string;
-      place: string;
-    };
-    const compactLine = (
-      kind: 'birth' | 'death',
-      date: string,
-      place: string,
-      year?: number,
-    ): DetailLine | undefined => {
-      const prefix = kind === 'birth' ? '*' : '†';
-      const shownDate = generation <= 3 ? date : year ? String(year) : '';
-      if (!shownDate && !place) return undefined;
-      // Inner rings show a complete event on one line; outer rings retain
-      // short years so their text remains legible in narrow sectors.
-      const placeLimit =
-        generation <= 2
-          ? 23
-          : generation === 3
-            ? 17
-            : generation === 4
-              ? 16
-              : generation === 5
-                ? 13
-                : generation === 6
-                  ? 11
-                  : 9;
-      const shownPlace = place ? short(place, placeLimit) : '';
-      return {
-        kind,
-        date: shownDate ? `${prefix} ${shownDate}` : '',
-        place: shownPlace,
-        value: [shownDate ? `${prefix} ${shownDate}` : '', shownPlace]
-          .filter(Boolean)
-          .join(' · '),
-      };
-    };
-    const lines = [
-      compactLine('birth', fullBirth, birthPlace, born),
-      compactLine('death', fullDeath, deathPlace, died),
-    ].filter((line): line is DetailLine => !!line);
-    const spacing = generation <= 3 ? 15 : 13;
-    // Use normal glyph proportions. Reduce font size for long names instead
-    // of forcing a compressed textLength into a narrow SVG segment.
-    const baseFontSize = generation > 6 ? 9 : generation > 4 ? 10 : 12;
-    const arcWidth = (textRadius * (end - start) * Math.PI) / 180;
-    const availableLength =
-      generation >= 5
-        ? Math.max(9, RING_SIZE - 12)
-        : Math.max(9, Math.min(RING_SIZE - 12, arcWidth - 5));
-    const longestName = Math.max(1, ...nameLines.map((name) => name.length));
-    const fontSize = Math.max(
-      7,
-      Math.min(baseFontSize, availableLength / (longestName * 0.57)),
+    const clip = (value: string, limit: number) =>
+      value.length > limit ? value.slice(0, Math.max(1, limit - 1)) + '…' : value;
+    const born = person.birth?.date?.year;
+    const died = person.death?.date?.year;
+    const birthDate = shortMonthDate(
+      formatDateOrRange(person.birth, intl),
+      intl.locale,
     );
-    const totalLines = nameLines.length + lines.length + (showId ? 1 : 0);
-    const startY = -((totalLines - 1) * spacing) / 2;
+    const deathDate = shortMonthDate(
+      formatDateOrRange(person.death, intl),
+      intl.locale,
+    );
+    const birthPlace = person.birth?.place || '';
+    const deathPlace = person.death?.place || '';
+    const eventFontLimit = Math.max(
+      4,
+      Math.floor(textWidth / (dateFontSize * 0.51)),
+    );
+    const dateLabel = (symbol: string, date: string, year?: number) =>
+      date || year
+        ? clip(symbol + ' ' + (generation >= 5 && year ? String(year) : date), eventFontLimit)
+        : '';
+    const details: Array<{
+      kind: 'birth' | 'death';
+      type: 'date' | 'place';
+      text: string;
+      fullPlace?: string;
+    }> = [
+      {
+        kind: 'birth',
+        type: 'date',
+        text: dateLabel('*', birthDate, born),
+      },
+      {
+        kind: 'birth',
+        type: 'place',
+        text: clip(birthPlace, eventFontLimit),
+        fullPlace: birthPlace,
+      },
+      {
+        kind: 'death',
+        type: 'date',
+        text: dateLabel('†', deathDate, died),
+      },
+      {
+        kind: 'death',
+        type: 'place',
+        text: clip(deathPlace, eventFontLimit),
+        fullPlace: deathPlace,
+      },
+    ].filter((line) => !!line.text);
+    const showId = props.hideIds === Ids.SHOW;
+    const allLines = [
+      ...nameLines.map((text) => ({text, kind: 'name' as const})),
+      ...details.map((line) => ({...line, kind: line.kind as 'birth' | 'death'})),
+      ...(showId ? [{text: person.id, kind: 'id' as const}] : []),
+    ];
+    const spacing = 13;
+    const startY = -((allLines.length - 1) * spacing) / 2;
+    const rotation = middle;
+    const curvedPath = (radius: number) => {
+      const clockwise = Math.abs(middle) <= 90;
+      const from = clockwise ? start : end;
+      const to = clockwise ? end : start;
+      const point = (angle: number) => {
+        const radians = ((angle - 90) * Math.PI) / 180;
+        return [+(radius * Math.cos(radians)).toFixed(3), +(radius * Math.sin(radians)).toFixed(3)];
+      };
+      const [x1, y1] = point(from);
+      const [x2, y2] = point(to);
+      return `M ${x1} ${y1} A ${radius} ${radius} 0 0 ${clockwise ? 1 : 0} ${x2} ${y2}`;
+    };
     const matchingPlace =
       !!hoveredPlace &&
       props.highlightMatchingPlaces !== false &&
@@ -345,66 +345,75 @@ export function AncestorFanChart(props: Props) {
           stroke={isSelected ? '#d17900' : '#a7a7a7'}
           strokeWidth={isSelected ? 3 : 0.85}
         />
-        <g
-          transform={`translate(${x} ${y}) rotate(${rotation})`}
-          className="fan-labels"
-          textAnchor="middle"
-          dominantBaseline="middle"
-        >
-          {nameLines.map((part, i) => (
-            <text
-              key={i}
-              y={startY + i * spacing}
-              fontSize={fontSize}
-              fontWeight={600}
-            >
-              {part}
-            </text>
-          ))}
-          {lines.map((line, lineIndex) => {
-            const fullPlace = line.kind === 'birth' ? birthPlace : deathPlace;
-            const isPlaceMatch =
-              !!line.place &&
-              !!hoveredPlace &&
-              props.highlightMatchingPlaces !== false &&
-              placesMatch(fullPlace, hoveredPlace);
-            return (
-              <text
-                key={line.kind}
-                y={startY + (nameLines.length + lineIndex) * spacing}
-                fontSize={generation <= 3 ? 10.5 : 9.5}
-                fontWeight="normal"
-              >
-                <tspan>{line.date}</tspan>
-                {!!line.place && (
-                  <tspan
-                    className={isPlaceMatch ? 'fan-place-match' : undefined}
-                    onMouseEnter={() => {
-                      if (props.highlightMatchingPlaces !== false) {
-                        setHoveredPlace(fullPlace);
-                      }
-                    }}
-                    onMouseLeave={() => setHoveredPlace(undefined)}
-                    style={{cursor: 'pointer'}}
+        {isCurved ? (
+          <g className="fan-labels" textAnchor="middle">
+            {allLines.map((line, row) => {
+              const r = Math.max(15, textRadius + (row - (allLines.length - 1) / 2) * spacing);
+              const id = `fan-arc-${generation}-${index}-${row}`;
+              const isPlace = line.kind !== 'name' && line.kind !== 'id' && line.type === 'place';
+              const fullPlace = isPlace ? line.fullPlace || '' : '';
+              const isPlaceMatch =
+                isPlace &&
+                !!hoveredPlace &&
+                props.highlightMatchingPlaces !== false &&
+                placesMatch(fullPlace, hoveredPlace);
+              return (
+                <g key={id}>
+                  <defs><path id={id} d={curvedPath(r)} /></defs>
+                  <text
+                    className={line.kind === 'id' ? 'fan-identification' : undefined}
+                    fontSize={line.kind === 'id' ? 8 : line.kind === 'name' ? fontSize : dateFontSize}
+                    fontWeight={line.kind === 'name' ? 600 : 400}
+                    onMouseEnter={isPlace ? () => {
+                      if (props.highlightMatchingPlaces !== false) setHoveredPlace(fullPlace);
+                    } : undefined}
+                    onMouseLeave={isPlace ? () => setHoveredPlace(undefined) : undefined}
                   >
-                    {line.date ? ' · ' : ''}
-                    {line.place}
-                  </tspan>
-                )}
-              </text>
-            );
-          })}
-          {showId && (
-            <text
-              className="fan-identification"
-              y={startY + (totalLines - 1) * spacing}
-              fontSize={8}
-              fontWeight="normal"
-            >
-              {person.id}
-            </text>
-          )}
-        </g>
+                    <textPath
+                      href={`#${id}`}
+                      startOffset="50%"
+                      className={isPlaceMatch ? 'fan-place-match' : undefined}
+                    >{line.text}</textPath>
+                  </text>
+                </g>
+              );
+            })}
+          </g>
+        ) : (
+          <g
+            transform={`translate(${x} ${y}) rotate(${rotation})`}
+            className="fan-labels"
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            {allLines.map((line, row) => {
+              const isPlace = line.kind !== 'name' && line.kind !== 'id' && line.type === 'place';
+              const fullPlace = isPlace ? line.fullPlace || '' : '';
+              const isPlaceMatch =
+                isPlace &&
+                !!hoveredPlace &&
+                props.highlightMatchingPlaces !== false &&
+                placesMatch(fullPlace, hoveredPlace);
+              return (
+                <text
+                  key={row}
+                  y={startY + row * spacing}
+                  className={
+                    line.kind === 'id'
+                      ? 'fan-identification'
+                      : isPlaceMatch ? 'fan-place-match' : undefined
+                  }
+                  fontSize={line.kind === 'id' ? 8 : line.kind === 'name' ? fontSize : dateFontSize}
+                  fontWeight={line.kind === 'name' ? 600 : 400}
+                  onMouseEnter={isPlace ? () => {
+                    if (props.highlightMatchingPlaces !== false) setHoveredPlace(fullPlace);
+                  } : undefined}
+                  onMouseLeave={isPlace ? () => setHoveredPlace(undefined) : undefined}
+                >{line.text}</text>
+              );
+            })}
+          </g>
+        )}
       </g>
     );
   };
@@ -482,8 +491,8 @@ export function AncestorFanChart(props: Props) {
       <div className="ancestor-fan-controls">
         <label htmlFor="fanGenerations">
           {intl.formatMessage({
-            id: 'fan.generations',
-            defaultMessage: 'Ancestor generations',
+            id: 'fan.generations_short',
+            defaultMessage: 'Generations',
           })}
         </label>
         <input
