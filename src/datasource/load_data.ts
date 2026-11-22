@@ -93,7 +93,7 @@ async function loadGedzip(
   const images = new Map<string, string>();
   try {
     for (const fileName of Object.keys(unzipped)) {
-      if (fileName.endsWith('.ged')) {
+      if (/\.ged$/i.test(fileName)) {
         if (gedcom) {
           console.warn('Multiple GEDCOM files found in zip archive.');
         } else {
@@ -150,7 +150,7 @@ export async function loadAndPrepareFile(
   }
 }
 
-/** Fetches data from the given URL. Uses cors-anywhere if handleCors is true. */
+/** Fetches a GEDCOM or ZIP from the given URL. A third-party CORS proxy is opt-in. */
 export async function loadFromUrl(
   url: string,
   handleCors: boolean,
@@ -159,6 +159,8 @@ export async function loadFromUrl(
   // Built-in example files are editable in our GitHub Pages repository.
   // Never reuse a parsed copy of a same-origin GEDCOM by URL: otherwise users
   // can see an outdated note even after the GEDCOM file has been corrected.
+  // Same-origin requests must never be sent to the third-party proxy.
+  // This also prevents a stale response when our published example is updated.
   const sameOrigin =
     new URL(url, window.location.href).origin === window.location.origin;
   if (!sameOrigin) {
@@ -185,14 +187,18 @@ export async function loadFromUrl(
     url = `https://drive.google.com/uc?id=${driveUrlMatch2[1]}&export=download`;
   }
 
-  const urlToFetch = handleCors ? 'https://topolaproxy.bieda.it/' + url : url;
+  const urlToFetch = handleCors && !sameOrigin
+    ? 'https://topolaproxy.bieda.it/' + url
+    : url;
 
   const response = await window.fetch(
     urlToFetch,
     sameOrigin ? {cache: 'no-store'} : undefined,
   );
-  if (response.status !== 200) {
-    throw new Error(response.statusText);
+  if (!response.ok) {
+    throw new Error(
+      `HTTP ${response.status} ${response.statusText} when loading ${url}`.trim(),
+    );
   }
 
   return loadAndPrepareFile(
@@ -289,7 +295,10 @@ export class GedcomUrlDataSource implements DataSource<UrlSourceSpec> {
     oldSource: SourceSelection<UrlSourceSpec>,
     _data?: TopolaData,
   ): boolean {
-    return newSource.spec.url !== oldSource.spec.url;
+    return (
+      newSource.spec.url !== oldSource.spec.url ||
+      newSource.spec.handleCors !== oldSource.spec.handleCors
+    );
   }
 
   async loadData(
