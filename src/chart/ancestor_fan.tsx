@@ -323,7 +323,10 @@ export function AncestorFanChart(props: Props) {
     // Normalize all straight labels to an upright reading direction.
     const rotation = ((radialRotation + 90 + 360) % 180) - 90;
     const curvedPath = (radius: number) => {
-      const clockwise = Math.abs(middle) <= 90;
+      // Follow the arc in the direction whose midpoint tangent points right.
+      // At the horizontal-axis boundaries (±90°), reverse the lower arc;
+      // otherwise its curved text can read upside down.
+      const clockwise = middle > -90 && middle < 90;
       const from = clockwise ? start : end;
       const to = clockwise ? end : start;
       const point = (angle: number) => {
