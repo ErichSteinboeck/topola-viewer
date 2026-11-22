@@ -375,7 +375,7 @@ export function AncestorFanChart(props: Props) {
             {allLines.map((line, row) => {
               const r = Math.max(
                 15,
-                textRadius + (row - (allLines.length - 1) / 2) * spacing,
+                textRadius + ((allLines.length - 1) / 2 - row) * spacing,
               );
               const id = `fan-arc-${generation}-${index}-${row}`;
               const isPlace = 'type' in line && line.type === 'place';
