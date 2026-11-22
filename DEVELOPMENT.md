@@ -77,9 +77,9 @@ aktuellen Quellcode prüfen.
   Seitenleiste ändern, während die Person im Fächer weiterhin nicht sichtbar
   ist. Auswahl, Fokus und Neuausrichtung diagrammübergreifend konsistent machen.
 - **Weitere Idee (nicht beschlossen):** Wenn `indi` fehlt und der Dateiname
-  keine eindeutig zuordenbare Person enthält, den Benutzer nach der
-  gewünschten Startperson fragen, statt ungefragt den ersten Datensatz zu
-  verwenden. Später gemeinsam mit Startpersonen-Heuristik entscheiden.
+  keine eindeutig zuordenbare Person enthält, den Benutzer nach der gewünschten
+  Startperson fragen, statt ungefragt den ersten Datensatz zu verwenden. Später
+  gemeinsam mit Startpersonen-Heuristik entscheiden.
 
 ### Seitenleiste und Einstellungen
 
@@ -100,15 +100,13 @@ aktuellen Quellcode prüfen.
 ### Darstellung und gemeinsame Popups
 
 - **Erledigt 22.11.2026 (Diagrammstil):** Gemeinsame Schriftfamilie und
-  orangefarbene Auswahlkontur; Ortsmarkierung ohne Fettwechsel und mit
-  normalem Hand-Cursor. Fächer ohne Glyphenkomprimierung: lange Namen
-  umbrechen bzw. bei Bedarf kleinere normale Schrift verwenden;
-  IDENTIFIKATION als eigene kleine untere Zeile und Mittelpunkt um Tod,
-  Geburts- und Sterbeort ergänzt. Die Popups bleiben ein separater
-  Arbeitsschritt.
-- **Erledigt 22.11.2026:** Beschriftung der Ereignisnotiz-Checkbox auf
-  „Immer anzeigen“ verkürzt (Überschrift ist „Ereignisnotizen“).
-
+  orangefarbene Auswahlkontur; Ortsmarkierung ohne Fettwechsel und mit normalem
+  Hand-Cursor. Fächer ohne Glyphenkomprimierung: lange Namen umbrechen bzw. bei
+  Bedarf kleinere normale Schrift verwenden; IDENTIFIKATION als eigene kleine
+  untere Zeile und Mittelpunkt um Tod, Geburts- und Sterbeort ergänzt. Die
+  Popups bleiben ein separater Arbeitsschritt.
+- **Erledigt 22.11.2026:** Beschriftung der Ereignisnotiz-Checkbox auf „Immer
+  anzeigen“ verkürzt (Überschrift ist „Ereignisnotizen“).
 
 - Gemeinsame Popup-Komponente und Datenaufbereitung für Sanduhr/Fächer:
   Geburt/Taufe, Heirat, Tod/Beerdigung, allgemeine GEDCOM-Felder und **sicher
@@ -146,7 +144,8 @@ aktuellen Quellcode prüfen.
 
 1. **Erledigt 22.11.2026:** Menü-/Einstellungs-/Tab-Änderungen.
 2. Startperson und Such-/Fokusnavigation entwerfen und testen.
-3. **Erledigt 22.11.2026:** Gemeinsamer Diagrammstil, IDENTIFIKATION und Ortsmarkierung.
+3. **Erledigt 22.11.2026:** Gemeinsamer Diagrammstil, IDENTIFIKATION und
+   Ortsmarkierung.
 4. Gemeinsame Popups mit ergänzenden GEDCOM-Daten und gekürzten HTML-Notizen.
 5. Neueste GEDCOM gegen veröffentlichte GED/ZIP-Dateien vergleichen, Datenschutz
    überprüfen, ggf. aktualisieren.
@@ -158,10 +157,11 @@ aktuellen Quellcode prüfen.
 > Wir arbeiten an `ErichSteinboeck/topola-viewer`. Bitte zuerst `DEVELOPMENT.md`
 > und den aktuellen Code lesen. Die Forschungs-TXT ist die Recherchegrundlage;
 > GEDCOM ist MyHeritage-Export. Unser Vorfahrenfächer ist bereits implementiert.
-> Menü, Seitenleiste und Diagrammstil sind umgesetzt. Offen sind die noch
-> nicht entschiedene automatische Hauptperson-Auswahl,
-> diagrammübergreifendes Auswahlverhalten und gemeinsame Popups. Die neueste hochgeladene GEDCOM vom 21.11.2026 darf nicht ohne
-> Datenschutz-/Versionsprüfung die bereits veröffentlichte Kopie ersetzen.
+> Menü, Seitenleiste und Diagrammstil sind umgesetzt. Offen sind die noch nicht
+> entschiedene automatische Hauptperson-Auswahl, diagrammübergreifendes
+> Auswahlverhalten und gemeinsame Popups. Die neueste hochgeladene GEDCOM vom
+> 21.11.2026 darf nicht ohne Datenschutz-/Versionsprüfung die bereits
+> veröffentlichte Kopie ersetzen.
 
 **Pflege:** Nach jedem abgeschlossenen Entwicklungsschritt Status und offene
 Entscheidungen hier aktualisieren.

@@ -456,12 +456,14 @@ export function AncestorFanChart(props: Props) {
         {symbol: '*', event: root.birth},
         {symbol: '†', event: root.death},
       ].flatMap(({symbol, event}) => {
-        const date = shortMonthDate(formatDateOrRange(event, intl), intl.locale);
+        const date = shortMonthDate(
+          formatDateOrRange(event, intl),
+          intl.locale,
+        );
         const place = event?.place || '';
         if (!date && !place) return [];
         // Keep the centre legible while retaining the date and both places.
-        const shortPlace =
-          place.length > 22 ? place.slice(0, 21) + '…' : place;
+        const shortPlace = place.length > 22 ? place.slice(0, 21) + '…' : place;
         return [
           ...(date ? [symbol + ' ' + date] : []),
           ...(shortPlace ? [shortPlace] : []),
@@ -593,8 +595,16 @@ export function AncestorFanChart(props: Props) {
             <circle
               r={START_RADIUS - 4}
               fill={personFill(root, 0, props.colors)}
-              stroke={root?.id === (props.selectedPersonId || props.selection.id) ? '#d17900' : '#666'}
-              strokeWidth={root?.id === (props.selectedPersonId || props.selection.id) ? 4 : 1.5}
+              stroke={
+                root?.id === (props.selectedPersonId || props.selection.id)
+                  ? '#d17900'
+                  : '#666'
+              }
+              strokeWidth={
+                root?.id === (props.selectedPersonId || props.selection.id)
+                  ? 4
+                  : 1.5
+              }
             />
             {root &&
               rootLabelLines.map((label, index) => (
