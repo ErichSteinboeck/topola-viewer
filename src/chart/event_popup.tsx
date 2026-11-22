@@ -1,4 +1,5 @@
 import {MouseEvent} from 'react';
+import {createPortal} from 'react-dom';
 import {SafeNoteHtml} from '../sidepanel/details/safe-note-html';
 
 export interface EventPopupData {
@@ -19,7 +20,7 @@ export function EventPopup({
   onMouseEnter?: (event: MouseEvent<HTMLDivElement>) => void;
   onMouseLeave?: (event: MouseEvent<HTMLDivElement>) => void;
 }) {
-  return (
+  return createPortal(
     <div
       className="ancestor-fan-popup"
       role="tooltip"
@@ -28,7 +29,7 @@ export function EventPopup({
       style={{
         position: 'fixed',
         left: Math.max(8, Math.min(data.x + 14, window.innerWidth - 350)),
-        top: Math.max(8, Math.min(data.y + 14, window.innerHeight - 260)),
+        top: Math.max(8, Math.min(data.y + 14, window.innerHeight - 390)),
       }}
     >
       <strong>{data.heading}</strong>
@@ -44,6 +45,7 @@ export function EventPopup({
           ))}
         </div>
       )}
-    </div>
+    </div>,
+    document.body,
   );
 }
