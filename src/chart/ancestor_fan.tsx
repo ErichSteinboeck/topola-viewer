@@ -291,24 +291,24 @@ export function AncestorFanChart(props: Props) {
       fullPlace?: string;
     }> = [
       {
-        kind: 'birth',
-        type: 'date',
+        kind: 'birth' as const,
+        type: 'date' as const,
         text: dateLabel('*', birthDate, born),
       },
       {
-        kind: 'birth',
-        type: 'place',
+        kind: 'birth' as const,
+        type: 'place' as const,
         text: clip(birthPlace, eventFontLimit),
         fullPlace: birthPlace,
       },
       {
-        kind: 'death',
-        type: 'date',
+        kind: 'death' as const,
+        type: 'date' as const,
         text: dateLabel('†', deathDate, died),
       },
       {
-        kind: 'death',
-        type: 'place',
+        kind: 'death' as const,
+        type: 'place' as const,
         text: clip(deathPlace, eventFontLimit),
         fullPlace: deathPlace,
       },
