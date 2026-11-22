@@ -17,13 +17,13 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - run: npx prettier --write src/datasource/load_data.ts src/datasource/load_data.spec.ts src/util/url_args.ts src/util/url_args.spec.ts src/menu/url_menu.tsx DEVELOPMENT.md .github/workflows/README.md
+      - run: npx prettier --write src/datasource/load_data.ts src/datasource/load_data.spec.ts src/util/url_args.ts src/util/url_args.spec.ts src/menu/url_menu.tsx DEVELOPMENT.md
       - name: Commit formatting
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if ! git diff --quiet; then
-            git add src DEVELOPMENT.md .github/workflows/README.md
+            git add src DEVELOPMENT.md
             git commit -m "Format GEDCOM and ZIP import improvements"
             git push origin HEAD:master
           fi
