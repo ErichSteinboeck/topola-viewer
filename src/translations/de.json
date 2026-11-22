@@ -164,7 +164,7 @@
   "config.invert_click_behavior": "Klickverhalten umkehren",
   "config.event_notes": "Ereignisnotizen",
   "config.gedcom_metadata": "GEDCOM-Metadaten",
-  "config.always_show_notes": "Immer anzeigen",
+  "config.always_show_notes": "immer anzeigen",
   "config.show_technical_fields": "Technische Felder anzeigen (RIN, UID, UPD)",
   "config.show_identification": "Identifikation anzeigen (Stammbaum und Seitenleiste)",
   "config.place_components": "Anzahl der Ortsbestandteile",
