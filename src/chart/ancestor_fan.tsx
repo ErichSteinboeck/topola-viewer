@@ -118,12 +118,6 @@ export function AncestorFanChart(props: Props) {
     setHoveredPlace(undefined);
     dismissPopupSoon();
   };
-  const movePopup = (event: React.MouseEvent<SVGElement>) => {
-    // Move without remeasuring or repainting the chart's sectors.
-    setPopup((current) =>
-      current ? {...current, x: event.clientX, y: event.clientY} : current,
-    );
-  };
   const personPopup = (
     person: JsonIndi,
     event: React.MouseEvent<SVGElement>,
@@ -325,8 +319,9 @@ export function AncestorFanChart(props: Props) {
     const spacing = 13;
     const startY = -((allLines.length - 1) * spacing) / 2;
     // Inner sectors follow circular arcs; the outer sectors keep radial, straight labels.
-    const rotation =
-      generation >= 5 ? middle - 90 + (middle < 0 ? 180 : 0) : middle;
+    const radialRotation = middle - 90 + (middle < 0 ? 180 : 0);
+    // Normalize all straight labels to an upright reading direction.
+    const rotation = ((radialRotation + 90 + 360) % 180) - 90;
     const curvedPath = (radius: number) => {
       const clockwise = Math.abs(middle) <= 90;
       const from = clockwise ? start : end;
@@ -360,7 +355,6 @@ export function AncestorFanChart(props: Props) {
           .join(' ')}
         onClick={(event) => handleClick(event, person)}
         onMouseEnter={(event) => personPopup(person, event, 'birth')}
-        onMouseMove={movePopup}
         onMouseLeave={clearHover}
         style={{cursor: 'pointer'}}
       >
@@ -650,8 +644,7 @@ export function AncestorFanChart(props: Props) {
                   y: event.clientY,
                 });
               }}
-              onMouseMove={movePopup}
-              onMouseLeave={dismissPopupSoon}
+                    onMouseLeave={dismissPopupSoon}
             >
               <circle
                 r={8}
@@ -669,8 +662,7 @@ export function AncestorFanChart(props: Props) {
             onMouseEnter={
               root ? (event) => personPopup(root, event, 'birth') : undefined
             }
-            onMouseMove={movePopup}
-            onMouseLeave={clearHover}
+                onMouseLeave={clearHover}
             style={{cursor: root ? 'pointer' : 'default'}}
           >
             <circle
