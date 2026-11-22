@@ -83,8 +83,8 @@ export function SidePanel({
   const tabs = [
     {
       menuItem: intl.formatMessage({
-        id: 'tab.info',
-        defaultMessage: 'Info',
+        id: 'tab.details',
+        defaultMessage: 'Details',
       }),
       render: () => (
         <Details
