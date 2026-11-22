@@ -342,12 +342,12 @@ export function AncestorFanChart(props: Props) {
         <path
           d={fanSectorPath(inner, outer, start, end)}
           fill={personFill(person, generation, props.colors)}
-          stroke={isSelected ? '#718699' : '#a7a7a7'}
-          strokeWidth={isSelected ? 2 : 0.85}
+          stroke={isSelected ? '#d17900' : '#a7a7a7'}
+          strokeWidth={isSelected ? 3 : 0.85}
         />
         <g
           transform={`translate(${x} ${y}) rotate(${rotation})`}
-          fontFamily="Arial, sans-serif"
+          className="fan-labels"
           textAnchor="middle"
           dominantBaseline="middle"
         >
@@ -385,7 +385,7 @@ export function AncestorFanChart(props: Props) {
                       }
                     }}
                     onMouseLeave={() => setHoveredPlace(undefined)}
-                    style={{cursor: 'crosshair'}}
+                    style={{cursor: 'pointer'}}
                   >
                     {line.date ? ' · ' : ''}
                     {line.place}
@@ -394,6 +394,16 @@ export function AncestorFanChart(props: Props) {
               </text>
             );
           })}
+          {showId && (
+            <text
+              className="fan-identification"
+              y={startY + (totalLines - 1) * spacing}
+              fontSize={8}
+              fontWeight="normal"
+            >
+              {person.id}
+            </text>
+          )}
         </g>
       </g>
     );
