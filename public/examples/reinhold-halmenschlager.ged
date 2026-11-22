@@ -1,0 +1,1369 @@
+﻿0 HEAD
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 LANG German
+1 SOUR MYHERITAGE
+2 NAME MyHeritage Family Tree Builder
+2 VERS 5.5.1
+2 _RTLSAVE RTL
+2 CORP MyHeritage.com
+1 DEST MYHERITAGE
+1 DATE 21 NOV 2026
+1 FILE Exported by MyHeritage.com from Halmenschlager Family Tree in Halmenschlager Web Site on Sat, 21 Nov 2026
+1 _PROJECT_GUID 2R3T8EE6-09A0-VE4V-6KN0-6KN0A9XE426E
+1 _EXPORTED_FROM_SITE_ID 1762600618
+0 @I500001@ INDI
+1 _UPD 8 NOV 2026 14:30:09 GMT -0600 
+1 NAME Franz /Halmenschlager/
+2 GIVN Franz
+2 SURN Halmenschlager
+1 SEX M
+1 BIRT
+2 DATE 28 OCT 1936
+2 PLAC Dietmanns
+2 NOTE <p>Dietmanns Taufbuch 01/04 Index H<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/01%252F04/?pg=132<br />1936 Halmenschlager Franz, 28. X. [28.10.1936]</p>
+1 DEAT Y
+2 DATE 19 OCT 2014
+2 PLAC Wien
+2 NOTE <p>Verstorbenensuche<br />https://www.friedhoefewien.at/verstorbenensuche-detail?fname=Franz+Halmenschlager&amp;id=0A39A.HM8%3C&amp;fdate=2014-11-14&amp;c=022&amp;hist=false&amp;initialId=0A39A.HM8%3C
+3 CONC <br />Halmenschlager, Franz<br />Geboren: 28.10.1936<br />Verstorben: 19.10.2014<br />Bestattungsdatum: 14.11.2014<br />Alter: 77<br />Friedhof Jedlesee, Gruppe:12 Reihe:3 Nummer:11<br />Weiters in di
+3 CONC esem Grab bestattet: Minarik Helene, Minarik Andreas, Minarik Gisela</p>
+1 BURI lt. Verstorbenensuche
+2 DATE 14 NOV 2014
+2 PLAC Friedhof Jedlesee
+1 FAMS @F500001@
+1 FAMC @F500022@
+1 RIN MH:I500001
+1 _UID 6AEE024EED23E9D2E9F520E2201E5030
+0 @I500002@ INDI
+1 _UPD 8 NOV 2026 12:58:05 GMT -0600 
+1 NAME Mathilde /Wagner/
+2 GIVN Mathilde
+2 SURN Wagner
+1 SEX F
+1 FAMS @F500001@
+1 FAMC @F500002@
+1 RIN MH:I500002
+1 _UID 6AEE024F00F9F9D3E9F520E2201E5030
+0 @I500003@ INDI
+1 _UPD 6 NOV 2026 10:38:45 GMT -0600 
+1 NAME Reinhold /Halmenschlager/
+2 GIVN Reinhold
+2 SURN Halmenschlager
+1 SEX M
+1 FAMC @F500001@
+1 RIN MH:I500003
+1 _UID 6AEE024F098F29D5E9F520E2201E5030
+0 @I500004@ INDI
+1 _UPD 13 NOV 2026 09:45:50 GMT -0600 
+1 NAME Ignaz /Wagner/
+2 GIVN Ignaz
+2 SURN Wagner
+2 _FORMERNAME Ignatius
+1 SEX M
+1 BIRT
+2 DATE 4 JUL 1911
+2 PLAC Germanns 9
+2 NOTE <p>Gro&szlig;globnitz Taufbuch 01/07 fol. 88<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/01%252F07/?pg=91<br />1911. Geboren am 4. [4.7.1911] getauft am 6. Juli<br />
+3 CONC Priester: Joh. Weber Pf.<br />+ Ignatius<br />katholisch, m&auml;nnlich, ehelich<br />Vater: Wagner Leopold, kath. Bauer in Germanns, ehel. Sohn d. Ignaz Wagner, Bauers in Germanns et ux Katharina geb
+3 CONC . Russ v Rudmanns. 14.10.1861<br />Mutter: Maria ux kathol. ehel. Tochter d. Josef Wieser, Bauers in Gerweis 25, Pf. Echsenbach et ux. Theresia geb. Polzer v. Gr. Globnitz. 9.2.1873<br />Ort: Germanns
+3 CONC  9<br />Pathen: in Thaures 18, kathol. Bauer in Pf. Franzen<br />Hebamme: Thekla Steininger in Wildings ungepr.<br />Anmerkung: 28.11.1899<br />[Nachtrag] Copul. hier am 22.2.1938<br />[Nachtrag] Gest
+3 CONC orben am 6.1.1979 in Zwettl N&Ouml; St. A. Zwettl Nr. 5/1979</p>
+1 DEAT Y
+2 DATE 6 JAN 1979
+2 NOTE lt. Taufbuch
+2 AGE 67
+1 FAMS @F500002@
+1 FAMC @F500003@
+1 RIN MH:I500004
+1 _UID 6AF0C63D4B8FDDCF1799D0739F20543A
+0 @I500005@ INDI
+1 _UPD 13 NOV 2026 11:56:19 GMT -0600 
+1 NAME Theresia /Reuberger/
+2 GIVN Theresia
+2 SURN Reuberger
+2 _MARNM Wagner
+1 SEX F
+1 BIRT
+2 DATE 14 OCT 1912
+2 PLAC Germanns 20
+2 NOTE <p>Gro&szlig;globnitz Taufbuch 01/07 fol. 98<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/01%252F07/?pg=102<br />Geboren am 14 getauft [14.10.1912] am 15 October 1912<
+3 CONC br />Priester: Joh. Weber Pf.<br />Theresia<br />[Nachtrag] +10.3.2009 lt. StA Zwettl N&Ouml; 61/2009<br />katholisch, weiblich, ehelich<br />Vater: Reuberger Ignaz, kathol. Bauer in Germanns, ehel. S
+3 CONC ohn d +Johann Reuberger gew. Zimmermanns daslebst et ux. Johanna, geb. Lunzer v Germanns, 30.1.1880<br />Mutter: Juliana ux katholische Tochter d. T&uuml;chler Franz Bauer in Ob. Rosenauerwald, Pf. Et
+3 CONC zen et ux Theresia geb. Kropfreiter v. Ob. Rosenauerwald. 30.5.1878<br />Ort: Germanns 20<br />Pathen: Anna Lunzerbacher B&auml;urin in Germanns 19<br />Hebamme: Thekla Steininger aus Wildings ungepr.
+3 CONC <br />Anmerkung: 23.11.1909<br />[Nachtrag] Copul hier am 22.2.1938 mit Wagner Ignaz</p>
+1 DEAT Y
+2 DATE 10 MAR 2009
+2 PLAC Zwettl
+2 AGE 96
+2 CAUS lt. Nachtrag im Taufbuch
+1 CHR
+2 DATE 15 OCT 1912
+2 PLAC Pf. Großglobnitz
+2 NOTE Godparents:Anna Lunzerbacher Germanns 19
+1 FAMS @F500002@
+1 FAMC @F500004@
+1 RIN MH:I500005
+1 _UID 6AF0C63D70058DD31799D0739F20543A
+0 @I500006@ INDI
+1 _UPD 13 NOV 2026 12:22:56 GMT -0600 
+1 NAME Leopold /Wagner/
+2 GIVN Leopold
+2 SURN Wagner
+1 SEX M
+1 BIRT
+2 DATE 14 OCT 1861
+2 PLAC Germanns 9
+2 NOTE <p>Gro&szlig;globnitz Taufbuch 01/05 fol. 138<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/01%252F05/?pg=141<br />1861. 14. Okt. geb [14.10.1861] 15. Okt get.<br />Tau
+3 CONC fender Anton Steininger Pfarrer<br />Leopoldus<br />katholisch, m&auml;nnlich, ehelich<br />Vater: Wagner Ignaz kath. Religion Bauer<br />Mutter: Katharina ux. kath. Rel. geb. des Leopold Prei&szlig; 
+3 CONC Bauers in Rudmanns u der Josefa ux. geb. Weib eben daher<br />Ort: Germanns 9<br />[Haus und Hof https://huh.oefr.at/karte/?id=54704<br />&nbsp;Gemeinde: Zwettl-Nieder&ouml;sterreich<br />&nbsp;Aktuel
+3 CONC le Adresse: Germanns 9<br />&nbsp;Adresse um 1820: &nbsp;Germanns 9<br />&nbsp;Besitzer um 1820: Wagner Josef<br />&nbsp;Besitzer um 1787: Widhalm Lorenz<br />]<br />Pathen: Anton P&ouml;ll Bauer in H
+3 CONC &ouml;rmanns Anna uxor.<br />Hebamme: Elisabeth Hofbauer B&auml;urin in Wilding 6 ungepr&uuml;ft<br />[Nachtrag] Gestorben am 11.9.1946 in Germanns 9 St. A. Gr. Globnitz Nr. 42/1946</p>
+1 DEAT Y
+2 DATE 11 SEP 1946
+2 PLAC Germanns 9
+2 NOTE lt. Nachtrag im Taufbuch
+2 NOTE <p>Gro&szlig;globnitz Sterbebuch 03/06 Index W<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/03%252F06/?pg=189<br />1946, Wagner Leopold, Germanns 9, fol. 181 [nicht on
+3 CONC line]</p>
+2 AGE 84
+1 CHR
+2 DATE 15 OCT 1861
+2 PLAC Pf. Großglobnitz
+2 NOTE Godparents:Anton Pöll Hörmanns, Anna
+1 FAMS @F500003@
+1 FAMC @F500005@
+1 RIN MH:I500006
+1 _UID 6AF0C63D97935DD61799D0739F20543A
+0 @I500007@ INDI
+1 _UPD 14 NOV 2026 12:37:51 GMT -0600 
+1 NAME Maria /Wieser/
+2 GIVN Maria
+2 SURN Wieser
+2 _MARNM Wagner
+1 SEX F
+1 BIRT
+2 DATE 9 FEB 1873
+2 PLAC Gerweis 23
+2 NOTE <p>Echsenbach Taufbuch 01/06 fol. 77<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/echsenbach/01%252F06/?pg=81<br />1873. &nbsp;Am 9ten Februar 873 [9.2.1873] geboren am 10. getauft<
+3 CONC br />Taufender: Leop. Karner Pfarer<br />katholisch, weiblich, ehelich<br />Vater: Josef Wieser, kathol. Bauer in Gerweis 23<br />Mutter: Theresia ux. kathol. ehel. Tochter des Michael Polzer Baues zu
+3 CONC  Gro&szlig;globnitz 21, u. der Juliana ux. geb. Kolm von Jagenbach<br />Ort: Gerweis 23<br />Pathen: Maria Beinstingl (alias Poinstingl) kath. Bauerswitwe in Gerweis<br />Hebamme: Maria Schlingenschl&
+3 CONC ouml;gl, Ausnehmerinswitwe in Gerweis ungepr&uuml;ft<br />Anmerkung: Obwohl die Eltern dieses Kindes "Maria", noch nicht durch volle 6 Monate verehlicht sind :/ seit 14 J&auml;nner 873 /: so bekennt s
+3 CONC ich doch Josef Wieser durch seine eigenh&auml;ndige Unterschrift, u. in Gegenwart der beiden mitgefertigten Zeugen als vater des Kindes.<br />Josef Weiser Vater des Kindes<br />Franz Beinstingl led. B
+3 CONC auerssohn v. Gerweis<br />Georg Beinstingl als Zeuge Kleinh&auml;usler in Echsenbach als Zeuge</p>
+1 DEAT Y
+2 DATE 24 APR 1941
+2 PLAC Germanns 9
+2 NOTE <p>Gro&szlig;globnitz Sterbebuch 03/06 Index W<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/03%252F06/?pg=189<br />1941. Wagner Maria v. Germ 9 (H&ouml;rm.) +24.4. [24
+3 CONC .4.1941] fol. 163 [nicht online]</p>
+1 CHR
+2 DATE 10 FEB 1873
+2 PLAC Pf. Echsenbach
+2 NOTE Godparents:Maria Beinstingl Gerweis
+1 FAMS @F500003@
+1 FAMC @F500006@
+1 RIN MH:I500007
+1 _UID 6AF0C63DAEFE2DD91799D0739F20543A
+0 @I500009@ INDI
+1 _UPD 17 NOV 2026 09:37:58 GMT -0600 
+1 NAME Ignaz /Reuberger/
+2 GIVN Ignaz
+2 SURN Reuberger
+1 SEX M
+1 BIRT
+2 DATE 31 JAN 1880
+2 PLAC Wildings 13
+2 NOTE <p>Gro&szlig;globnitz Taufbuch 01/06 fol. 58<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/01%252F06/?pg=61<br />1880. 31. J&auml;nner geb. u. get. [31.1.1880]<br />Tau
+3 CONC fender: Ant. Pfeisinger<br />Ignatius<br />katholisch, m&auml;nnlich, ehehlich<br />Vater: Reuberger Johann kath. ehl. Zimmermann<br />Mutter: Johanna ux. kath. Rel. Geb. des k. Georg Lunzer Bauers in
+3 CONC  Germanns u. der k. A. M. ux. geb. [...]s von Reichenbach<br />Ort: Wildings 13<br />Pathen: Leopold Trappl ehel. Bauer in Germanns<br />Hebamme: Anna Bruckner Inwohnerin in H&ouml;rmanns ungepr&uuml;
+3 CONC ft<br />Anmerkung: hat die Ehe am 23.11.1909 mit Juliana T&uuml;chler in Stadt Zwettl geschlossen</p>
+1 DEAT Y
+2 DATE 3 NOV 1959
+2 PLAC Germanns 20
+2 NOTE lt. Nachtrag im Trauungsbuch
+1 FAMS @F500004@
+1 FAMC @F500035@
+1 NOTE <p style="text-align: left;" dir="ltr">Bauer in Germanns 20</p>
+1 RIN MH:I500009
+1 _UID 6AF0C63DE7E25DDE1799D0739F20543A
+0 @I500010@ INDI
+1 _UPD 16 NOV 2026 10:46:09 GMT -0600 
+1 NAME Juliana /Tüchler/
+2 GIVN Juliana
+2 SURN Tüchler
+2 _MARNM Reuberger
+1 SEX F
+1 BIRT
+2 DATE 30 MAY 1878
+2 PLAC Oberrosenauerwald 39
+2 NOTE <p>Etzen Taufbuch 01/03 fol. 65<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/etzen/01%252F03/?pg=68<br />Geboren am 30. i:e: drei&szlig;igsten [30.5.1878] und getauft am 31. Mai 187
+3 CONC 8<br />Taufender: P. Bernard Semler [...]<br />Juliana<br />katholisch, weiblich, ehelich<br />Vater: T&uuml;chler Franz, Bauer in Oberrosenauerwald 39. ehel. Sohn des Michael T&uuml;chler, Bauers in 
+3 CONC Oberrosenauerwald, und dessen Ehegattin: Anastasia, geb. Pichler aus Oberrosenauerwald; alle katholisch<br />Mutter: Theresia, ehel. Tochter des Michael Kropfreiter, Bauers in Oberrosenauerwald, und d
+3 CONC essen Ehegattin: Barbara, geb. Waller aus Gr&ouml;tschen; alle katholisch<br />Ort: Oberrosenauerwald 39<br />Pathen: Franz [...] Bauer in Oberrosenauerwald 16 und dessen Ehegattin Johanna<br />Hebamm
+3 CONC e: Barbara Kropfreiter, verehelichte B&auml;uerin in Oberrosenauerwald 48, ungepr&uuml;ft<br />Anmerkung: die Eltern dieses Kindes wurden getraut in Gro&szlig;-Gerungs am 22. Februar 1876<br />[Nachtr
+3 CONC ag] Getraut am 23. Novemb. 1909 in Zwettl N. Oe. mit Reuberger Ignaz in Germanns 20.<br />[Nachtrag] Eingefahren[?] den 8. Juli 1878 Bandion [...]</p>
+1 DEAT Y
+2 NOTE kein Hinweis zu Sterbedatum
+1 CHR
+2 DATE 31 MAY 1878
+2 PLAC Pf. Etzen
+2 NOTE Godparents:Franz [...] Oberrosenauerwald, Johanna
+1 FAMS @F500004@
+1 FAMC @F500034@
+1 RIN MH:I500010
+1 _UID 6AF0C63E0B32DDE21799D0739F20543A
+0 @I500011@ INDI
+1 _UPD 18 NOV 2026 08:24:44 GMT -0600 
+1 NAME Ignaz /Wagner/
+2 GIVN Ignaz
+2 SURN Wagner
+1 SEX M
+1 BIRT
+2 DATE 20 JUL 1821
+2 PLAC Germanns 9
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/01%252F04/?pg=105
+2 NOTE <p>Gro&szlig;globnitz Taufbuch 01/04 fol. 100<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/01%252F04/?pg=105<br />1821. July 20 [20.7.1821]<br />Ort: Germanns 9<br />K
+3 CONC nab, ehelich<br />Vater: Joseph [...] Bauer<br />Mutter: Marianna geb. Philipp [...]<br />Pathen: [...]</p>
+1 DEAT Y
+2 DATE 22 JUL 1885
+2 PLAC Germanns 9
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/03%252F06/?pg=4
+2 NOTE <p>Gro&szlig;globnitz Sterbebuch 03/06 fol. 2<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/03%252F06/?pg=4<br />Sterben: 22. Juli 1885 [22.7.1885]<br />Beerdigung: 24.
+3 CONC  Juli<br />Priester: Alois Riss Pfarrer<br />Ignaz Wagner, kath. R., Wirtschaftsbesitzer [Wirt?]<br />Ort: Germanns 9<br />katholisch, m&auml;nnlich, verehelicht, 64 Jahre<br />Beerdigung: diespfarrli
+3 CONC cher Gottesacker<br />Krankheit: Magenblutung<br />Anmerkung: Ob repentinam mortem non provisa [wegen des pl&ouml;tzlichen Todes nicht versehen]</p>
+2 CAUS Magenblutung
+1 FAMS @F500005@
+1 NOTE <p>Vater (VVVVM): Josef Wagner<br />Mutter (MVVVM): Theresia geb. Widhalm</p>
+1 RIN MH:I500011
+1 _UID 6AF0C63E27EDBDE51799D0739F20543A
+0 @I500012@ INDI
+1 _UPD 18 NOV 2026 08:29:24 GMT -0600 
+1 NAME Katharina /Preiß/
+2 GIVN Katharina
+2 SURN Preiß
+2 _MARNM Wagner
+1 SEX F
+1 BIRT
+2 DATE 7 JUN 1826
+2 PLAC Rudmanns 63
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/zwettl-stift/01%252F03/?pg=115
+2 NOTE <p>Zwettl-Stift Taufbuch 01/03 fol. 138<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/zwettl-stift/01%252F03/?pg=115<br />den 7ten Juny 826 [7.6.1826]<br />Baptizans: P. Ludovicus Tu
+3 CONC rner P.Z.<br />Catharina<br />Ort: Rudmanns 63<br />katholisch, weiblich, ehelich<br />Vater: Leopold Prei&szlig; Bauer in Rudmanns<br />Mutter: Jospeha, Tochter des Georg Wei&szlig; Bauer in Rudmanns
+3 CONC  und A. M. conj: geborene Zeugswetter zu Haslau<br />Pathen: Jakob Wimmer Bauer in Rohrenreith und Katharina uxor<br />Hebamme: Theresia Rosenauer von Rudmanns ungepr&uuml;ft</p>
+1 DEAT Y
+2 DATE 2 FEB 1898
+2 PLAC Germanns 9
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/03%252F06/?pg=40
+2 NOTE <p>Gro&szlig;globnitz Sterbebuch 03/06 fol. 38<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/03%252F06/?pg=40<br />Sterben: am 2ten Februar 1898 [2.2.1898] 5 Uhr fr&uum
+3 CONC l;h<br />Beerdigung: 4ter Februar<br />Priester: Moriz Rihs Pfarrer<br />Wagner Katharina kath. Rel., Ausnehmerin, hinterlassene Wittwe des Ignaz Wagner, Bauers in Germanns 9, ehel. Tochter des Leopol
+3 CONC d Prei&szlig;, Bauers in Rudmanns et ux. Josefa, geb. Wei&szlig;, ebendaher; geb. 7.6.1826<br />Ort: Germanns 9<br />katholisch, weiblich, unverehelicht, 71 Jahre 7 Monate 25 Tage<br />Beerdigung: die
+3 CONC spfarrlicher Gottesacker<br />Krankheit: Lungenemphysem<br />Anmerkung: Prov. 23.12.1897</p>
+2 CAUS Lungenemphysem
+1 BURI lt. Sterbebuch
+2 DATE 4 FEB 1898
+2 PLAC Friedhof Großglobnitz
+1 FAMS @F500005@
+1 NOTE <p>Vater (VMVVM): Leopold Prei&szlig;<br />Mutter (MMVVM): Josefa Wei&szlig; d. Georg u. Anna Maria geb. Zeugswetter</p>
+1 RIN MH:I500012
+1 _UID 6AF0C63E3ED06DE81799D0739F20543A
+0 @I500015@ INDI
+1 _UPD 18 NOV 2026 15:15:55 GMT -0600 
+1 NAME Josef /Wieser/
+2 GIVN Josef
+2 SURN Wieser
+1 SEX M
+1 BIRT
+2 DATE 7 FEB 1833
+2 PLAC Gerweis 23
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/echsenbach/01%252F04/?pg=98
+2 NOTE <p>Echsenbach Taufbuch 01/04 fol. 106<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/echsenbach/01%252F04/?pg=98<br />1833. den 7ten Februar [7.2.1833] um 3 Uhr Nachmittag geb. um 8 U
+3 CONC hr Abends getauft.<br />Joseph<br />Gerweis 23<br />katholisch, m&auml;nnlich, ehelich<br />Vater: Michael Wieser, Bauer zu Gerweis. kth<br />Mutter: Anna Maria geboren des Georg Berger, Bauer von Kai
+3 CONC nraths, und der Elisabeth geboren Emmen[?] kth.<br />Pathen: Florian B&uuml;hl Bauer von Echsenbach<br />Hebamme: Theresia Mader ungpft [...]</p>
+1 DEAT Y
+2 DATE 8 MAR 1904
+2 PLAC Kainraths 8
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/echsenbach/03%252F05/?pg=199
+2 NOTE <p>Echsenbach Sterbebuch 03/05 fol. 172<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/echsenbach/03%252F05/?pg=199<br />Sterben: 1904. 8. M&auml;rz [8.3.1904] 1h fr&uuml;h<br />Begr&
+3 CONC auml;bnis: 10. M&auml;rz<br />Priester: W Gigl Pfr<br />Josef Wieser, verwitw. Inwohner in Kainraths 8, geb. in Gerweis, ehel. Sohn des Michael Wieser, Bauers in Gerweis 23 und der A Maria geb. Berger
+3 CONC  von Kainraths<br />Ort: Kainraths 8<br />katholisch, m&auml;nnlich, unverheiratet, 71 Jahre 1 Monat 1 Tag geb am 7.2.1833<br />Beerdigung: hies. pfarrl. Friedhof<br />Krankheit: lt. Bschb. dto 9.3.19
+3 CONC 03: Erweiterung der Bronchien<br />Anmerkung: 6.3.1904</p>
+2 CAUS Erweiterung der Bronchien
+1 BURI
+2 DATE 10 MAR 1904
+2 PLAC Friedhof Echsenbach
+1 FAMS @F500006@
+1 NOTE <p>Vater (VVMVM): &nbsp;Michael Wieser, Bauer zu Gerweis<br />Mutter (MVMVM): &nbsp;Anna Maria des Georg Berger und der Elisabeth</p>
+1 RIN MH:I500015
+1 _UID 6AF0C63E8E4CDDF01799D0739F20543A
+0 @I500016@ INDI
+1 _UPD 18 NOV 2026 15:23:29 GMT -0600 
+1 NAME Theresia /Polzer/
+2 GIVN Theresia
+2 SURN Polzer
+2 _MARNM Wieser
+1 SEX F
+1 BIRT
+2 DATE 31 AUG 1842
+2 PLAC Großglobnitz 21
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/01%252F05/?pg=46
+2 NOTE <p>Gro&szlig;globnitz Taufbuch 01/05 fol. 43<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/01%252F05/?pg=46<br />1842. 31. August geb. [31.8.1842] u get.<br />Theresia 
+3 CONC Polzer<br />katholisch, weiblich, ehehlich<br />Vater: Polzer Michael, Bauer<br />Mutter: Juliana ux. Geboren des Johann Kolm Bauers zu Jagenbach /: Pf. Rieggers :/ und dessen Ehe[...] Maria geb. Helm
+3 CONC reich von Rieggers<br />Ort: Gro&szlig;globnitz 21<br />Pathen: Peter Tod, Bauer zu Gro&szlig;globnitz<br />Hebamme: Magdalena Bruckner Ausnehmersweib zu [...]</p>
+1 DEAT Y
+2 DATE 16 AUG 1888
+2 PLAC Gerweis 34
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/echsenbach/03%252F05/?pg=111
+2 NOTE <p>Echsenbach Sterbebuch 03/05 fol. 86<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/echsenbach/03%252F05/?pg=111<br />Sterben: Am 16. August 1888 [16.8.1888]<br />Beerdigung: Am 18.
+3 CONC  August<br />Priester: Leop. Rasmer[?] Pfarrer<br />Theresia Wieser, Ehegattin des Josef Wieser, Bauer in Gerweis 34. ehel. Tochter des Muchael Polzer, gew. Bauer in Gro&szlig;globnitz 21 u. des Julia
+3 CONC na ux. geb. Kolm,<br />[Nachtrag] 15 J. in matrimoniam<br />Ort: Gerweis 34<br />katholisch, weiblich, verehelicht, 45 Jahre 11 Monate 16 Tage<br />Beerdigung: hies. pfarrl. Friedhof<br />Krankheit: M
+3 CONC agenkrebs laut Todtenbeschauzettel ddto 6. Aug.<br />Anmerkung: Wurde am 3. August mit den heil. Sterbsakramenten versehen</p>
+2 CAUS Magenkrebs
+1 BURI lt. Sterbebuch
+2 DATE 18 AUG 1888
+2 PLAC Friedhof Echsenbach
+1 FAMS @F500006@
+1 NOTE <p dir="ltr" style="text-align: left;">Vater (VMMVM): &nbsp;Michael Polzer Bauers in Gro&szlig;globnitz<br />Mutter (MMMVM): Juliana geb. Kolm von Jagenbach</p>
+1 RIN MH:I500016
+1 _UID 6AF0C63EA6A67DF41799D0739F20543A
+0 @I500054@ INDI
+1 _UPD 21 NOV 2026 05:20:11 GMT -0600 
+1 NAME Franz /Halmenschlager/
+2 GIVN Franz
+2 SURN Halmenschlager
+1 SEX M
+1 BIRT
+2 DATE 20 NOV 1908
+2 PLAC Neusiedl 7
+2 NOTE <p>Waldenstein Taufbuch 01/08 fol. 15<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/01%252F08/?pg=19<br />1908. Geboren am zwanzigsten /: 20 :/ [20.11.1908] und getauft a
+3 CONC m zweiundzwanzigsten /: 22 :/ November<br />Andreas Kainz Pfr.<br />Franz /: 3. Dezember :/<br />katholisch, m&auml;nnlich, ehelich<br />Vater: Karl Halmenschlager, kath. Rel. Bauer in Neusiedl 7, ehe
+3 CONC l. Sohn des Franz Halmenschlager gew. Bauers daselbst u. der Juliane ux. geb. Schnabl von Neusiedl, beide kath. u. verstorben. geb. 24.10.1870<br />Mutter: Theresia, kath. Rel. eh. Tochter des Anton H
+3 CONC almenschlager, gew. Bauers in Siebenlinden 28 u. der Maria u. geb. Semper von Neusiedl, beide kath- u. verstorben. geb. 19.9.1876<br />Ort: Neusiedl 7<br />Paten: Lorenz Gallhofer Bauer in Kl. Wolfger
+3 CONC s 15, Pf. Schweiggers kath. Rel.<br />Hebamme: Juliane Rosenstingl, Tagl&ouml;hnerin in Waldenstein ungepr&uuml;ft<br />Anmerkung: kopuliert in Waldenstein am 7.2.1899<br />[Anmerkung] getraut in Diet
+3 CONC manns 18.2.1936 mit Rosa Billek</p>
+1 CHR
+2 DATE 22 NOV 1908
+2 PLAC Pf. Waldenstein
+2 NOTE Godparents:Lorenz Gallhofer Bauer
+1 DEAT Y
+2 DATE 1995
+2 PLAC Hörmanns
+2 NOTE nicht gesichert ob Hörmanns 47
+2 NOTE <p>Dietmanns Sterbebuch 03/03 Index H<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/03%252F03/?pg=104<br />Halmenschlager Franz, H [nicht gesichert ob H&ouml;rmanns 47], 19
+3 CONC 95</p>
+1 FAMS @F500022@
+1 FAMC @F500024@
+1 RIN MH:I500054
+1 _UID 6AF0DBD17861B5C330010F6BA729E284
+0 @I500055@ INDI
+1 _UPD 8 NOV 2026 14:55:29 GMT -0600 
+1 NAME Rosa /Billek/
+2 GIVN Rosa
+2 SURN Billek
+1 SEX F
+1 BIRT
+2 DATE 28 JUN 1909
+2 PLAC Dietmanns 75
+2 NOTE <p>Dietmanns Taufbuch 01/03 fol. 280<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/01%252F03/?pg=283<br />Geboren am 28. Juni um 1/2 9 Uhr vormittag [28.6.1909] und am 4. J
+3 CONC uli getauft 1909<br />Karl Dvorak Pfarrer<br />Rosa [Anmerkung] + am 21.9.1970<br />katholisch, weiblich, ehelich<br />Vater: Billek Josef, kath. Weichenw&auml;chter in Dietmanns, ein [ehel gestrichen
+3 CONC ] Sohn der Theresia Billek, (geb. in Wien Alservorstadt)<br />Mutter: Juliana, ux. kath. ehel. Tochter des Franz Anderl, Kleinh&auml;uslers in H&ouml;rmanns u. dessen ux. Marie, geb. Stiedl<br />Ort: 
+3 CONC Dietmanns 75<br />Pathen: Marie Sch&ouml;lm[?] kath. B&auml;uerin in Dietmanns<br />Hebamme: Katharina K&ouml;rndl, gep. Hebamme in Unter Wielands<br />Anmerkung: 20/2 73, 14/6 71, 21/11 98, am 18. II
+3 CONC . 1936 mit Franz Halmenschlager hier getraut</p>
+1 DEAT Y
+2 DATE 21 SEP 1970
+2 NOTE lt. Anmerkung im Taufbuch
+1 FAMS @F500022@
+1 FAMC @F500023@
+1 RIN MH:I500055
+1 _UID 6AF0DCF3A7B9AD6AE66CDEE49BE5B389
+0 @I500056@ INDI
+1 _UPD 21 NOV 2026 06:03:12 GMT -0600 
+1 NAME Josef /Billek/
+2 GIVN Josef
+2 SURN Billek
+1 SEX M
+1 BIRT
+2 DATE 20 FEB 1873
+2 PLAC Alservorstadt 195, Gebäranstalt
+2 NOTE <p>08., Alservorstadtkrankenhaus Taufbuch 01-101 fol 155<br />https://data.matricula-online.eu/de/oesterreich/wien/08-alservorstadtkrankenhaus/01-101/?pg=161<br />1873. Februar. geboren 20 [20.2.1873]
+3 CONC  getauft 21<br />Baptitzans: Joh. Boden[...] Curat<br />Josef<br />[Nachtrag] + 23. XII. 1956 in H&ouml;rmanns 47 Gerichtsbezirk Weitra. Pf.A. Gm&uuml;nd Nr 189/1956<br />katholisch, Knabe, unehelich<
+3 CONC br />Mutter: Theres. Billek<br />Pathen: Joh. Gruber [...]<br />Anmerkung: 5/12 40 [Taufschein ausgestellt?]</p>
+1 DEAT Y
+2 DATE 23 DEC 1956
+2 PLAC Hörmanns 47
+2 NOTE lt. Nachtrag im Taufbuch
+2 NOTE <p>Dietmanns Sterbebuch 03/03 Index B<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/03%252F03/?pg=95<br />Billek Josef, H&ouml;rmanns 47, 1956, fol. 114 (nicht online)<br /
+3 CONC >23.12.1956 in H&ouml;rmanns 47 lt. Nachtrag im Taufbuch</p>
+1 CHR
+2 DATE 21 FEB 1873
+2 NOTE Godparents:Johann Gruber
+1 FAMS @F500023@
+1 FAMC @F500026@
+1 RIN MH:I500056
+1 _UID 6AF0E1C197B24EC6C8FF40292B93FCD2
+0 @I500057@ INDI
+1 _UPD 21 NOV 2026 06:24:11 GMT -0600 
+1 NAME Juliana /Anderl/
+2 GIVN Juliana
+2 SURN Anderl
+1 SEX F
+1 BIRT
+2 DATE 14 JUN 1871
+2 PLAC Dietmanns 87
+2 NOTE <p>Dietmanns Taufbuch 01/03 fol. 46<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/01%252F03/?pg=48<br />den 14. Juni geboren und getauft. 1871 [14.6.1871]<br />Johann Schm[
+3 CONC ...]mayer Lokaplan<br />Juliana<br />katholisch, weiblich, unehelich<br />Vater: [andere Handschrift, Nachtrag]<br />Franz Anderl, Kleinh&auml;usler in H&ouml;rmanns kath<br />dass sich Franz Anderl [
+3 CONC ... wolbecants]<br />sich als Vater dieses im 3. Jahr [...] geborene Kindes erkl&auml;rt hat best&auml;tigen folgd. Unterschriften<br />Mutter:<br />Maria ledige eheliche Tochter des Jacob Stiedl [...
+3 CONC ] allhier und seines Eheweibes Johanna ehehlich geborene Vogler von Dietmanns alle katholisch<br />Ort: Dorf Dietmanns 87<br />Pathen: Ferdinand Stiedl Kleinh&auml;usler in Dietmanns und dessen Ehewei
+3 CONC b Theresia XXX<br />Hebamme: Theresia Dienstl Ausnehmerin in Dietmanns ungepr&uuml;ft<br />Anmerkung: Franz Stiedl Zeuge, Joseph [..] Zeuge</p>
+1 DEAT Y
+2 DATE 29 APR 1934
+2 PLAC Gmünd
+2 NOTE <p>Dietmanns Sterbebuch 03/03 fol. 82<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/03%252F03/?pg=84<br />Sterben: 29.4.1934<br />Beerdigung: 1.5.1934<br />Priester: Rup. H
+3 CONC auer Pfr.<br />Juliana Billek, Gattin des Josef Billek Pensionistner in H&ouml;rmanns 47, zust. nach H&ouml;rmanns, ehel. Tochter des Franz Anderl, Kleinh&auml;uslers in H&ouml;rmanns, und der Maria u
+3 CONC x., geb. Stiedl. Alle r&ouml;m.-kath.<br />katholisch, weiblich, verehelicht<br />62 Jahre 10 Monate 15 Tage, geb. 14.6.1871<br />Beerdigung: der hiesige Gottesacker<br />Krankheit: Zuckerkrankheit, H
+3 CONC erzschw&auml;che, lt. Tb.B.w. 30.IV.34<br />Anmerkung: Versehen im Spital in Gm&uuml;nd</p>
+2 CAUS Zuckerkrankheit, Herzschwäche
+1 CHR
+2 DATE 14 JUN 1871
+2 PLAC Pf. Dietmanns
+1 BURI lt. Sterbebuch
+2 DATE 1 MAY 1934
+2 PLAC Friedhof Dietmanns
+1 FAMS @F500023@
+1 FAMC @F500025@
+1 NOTE <p>[verstorbenes Kleinkind 1903-1903<br />&nbsp;Gm&uuml;nd - St. Stephan Taufbuch 01-14a fol. 12<br />&nbsp;https://data.matricula-online.eu/de/oesterreich/st-poelten/gmuend-st-stephan/01-14a/?pg=15<b
+2 CONC r />&nbsp;Geboren und notgetauft am neunten (9.) J&auml;nner nachmittags 1903 [9.1.1903]<br />&nbsp;die Hebamme kath. Kerndl<br />&nbsp;Theresia Billek +9.1.1903<br />&nbsp;katholisch, weiblich, eheli
+2 CONC ch<br />&nbsp;Vater: Josef Billek kath. Rel. Weichenw&auml;chter in Unter Wielands 19, geb. in Wien Alservorstadt 195 Findelhaus, Sohn der Theresia Billek - cetera ignota, geb 20.2.1873<br />&nbsp;Mut
+2 CONC ter: Juliana uxor kath. Rel. geb. in H&ouml;rmanns bei Dietmanns, [ehel. gestrichen] legit Tochter des Franz Anderl, Kleinh&auml;uslers in H&ouml;rmanns 47 u. ux. Maria geb Stiedl, ge. 14.6.1871<br />
+2 CONC &nbsp;Ort: Unter Wielands 19<br />&nbsp;Hebamme: Katharina Kerndl gepr&uuml;ft in Unter Wielands<br />&nbsp;Anmerkung: getr. 21.11.1898 in Dietmanns<br />]</p>
+<p>[verstorbenes Kleinkind 1908-1909<br
+2 CONC  />&nbsp;https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/01%252F03/?pg=277<br />]</p>
+1 RIN MH:I500057
+1 _UID 6AF0E2BE9EAD93A6FD9FF67783A81817
+0 @I500058@ INDI
+1 _UPD 14 NOV 2026 15:02:01 GMT -0600 
+1 NAME Theresia /Halmenschlager/
+2 GIVN Theresia
+2 SURN Halmenschlager
+1 SEX F
+1 BIRT
+2 DATE 19 SEP 1876
+2 PLAC Siebenlinden 28
+2 NOTE <p>Siebenlinden Taufbuch 01/02 fol. 39<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/siebenlinden/01%252F02/?pg=44<br />geboren u. getauft am neunzehnten / 19 / September 1876 [19.9.
+3 CONC 1876]<br />Edmund Dobesch Pf.<br />Theresia<br />[Nachtrag] + am 27. Oktober 1949 in Gr. Neusiedl<br />katholisch, weiblich, ehelich<br />Vater: Anton Halmenschlager, kath. Bauer in Siebenlinden, ehel
+3 CONC . Sohn des Ambros Halmenschlager, Bauers daselbst u. s. Ehew. Anna, geb. Weissensteiner, beide kath.<br />Mutter: Maria, ux. kath., ehel. Tochter des Anton Semper, Bauers in Neusiedl 21 u. s. Eheweibe
+3 CONC s Anna, geb. Semper, beide kath.<br />Ort: Siebenlinden 28<br />[https://huh.oefr.at/karte/?id=57839<br />&nbsp;Aktuelle Adresse: &nbsp; &nbsp; &nbsp; Siebenlinden 28<br />&nbsp;Adresse um 1820: &nbsp
+3 CONC ; &nbsp; &nbsp; &nbsp;Siebenlinden 28<br />&nbsp;Besitzer um 1820: &nbsp; &nbsp; &nbsp; Halmschlager Michael<br />&nbsp;Besitzer um 1787: &nbsp; &nbsp; &nbsp; Englmeir Anna Maria<br />]<br />Pathen: J
+3 CONC ohann Reinhart Bauer in Siebenlinden und s. Eheweibe Theresia<br />Hebamme: Rosina Schuh, Kleinhausbes.gattin in Siebenlinden, ungepft<br />Anmerkungen: getraut in Waldenstein am 8. Febr. 1875</p>
+1 DEAT Y
+2 DATE 27 OCT 1949
+2 PLAC Groß-Neusiedl
+2 NOTE lt. Nachtrag im Taufbuch
+1 CHR
+2 DATE 19 SEP 1876
+2 PLAC Pf. Siebenlinden
+2 NOTE Godparents:Johann Reinhart Siebenlinden, Theresia
+1 FAMS @F500024@
+1 FAMC @F500033@
+1 RIN MH:I500058
+1 _UID 6AF22C4ED25E96D8C5D7D23FE3763D04
+0 @I500059@ INDI
+1 _UPD 21 NOV 2026 05:46:37 GMT -0600 
+1 NAME Karl /Halmenschlager/
+2 GIVN Karl
+2 SURN Halmenschlager
+2 _FORMERNAME Baromäus
+1 SEX M
+1 BIRT
+2 DATE 24 OCT 1870
+2 PLAC Neusiedl 7
+2 NOTE <p>Waldenstein Taufbuch 01/06 fol. 91<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/01%252F06/?pg=95<br />geboren 24. Oktober [24.10.1870] u. getauft den 25. Oktober 1870
+3 CONC <br />Heinrich Panagl Coop<br />Karl (Barom&auml;us)<br />[Nachtrag] +12.11.1947 in Gr. Neusiedl 7<br />katholisch, m&auml;nnlich ehelich<br />Vater: Franz Halmenschlager Bauer in Neusiedl<br />Mutter
+3 CONC : Juliana kath. Tochter des Johann Schnabl u. seines Eheweibes AMaria geb. Eberl von Windhag<br />Ort: Neusiedl 7<br />Paten: Franz Schindler Bauer in Waldenstein, Maria Schindler uxor.<br />Hebamme: 
+3 CONC Theresia M[...]zinger Inwohnerin in Neusiedl ungepr&uuml;ft</p>
+1 DEAT Y
+2 DATE 12 NOV 1947
+2 PLAC Groß-Neusiedl 7
+2 NOTE lt. Nachtrag im Taufbuch
+1 FAMS @F500024@
+1 FAMC @F500027@
+1 RIN MH:I500059
+1 _UID 6AF22D53652DFED536BA2E68A9069549
+0 @I500060@ INDI
+1 _UPD 9 NOV 2026 14:42:50 GMT -0600 
+1 NAME Franz /Anderl/
+2 GIVN Franz
+2 SURN Anderl
+1 SEX M
+1 BIRT
+2 DATE 2 OCT 1850
+2 PLAC Hörmanns 47
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/01%252F02/?pg=124
+2 NOTE <p>[nicht gesichert, aber H&ouml;rmanns 47]<br />Dietmanns Taufbuch 01/02 fol. 107<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/01%252F02/?pg=124<br />Am 2. October gebore
+3 CONC n [2.10.1850], am 3. October getauft 1850<br />Johann Bi[...]gl in Waldenstein ex delegatione<br />Franz<br />katholisch, m&auml;nnlich, ehelich<br />Vater: Michael Anderl katholischer Relg. Schuhmach
+3 CONC ermeister<br />Mutter: Anna uxor [...] ehliche Tochter des Anton Kraus[?] Schuhmachermeister in Engelstein und seines Eheweibes Magdalena[...] gebor. D[...]wald von Engelstein<br />Ort: Dorf H&ouml;rm
+3 CONC anns 47<br />Pathen: Anton Hackl Schuhmachermeister in Altweitra u. sein Weib AMaria xxx<br />Hebamme: Magdalena Kogler Inwohnerin H&ouml;rmanns ungepr&uuml;ft</p>
+1 DEAT Y
+2 DATE 25 OCT 1934
+2 PLAC Hörmanns 47
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/03%252F03/?pg=85
+2 NOTE <p>Dietmanns Sterbebuch 03/03 fol. 83<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/03%252F03/?pg=85<br />Sterben: 25.10.1934<br />Beerdigung: 27.10.1934<br />Rup. Hauer Pf
+3 CONC r.<br />Franz Anderl, Privater, in H&ouml;rmanns 47, daselbst zust&auml;ndig, ehel. Sohn des Michael Anderl Schuhmachermeister in H&ouml;rmanns 47, und der Anna ux., geb. [Kand?] von Engelstein. Alle 
+3 CONC r&ouml;m.-kath.<br />Ort: H&ouml;rmanns 47<br />katholisch, m&auml;nnlich, Witwer<br />84 Jahre, 23 Tage, geb. 2.10.1850<br />Beerdigung: der hiesige Gottesacker<br />Krankheit: Herzmuskelentartung, H
+3 CONC erzl&auml;hmung, tl. Tb.-B. v. 26.10.1934<br />Anmerkungen: versehen</p>
+2 CAUS Herzmuskelentartung, Herzlähmung
+1 FAMS @F500025@
+1 RIN MH:I500060
+1 _UID 6AF2304A3D6723DF0B36F0A130B7225C
+0 @I500061@ INDI
+1 _UPD 9 NOV 2026 14:45:06 GMT -0600 
+1 NAME Maria /Stiedl/
+2 GIVN Maria
+2 SURN Stiedl
+1 SEX F
+1 BIRT
+2 DATE 30 AUG 1849
+2 PLAC Dietmanns 87
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/01%252F02/?pg=118
+2 NOTE <p>Dietmanns Taufbuch 01/02 fol. 101<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/01%252F02/?pg=118<br />am 30. August geboren und getauft 849 [30.8.1849]<br />Taufender: 
+3 CONC Johann Schmeger Lokalkaplan<br />Maria<br />katholisch, weiblich, ehelich<br />Vater: Jacob Stiedl katholischer Religion Kleinh&auml;usler<br />Mutter: Johanna uxor katholische eheliche Tochter des Ma
+3 CONC thias Mayer[?] Bauer in Dietmanns und seines Eheweibes AMaria einer geborenen H[...] in Dietmanns<br />Ort: Dorf Dietmanns 87<br />Pathen: Johann H&ouml;fenstock Kleinh&auml;usler in Dietmanns und Ann
+3 CONC a dessen Eheweib +++<br />Hebamme: Anna Zwettler Zimmermannseheweib in Dietmanns ungepr&uuml;ft</p>
+1 DEAT Y
+2 DATE 25 DEC 1912
+2 PLAC Hörmanns 47
+2 NOTE Dietmanns Sterbebuch 03/03 fol. 44 https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/03%252F03/?pg=46 Sterben: 25.12.1912 Beerdigung: 27.12.1912 Karl Dvorak Pfarrer Marie Anderl. ux
+3 CONC . des Franz Anderl Hausbesitzer in Hörmanns 47, eine ehel. Tochter des Jacob Stiedl, Ausnehmers in Dietmanns u. dessen ux. Johanna, geb Vogler Ort: Hörmanns 47 katholisch, weiblich, verehelicht 63 J
+3 CONC ahre 3 Monate 25 Tage Beerdigung: der hiesige Gottesacker Krankheit: Gehirnschlag lt. Tbz v. 26.12.12 Anmerkung: geb. am 30.8.1849
+2 NOTE <p>Dietmanns Sterbebuch 03/03 fol. 44<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/03%252F03/?pg=46<br />Sterben: 25.12.1912<br />Beerdigung: 27.12.1912<br />Karl Dvorak P
+3 CONC farrer<br />Marie Anderl. ux. des Franz Anderl Hausbesitzer in H&ouml;rmanns 47, eine ehel. Tochter des Jacob Stiedl, Ausnehmers in Dietmanns u. dessen ux. Johanna, geb Vogler<br />Ort: H&ouml;rmanns 
+3 CONC 47<br />katholisch, weiblich, verehelicht<br />63 Jahre 3 Monate 25 Tage<br />Beerdigung: der hiesige Gottesacker<br />Krankheit: Gehirnschlag lt. Tbz v. 26.12.12<br />Anmerkung: geb. am 30.8.1849</p>
+2 CAUS Gehirnschlag
+1 FAMS @F500025@
+1 RIN MH:I500061
+1 _UID 6AF230D1B42F1B71EB201E3CDDF54F94
+0 @I500062@ INDI
+1 _UPD 21 NOV 2026 06:02:20 GMT -0600 
+1 NAME Theresia Billek //
+2 GIVN Theresia Billek
+1 SEX F
+1 BIRT
+2 DATE 16 MAR 1856
+2 PLAC Alservorstadt 195, Gebäranstalt
+2 NOTE <p>08., Alservorstadtkrankenhaus Taufbuch 01-067 fol. 209<br />https://data.matricula-online.eu/de/oesterreich/wien/08-alservorstadtkrankenhaus/01-067/?pg=212<br />[Alservorstadt 195, Geb&auml;ranstal
+3 CONC t]<br />Baptizans: Johann Sedlak Cur. Ben.<br />Jahr 1856 im Monat M&auml;rz. Am 16. [16.3.1856]<br />Theresia<br />katholisch, M&auml;dchen, unehelich<br />Mutter: Antonia Billek<br />Pathen: Theresi
+3 CONC a Matio[...] K&ouml;chin am Hundsthurm 86</p>
+1 DEAT Y
+1 FAMS @F500026@
+1 RIN MH:I500062
+1 _UID 6AF2325E429BDAA3854054F98532619F
+0 @I500063@ INDI
+1 _UPD 21 NOV 2026 09:02:23 GMT -0600 
+1 NAME Franz /Halmenschlager/
+2 GIVN Franz
+2 SURN Halmenschlager
+1 SEX M
+1 BIRT
+2 DATE 26 JAN 1836
+2 PLAC Neusiedl 7
+2 NOTE <p>Waldenstein Taufbuch 01/05 fol. 61<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/01%252F05/?pg=53<br />am 26 J&auml;nner 1836 [26.1.1836] geb und get.<br />Joseph Stun
+3 CONC dner Cooperator<br />Franz Halmenschlager<br />[Nachtrag] +23.2.1889<br />katholisch, m&auml;nnlich, ehelich<br />Vater: Michael Halmenschlager Bauer<br />Mutter: Anna Maria geboren des + Martin Sempe
+3 CONC r[?] Bauers in Neusiedl und der + Theresia geborene Katzenschlager[?] von Neusiedl s Weibes<br />Ort: Neusiedl 7<br />Pathen: Mathias Tod Bauer in Neusiedl und sein Eheweib Juliane xxx<br />Hebamme: A
+3 CONC nna Maria Schnabl Bauersweib in Neusiedl ungepr&uuml;ft</p>
+1 DEAT Y
+2 DATE 23 FEB 1889
+2 PLAC Neusiedl 7
+2 NOTE <p>Waldenstein Sterbebuch 03/04 fol. 163<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/03%252F04/?pg=166<br />Sterben: 23. Februar 1889<br />Beerdigung: 25. Februar 1889<
+3 CONC br />Priester: Arbeiter Pfarr<br />Franz Halmenschlager, Bauer in Gro&szlig;-Neusiedl<br />[Nachtrag] cop. 19/5 863<br />Gr. Neusiedl 7<br />katholisch, m&auml;nnlich, verehelicht, 53 Jahre 28 Tage<br
+3 CONC  />Beerdigung: der pfarrliche Gottesacker<br />Totenbeschau: Beschauzettel Nr 8 /: [.] 34 :/ Lungentuberculose<br />Anmerkungen: 8/2 mit allen HH Sterbsakramente versehen</p>
+2 CAUS Lungentuberculose
+1 BURI lt. Sterbebuch
+2 DATE 25 FEB 1889
+2 PLAC Friedhof Waldenstein
+1 FAMS @F500027@
+1 FAMC @F500028@
+1 RIN MH:I500063
+1 _UID 6AF243ACAC88E448D65FDB8C7DD740EF
+0 @I500064@ INDI
+1 _UPD 10 NOV 2026 03:53:46 GMT -0600 
+1 NAME Juliana /Schnabl/
+2 GIVN Juliana
+2 SURN Schnabl
+1 SEX F
+1 DEAT Y
+2 DATE 30 MAR 1902
+2 PLAC Neusiedl 7
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/03%252F04/?pg=128
+2 NOTE <p>Waldenstein Sterbebuch 03/04 fol. 125<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/03%252F04/?pg=128<br />Sterben: 1902. Dreissigster /: 30 :/ M&auml;rz [30.3.1902] u
+3 CONC m 11 Uhr Vorm.<br />Beerdigung: 1902. Erster /: 1 :/ April [1.4.1902] um 11 Uhr Vorm.<br />Priester: Andreas Kainz<br />Juliana Halmenschlager, Ausnehmerin in Neusiedl 7, Witwe nach Franz Halmenschlag
+3 CONC er, gew. Bauers in Neusiedl 7; ehel. Tochter des Johann Schnabl. gew. Ausnehmers in Neusiedl 6 u. der AMaria ux. geb. Eberl<br />katholisch, weiblich, unverehelicht, 56 Jahre 6 Monate 16 Tage, 14.9.18
+3 CONC 45<br />Beerdigung: der pfarrliche Friedhof<br />Krankheit: Lungentuberculose l. Todtenbesch. dto 31./3.902 Zl. 1<br />wurde am 5. M&auml;rz versehen</p>
+2 CAUS Lungentuberculose
+1 BIRT
+2 DATE 14 SEP 1845
+2 PLAC Neusiedl 6
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/01%252F05/?pg=128
+2 NOTE <p>Waldenstein Taufbuch 01/05 fol. 134<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/01%252F05/?pg=128<br />den 14 September 1845 [14.9.1845] geb u den 15 get.<br />Taufe
+3 CONC nder: Joseph [...]<br />Juliana<br />katholisch, weiblich, ehelich<br />Vater: Johann Schnabl Bauer in Neusiedl kath Religion<br />Mutter: AMaria, kathol Tochter des Martin Eberl Bauers in Windhag und
+3 CONC  der .. dessen Ehegattin geborene ... von Windhag<br />Neusiedl 6<br />Pathen: Johann Binder Bauer in Neusiedl et Theresia uxor.<br />Hebamme: Maria Schnabl Inwohnerin in Neusiedl ung.</p>
+1 BURI lt. Sterbebuch
+2 DATE 1 APR 1902
+2 PLAC Pf. Waldenstein
+1 FAMS @F500027@
+1 RIN MH:I500064
+1 _UID 6AF2443B88759FED897B6F4F90A0FE87
+0 @I500065@ INDI
+1 _UPD 11 NOV 2026 10:53:17 GMT -0600 
+1 NAME Michael /Halmenschlager/
+2 GIVN Michael
+2 SURN Halmenschlager
+1 SEX M
+1 BIRT
+2 DATE 9 SEP 1803
+2 PLAC Mannshalm 13
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/01-05/?pg=104
+2 NOTE <p>Schweiggers Taufbuch 01-05 fol. 200<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/01-05/?pg=104<br />[Abschnitt Mannshalm ab https://data.matricula-online.eu/de/oester
+3 CONC reich/st-poelten/schweiggers/01-05/?pg=95]<br />1803. September 9ter, [9.9.1803]<br />Haus: Mannshalm 13<br />Michael Halmenschlager<br />katholisch, Knab, ehelich<br />Bapt: Godefridus Hausbach B.Z. 
+3 CONC Coop.Anselmus Spann [...] Parochus<br />obst[obstetrix/Hebamme]: Catharina [...]tingerin ex [...]<br />Vater: Joannes Halmenschlager<br />Mutter: Anna Maria nata Poltin ex Siebenlinden<br />Pathen: Se
+3 CONC bastianus Zechner Bauer et Juliana uxor ex Siebenlinden</p>
+1 DEAT Y
+2 DATE 11 FEB 1890
+2 PLAC Groß-Neusiedl 7
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/03%252F04/?pg=33
+2 NOTE <p>Waldenstein Sterbebuch 03/04 fol. 30<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/03%252F04/?pg=33<br />Sterben: 1890. Elfter /: 11 :/ Februar [11.2.1890]<br />Beerdi
+3 CONC gung: 1890. Dreizehnter /: 13 :/ Februar<br />Priester: Andr Kainz Pfr.<br />Michael Halmenschlager, verwitweter Ausnehmer<br />Gro&szlig;-Neusiedl 7<br />katholisch, m&auml;nnlich, unverehelicht, 86 
+3 CONC Jahre<br />Begr&auml;bnis: der pfarrliche Friedhof<br />Krankheit: Chronischer Bronchialkatarrh l. Todtenbesch. dto 11./2. 1890 Z. 41<br />wurde am 25. J&auml;nner versehen</p>
+2 CAUS Chronischer Bronchialkatarrh
+1 BURI lt. Sterbebuch
+2 DATE 13 FEB 1890
+2 PLAC Pf. Waldenstein
+1 FAMS @F500028@
+1 FAMC @F500029@
+1 RIN MH:I500065
+1 _UID 6AF315059D95B14BD32BF894C108D517
+0 @I500066@ INDI
+1 _UPD 10 NOV 2026 07:39:51 GMT -0600 
+1 NAME Anna Maria /Semper/
+2 GIVN Anna Maria
+2 SURN Semper
+1 SEX F
+1 BIRT
+2 DATE 1 MAY 1796
+2 PLAC Neusiedl 10
+2 NOTE <p>Waldenstein Taufbuch 01/03 fol 65<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/01%252F03/?pg=68<br />[Abschnitt Neusiedl ab https://data.matricula-online.eu/de/oester
+3 CONC reich/st-poelten/waldenstein/01%252F03/?pg=63]<br />1796. 1 May [1.5.1796]<br />Neusiedl 10<br />Anna Maria<br />katholisch, M&auml;dchen, ehelich<br />Vater: Martin Semper Bauer<br />[https://huh.oef
+3 CONC r.at/karte/?id=68272<br />&nbsp;Gemeinde: Waldenstein<br />&nbsp;Aktuelle Adresse: Gro&szlig;-Neusiedl 10<br />&nbsp;Adresse um 1820: &nbsp;Gro&szlig;-Neusiedl 10<br />&nbsp;Besitzer um 1820: Semper M
+3 CONC artin<br />&nbsp;Besitzer um 1787: Walner Josef<br />&nbsp;Besitzer um 1750: &Auml;nderl Koloman<br />&nbsp;Grundherrschaft: &nbsp;Pulgarn, Kl.<br />&nbsp;FK Prot OM 751<br />&nbsp;https://noela.findb
+3 CONC uch.net/php/view.php?link=464b2050726f74x751#&amp;path=http://augias.noel.gv.at/FK/4FK-Prot/OM/OM-751/FK_Prot_OM-751_007.jpg<br />&nbsp;Haus/Hof 197.7 Quadratklafter<br />]<br />Mutter: Theresia nata 
+3 CONC Katzenschlager ex Neusiedl<br />Pathen: Mathias [...] Bauer uxor Elisabeth Waldenstein</p>
+1 DEAT Y
+2 DATE 27 JAN 1879
+2 PLAC Neusiedl 7
+2 NOTE <p>Waldenstein Sterbebuch 03/04 fol. 154<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/03%252F04/?pg=157<br />Sterben: 27.1.1879<br />Beerdigung: 29.1.1879<br />Priester:
+3 CONC  [...] Pfarr<br />Anna Maria Halmenschlager Eheweib des Michael Halmenschlager, Ausnehmers in Neusiedl, ehl. Tochter des Martin Semper, Bauers in Neusiedl u. der Theresia ux. geb. Katzenschlager von N
+3 CONC eusiedl<br />Gr Neusiedl 7<br />katholish, weiblich, verehelicht, 82 Jahre 8 Monate 26 Tage<br />Beerdigung: der pfarrliche Gottesacker<br />Krankheit: Beschauzettel No 3, Altersschw&auml;che<br />Anm
+3 CONC erkung: am 19/1 P. Robert mit allen heiligen Sterbsakramenten versehen</p>
+2 CAUS Altersschwäche
+1 BURI lt. Sterbebuch
+2 DATE 29 JAN 1879
+2 PLAC Pf. Waldenstein
+1 FAMS @F500028@
+1 RIN MH:I500066
+1 _UID 6AF315F86EA44CFAC7F4771383430621
+0 @I500067@ INDI
+1 _UPD 11 NOV 2026 11:33:26 GMT -0600 
+1 NAME Johann /Halmenschlager/
+2 GIVN Johann
+2 SURN Halmenschlager
+1 SEX M
+1 BIRT
+2 DATE 19 JUN 1779
+2 PLAC Mannshalm 18
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/01%252C2%252C3-04/?pg=29
+2 NOTE <p>Schweiggers Tauf-, Trauungs- und Sterbebuch 01,2,3-04 fol. 54<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/01%252C2%252C3-04/?pg=29<br />1779. Junio. Dies 19. [19.6.1
+3 CONC 779] Hora 11 noctus<br />Mannshalm 18<br />[Haus und Hof<br />&nbsp;https://huh.oefr.at/karte/?id=57586<br />&nbsp;Gemeinde: Schweiggers<br />&nbsp;Aktuelle Adresse: Mannshalm 18<br />&nbsp;Adresse um
+3 CONC  1820: &nbsp;Mannshalm 18<br />&nbsp;Besitzer um 1820: Schmidt Georg<br />&nbsp;Besitzer um 1787: Halmeschlager Simon<br />]<br />Joannes Bapt. f. legit<br />Parentes: Simon Halmenschlager [Halmeschla
+3 CONC ger] ex Mannshalm ux. Maria Anna nata Kummerin ex Jahrings<br />Patrini: Michael Pfeffer et Clara ux. ex Windhag</p>
+1 DEAT Y
+2 DATE 17 FEB 1840
+2 PLAC Mannshalm 13
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/03-05/?pg=56
+2 NOTE <p>Schweiggers Sterbebuch 03-05 fol. 144, Abschnitt Mannshalm<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/03-05/?pg=56<br />gestorben den 17 Febr [17.2.1840], begraben 
+3 CONC den 19 Febr 1840<br />Johann Halmenschlager [Halmetschlager] Bauer zu Mannshalm<br />Mannshalm 13<br />eingesegnet von P Fridrich H&ouml;rd[?] Cooperator in und begraben im hiesigen Leichenhof<br />ka
+3 CONC tholisch, m&auml;nnlich, 60 Jahre<br />Krankheit: an Lungenbrand</p>
+2 CAUS Lungenbrand
+1 FAMS @F500029@
+1 FAMC @F500030@
+1 RIN MH:I500067
+1 _UID 6AF49D7D953AC96D384898B06903CC65
+0 @I500068@ INDI
+1 _UPD 11 NOV 2026 10:55:24 GMT -0600 
+1 NAME Anna Maria /Polt/
+2 GIVN Anna Maria
+2 SURN Polt
+1 SEX F
+1 BIRT
+2 DATE 8 APR 1781
+2 PLAC Siebenlinden 10
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/01%252C2%252C3-04/?pg=39
+2 NOTE <p>https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/01%252C2%252C3-04/?pg=39<br />Schweiggers Tauf-, Trauungs- und Sterbebuch 01,2,3-04 fol. 72<br />1781. April. 8. [8.4.1781]<br
+3 CONC  />Siebenlinden 10<br />[Haus und Hof<br />&nbsp;https://huh.oefr.at/karte/?id=57840<br />&nbsp;Gemeinde: Schweiggers<br />&nbsp;Aktuelle Adresse: Siebenlinden 47<br />&nbsp;Adresse um 1820: &nbsp;Sie
+3 CONC benlinden 10<br />&nbsp;Besitzer um 1820: Sailer Lorenz<br />&nbsp;Besitzer um 1787: Polt Johann<br />]<br />Anna Maria f. l.<br />Parentes:<br />Joannes Polck [Polt] ex Siebenlinden uxor<br />Cathari
+3 CONC na nata Schmidtin ex Siebenlinden<br />Patrini: Andreas Englmayr ex Siebenlinden ux Anna Maria</p>
+1 DEAT Y
+2 DATE 11 MAR 1856
+2 PLAC Mannshalm 13
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/03-06/?pg=50
+2 NOTE <p>Schweiggers Sterbebuch 03-06 fol. 49<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/03-06/?pg=50<br />Sterben: 1856. Am 11. M&auml;rz [11.3.1856]<br />Beerdigung: 1856.
+3 CONC  Am 13. M&auml;rz<br />Halmenschlager Anna M., gewesenes Eheweib des gewesenen Halmenschlager Johann [bereits +1840], gewesener Bauer in Mannshalm, gbor. Polt von Siebenlinden<br />Mannshalm 13<br />k
+3 CONC atholisch, weiblich, unverehelicht, 76 Jahre<br />Beerdigung: Gottesacke<br />Krankheit: Altersschw&auml;che<br />Anmerkung: ist am 8. M&auml;rz 1856 versehen worden</p>
+2 CAUS Altersschwäche
+1 FAMS @F500029@
+1 RIN MH:I500068
+1 _UID 6AF49DFBDC6F50F70DC1AE2B900C9813
+0 @I500069@ INDI
+1 _UPD 12 NOV 2026 10:00:37 GMT -0600 
+1 NAME Simon /Halmenschlager/
+2 GIVN Simon
+2 SURN Halmenschlager
+1 SEX M
+1 BIRT
+2 DATE 21 OCT 1753
+2 PLAC Brunnhöf
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/01%252C2%252C3-03/?pg=104
+2 NOTE <p>Schweiggers Tauf-, Trauungs- und Sterbebuch 01,2,3-03 fol. 201<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/01%252C2%252C3-03/?pg=104<br />1753. October. Am 21. [21.1
+3 CONC 0.1753]<br />ist getauft worden Simon.<br />Parens: Hanns Georg Halmschlager [Halmenschlager] von Brunnh&ouml;f<br />Mater: Theresia<br />Patrinus: Georg Zwettler allhier</p>
+1 DEAT Y
+2 DATE 12 OCT 1814
+2 PLAC Mannshalm 18
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/03-05/?pg=50
+2 NOTE <p>Schweiggers Sterbebuch 03-05 fol. 133<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/03-05/?pg=50<br />1814. Octobris 12. [12.10.1814]<br />Ort: Mannshalm 18<br />Simeo
+3 CONC n Halmetschlager [Halmenschlager] Rusticus in Mannshalm<br />katholisch, m&auml;nnlich, 61 Jahre<br />Krankheit: an der Wassersucht</p>
+2 CAUS Wassersucht
+1 FAMS @F500030@
+1 FAMC @F500031@
+1 RIN MH:I500069
+1 _UID 6AF4A6E687CC4E8DE37F317E58AEC86D
+0 @I500070@ INDI
+1 _UPD 11 NOV 2026 11:37:54 GMT -0600 
+1 NAME Maria Anna /Kummer/
+2 GIVN Maria Anna
+2 SURN Kummer
+1 SEX F
+1 BIRT
+2 DATE 29 JUN 1756
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/rieggers/01%252C2%252C3-02+/?pg=870
+2 NOTE <p>Rieggers Tauf-, Trauungs- und Sterbebuch 01,2,3-02 fol. 873<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/rieggers/01%252C2%252C3-02+/?pg=870<br />1756. In Junio. Dies 29. [29.6.1
+3 CONC 756]<br />Maria Anna<br />P: Georgius Kummerer<br />Mr Anna Maria von Jahrings<br />levans Eva Georgius Zellhofer uxor v. Mayer[...]</p>
+1 DEAT Y
+2 DATE 22 APR 1820
+2 PLAC Mannshalm 18
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/03-05/?pg=52
+2 NOTE <p>Schweiggers Sterbebuch 03-05 fol. 136<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/03-05/?pg=52<br />den 22. April 1820 [22.4.1820]<br />Ort: Mannshalm 18 [...]<br />
+3 CONC Maria Anna, verwitwete Halmenschlagerin<br />katholisch, weiblich, 63 Jahre<br />Krankheit: am Lungenbrand&nbsp;</p>
+2 CAUS Lungenbrand
+1 FAMS @F500030@
+1 RIN MH:I500070
+1 _UID 6AF4A79FCC5331297DF1F76214CE6792
+0 @I500071@ INDI
+1 _UPD 13 NOV 2026 06:54:31 GMT -0600 
+1 NAME Hans Georg /Halmenschlager/
+2 GIVN Hans Georg
+2 SURN Halmenschlager
+1 SEX M
+1 BIRT
+2 DATE 13 APR 1711
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/01%252C2%252C3-01%252C2/?pg=241
+2 NOTE <p>Schweiggers Tauf-, und Trauungs-, und Sterbebuch 01,2,3-01,2 fol. 199<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/01%252C2%252C3-01%252C2/?pg=241<br />Anno 1711. Apr
+3 CONC il. [lfd. Nr.] 22 Eodem [Am 13.] [13.4.1711] ist getauft worden von mir P: Anselmo ein Kind mit Nahmen Joannes Georgius<br />der Vatter Matthias Halbmschlager [Halmenschlager] die Muetter Maria von Br
+3 CONC unnh&ouml;f<br />Der Gfatter Simon H&ouml;ltzl von &Auml;ussern Wolfgers</p>
+1 DEAT Y
+2 DATE 23 APR 1782
+2 PLAC Brunnhöf 1
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/01%252C2%252C3-04/?pg=333
+2 NOTE <p>Schweiggers Tauf-, Trauungs- und Sterbebuch 01,2,3-04 fol. 33<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/01%252C2%252C3-04/?pg=333<br />782. Aprili. Dies 23. [23.4.
+3 CONC 1782]<br />Locus: Brunnh&ouml;f 1<br />[Haus und Hof<br />&nbsp;https://huh.oefr.at/karte/?id=57878<br />&nbsp;Aktuelle Adresse: Brunnh&ouml;f 1<br />&nbsp;Adresse um 1820: &nbsp;Brunnh&ouml;f 1<br />
+3 CONC &nbsp;Besitzer um 1820: Halmesschlager Josef<br />&nbsp;Besitzer um 1787: Halmeschlager Josef<br />]<br />Georgius Halmeschlager [...] ex Brunnh&ouml;f<br />Cemeteria: ibid<br />Ann: 69 Jahre</p>
+1 FAMS @F500031@
+1 FAMC @F500032@
+1 RIN MH:I500071
+1 _UID 6AF5E2A569F83D3B374C1890EAF12F9C
+0 @I500072@ INDI
+1 _UPD 12 NOV 2026 10:05:09 GMT -0600 
+1 NAME Theresia /Kaufmann/
+2 GIVN Theresia
+2 SURN Kaufmann
+1 SEX F
+1 BIRT
+2 DATE EST 7 JUL 1725
+2 PLAC Klein Wolfgers
+2 NOTE [nicht gesichert, dass H-G oo1745, aber Ort Klein Wolfgers passt]
+2 NOTE <p>[nicht gesichert, dass H-G oo1745, aber Ort Klein Wolfgers passt]<br />Schweiggers Tauf-, Trauungs- und Sterbebuch 01,2,3-03 fol. 8<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/s
+3 CONC chweiggers/01%252C2%252C3-03/?pg=7<br />725. Am 7 July [7.7.1725] ist getauft worden Theresia des Georg Kaufmann von Klein Wolfgers und Magdalena eh: filia<br />Patrina Maria [.]labnigerin von Perndor
+3 CONC f.</p>
+1 DEAT Y
+1 FAMS @F500031@
+1 RIN MH:I500072
+1 _UID 6AF5E3B5A094A81B80CFFF80559E84C7
+0 @I500073@ INDI
+1 _UPD 13 NOV 2026 07:01:06 GMT -0600 
+1 NAME Matthias /Halmenschlager/
+2 GIVN Matthias
+2 SURN Halmenschlager
+2 _FORMERNAME Halbmschlager
+1 SEX M
+1 DEAT Y
+2 NOTE lt. Taufbuch Hans Georg Halmenschlager *1711 "der Vatter Matthias Halbmschlager"
+1 FAMS @F500032@
+1 RIN MH:I500073
+1 _UID 6AF70886E3EF20C7DE5B135DD5FDEBB4
+0 @I500074@ INDI
+1 _UPD 19 NOV 2026 13:51:27 GMT -0600 
+1 NAME Maria //
+2 GIVN Maria
+1 SEX F
+1 DEAT Y
+1 BIRT
+2 PLAC Brunnhöf
+2 NOTE lt. Taufbuch Hans Georg Halmenschlager *1711 "die Muetter Maria von Brunnhöf"
+1 FAMS @F500032@
+1 RIN MH:I500074
+1 _UID 6AF70A7DE8D77E4B5BF85390074B9A2D
+0 @I500075@ INDI
+1 _UPD 19 NOV 2026 09:15:06 GMT -0600 
+1 NAME Anton /Halmenschlager/
+2 GIVN Anton
+2 SURN Halmenschlager
+1 SEX M
+1 BIRT
+2 DATE 17 JAN 1849
+2 PLAC Siebenlinden 28
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/siebenlinden/01%252F01/?pg=55
+2 NOTE <p>Siebenlinden Taufbuch 01/01 fol. 101<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/siebenlinden/01%252F01/?pg=55<br />1849. gebor = getft d 17. J&auml;nner [17.1.1849]<br />Anton<
+3 CONC br />Ort: Siebenlinden 28<br />katholisch, Knab, ehelich<br />Vater: Ambros Halmschlager [Halmenschlager]<br />Mutter: Anna nat. d Joseph Weissensteiner Bauers Streitbach Rosalia gebor Jung<br />[...]
+3 CONC </p>
+1 DEAT Y
+2 DATE 22 APR 1880
+2 PLAC Siebenlinden 28
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/siebenlinden/03%252F02/?pg=30
+2 NOTE <p>Siebenlinden Sterbebuch 03/02 fol. 27<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/siebenlinden/03%252F02/?pg=30<br />1880.<br />Sterben: den 22. zweiundzwanzigsten April [22.4.1
+3 CONC 880] um 3 Uhr nachmittags<br />Beerdigung: den 25. April<br />Priester: Gerard Preet Pfr.<br />Anton Halmenschlager, durch 5 Jahre verehelichter Bauer von Siebenlinden<br />Ort: Siebenlinden 28<br />k
+3 CONC atholisch, m&auml;nnlich, verehehlicht, 31 Jahre<br />Beerdigung: im pfarrlichen Friedhofe<br />Krankheit: Lungensucht<br />Anmerkung: wurde mit den Hl. Sterbsakramenten versehen am 13. April 1880</p>
+2 CAUS Lungensucht
+1 FAMS @F500033@
+1 RIN MH:I500075
+1 _UID 6AF8CC49B0ECD88B7F87155427EF5D6F
+0 @I500076@ INDI
+1 _UPD 15 NOV 2026 08:03:19 GMT -0600 
+1 NAME Maria Semper //
+2 GIVN Maria Semper
+1 SEX F
+1 BIRT
+2 DATE 4 NOV 1854
+2 PLAC Neusiedl 21
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/01%252F05/?pg=183
+2 NOTE <p>Waldenstein Taufbuch 01/05 fol. 189<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/01%252F05/?pg=183<br />geb. am 4. getauft am 5. November 1854 [4.11.1854]<br />Taufen
+3 CONC der: Karl Gererstorfer Kooperator<br />Maria<br />katholisch, weiblich, ehelich<br />Vater: Anton Semper kath. Rel. Bauer in Neusiedl<br />Mutter: Anna Semper kath. Rel. Tochter des Simon Semper Bauer
+3 CONC s in H&ouml;rmanns und seines Eheweibes Magdalena geb. Reinhart von H&ouml;rmanns<br />[Magdalena Reinhart +11.11.1862, H&ouml;rmanns 29 https://data.matricula-online.eu/de/oesterreich/st-poelten/diet
+3 CONC manns/03%252F02/?pg=69]<br />Ort: Neusiedl 21<br />Pathen: Alois Um[...] Bauer in Neusiedl, Theresia ux.<br />Hebamme: Theresia M&ouml;rzinger Zuwohnerin in Neusiedl ungepr&uuml;ft</p>
+1 DEAT Y
+2 DATE 17 SEP 1905
+2 PLAC Neusiedl 8
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/03%252F04/?pg=141
+2 NOTE <p>[weitere Heirat mit Franz Schindler]</p>
+<p>Waldenstein Sterbebuch 03/04 fol. 138<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/03%252F04/?pg=141<br />Sterben: 1905. 
+3 CONC Siebzehnter /: 17 :/ September [17.9.1905] um 12 Uhr mittags<br />Beerdigung: 1905. Neunzehnter /: 19 :/ September<br />Priester: Andreas Kainz Pfr.<br />Maria Schindler, Eheweib des Franz Schindler, 
+3 CONC Bauers in Neusiedl 8, ehl. Tochter des Anton Semper, gew. Bauers in Neusiedl 13 u. der Anna ux. geb. Semper<br />Ort: Neusiedl 8</p>
+1 FAMS @F500033@
+1 RIN MH:I500076
+1 _UID 6AF9BBA768612312BC56F2C094CB605C
+0 @I500077@ INDI
+1 _UPD 16 NOV 2026 12:05:35 GMT -0600 
+1 NAME Franz /Tüchler/
+2 GIVN Franz
+2 SURN Tüchler
+1 SEX M
+1 BIRT
+2 DATE 30 SEP 1853
+2 PLAC Oberrosenauerwald 39
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/etzen/01%252F02/?pg=90
+2 NOTE <p>Etzen Taufbuch 01/02 fol. 96<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/etzen/01%252F02/?pg=90<br />1853. den 30. September geboren u getauft [30.9.1853]<br />Taufender: Alberi
+3 CONC ch Renk Lokalkaplan<br />Franz<br />[Nachtrag] + 3.3.1911 Gehirnschlag<br />katholisch, m&auml;nnlich, ehehlich<br />Vater: Michael T&uuml;chler, kath. Religion Bauer zu Oberrosenauerwald<br />Mutter:
+3 CONC  Anastasia, kath. Religion, Tochter des Josef Pichler, Bauers zu Oberrosenauerwald, und der Theresia dessen Eheweibes geborene Hahn<br />Ort: Oberrosenauerwald 39<br />Pathen: Johann Schrenk Bauer zu 
+3 CONC Oberrosenauerwald mit seinem Weib Walburga ++<br />Hebamme: Viktoria Woyerer[?] Hebamme zu Gerungs</p>
+1 DEAT Y
+2 DATE 3 MAR 1911
+2 PLAC Oberrosenauerwald 39
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/etzen/03%252F04/?pg=44
+2 NOTE <p>Etzen Sterbebuch 03/04 fol 42<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/etzen/03%252F04/?pg=44<br />Sterben: 1911 am 3. M&auml;rz 3/4 5 Uhr abends [3.3.1911]<br />Beerdigung: 
+3 CONC 1911 am 5. M&auml;rz um 11 Uhr Vormittag<br />T&uuml;chler Franz seit 22. Februar 1876 verhehelichter Bauer mit Theresia Kropfreiter in Oberrosenauerwald 39, ehel. Sohn des Michael T&uuml;chler, Bauer
+3 CONC s in Oberrosenauerwald 39 und der Anastasia ux. geb. Pichler von Oberrosenauerwald, alle kathol. Rel. /: geb. 30.9.1853 :/<br />Ort: Oberrosenauerwald 39<br />katholisch, m&auml;nnlich, verehelicht, 5
+3 CONC 7 Jahre, 5 Monate, 2 Tage<br />Beerdigung: pfarrl. Friedhof in Etzen<br />Krankheit: Gehirnschlag lt. Totenbeschaubuches No. 5 v. J. 1911<br />Anmerkung: konnte nicht versehen werden, ist pl&ouml;tzli
+3 CONC ch verstorben</p>
+2 CAUS Gehirnschlag
+1 FAMS @F500034@
+1 RIN MH:I500077
+1 _UID 6AFB335175984E7A9E83651E0440AFC7
+0 @I500078@ INDI
+1 _UPD 17 NOV 2026 12:04:28 GMT -0600 
+1 NAME Theresia /Kropfreiter/
+2 GIVN Theresia
+2 SURN Kropfreiter
+1 SEX F
+1 BIRT
+2 DATE 14 JAN 1855
+2 PLAC Oberrosenauerwald 48
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/grossgerungs/01%252F08/?pg=310
+2 NOTE <p>Gro&szlig;gerungs Taufbuch 01/08 fol. 363<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossgerungs/01%252F08/?pg=310<br />1855. geb. u. get. den 14. J&auml;nner [14.1.1855]<br /
+3 CONC >[fol. 312 Oberrosenauer Waldh&auml;user mit 59 Nummer sammt Schallh&auml;usel]<br />Oberrosenauerwald 48<br />Theresia [Nachtrag] cop. V. 372<br />katholisch, M&auml;dchen, ehelich<br />Vater: Michae
+3 CONC l Kropfreiter Bauer, k. R.<br />Mutter: Barbara, ehel Tochter des Martin Walter, Kleinh&auml;uslers in Gr&ouml;tschen Pf. Rapottenstein, u. der AMaria ux. geb. Neulinger daselbst<br />Pathen: Josef Pi
+3 CONC chlnig[?] u. ux. Theresia Pichlnig[?]<br />Anmerkungen: Anna Kreiner gepr.</p>
+1 DEAT Y
+2 DATE 1 JAN 1932
+2 PLAC Oberrosenauerwald 39
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/etzen/03%252F04/?pg=90
+2 NOTE <p>Etzen Sterbebuch 03/04 fol. 88<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/etzen/03%252F04/?pg=90<br />Sterben: 1932. am 1. J&auml;nner [1.1.1932]<br />Beerdigung: 1932. am 3. J
+3 CONC &auml;nner<br />Priester: P. Berthold Friemel Pfarrverweser<br />Theresia T&uuml;chler Ausnehmerin in Oberrosenauerwald 39. Witwe nach Franz T&uuml;chler, Bauers in Oberrosenauerwald 39, ehel. Tochter
+3 CONC  der Michael Kropfreiter, Bauers in Oberrosenauerwald 48 und der Barbara ux. geb. Waller; alle kath. Rel. zust&auml;ndig in Oberrosenauerwald 'angeblich'<br />Ort: Oberrosenauerwald 39<br />katholisch
+3 CONC , weiblich, verehelicht, 76 Jahre 11 Monate 18 Tage geb. 14.1.1855<br />Beerdigung: pfarrlicher Friedhof Grab Nr. 29<br />Krankheit: Herzklappenfehler, Herzl&auml;hmung<br />Anmerkung: versehen mit de
+3 CONC n Hl. Sterbesakramenten am 30. Dezember 1931</p>
+2 CAUS Herzklappenfehler, Herzlähmung
+1 FAMS @F500034@
+1 FAMC @F500038@
+1 NOTE <p>VM lt. "binderbaum": Martin Walter<br />MM lt. "binderbaum": Anna Maria Neulinger, verh. Walter<br />Vater: Michael Kropfreiter<br />Mutter: Barbara Walter, verh. Kropfreiter</p>
+1 RIN MH:I500078
+1 _UID 6AFB3397E51B149162BFCD20352F56EA
+0 @I500079@ INDI
+1 _UPD 19 NOV 2026 08:04:57 GMT -0600 
+1 NAME Johann /Reuberger/
+2 GIVN Johann
+2 SURN Reuberger
+1 SEX M
+1 BIRT
+2 DATE 11 JUN 1847
+2 PLAC Mayerhöfen 1
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/01%252F05/?pg=67
+2 NOTE <p>Gro&szlig;globnitz Taufbuch 01/05 fol. 64<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/01%252F05/?pg=67<br />1847. 11. Juny 8 Uhr Abends geb. 12. Juny 1 Uhr Nachm. 
+3 CONC get.<br />Taufender: Anton Pfeisinger Pfarrer<br />Joannes<br />katholisch, m&auml;nnlich, ehelich<br />Vater: Reuberger Anton, kath. Anlieger, M&uuml;llnermeister<br />Mutter: A. Maria uxor kath. Anl
+3 CONC . Geb. des Michael Fastenbauer zu Gerweis u. dess. Ehew. A Maria geb. Engelmacher zu Kleinotten<br />Ort: Mayerh&ouml;fen 1<br />[Haus und Hof https://huh.oefr.at/karte/?id=54814<br />&nbsp;Aktuelle A
+3 CONC dresse: Mayerh&ouml;fen 1<br />&nbsp;Adresse um 1820: &nbsp;Mayerh&ouml;fen 1<br />&nbsp;Besitzer um 1820: Reiberger Josef<br />&nbsp;Besitzer um 1787: Reuberger Jakob<br />]<br />Pathen: Georg Lunzer
+3 CONC  Bauer zu Germanns A. Maria Ehegattin<br />Hebamme: Ther. Stiedl [...s] in Niederglobnitz, ungepr&uuml;ft</p>
+1 DEAT Y
+2 DATE 21 AUG 1909
+2 PLAC Germanns 20
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/03%252F06/?pg=76
+2 NOTE <p>Gro&szlig;globnitz Sterbebuch 03/06 fol. 73<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/03%252F06/?pg=76<br />Sterben: 1909. Am 21. August [21.8.1909] 3h nachm.<br
+3 CONC  />Beerdigung: Am 23. August<br />Priester: Johann Weber Pfr.<br />Reuberger Johann Zimmermann, geb. zu Mayerh&ouml;fen der ehel. Sohn des Anton Reuberger, M&uuml;llermeister daselbst, et ux. Anna Mar
+3 CONC ia geb. Fastenbauer<br />Ort: Germanns 20<br />katholisch. m&auml;nnlich, verehelicht, 62 Jahre 2 Monate 10 Tage 11.6.1847<br />Beerdigung: pfrl. Friedhof Gr. Globnitz<br />Krankheit: Arteriosclerosis
+3 CONC , Gehirnschlag<br />Anmerkung: prov 14/8 09</p>
+2 CAUS Arteriosclerosis, Gehirnschlag
+1 BURI
+2 DATE 23 AUG 1909
+2 PLAC Friedhof Großglobnitz
+1 CHR
+2 DATE 12 JUN 1847
+2 PLAC Pf. Großglobnitz
+1 FAMS @F500035@
+1 NOTE <p>Vater: Anton Reuberger, M&uuml;llnermeister<br />Mutter: Anna Maria Fastenbauer, Gerweis</p>
+1 RIN MH:I500079
+1 _UID 6AFC74D6335161B5BB5D6CEE6F31DF42
+0 @I500080@ INDI
+1 _UPD 17 NOV 2026 12:01:15 GMT -0600 
+1 NAME Johanna /Lunzer/
+2 GIVN Johanna
+2 SURN Lunzer
+1 SEX F
+1 DEAT Y
+2 DATE 13 JUL 1919
+2 PLAC Germanns 20
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/03%252F06/?pg=111
+2 NOTE <p>Gro&szlig;globnitz Sterbebuch 03/06 fol. 107<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/03%252F06/?pg=111<br />Sterben: 13. Juli 1919 [13.7.1919]<br />Beerdigung:
+3 CONC  15. Juli 1919<br />Priester: Anton Blumauer Pfr.<br />Reuberger Johanna, kath., Ausnehmerin, Witwe nach +Johann Reuberger, gew. Zimmermann, ehel. Tochter des Lunzer Georg, gew. Bauers in Germanns 19 
+3 CONC et ux. Anna Maria geb. Fuchs v. Reichenbach, Pf. Waldenstein<br />Ort: Germanns 20<br />katholisch, weiblich, unverheiratet, 74 Jahre 11 Monate 6 Tage geb. 7.8.1844<br />Berdigugn: Fiedhof in Gro&szli
+3 CONC g;globnitz<br />Krankheite: Hirnschlag [...]flu&szlig;, Apoplexia Cerebri [Schlaganfall]<br />Anmerkung: Erh[...] 11.7.1919</p>
+2 CAUS Hirnschlag
+1 BIRT
+2 DATE 7 AUG 1844
+2 PLAC Germanns 19
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/01%252F05/?pg=53
+2 NOTE <p>Gro&szlig;globnitz Taufbuch 01/05 fol. 50<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/01%252F05/?pg=53<br />1844. 7ter August geb. [7.8.1844] u get.<br />Taufender
+3 CONC : Joh. Hal[?]bauer<br />Johanna Lunzer<br />katholisch, weiblich, ehehlich<br />Vater: Lunzer Georg kath Anlg. Bauer<br />Mutter: Anna Maria ux. kath. Rel. Geborene des Gregor Fuchs Bauers zu Reichenb
+3 CONC ach /: Pf. Waldstein :/ u dessen Eheg. Anna Ma geb. Brauneis von Meinhartschlag /: Pf. Schweiggers :/<br />Ort: Germanns 19<br />Pathen: Anna Maria Reuberger M&uuml;llersgattin von Mayerh&ouml;fen<br 
+3 CONC />Hebamme: A. Ma Steinbauer, Ausnehmerswitwe zu [...]bach ungepr&uuml;ft</p>
+1 FAMS @F500035@
+1 NOTE <p>VM: &nbsp;Gregor Fuchs<br />MM: Anna Maria Brauneis, verh. Fuchs<br />Vater: Georg Lunzer, Germanns<br />Mutter: Anna Maria Fuchs, verh. Lunzer<br />Kinder lt. "binderbaum"<br />Ignaz *31. Jan. 188
+2 CONC 0 Wildings 13<br />Josef *16. Mrz. 1884 Wildings 13, oo2. Mai 1911 Maria (geb. Redl)<br />Johann *14. Sept. 1886 Wildings 13, +1. Nov. 1886</p>
+1 RIN MH:I500080
+1 _UID 6AFC75AE50EB5F0D183FA08F9913E79A
+0 @I500085@ INDI
+1 _UPD 17 NOV 2026 12:04:28 GMT -0600 
+1 NAME Michael /Kropfreiter/
+2 GIVN Michael
+2 SURN Kropfreiter
+1 SEX M
+1 DEAT Y
+1 FAMS @F500038@
+1 RIN MH:I500085
+1 _UID 6AFC972C3D3756EC717A9D4C7074CD04
+0 @I500086@ INDI
+1 _UPD 21 NOV 2026 08:31:38 GMT -0600 
+1 NAME Barbara /Walter/
+2 GIVN Barbara
+2 SURN Walter
+1 SEX F
+1 DEAT Y
+1 FAMS @F500038@
+1 FAMC @F500039@
+1 RIN MH:I500086
+1 _UID 6AFC973A5372DD23C158B55A99F08B0D
+0 @I500087@ INDI
+1 _UPD 21 NOV 2026 08:31:53 GMT -0600 
+1 NAME Martin /Walter/
+2 GIVN Martin
+2 SURN Walter
+1 SEX M
+1 DEAT Y
+1 FAMS @F500039@
+1 RIN MH:I500087
+1 _UID 6AFC975A1B011796B04AAA7FE5F962C7
+0 @I500088@ INDI
+1 _UPD 21 NOV 2026 08:31:47 GMT -0600 
+1 NAME Anna Maria /Neulinger/
+2 GIVN Anna Maria
+2 SURN Neulinger
+1 SEX F
+1 DEAT Y
+1 FAMS @F500039@
+1 RIN MH:I500088
+1 _UID 6AFC976CAFF2378B69E072129FD6A749
+0 @F500001@ FAM
+1 _UPD 6 NOV 2026 10:37:35 GMT -0600
+1 HUSB @I500001@
+1 WIFE @I500002@
+1 CHIL @I500003@
+1 RIN MH:F500001
+1 _UID 6AEE024F07A3E9D4E9F520E2201E5030
+0 @F500002@ FAM
+1 _UPD 8 NOV 2026 12:58:05 GMT -0600
+1 HUSB @I500004@
+1 WIFE @I500005@
+1 CHIL @I500002@
+1 RIN MH:F500002
+1 _UID 6AF0C63D4DA77DD01799D0739F20543A
+1 MARR
+2 DATE 22 FEB 1938
+2 PLAC Germanns 9 / Oberstrahlbach 9
+2 NOTE <p>Gro&szlig;globnitz Trauungsbuch 02/06 fol. 139<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/02%252F06/?pg=152<br />Am zweiundzwanzigsten (22.) Februar 1938 [22.2.19
+3 CONC 38]<br />Priester: Anton Blumauer Pfr.<br />[Nachtrag] W. I. + am 6.1.1979<br />Br&auml;utigam:<br />Wagner Ignaz, angehender Wirtschaftsbesitzer in Germanns 20, wohnhaft Germanns 9, ehel. Sohn des Wa
+3 CONC gner Leopold, Bauers in Germanns 9 et ux. Maria geb. Wieser von Gerweis, Pf. Echsenbach<br />Germanns 9<br />katholisch, 26 Jahre geb. 4.7.1911, ledig<br />Braut:<br />Reuberger Theresia, Bauerstochte
+3 CONC r in Germanns 20, ehel. Tochter des Reuberger Ignaz Bauers in Germanns 20, et ux. Juliana geb. T&uuml;chler<br />Germanns 9<br />katholisch, 25 Jahre, geb. 14.10.1912, ledig<br />Beyst&auml;nde: Ant. 
+3 CONC Neuwirth, Bauer in Germanns 3, kath., Friedrich Wagner Bauer in Heinreichs 2, Pf. D&ouml;llersheim kath.<br />Anmerkung:<br />1. Br&auml;utigam geboren in Germanns (Geb.B. Tom VI. fol. 88) und zust&au
+3 CONC ml;ndig nach Gr. Globnitz<br />&nbsp; &nbsp;Braut geboren in Germanns (Geb.B. Tom VI. fol. 98) und zust&auml;ndig nach Gr. Globnitz<br />2. Brautleute hier aufgeboten durch Anschlag vom 13./2. bis 20.
+3 CONC 2. 1938<br />3. Erkl&auml;rungen der Brautleute v. 11./2. 1938<br />[Nachtrag] 3. Kind: Rudolf geb. 5.4.1941 in Germanns 20</p>
+0 @F500003@ FAM
+1 _UPD 8 NOV 2026 12:58:05 GMT -0600
+1 HUSB @I500006@
+1 WIFE @I500007@
+1 CHIL @I500004@
+1 RIN MH:F500003
+1 _UID 6AF0C63D9855BDD71799D0739F20543A
+1 MARR
+2 DATE 28 NOV 1899
+2 PLAC Germanns 9
+2 NOTE <p>[1. Heirat oo1887 des Leopold Wagner mit Maria Feisinger *6.9.1864 +10.4.1899]</p>
+<p>[2. Heirat des Leopold Wagner]<br />Gro&szlig;globnitz Trauungsbuch 02/06 fol. 29<br />https://data.matricula-
+3 CONC online.eu/de/oesterreich/st-poelten/grossglobnitz/02%252F06/?pg=32<br />den 28ten November 1899 [28.11.1899]<br />Im Delegationsweg getraut in der Pfarrkirche zu Stift Zwettl vom Hochv. Herrn P. Augus
+3 CONC tin H&ouml;barth, [...] zu Stift Zwettl<br />Br&auml;utigem:<br />Wagner Leopold, verwittweter Bauer in Germanns 9, ehlicher Sohn des Ignaz Wagner, Bauers in Germanns 9 und dessen Eheweibes Katharina,
+3 CONC  geb. Preiss von Rudmanns, beide kath. Rel. u. bereits selig<br />Germanns 9 [nicht 4]<br />katholisch, 38 3/4 Jahre, Witwer<br />Braut:<br />Wieser Maria, Dienstmagd in Germanns 9, ehl. Tochter des J
+3 CONC osef Wieser, Bauers in Gerweis 23, Pf. Echsenbach, und dessen Eheweibes Theresia gebb Polzer von Gr. Globnitz, beide kath. Rel.<br />Germanns 9<br />katholisch, 27 3/4 Jahre, ledig<br />Beist&auml;nde
+3 CONC :<br />Johann Kerschbaum, Bauer in Wildings 5, kath. Rel.<br />Josef Bruckner, Bauer in Kleinotten 20, kath. Rel.<br />Anmerkung:<br />1. Laut diespfarrlichen Taufbuches Tom. IV fol. 138 ist der Br&au
+3 CONC ml;utigam am 14. October 1861 [14.10.1861] geboren<br />2. Laut beigebrachten Taufscheines vom Pfarramte Echsenbach ist die Braut am 9. Feber 1873 [9.2.1873] geboren<br />3. Das Eheweib des Br&auml;ut
+3 CONC igams ist am 10. April 1899 laut diespfarrl. Sterbebuches Tom. IV fol. 42 gestorben<br />[korrekt: Tom VI fol. 41<br />&nbsp;Gro&szlig;globnitz Sterbebuch 03/06 fol. 41<br />&nbsp;https://data.matricu
+3 CONC la-online.eu/de/oesterreich/st-poelten/grossglobnitz/03%252F06/?pg=43<br />&nbsp;10.4.1899 Wagner Maria, Ehegattin des Leopold Wagner Bauers in Germanns 9, ehl. Tochter des Leopold Feisinger, Bauers i
+3 CONC n Mayerh&ouml;fen 15 u. dessen Eheweibes Agnes, geb. Lunzer von Mayerh&ouml;fen; geb: 6.9.1864, getr. 22.11.1887<br />&nbsp;Germanns 9<br />&nbsp;katholisch, weiblich, 34 Jahre 9 Monate 4 Tage<br />&n
+3 CONC bsp;Puerperalfieber<br />]<br />4. Hier verk&uuml;ndet am 15. 19. u 26. November 1899 lt. Verk&uuml;ndbuch, pag 111<br />5. Mit Delegations-Urkunde vom 27.11.1899 Zl 119 1/2 zur Trauung nach Stift Zwe
+3 CONC ttl entlassen<br />6. Trauungs.Anzeige vom Pfarramte Stift Zwettl ddto. 28. Novmeber 1899<br />fasc IX. Nr. 11/1899</p>
+0 @F500004@ FAM
+1 _UPD 8 NOV 2026 12:58:06 GMT -0600
+1 HUSB @I500009@
+1 WIFE @I500010@
+1 CHIL @I500005@
+1 RIN MH:F500004
+1 _UID 6AF0C63DE88D4DDF1799D0739F20543A
+1 MARR
+2 DATE 23 NOV 1909
+2 PLAC Germanns 20 / Oberhof 13
+2 NOTE <p>Zwettl-Stadt Trauungsbuch 02/10 fol. 37<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/zwettl-stadt/02%252F10/?pg=65<br />Am 23. November 1909 [23.11.1909]<br />Priester: A. Trajer
+3 CONC  Pfr.<br />[Nachtrag] Ignaz Reuberger + Germanns 20 am 3. Nov. 1959 St.A. Zwettl (222/1959)<br />[Br&auml;utigam]<br />Reuberger Ignaz, Bauer in Germanns, ehel. Sohn des Reuberger Johann, Zimmermeiste
+3 CONC rs in Wilding u. der ux. Johanna geb. Lunzer<br />Germanns 20<br />katholisch, 29 Jahre, ledig<br />[Braut]<br />T&uuml;chler Juliana, Dienstmagd in Oberhof, ehel. Tochter des Franz T&uuml;chler, Baue
+3 CONC rs in Oberrosenauerwald und dessen ux. Theresia geb. Kropfreiter, alle kath.<br />Oberhof 13<br />katholisch, 31 Jahre, ledig<br />Beist&auml;nde: Ferdinand W[...] Bauer in Gro&szlig; Haslau kath, Leo
+3 CONC pold H&ouml;bart Bauer von Oberrosenauerwald kath.<br />Anmerkung: der Br&auml;utigam ist laut Taufscheines am 31.1.1880, die Braut laut Taufscheines am 30.5.1878 geboren.<br />Verk&uuml;ndet hier, in
+3 CONC  Etzen und in Gr. Globnitz am 14. 15. 21. Nov. 1909</p>
+2 NOTE Witnesses:Ferdinand W[...] Groß Haslau, Leopold Höbart Oberrosenauerwald
+0 @F500005@ FAM
+1 _UPD 8 NOV 2026 12:58:06 GMT -0600
+1 HUSB @I500011@
+1 WIFE @I500012@
+1 CHIL @I500006@
+1 RIN MH:F500005
+1 _UID 6AF0C63E289BFDE61799D0739F20543A
+1 MARR
+2 DATE 24 OCT 1848
+2 PLAC Germanns 9 / Rudmanns 63
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/zwettl-stift/02%252F03/?pg=73
+2 NOTE <p>[gleiche Heirat auch im Trauungsbuch Gro&szlig;globnitz eingetragen]<br />&nbsp;Gro&szlig;globnitz Trauungsbuch 02/05 fol. 33<br />&nbsp;https://data.matricula-online.eu/de/oesterreich/st-poelten/g
+3 CONC rossglobnitz/02%252F05/?pg=35<br />&nbsp;nicht zus&auml;tzlich transkribiert<br />[<br />Trauungsbuch 02/03 fol. 70<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/zwettl-stift/02%252F
+3 CONC 03/?pg=73<br />Am 24. October 848 [24.10.1848]<br />Br&auml;utigam:<br />Ignaz Wagner, Sohn des Joseph Wagner, Bauers in Germanns, und der Theresia geb. Widhalm<br />Germanns 9<br />katholisch, 27 Jah
+3 CONC re, ledig<br />Braut:<br />Katharina Prei&szlig;, Tochter des Leopold Prei&szlig;, Bauers in Rudmanns u der Josefa geb. Wei&szlig;in<br />Rudmanns 63<br />katholisch, 22 Jahre, ledig<br />Beyst&auml;n
+3 CONC de: Johann [...]<br />Anmerkungen: Laut Ehe[...]<br />Die gesetzliche Einwilligung zur Ehe der minoren Braut [..] best&auml;tigt</p>
+0 @F500006@ FAM
+1 _UPD 8 NOV 2026 12:58:06 GMT -0600
+1 HUSB @I500015@
+1 WIFE @I500016@
+1 CHIL @I500007@
+1 RIN MH:F500006
+1 _UID 6AF0C63E8EFDBDF11799D0739F20543A
+1 MARR
+2 DATE 14 JAN 1873
+2 PLAC Gerweis 23 / Großglobnitz 21
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/02%252F05/?pg=96
+2 NOTE <p>Gro&szlig;globnitz Trauungsbuch 02/05 fol. 94<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/02%252F05/?pg=96<br />1873. Am 14. J&auml;nner [14.1.1873]<br />Br&auml;u
+3 CONC tigam:<br />Wieser Josef angehender Hofstattbesitzer in Gerweis, ein ehl. Sohn des kath. Michl Wieser Bauers in Gerweis 23 u. der kath. A. Maria ux. geb. Berger von Kainraths; aus der Pfarre Echsenbac
+3 CONC h<br />Gerweis 23<br />katholisch, 39 Jahre, ledig<br />Braut:<br />Polzer Theresia eine ehl. Tochter des kathol. Michl Polzer Bauers in Gro&szlig;globnitz u. der kath. Juliana ux. geb. Kolm von Jagen
+3 CONC bach; aus hiesiger Pfarre<br />Gro&szlig;globnitz 21<br />katholisch, 30 Jahre, ledig<br />Beyst&auml;nde: Johann Grassauer kath. Anl. Bauer in Gro&szlig;globnitz, Franz Mannssteiner kath. Anl. Bauer 
+3 CONC in Kaltenbach<br />Anmerkung: diese Brautleute wurden hier u. in Echsenbach am 5. 6. und 11. J&auml;nner &ouml;ffentlich aufgebothen.<br />Der Taufschein des Br&auml;utigams, das Rapulars-Extract [beg
+3 CONC laubigter Auszug] u. der Verk&uuml;ndschein von Echsenbach liegen den Matrimonial-Acten sub Fasc. VIII. 1873 bei</p>
+0 @F500022@ FAM
+1 _UPD 8 NOV 2026 14:34:59 GMT -0600
+1 HUSB @I500054@
+1 WIFE @I500055@
+1 CHIL @I500001@
+1 RIN MH:F500022
+1 _UID 6AF0DBD1851175C430010F6BA729E284
+1 MARR
+2 DATE 18 FEB 1936
+2 PLAC Groß-Neusiedl 7 / Hörmanns 47
+2 NOTE <p>Dietmanns Trauungsbuch 02/04 fol. 57<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/02%252F04/?pg=58<br />18.2.1936<br />Rup. Hauer Pfr.<br />Br&auml;utigam:<br />Gro&szl
+3 CONC ig;-Neusiedl 7<br />Franz Halmenschlager Bauerssohn in Gro&szlig;-Neusiedl 7, geb. in Gro&szlig;-Neusiedl und daselbst zust., ehel. Sohn des Karl Halmenschlager, Bauers in Gro&szlig;-Neusiedl 7 imd de
+3 CONC r Theresie ux. geb. Halmenschlager von Siebenlinden. Alle r&ouml;m.-kath.<br />katholisch, geb. 20.11.1908, m&auml;nnlich<br />Braut:<br />H&ouml;rmanns 47<br />Rosa Billek, Pensionistentochter in H&o
+3 CONC uml;rmanns 47, geb. in Dietmanns, zust. nach H&ouml;rmanns, ehel. Tochter des Josef Billek, Pensionisten in H&ouml;rmanns 47, und der Juliana ux. geb. Anderl von H&ouml;rmanns. Alle r&ouml;m.-kath.<br
+3 CONC  />katholisch, geb. 28.6.1909, weiblich<br />Beist&auml;nde: Josef Bilek Pensionist in H&ouml;rmanns 47 r&ouml;m.-kath., Karl Halmenschlager Bauer in Gro&szlig;-Neusiedl 7, r&ouml;m.-kath.<br />Anmerk
+3 CONC ung: die Brautleute wurden hier und in Waldenstein am 2., 9. u. 16. Februar 1936 verk&uuml;ndet VKsch v. Pf.Waldenstein, II. 1936<br />Das Alter des Br&auml;utigams bezeugt der Taufschein v. Pf. Walde
+3 CONC nstein v. 16.IX.1922, Z. 158 (20.XI.1908).<br />Das Alter der Braut bezeugt das hiesige Taufb. III. f. 280 (28.VI.1909)<br />[Nachtrag Stempel] 2. Kind Johann geb. am 24.11.1939, St. A. Gm&uuml;nd N.D
+3 CONC . Nr. 340/39<br />[Nachtrag Stempel] 3. Kind Oswald geb. am 24.11.1939, St. A. Gm&uuml;nd N.D. Nr. 341/39</p>
+0 @F500023@ FAM
+1 _UPD 8 NOV 2026 14:59:42 GMT -0600
+1 HUSB @I500056@
+1 WIFE @I500057@
+1 CHIL @I500055@
+1 RIN MH:F500023
+1 _UID 6AF0E1C1A3D53EC7C8FF40292B93FCD2
+1 MARR
+2 DATE 21 NOV 1898
+2 PLAC Wien II. Jägerstraße 18 / Hörmanns 47
+2 NOTE <p>Dietmanns Trauungsbuch 02/03 fol. 134<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/02%252F03/?pg=148<br />Am 21. November 1898 [21.11.1898]<br />Karl Dvorak Pfarrer<br 
+3 CONC />Br&auml;utigam:<br />Wien II B. J&auml;gerstra&szlig;e 18<br />Josef Billek Weichenw&auml;chter in Heiligenstadt bei der Stadtbahn Wien, ein Sohn der Theresia Billek, Dienstm&auml;dchens, geb. in Wi
+3 CONC en, Alservorstadt 195<br />katholisch, 25 1/2 Jahre, ledig<br />Braut:<br />H&ouml;rmanns 47<br />Juliana Anderl, ehel. Tochter des Franz Anderl, Kleinh&auml;uslers in H&ouml;rmanns 47 u dessen ux. Ma
+3 CONC ria geb. Stiedl<br />katholisch, 27 1/4 Jahre, ledig<br />Pathen:<br />Ferdinand Stiedl kath. Eisenbahnbedienstet. in Gm&uuml;nd<br />Menzel Macho kath. Bauer in Beinh&ouml;fen<br />Anmerkung:<br />di
+3 CONC ese Brautleute wurden hier und in Wien lt. Verk&uuml;ndschein Pf. Brigittenau am 13. 15. u. 20. Nov. 1898 verk&uuml;ndet.<br />das Alter des Br&auml;utigams bezeugt der Taufschein der Pf. Alservorstad
+3 CONC t dto 19/4 98<br />das Alter der Braut das hiesige Taufbuch Tom III fol 46<br />Eheacte Nr 10</p>
+2 NOTE Witnesses:Ferdinand Stiedl Gmünd
+0 @F500024@ FAM
+1 _UPD 9 NOV 2026 14:30:11 GMT -0600
+1 HUSB @I500059@
+1 WIFE @I500058@
+1 CHIL @I500054@
+1 RIN MH:F500024
+1 _UID 6AF22C4EDCF706D9C5D7D23FE3763D04
+1 MARR
+2 DATE 7 FEB 1899
+2 PLAC Groß-Neusiedl 7 / Groß-Neusiedl 8
+2 NOTE ein Halmenschlager heiratet eine Halmenschlager!
+2 NOTE <p>Waldenstein Trauungsbuch 02/05 fol. 111<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/02%252F05/?pg=114<br />1899. Siebter /: 7 :/ Februar [7.2.1899]<br />Priester: ex
+3 CONC  delegatione parochiproprii P. Adrian Binder, Pfarrer in Dreieichen<br />Br&auml;utigam:<br />Karl Halmenschlager, angehender Bauer in Neusiedl 7, ehel. Sohn des + Franz Halmenschlager, gew. Bauers da
+3 CONC selbst u. der Juliana ux. geb. Schnabl von Neusiedl, beide kath. Rel.<br />[Nachtrag] +12.XI.1947 in Gr. Neusiedl<br />Gro&szlig;-Neusiedl 7<br />katholisch, 28 Jahre, 24.10.1870, ledig<br />Braut:<br
+3 CONC  />Theresia Halmenschlager, wohnhaft in Neusiedl 8, ehel. Tochter des + Anton Halmenschlager gew. Bauers in Siebenlinden 28 u. der Maria ux. geb. Semper[...] Neusiedl, beide kath. Rel.<br />Gro&szlig;
+3 CONC -Neusiedl 8<br />katholisch, 22 Jahre, 19.9.1876, ledig<br />Beist&auml;nde:<br />[Franz Schmid Bauer in Ulrichs 2 gestrichen]<br />Franz Schuh Bauer in H&ouml;barten 8, kath.<br />Franz Schindler Bau
+3 CONC er in Waldenstein 32, kath.<br />Anmerkung:<br />1.) Alter des Br&auml;utigams aus dem pfarrl. Taufbuche tom. IV fol. 91<br />2.) Alter der Braut aus dem Taufscheine der Pf. Siebenlinden dto 6.4.97 Zl
+3 CONC . -pfarrl. Taufbuche tom. IV fol. 91<br />3.) Gro&szlig;j&auml;hrigkeitserkl&auml;rung der Braut vom k.k. Bezirks[.] Weitra dto 16.4.1897 Z 1385I<br />4.) Delegationsurkunde an die Seelsorgegeistlichk
+3 CONC eit Dreieichen dto 6.2.1899 Zl. 22<br />5.) R&uuml;ckanzeige &uuml;ber die erfolgte Trauung vom Pfarramte Dreieichen dto 12/94 Zl<br />6.) Verk&uuml;ndigung am 29. J&auml;nner, 2. und 5. Februar<br />
+3 CONC Eheacte Nr. 2 1899</p>
+0 @F500025@ FAM
+1 _UPD 9 NOV 2026 14:45:05 GMT -0600
+1 HUSB @I500060@
+1 WIFE @I500061@
+1 CHIL @I500057@
+1 RIN MH:F500025
+1 _UID 6AF2304A4BC5F3E00B36F0A130B7225C
+1 MARR
+2 DATE 20 JAN 1874
+2 PLAC Hörmanns 47, Dietmanns 87
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/02%252F03/?pg=73
+2 NOTE <p>Dietmanns Trauungsbuch 02/03 fol. 59<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/dietmanns/02%252F03/?pg=73<br />am 20. J&auml;nner 1874 [20.1.1874]<br />Franz Bauer localcpl<br
+3 CONC  />Br&auml;utigam:<br />Dorf H&ouml;rmanns 47<br />Franz Anderl. ehl. Sohn des Michael Anderl, Hausbesitzers in H&ouml;rmanns u. der Anna Maria Stiedl, grossj&auml;hrige Tochter des Jacob Stiedl Ausne
+3 CONC hmers in Dietmanns u. der Johanna dess. Ehew. geb. Vogler von Dietmanns<br />katholisch, 23 Jahre, ledig<br />Braut:<br />Dorf Dietmanns 87<br />katholisch, 24 Jahre, ledig<br />Beist&auml;nde: Franz 
+3 CONC Stiedl Ausnehmer in Dietmanns, Josef [...]<br />Anmerkung: die Brautleute sind am 4. 6. u. 11 J&auml;nner hier u. in Siebenlinden verk&uuml;ndet u. am 20. J&auml;nner hier getraut worden, nachdem der 
+3 CONC Vater des minderj&auml;hrigen Br&auml;utigams seine Einwilligung gegeben. Das Alter des Br&auml;utigams und der Braut bezeugen die hiesigen Protokolle. Der Verk&uuml;ndschein der Braut v. Siebenlinden
+3 CONC  - siehe Pf. [...] 1874 dto</p>
+0 @F500026@ FAM
+1 _UPD 9 NOV 2026 14:51:42 GMT -0600
+1 WIFE @I500062@
+1 CHIL @I500056@
+1 RIN MH:F500026
+1 _UID 6AF2325E52529AA4854054F98532619F
+0 @F500027@ FAM
+1 _UPD 9 NOV 2026 16:07:55 GMT -0600
+1 HUSB @I500063@
+1 WIFE @I500064@
+1 CHIL @I500059@
+1 RIN MH:F500027
+1 _UID 6AF243ACB99D3449D65FDB8C7DD740EF
+1 MARR
+2 DATE 19 MAY 1863
+2 PLAC Neusiedl 7
+2 NOTE <p>Waldenstein Trauungsbuch 02/04 fol. 156<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/02%252F04/?pg=150<br />den 19 May 1863 [19.5.1863]<br />Br&auml;utigam:<br />Jose
+3 CONC ph [...] Pfr.<br />Franz Halmenschlager angehender Bauer in Neusiedl, Sohn des Michael Halmenschlager Bauers in Neusiedl u, seines Eheweibes AMaria geborene S[...] von Neusiedl<br />Ort: Neusiedl 7<br
+3 CONC  />katholisch, 27 Jahre, ledig<br />Braut:<br />Joseph [...] Pfr.<br />Juliana Schnabl wohnhaft in ... zu Neusiedl, Tochter des Johann Schnabl Bauers in Neusiedl et A: Maria uxor nata Eberl. [...]<br 
+3 CONC />Ort: Neusiedl 6<br />katholisch, ledig, 17 Jahre<br />Da&szlig; der Vater Johann Schnabl in die Ehe seiner min. Tochter eingewilligt habe wird durch seine und ders... Unterschrift best&auml;tigt.<br
+3 CONC  />Beyst&auml;nde: Georg Sch... Bauer in Neusiedl kath. Rel., Johann B... Bauer in Neusiedl kath. Rel.<br />Anmerkungen: Eheconsens [...]</p>
+0 @F500028@ FAM
+1 _UPD 10 NOV 2026 07:02:48 GMT -0600
+1 HUSB @I500065@
+1 WIFE @I500066@
+1 CHIL @I500063@
+1 RIN MH:F500028
+1 _UID 6AF31505AB63514CD32BF894C108D517
+1 MARR
+2 DATE 27 JAN 1835
+2 PLAC Mannshalm 13, Neusiedl 7
+2 NOTE <p>[1. Ehe oo1823 mit Sebastian Schindler<br />&nbsp;2. Ehe oo1835 mit Michael Halmenschlager<br />]</p>
+<p>Waldenstein Trauungsbuch 02/04 fol. 137<br />https://data.matricula-online.eu/de/oesterreic
+3 CONC h/st-poelten/waldenstein/02%252F04/?pg=132<br />Am 27. J&auml;nner 1835 [27.1.1835]<br />Parochus: Augustin B[...]<br />Br&auml;utigam:<br />Michael Halmenschlager l. St. ein ehl. Sohn des lebenden Jo
+3 CONC hann Halmenschlager Bauers in Mannshalm und der lebenden A. M. geb. Poltin von Siebenlinden<br />Mannshalm 13<br />katholisch, 31 Jahre, ledig<br />Braut:<br />A: Maria Schindler Witwe des Sebastian S
+3 CONC chindler Bauers in Neusiedl, ehl. Tochter des + Martin Semper Bauers in Neusiedl unde der + Theresia geb. Katzenschlager [...] Neisiedl<br />Neusiedl 7<br />katholisch, Witwe, 37 Jahre<br />Beyst&auml
+3 CONC ;nde: Sebastian B[...] Bauers in Siebenlinden, [e.h.] Joseph M&uuml;llner Bauers in Neusiedl<br />Anmerkungen: [...]bewillgung [...] Verk&uuml;ndschein [...] Taufschein</p>
+2 NOTE Witnesses:Sebastian B[...] Siebenlinden, Joseph Müllner Neusiedl
+0 @F500029@ FAM
+1 _UPD 11 NOV 2026 10:55:23 GMT -0600
+1 HUSB @I500067@
+1 WIFE @I500068@
+1 CHIL @I500065@
+1 RIN MH:F500029
+1 _UID 6AF49D7DA450096E384898B06903CC65
+1 MARR
+2 DATE 12 NOV 1799
+2 PLAC Mannshalm 14
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/siebenlinden/02%252F01/?pg=8
+2 NOTE <p>Siebenlinden Trauungsbuch 02/01 fol. 6<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/siebenlinden/02%252F01/?pg=8<br />1799. Die 12 [No?]bris [12.11.1799]<br />Br&auml;utigam:<br 
+3 CONC />Johann Halmenschlager<br />Mannshalm 14<br />[lt. H&auml;userbuch https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/01%252C2%252C3-04/?pg=192<br />&nbsp;Mannshalm No 13 Halmensc
+3 CONC hlager<br />&nbsp;1750 &nbsp; &nbsp;Josef Schmiedt<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Andreas Koyer<br />&nbsp;1771.11.21 &nbsp; &nbsp; &nbsp;Koyer Andreas [...] geb. Schmied v. Mannshalm<br />&nb
+3 CONC sp;[oo1799] &nbsp; &nbsp; &nbsp; &nbsp;Halmetschlager Johann (v. Mannshalm No 18?), +1840.2.19 60J.<br />&nbsp;[oo1799] &nbsp; &nbsp; &nbsp; &nbsp;AM Polt v. Siebenlinden 10, +1856.3.11 76J.<br />&nbs
+3 CONC p;1800.12.31 &nbsp; &nbsp; &nbsp;Sebastian<br />&nbsp;1803.9.9 &nbsp; &nbsp; &nbsp; &nbsp;Michael<br />&nbsp;1806.10.14 &nbsp; &nbsp; &nbsp;Theresia oo1833 den Martin Wei&szlig; Gr&uuml;nbach<br />&nb
+3 CONC sp;1809.8.17 &nbsp; &nbsp; &nbsp; AM oo1841 nach RP[...] den Witwer Georg H&ouml;lzl No 16<br />&nbsp;1812.11.12 &nbsp; &nbsp; &nbsp;Leopold +1812.11.22<br />&nbsp;1812.11.12 &nbsp; &nbsp; &nbsp;Josef
+3 CONC a +1812.11.26 13 Tag<br />&nbsp;1812.11.12 &nbsp; &nbsp; &nbsp;Elisabeth<br />&nbsp;1813.12.13 &nbsp; &nbsp; &nbsp;Johann +1813.12.17<br />&nbsp;1815.1.31 &nbsp; &nbsp; &nbsp; Josef +1836.7.3 21J. Lun
+3 CONC genschwindsucht<br />&nbsp;1818.3.24 &nbsp; &nbsp; &nbsp; Georg +1818.3.30<br />&nbsp;1820.1.3 &nbsp; &nbsp; &nbsp; &nbsp;Juliana +1820.1.6<br />&nbsp;1821.8.19 &nbsp; &nbsp; &nbsp; Rosalia +1840.5.13
+3 CONC  Auszehrung (eine illg Tochter derselben AM +1827 Joh[...])<br />&nbsp;1825.2.11 &nbsp; &nbsp; &nbsp; Mathias<br />]<br />katholisch, 21 Jahre, unverehelicht<br />Braut:<br />A: M: [Anna Maria] Polt<b
+3 CONC r />katholisch, 18 Jahre, unverehelicht<br />Pathen: Johan Georg Howiger[?] v. Schweiggers Fleischhauer, + Anton Lechner von Siebenlinden + Bauer<br />[Haus und Hof https://huh.oefr.at/karte/?id=57840
+3 CONC <br />&nbsp;Gemeinde: Schweiggers<br />&nbsp;Aktuelle Adresse: Siebenlinden 25<br />&nbsp;Adresse um 1820: &nbsp;Siebenlinden 25<br />&nbsp;Besitzer um 1820: Lechtner Anton<br />&nbsp;Besitzer um 1787
+3 CONC : Lechner Anton (gg.&uuml;. Siebenlinden 10)<br />]<br />Copulans Bernadus Stiglitz Pfarrer</p>
+0 @F500030@ FAM
+1 _UPD 11 NOV 2026 11:36:31 GMT -0600
+1 HUSB @I500069@
+1 WIFE @I500070@
+1 CHIL @I500067@
+1 RIN MH:F500030
+1 _UID 6AF4A6E693777E8EE37F317E58AEC86D
+1 MARR
+2 DATE 18 MAY 1778
+2 PLAC Mannshalm 18
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/01%252C2%252C3-04/?pg=308
+2 NOTE <p>Schweiggers Tauf-, Trauungs- und Sterbebuch 01,2,3-04 fol. 13<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/01%252C2%252C3-04/?pg=308<br />1778. Mense May. Dies 18 [18
+3 CONC .5.1778]<br />Locus: Mannshalm 18<br />[lt. H&auml;userbuch https://data.matricula-online.eu/de/oesterreich/st-poelten/schweiggers/01%252C2%252C3-04/?pg=197<br />&nbsp;Mannshalm No 18<br />&nbsp;oo177
+3 CONC 8.5.18 &nbsp; &nbsp; Halmenschlager Simon +1814.10.12 61J. f Georgii H v Brunnh&ouml;f, u. Teresia<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;" &nbsp; &nbsp; &nbsp; &nbsp; &nbs
+3 CONC p; &nbsp; &nbsp;1820, Jahrings u. der AM. +1820.4.22<br />&nbsp;1779.6.19 &nbsp; &nbsp; &nbsp; Johann<br />&nbsp;1782.7.24 &nbsp; &nbsp; &nbsp; AM oo1805[.11.5] den Joh Koppensteiner No 31<br />&nbsp;
+3 CONC 1785.9.4 &nbsp; &nbsp; &nbsp; &nbsp;Michael<br />&nbsp;1788.9.4 &nbsp; &nbsp; &nbsp; &nbsp;Rosalia vide 1810 [siehe illegitime Tochter] oo1819[.9.29] d Schmid Georg Meinhartschlag; +1824.4.10 35J.<br 
+3 CONC />&nbsp;1792.2.2 &nbsp; &nbsp; &nbsp; &nbsp;Josef +1795.6.14 Blattern<br />&nbsp;1795.1.15 &nbsp; &nbsp; &nbsp; Juliana oo1819[.9.28] den Lorenz Rabl No 7; oo1824[.11.23] d Joh Koppensteiner No 7 v Ra
+3 CONC thfrem[?]<br />&nbsp;1810.3.12 &nbsp; &nbsp; &nbsp; illeg AM der Rosalia *1788<br />]<br />Sponsi:<br />Hon. [...] Simon Halmeschlager [Halmenschlager] fil. Georgius Halmeschlager et Theresia ux. Vivo
+3 CONC rum<br />Hon. Virgo Maria Anna Kummerin filia Georgius Kummerer ex Jahrings et Anna Maria ux. Viv.<br />Testes: Sebast. Halmeschlager ex. Brunnh&ouml;f et Laurent. Halmeschlager ex Jahrings</p>
+0 @F500031@ FAM
+1 _UPD 12 NOV 2026 10:05:09 GMT -0600
+1 HUSB @I500071@
+1 WIFE @I500072@
+1 CHIL @I500069@
+1 RIN MH:F500031
+1 _UID 6AF5E2A575401D3C374C1890EAF12F9C
+1 MARR
+0 @F500032@ FAM
+1 _UPD 13 NOV 2026 07:02:54 GMT -0600
+1 HUSB @I500073@
+1 WIFE @I500074@
+1 CHIL @I500071@
+1 RIN MH:F500032
+1 _UID 6AF70887012F30C8DE5B135DD5FDEBB4
+1 MARR
+0 @F500033@ FAM
+1 _UPD 15 NOV 2026 08:03:19 GMT -0600
+1 HUSB @I500075@
+1 WIFE @I500076@
+1 CHIL @I500058@
+1 RIN MH:F500033
+1 _UID 6AF8CC49BEF9688C7F87155427EF5D6F
+1 MARR
+2 DATE 8 FEB 1875
+2 PLAC Siebenlinden 28 / Neusiedl 21
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/02%252F05/?pg=4
+2 NOTE <p>Waldenstein Trauungsbuch 02/05 fol. 1<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/waldenstein/02%252F05/?pg=4<br />1875. Februar den 8ten achten [8.2.1875] hier getraut<br />Pri
+3 CONC ester: Lorenz Friedrich Pfarrer<br />Br&auml;utigam:<br />Anton Halmenschlager angehender Bauer in Siebenlinden, ehelicher Sohn des Ambros Halmenschlager Bauers in Siebenlinden und seines Eheweibs Ann
+3 CONC a, Tochter des Joseph Wei&szlig;ensteiner und seines Eheweibs Rosalia, alle katholisch<br />Siebenlinden 28<br />katholisch, 26 Jahre, ledig<br />Braut:<br />Maria Semper, eheliche Tochter des Anton S
+3 CONC emper Bauers zu Neusiedl und seines Eheweibs Anna, Tochter des Simon Semper, Bauers zu H&ouml;rmanns und seines Eheweibs Magdalena, geborene Reinhart,<br />Neusiedl 21<br />katholisch, 20 Jahre, ledig
+3 CONC <br />Beist&auml;nde:<br />Franz .. Bauers zu Neusiedl, katholisch<br />Wei&szlig;ensteiner ... Bauer in Streitbach, katholisch<br />Anmerkung:<br />In die Verehelichung der minderj&auml;hrigen Braut 
+3 CONC williget der Vater [...]<br />Trauungs-R[...]-Abschrift, Taufschein des Br&auml;utigams [.] Verk&uuml;ndschein der Pfarre Siebenlinden im Pfarr-Archiv [...] VII N 3/1875</p>
+0 @F500034@ FAM
+1 _UPD 16 NOV 2026 10:47:19 GMT -0600
+1 HUSB @I500077@
+1 WIFE @I500078@
+1 CHIL @I500010@
+1 RIN MH:F500034
+1 _UID 6AFB3351876C4E7B9E83651E0440AFC7
+1 MARR
+2 DATE 22 FEB 1876
+2 PLAC Oberrosenauerwald  39 / Oberrosenauerwald  48
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/grossgerungs/02%252F08/?pg=249
+2 NOTE <p>Gro&szlig;gerungs Trauungsbuch 02/08 fol. 372<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossgerungs/02%252F08/?pg=249<br />den 22ten Februar 1876 [22.2.1876]<br />Br&auml;uti
+3 CONC gam:<br />Franz T&uuml;chler angehender Bauer in Oberrosenauerwald Pf. Etzen, ehel. [...] Sohn des Michael T&uuml;chler [...] Bauer daselbst [...]<br />Oberrosenauerwald 39<br />katholisch, 22 Jahre, 
+3 CONC ledig<br />Braut:<br />Theresia Kropfreiter ehel. minderj&auml;hrige Tochter des Michael Kropfreiter Bauers in [...] u der Barbara uxorius, ehel. Tochter des Martin Walter H&auml;uslers in Zw&ouml;sch
+3 CONC u Pf. Dappalten[?] [...]<br />Oberrosenauerwald &nbsp;48<br />katholisch, 20 Jahre, ledig<br />[Nachtrag] Ein Kind nebenverzeichneter Eltern namens Michael T&uuml;chler, hat lt. Mittlg. des Stand. Amt
+3 CONC  Favoriten, Wien West vom 10.9.1940 am 3. August 1940 die 1. Ehe geschlossen.<br />[Nachtrag] hier Tfb. VII. 363</p>
+0 @F500035@ FAM
+1 _UPD 17 NOV 2026 09:41:34 GMT -0600
+1 HUSB @I500079@
+1 WIFE @I500080@
+1 CHIL @I500009@
+1 RIN MH:F500035
+1 _UID 6AFC74D6428371B6BB5D6CEE6F31DF42
+1 MARR
+2 DATE 10 FEB 1874
+2 PLAC Mayerhöfen 1 / Germanns 19
+2 NOTE https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/02%252F05/?pg=99
+2 NOTE <p>Gro&szlig;globnitz Trauungsbuch 02/05 fol. 97<br />https://data.matricula-online.eu/de/oesterreich/st-poelten/grossglobnitz/02%252F05/?pg=99<br />1874. Am 10. Februar [10.2.1874]<br />Pfarrer: Anto
+3 CONC n Pfeisinger Pfarrer<br />Br&auml;utigam:<br />Reuberger Johann, ein angehender Hausbesitzer in Wildings 13. Ein ehel. Sohn des kath. Anton Reuberger M&uuml;llermeisters in Mayerh&ouml;fen, u. der kat
+3 CONC h. A. Maria ux. geb. Fastenbauer von Germanns.<br />Mayerh&ouml;fen 1<br />katholisch, 26 Jahre, ledig<br />Braut:<br />Lunzer Johanna, eine ehliche Tochter des kath. Georg Lunzer Bauers in Germanns, 
+3 CONC u der kath. Anna Maria uxoris geb. Fuchsler[?] Reichenbach<br />Germanns 19<br />katholisch, 29 Jahre, ledig<br />Beyst&auml;nde: Michael Lunzer kath. ehel. Bauer in Mayerh&ouml;fen, Anton Reuberger k
+3 CONC ath. ehl. Bauer in Mayerh&ouml;fen<br />Anmerkung: Beide Brautleute aus hiesiger Pfarre wurden am 1. 2. u. 8. Febr. &ouml;ffentlich aufgeboten</p>
+0 @F500038@ FAM
+1 _UPD 17 NOV 2026 12:04:42 GMT -0600
+1 HUSB @I500085@
+1 WIFE @I500086@
+1 CHIL @I500078@
+1 RIN MH:F500038
+1 _UID 6AFC972C475846ED717A9D4C7074CD04
+1 MARR
+0 @F500039@ FAM
+1 _UPD 17 NOV 2026 12:05:32 GMT -0600
+1 HUSB @I500087@
+1 WIFE @I500088@
+1 CHIL @I500086@
+1 RIN MH:F500039
+1 _UID 6AFC975A27759797B04AAA7FE5F962C7
+1 MARR
+0 TRLR
