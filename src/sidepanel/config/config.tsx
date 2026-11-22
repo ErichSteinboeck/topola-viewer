@@ -155,9 +155,7 @@ export function ConfigPanel(props: {
   const intl = useIntl();
   return (
     <Form className="details">
-      <GedcomImportWarning repairReport={props.repairReport} />
       <Item.Group>
-        {SourceHead(props.gedcom)}
         <Item>
           <Item.Content>
             <Header sub>Language / Sprache</Header>
@@ -178,115 +176,8 @@ export function ConfigPanel(props: {
             </select>
           </Item.Content>
         </Item>
-        <Item>
-          <Item.Content>
-            <Header sub>
-              <FormattedMessage
-                id="config.click_behavior"
-                defaultMessage="Click behavior"
-              />
-            </Header>
-            <Form.Field className="no-margin">
-              <Checkbox
-                label={intl.formatMessage({
-                  id: 'config.invert_click_behavior',
-                  defaultMessage: 'Invert click behavior',
-                })}
-                checked={props.config.clickAction === ClickAction.DETAILS}
-                onChange={(_event, data) =>
-                  props.onChange({
-                    ...props.config,
-                    clickAction: data.checked
-                      ? ClickAction.DETAILS
-                      : ClickAction.FOCUS,
-                  })
-                }
-              />
-            </Form.Field>
-          </Item.Content>
-        </Item>
-        <Item>
-          <Item.Content>
-            <Header sub>
-              <FormattedMessage
-                id="config.event_notes"
-                defaultMessage="Event notes"
-              />
-            </Header>
-            <Form.Field className="no-margin">
-              <Checkbox
-                label={intl.formatMessage({
-                  id: 'config.always_show_notes',
-                  defaultMessage: 'Always show notes below events',
-                })}
-                checked={props.config.alwaysShowEventNotes}
-                onChange={(_event, data) =>
-                  props.onChange({
-                    ...props.config,
-                    alwaysShowEventNotes: !!data.checked,
-                  })
-                }
-              />
-            </Form.Field>
-            <Header sub>
-              <FormattedMessage
-                id="config.place_hover_header"
-                defaultMessage="Place hover"
-              />
-            </Header>
-            <Form.Field className="no-margin">
-              <Checkbox
-                label={intl.formatMessage({
-                  id: 'config.highlight_matching_places',
-                  defaultMessage: 'Highlight identical places on hover',
-                })}
-                checked={props.config.highlightMatchingPlaces}
-                onChange={(_event, data) =>
-                  props.onChange({
-                    ...props.config,
-                    highlightMatchingPlaces: !!data.checked,
-                  })
-                }
-              />
-            </Form.Field>
-            <Header sub>
-              <FormattedMessage
-                id="config.gedcom_metadata"
-                defaultMessage="GEDCOM metadata"
-              />
-            </Header>
-            <Form.Field className="no-margin">
-              <Checkbox
-                label={intl.formatMessage({
-                  id: 'config.show_identification',
-                  defaultMessage: 'Show identification (chart and sidebar)',
-                })}
-                checked={props.config.id === Ids.SHOW}
-                onChange={(_event, data) =>
-                  props.onChange({
-                    ...props.config,
-                    id: data.checked ? Ids.SHOW : Ids.HIDE,
-                  })
-                }
-              />
-            </Form.Field>
-            <Form.Field className="no-margin">
-              <Checkbox
-                label={intl.formatMessage({
-                  id: 'config.show_technical_fields',
-                  defaultMessage: 'Show technical fields (RIN, UID, UPD)',
-                })}
-                checked={props.config.showTechnicalFields}
-                onChange={(_event, data) =>
-                  props.onChange({
-                    ...props.config,
-                    showTechnicalFields: !!data.checked,
-                  })
-                }
-              />
-            </Form.Field>
-          </Item.Content>
-        </Item>
+        {SourceHead(props.gedcom)}
+        <GedcomImportWarning repairReport={props.repairReport} />
         <Item>
           <Item.Content>
             <Header sub>
@@ -477,6 +368,115 @@ export function ConfigPanel(props: {
                 checked={props.config.place === PlaceDisplay.FULL}
                 onClick={() =>
                   props.onChange({...props.config, place: PlaceDisplay.FULL})
+                }
+              />
+            </Form.Field>
+          </Item.Content>
+        </Item>
+        <Item>
+          <Item.Content>
+            <Header sub>
+              <FormattedMessage
+                id="config.click_behavior"
+                defaultMessage="Click behavior"
+              />
+            </Header>
+            <Form.Field className="no-margin">
+              <Checkbox
+                label={intl.formatMessage({
+                  id: 'config.invert_click_shift',
+                  defaultMessage: 'Reverse click / Shift-click',
+                })}
+                checked={props.config.clickAction === ClickAction.FOCUS}
+                onChange={(_event, data) =>
+                  props.onChange({
+                    ...props.config,
+                    clickAction: data.checked
+                      ? ClickAction.FOCUS
+                      : ClickAction.DETAILS,
+                  })
+                }
+              />
+            </Form.Field>
+          </Item.Content>
+        </Item>
+        <Item>
+          <Item.Content>
+            <Header sub>
+              <FormattedMessage
+                id="config.event_notes"
+                defaultMessage="Event notes"
+              />
+            </Header>
+            <Form.Field className="no-margin">
+              <Checkbox
+                label={intl.formatMessage({
+                  id: 'config.always_show_notes',
+                  defaultMessage: 'Always show notes below events',
+                })}
+                checked={props.config.alwaysShowEventNotes}
+                onChange={(_event, data) =>
+                  props.onChange({
+                    ...props.config,
+                    alwaysShowEventNotes: !!data.checked,
+                  })
+                }
+              />
+            </Form.Field>
+            <Header sub>
+              <FormattedMessage
+                id="config.place_hover_header"
+                defaultMessage="Place hover"
+              />
+            </Header>
+            <Form.Field className="no-margin">
+              <Checkbox
+                label={intl.formatMessage({
+                  id: 'config.highlight_identical_places',
+                  defaultMessage: 'Highlight identical places',
+                })}
+                checked={props.config.highlightMatchingPlaces}
+                onChange={(_event, data) =>
+                  props.onChange({
+                    ...props.config,
+                    highlightMatchingPlaces: !!data.checked,
+                  })
+                }
+              />
+            </Form.Field>
+            <Header sub>
+              <FormattedMessage
+                id="config.gedcom_metadata"
+                defaultMessage="GEDCOM metadata"
+              />
+            </Header>
+            <Form.Field className="no-margin">
+              <Checkbox
+                label={intl.formatMessage({
+                  id: 'config.hide_identification',
+                  defaultMessage: 'Hide IDENTIFICATION field',
+                })}
+                checked={props.config.id === Ids.HIDE}
+                onChange={(_event, data) =>
+                  props.onChange({
+                    ...props.config,
+                    id: data.checked ? Ids.HIDE : Ids.SHOW,
+                  })
+                }
+              />
+            </Form.Field>
+            <Form.Field className="no-margin">
+              <Checkbox
+                label={intl.formatMessage({
+                  id: 'config.hide_technical_fields',
+                  defaultMessage: 'Hide RIN, UID, UPD fields',
+                })}
+                checked={!props.config.showTechnicalFields}
+                onChange={(_event, data) =>
+                  props.onChange({
+                    ...props.config,
+                    showTechnicalFields: !data.checked,
+                  })
                 }
               />
             </Form.Field>
