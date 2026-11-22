@@ -197,5 +197,6 @@
   "config.invert_click_shift": "Klick / Shift-Klick umkehren",
   "config.highlight_identical_places": "Identische Orte hervorheben",
   "config.hide_identification": "Feld IDENTIFIKATION verbergen",
-  "config.hide_technical_fields": "Felder RIN, UID, UPD verbergen"
+  "config.hide_technical_fields": "Felder RIN, UID, UPD verbergen",
+  "fan.generations_short": "Generationen"
 }
