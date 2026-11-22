@@ -97,6 +97,13 @@ aktuellen Quellcode prüfen.
   `click`) behalten unverändert ihre Bedeutung. Kein Datenmigrationsschritt
   notwendig.
 
+### Noch zu entscheiden: Sonderfelder und zusätzliche GEDCOM-Notizen
+
+- **Offen:** Wie sollen Sonderfelder wie `BIO` (Biografie), `BERUF` (Beruf) und Einträge wie `NOTE godparents:` (Taufpaten) aus der Forschungs-TXT bzw. dem MyHeritage-GEDCOM übernommen und angezeigt werden?
+- Prüfen, welche Informationen als standardisierte GEDCOM-Ereignisse/Attribute vorliegen, welche in freien Notizen stehen und welche beim Export möglicherweise verloren gehen.
+- Gemeinsam festlegen, ob und wo diese Inhalte in **DETAILS**, in den **Ereignis-Popups** und gegebenenfalls in Diagrammfeldern erscheinen sollen; doppelte Anzeigen vermeiden.
+- **Noch keine Entscheidung oder automatische Umwandlung vornehmen.** Forschungs-TXT bleibt die maßgebliche Grundlage.
+
 ### Darstellung und gemeinsame Popups
 
 - **Überarbeitet 22.11.2026:** Fächer: gleiche Namensschriftgröße innerhalb
