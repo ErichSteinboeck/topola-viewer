@@ -61,10 +61,11 @@ aktuellen Quellcode prüfen.
 
 ### Menü und Personenauswahl
 
-- In **Ansicht** `Donatso` und `Zierbaum` **nur ausblenden**, ihren Code
-  behalten.
-- **Alle Verwandte** beibehalten; Arbeitstitel „Sanduhrkarte (alle Verwandten)“,
-  endgültige Bezeichnung noch offen.
+- **Erledigt 22.11.2026:** Unter **Ansicht** sind `Donatso` und
+  `Zierbaum` (intern `fancy`) ausgeblendet; beide bleiben im Code und
+  über bestehende `view=`-Links erreichbar.
+- **Erledigt 22.11.2026:** **Alle Verwandten** bleibt als
+  „Sanduhrkarte (alle Verwandten)“ im Menü.
 - Startperson nicht automatisch gleich dem ersten GEDCOM-Datensatz/`I500001`.
   Vereinbarte Präferenz: URL-Parameter `indi` zuerst, dann eindeutiger Name aus
   dem GEDCOM-Dateinamen (z. B. `reinhold-halmenschlager.ged`), danach sinnvoller
@@ -78,16 +79,19 @@ aktuellen Quellcode prüfen.
 
 ### Seitenleiste und Einstellungen
 
-- Tab `INFORMATIONEN` → **DETAILS**.
-- Bei fehlerfreiem GEDCOM-Import keine Erfolgsmitteilung; Warnmeldungen mit
-  korrektem linken Einzug.
-- **SPRACHE** oberhalb **DATENQUELLE**, zusätzliche Einstellungen ans Ende nach
-  **ORTE**.
-- Checkboxen benennen: **Klick / Shift-Klick umkehren**; **Identische Orte
-  hervorheben**; **Felder RIN, UID, UPD verbergen**; **Feld IDENTIFIKATION
-  verbergen**.
-- Bei den beiden letzten gilt **angekreuzt = verborgen**, einschließlich
-  richtiger Defaults und Migration bisher gespeicherter Einstellungen.
+- **Erledigt 22.11.2026:** Tab `INFORMATIONEN` → **DETAILS**.
+- **Erledigt 22.11.2026:** Keine Diagnostikmeldung bei sauberem oder nicht
+  verfügbarem Prüfbericht. Relevante GEDCOM-Warnungen sind wie der restliche
+  Seitenleisteninhalt eingerückt.
+- **Erledigt 22.11.2026:** **SPRACHE** vor **DATENQUELLE**; zusätzliche
+  Einstellungen nach **ORTE**.
+- **Erledigt 22.11.2026:** Checkboxtexte **Klick / Shift-Klick umkehren**,
+  **Identische Orte hervorheben**, **Felder RIN, UID, UPD verbergen** und
+  **Feld IDENTIFIKATION verbergen**. Die beiden Verbergen-Checkboxen sind
+  angekreuzt, wenn die Felder ausgeblendet sind; Klick/Shift-Klick ist
+  angekreuzt, wenn ein normaler Klick fokussiert. Alte URL- und
+  localStorage-Werte (`technical`, `i`, `click`) behalten unverändert ihre
+  Bedeutung. Kein Datenmigrationsschritt notwendig.
 
 ### Darstellung und gemeinsame Popups
 
@@ -133,7 +137,7 @@ aktuellen Quellcode prüfen.
 
 ## Vorgesehene Arbeitsfolge
 
-1. Einfache Menü-/Einstellungs-/Tab-Änderungen.
+1. **Erledigt 22.11.2026:** Menü-/Einstellungs-/Tab-Änderungen.
 2. Startperson und Such-/Fokusnavigation entwerfen und testen.
 3. Gemeinsamer Diagrammstil, IDENTIFIKATION und Ortsmarkierung.
 4. Gemeinsame Popups mit ergänzenden GEDCOM-Daten und gekürzten HTML-Notizen.
@@ -147,9 +151,10 @@ aktuellen Quellcode prüfen.
 > Wir arbeiten an `ErichSteinboeck/topola-viewer`. Bitte zuerst `DEVELOPMENT.md`
 > und den aktuellen Code lesen. Die Forschungs-TXT ist die Recherchegrundlage;
 > GEDCOM ist MyHeritage-Export. Unser Vorfahrenfächer ist bereits implementiert.
-> Offen sind die beschlossenen UI-Anpassungen, die noch nicht entschiedene
-> automatische Hauptperson-Auswahl, diagrammübergreifendes Auswahlverhalten und
-> gemeinsame Popups. Die neueste hochgeladene GEDCOM vom 21.11.2026 darf nicht
+> Die Menü- und Seitenleistenänderungen sind umgesetzt. Offen sind der
+> gemeinsame Diagrammstil, die noch nicht entschiedene automatische
+> Hauptperson-Auswahl, diagrammübergreifendes Auswahlverhalten und gemeinsame
+> Popups. Die neueste hochgeladene GEDCOM vom 21.11.2026 darf nicht
 > ohne Datenschutz-/Versionsprüfung die bereits veröffentlichte Kopie ersetzen.
 
 **Pflege:** Nach jedem abgeschlossenen Entwicklungsschritt Status und offene
