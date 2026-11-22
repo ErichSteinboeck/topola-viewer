@@ -2,7 +2,7 @@ import queryString from 'query-string';
 import {useEffect, useRef, useState} from 'react';
 import {FormattedMessage} from 'react-intl';
 import {useNavigate} from 'react-router';
-import {Button, Form, Header, Icon, Input, Modal} from 'semantic-ui-react';
+import {Button, Checkbox, Form, Header, Icon, Input, Modal} from 'semantic-ui-react';
 import {analyticsEvent} from '../util/analytics';
 import {MenuItem, MenuType} from './menu_item';
 
@@ -14,12 +14,14 @@ interface Props {
 export function UrlMenu(props: Props) {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [url, setUrl] = useState('');
+  const [useProxy, setUseProxy] = useState(false);
   const inputRef = useRef<Input>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (dialogOpen) {
       setUrl('');
+      setUseProxy(false);
       inputRef.current?.focus();
     }
   }, [dialogOpen]);
@@ -31,7 +33,7 @@ export function UrlMenu(props: Props) {
       analyticsEvent('url_selected');
       navigate({
         pathname: '/view',
-        search: queryString.stringify({url}),
+        search: queryString.stringify({url, handleCors: String(useProxy)}),
       });
     }
   }
@@ -61,19 +63,22 @@ export function UrlMenu(props: Props) {
             />
             <p>
               <FormattedMessage
-                id="load_from_url.comment"
-                defaultMessage={
-                  'Data from the URL will be loaded through {link} to avoid CORS issues.'
-                }
-                values={{
-                  link: (
-                    <a href="https://topolaproxy.bieda.it/">
-                      topolaproxy.bieda.it (cors-anywhere proxy)
-                    </a>
-                  ),
-                }}
+                id="load_from_url.direct_explanation"
+                defaultMessage="Files are normally loaded directly. Use the proxy option only if the source server blocks access from this website (CORS)."
               />
             </p>
+            <Form.Field>
+              <Checkbox
+                label={
+                  <FormattedMessage
+                    id="load_from_url.use_proxy"
+                    defaultMessage="Use CORS proxy (third-party service)"
+                  />
+                }
+                checked={useProxy}
+                onChange={(_, data) => setUseProxy(!!data.checked)}
+              />
+            </Form.Field>
           </Form>
         </Modal.Content>
         <Modal.Actions>
