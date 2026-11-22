@@ -212,8 +212,8 @@ export function AncestorFanChart(props: Props) {
   ) => {
     const info = {id: person.id, generation: 0};
     const focusOnClick = props.clickAction === ClickAction.FOCUS;
-    if (event.shiftKey === focusOnClick) props.onDetailSelection(info);
-    else props.onSelection(info);
+    if (event.shiftKey === focusOnClick) props.onSelection(info);
+    else props.onDetailSelection(info);
   };
 
   const sector = (node: (typeof ancestors)[number]) => {
