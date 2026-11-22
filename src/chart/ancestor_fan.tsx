@@ -68,7 +68,7 @@ function personFill(
   colors?: ChartColors,
 ): string {
   if (!person) return '#fff';
-  if (colors === ChartColors.NO_COLOR) return '#f9f7f2';
+  if (colors === ChartColors.NO_COLOR) return '#fff';
   if (colors === ChartColors.COLOR_BY_SEX) {
     return person.sex === 'F'
       ? '#f4dce1'
@@ -240,7 +240,7 @@ export function AncestorFanChart(props: Props) {
       maxChars,
       true,
     );
-    if (props.hideIds === Ids.SHOW) nameLines.push(person.id);
+    const showId = props.hideIds === Ids.SHOW;
     // Tangential labels: turned 90 degrees relative to the first prototype.
     // Turn outer lower sectors upright rather than displaying upside-down text.
     const rotation =
@@ -302,15 +302,20 @@ export function AncestorFanChart(props: Props) {
       compactLine('death', fullDeath, deathPlace, died),
     ].filter((line): line is DetailLine => !!line);
     const spacing = generation <= 3 ? 15 : 13;
-    const fontSize = generation > 6 ? 9 : generation > 4 ? 10 : 12;
-    // Tangential text is bounded by the radial thickness of a ring.
-    // For radial text, the arc length at the segment's midpoint limits it.
+    // Use normal glyph proportions. Reduce font size for long names instead
+    // of forcing a compressed textLength into a narrow SVG segment.
+    const baseFontSize = generation > 6 ? 9 : generation > 4 ? 10 : 12;
     const arcWidth = (textRadius * (end - start) * Math.PI) / 180;
     const availableLength =
       generation >= 5
         ? Math.max(9, RING_SIZE - 12)
         : Math.max(9, Math.min(RING_SIZE - 12, arcWidth - 5));
-    const totalLines = nameLines.length + lines.length;
+    const longestName = Math.max(1, ...nameLines.map((name) => name.length));
+    const fontSize = Math.max(
+      7,
+      Math.min(baseFontSize, availableLength / (longestName * 0.57)),
+    );
+    const totalLines = nameLines.length + lines.length + (showId ? 1 : 0);
     const startY = -((totalLines - 1) * spacing) / 2;
     const matchingPlace =
       !!hoveredPlace &&
@@ -351,13 +356,7 @@ export function AncestorFanChart(props: Props) {
               key={i}
               y={startY + i * spacing}
               fontSize={fontSize}
-              fontWeight={isSelected ? 700 : 600}
-              textLength={
-                part.length * fontSize * 0.55 > availableLength
-                  ? availableLength
-                  : undefined
-              }
-              lengthAdjust="spacingAndGlyphs"
+              fontWeight={600}
             >
               {part}
             </text>
@@ -442,6 +441,30 @@ export function AncestorFanChart(props: Props) {
   const rootNameLines = root
     ? ancestorNameLines(root.firstName, root.lastName, 21, true)
     : [];
+  const rootEvents = root
+    ? [
+        {symbol: '*', event: root.birth},
+        {symbol: '†', event: root.death},
+      ].flatMap(({symbol, event}) => {
+        const date = shortMonthDate(formatDateOrRange(event, intl), intl.locale);
+        const place = event?.place || '';
+        if (!date && !place) return [];
+        // Keep the centre legible while retaining the date and both places.
+        const shortPlace =
+          place.length > 22 ? place.slice(0, 21) + '…' : place;
+        return [
+          ...(date ? [symbol + ' ' + date] : []),
+          ...(shortPlace ? [shortPlace] : []),
+        ];
+      })
+    : [];
+  const rootLabelLines = [
+    ...rootNameLines,
+    ...rootEvents,
+    ...(root && props.hideIds === Ids.SHOW ? [root.id] : []),
+  ];
+  const rootLineSpacing = rootLabelLines.length > 6 ? 12 : 14;
+  const rootStartY = -((rootLabelLines.length - 1) * rootLineSpacing) / 2;
   return (
     <div id="svgContainer" className="ancestor-fan-container">
       <div className="ancestor-fan-controls">
@@ -560,39 +583,35 @@ export function AncestorFanChart(props: Props) {
             <circle
               r={START_RADIUS - 4}
               fill={personFill(root, 0, props.colors)}
-              stroke={root?.id === props.selectedPersonId ? '#d18a13' : '#666'}
-              strokeWidth={root?.id === props.selectedPersonId ? 4 : 1.5}
+              stroke={root?.id === (props.selectedPersonId || props.selection.id) ? '#d17900' : '#666'}
+              strokeWidth={root?.id === (props.selectedPersonId || props.selection.id) ? 4 : 1.5}
             />
-            {root && (
-              <>
+            {root &&
+              rootLabelLines.map((label, index) => (
                 <text
+                  key={index}
+                  className={
+                    index === rootLabelLines.length - 1 &&
+                    props.hideIds === Ids.SHOW
+                      ? 'fan-identification'
+                      : 'fan-root-label'
+                  }
                   textAnchor="middle"
-                  y={rootNameLines.length > 1 ? -20 : -8}
-                  fontWeight="bold"
-                  fontSize="12"
-                  fontFamily="Arial, sans-serif"
+                  y={rootStartY + index * rootLineSpacing}
+                  fontSize={
+                    index < rootNameLines.length
+                      ? 11
+                      : index === rootLabelLines.length - 1 &&
+                          props.hideIds === Ids.SHOW
+                        ? 8
+                        : 9.5
+                  }
+                  fontWeight={index < rootNameLines.length ? 600 : 400}
                   pointerEvents="none"
                 >
-                  {rootNameLines.map((namePart, i) => (
-                    <tspan key={i} x="0" dy={i === 0 ? 0 : 14}>
-                      {namePart}
-                    </tspan>
-                  ))}
+                  {label}
                 </text>
-                <text
-                  textAnchor="middle"
-                  y={rootNameLines.length > 1 ? 21 : 14}
-                  fontSize="11"
-                  fontFamily="Arial, sans-serif"
-                  pointerEvents="none"
-                >
-                  {shortMonthDate(
-                    formatDateOrRange(root.birth, intl),
-                    intl.locale,
-                  )}
-                </text>
-              </>
-            )}
+              ))}
           </g>
         </g>
       </svg>
