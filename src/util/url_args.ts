@@ -154,7 +154,7 @@ export function getArguments(location: H.Location): Arguments {
     sourceSpec = {
       source: DataSourceEnum.GEDCOM_URL,
       url,
-      handleCors: getParam('handleCors') !== 'false', // True by default.
+      handleCors: getParam('handleCors') === 'true', // Direct by default; proxy is opt-in.
     };
   } else if (embedded) {
     sourceSpec = {source: DataSourceEnum.EMBEDDED};
