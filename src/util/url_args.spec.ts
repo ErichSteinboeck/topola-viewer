@@ -185,6 +185,17 @@ describe('url_args', () => {
       expect(args.sourceSpec).toEqual({
         source: DataSourceEnum.GEDCOM_URL,
         url: 'http://example.com/tree.ged',
+        handleCors: false,
+      });
+    });
+
+    it('parses GEDCOM URL source spec with explicit proxy opt-in', () => {
+      const args = getArguments(
+        createLocation('?url=http://example.com/tree.zip&handleCors=true'),
+      );
+      expect(args.sourceSpec).toEqual({
+        source: DataSourceEnum.GEDCOM_URL,
+        url: 'http://example.com/tree.zip',
         handleCors: true,
       });
     });
