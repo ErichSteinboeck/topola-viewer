@@ -238,7 +238,7 @@ export function AncestorFanChart(props: Props) {
     const y = textRadius * Math.sin(angle);
     const isSelected =
       person.id === (props.selectedPersonId || props.selection.id);
-    const isCurved = generation >= 5;
+    const isCurved = generation <= 4;
     // Keep the same font size within a generation, including long names.
     // Wrap names rather than compressing individual glyphs.
     const fontSize = generation <= 2 ? 12 : generation <= 4 ? 11 : 9;
@@ -311,7 +311,8 @@ export function AncestorFanChart(props: Props) {
     ];
     const spacing = 13;
     const startY = -((allLines.length - 1) * spacing) / 2;
-    const rotation = middle;
+    // Inner sectors follow circular arcs; the outer sectors keep radial, straight labels.
+    const rotation = generation >= 5 ? middle - 90 + (middle < 0 ? 180 : 0) : middle;
     const curvedPath = (radius: number) => {
       const clockwise = Math.abs(middle) <= 90;
       const from = clockwise ? start : end;
