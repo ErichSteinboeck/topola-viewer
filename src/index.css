@@ -601,7 +601,8 @@ div.zoom {
   paint-order: stroke fill;
 }
 .ancestor-fan-controls input[type='number'] {
-  width: 4em;
+  width: 3.3em;
+  padding: 2px 3px;
 }
 
 /* Distinguish a selected person from a transient pointer hover. */
@@ -622,8 +623,8 @@ div.zoom {
   z-index: 2000;
   max-width: min(340px, calc(100vw - 20px));
   min-width: 190px;
-  max-height: min(260px, calc(100vh - 20px));
-  overflow: hidden;
+  max-height: min(380px, calc(100vh - 20px));
+  overflow: auto;
   padding: 10px 12px;
   color: #252c35;
   background: rgba(255, 255, 255, 0.98);
@@ -682,3 +683,14 @@ div.zoom {
   font-size: 8px;
   font-weight: 400;
 }
+
+/* The pointer can enter an event popup to follow safe note links. */
+.ancestor-fan-popup { pointer-events: auto; }
+.ancestor-fan-popup .fan-popup-notes {
+  border-top: 1px solid #ddd;
+  margin-top: 7px;
+  padding-top: 7px;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.ancestor-fan-popup .fan-popup-notes p { margin: 0 0 5px; }
