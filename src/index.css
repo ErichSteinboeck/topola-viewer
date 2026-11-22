@@ -517,7 +517,7 @@ div.zoom {
 
 /* All places that exactly match the hovered complete GEDCOM place. */
 #chart text[data-place-key] {
-  cursor: crosshair;
+  cursor: pointer;
 }
 #chart text.matching-place {
   fill: #513000;
@@ -525,7 +525,6 @@ div.zoom {
   stroke-width: 5px;
   stroke-linejoin: round;
   paint-order: stroke fill;
-  font-weight: 700;
 }
 
 /* Circular ancestor fan. Standard SVG exports use its own viewBox. */
@@ -583,7 +582,7 @@ div.zoom {
   margin-left: 55px;
 }
 .ancestor-fan-svg .fan-marriage {
-  cursor: help;
+  cursor: pointer;
 }
 .ancestor-fan-svg .fan-marriage:hover circle {
   fill: #ffedbc;
@@ -606,9 +605,10 @@ div.zoom {
 }
 
 /* Distinguish a selected person from a transient pointer hover. */
-.ancestor-fan-svg .fan-ancestor.fan-selected > path {
-  stroke: #718699;
-  stroke-width: 2px;
+.ancestor-fan-svg .fan-ancestor.fan-selected > path,
+.ancestor-fan-svg .fan-root.fan-selected > circle {
+  stroke: #d17900;
+  stroke-width: 3px;
 }
 
 /* The fan highlights known relatives by the complete GEDCOM place,
@@ -617,9 +617,7 @@ div.zoom {
   stroke: #bf8c29;
   stroke-width: 2px;
 }
-.ancestor-fan-svg .fan-ancestor.fan-related-place text {
-  font-weight: 600;
-}
+/* Highlighting a place must not change font weight: text must not jump. */
 .ancestor-fan-popup {
   z-index: 2000;
   max-width: min(340px, calc(100vw - 20px));
@@ -665,4 +663,22 @@ div.zoom {
   color: #555;
   text-align: center;
   font-size: 12px;
+}
+
+/* Shared chart typography and stable selection/hover colors. */
+:root {
+  --topola-chart-font-family: Arial, Helvetica, sans-serif;
+  --topola-chart-selected: #d17900;
+  --topola-chart-place-highlight: #ffe18a;
+}
+#chartSvg text,
+#chartSvg .fan-labels,
+#chartSvg .fan-root-label,
+#dotatsoSvgContainer svg text {
+  font-family: var(--topola-chart-font-family);
+}
+.ancestor-fan-svg .fan-identification {
+  fill: #545454;
+  font-size: 8px;
+  font-weight: 400;
 }
