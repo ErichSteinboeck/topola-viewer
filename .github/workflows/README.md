@@ -10,7 +10,11 @@ This directory contains GitHub Actions workflow files that automate various task
 - [deploy-gh-pages.yml](deploy-gh-pages.yml): Handles the deployment of the application to GitHub Pages.
 - [deploy-wikitree-apps.yml](deploy-wikitree-apps.yml): Manages the deployment of the application to WikiTree Apps using SFTP.
 - [node.js.yml](node.js.yml): The main Continuous Integration (CI) workflow. It installs dependencies, checks formatting, lints, builds, and runs tests across multiple Node.js versions.
-- [prober-gh-pages.yml](prober-gh-pages.yml): Reusable prober that smoke-tests the GitHub Pages deployment with GEDCOM-from-URL through the CORS proxy. Runs daily and after deploy.
-- [prober-wikitree.yml](prober-wikitree.yml): Reusable prober that smoke-tests the WikiTree direct API path on the live WikiTree deployment. Runs daily and after deploy.
-- [prober-wikitree-cors.yml](prober-wikitree-cors.yml): Reusable prober that smoke-tests the CORS proxy from the WikiTree deployment with GEDCOM-from-URL. Runs daily and after deploy.
-- [prober-docker.yml](prober-docker.yml): Reusable prober that smoke-tests the published Docker image from GHCR (Dockerfile, Caddy config, app startup) by pulling and running it locally. Runs daily and after deploy.
+- [prober-gh-pages.yml](prober-gh-pages.yml): Reusable prober that smoke-tests the GitHub Pages deployment with GEDCOM-from-URL through the CORS proxy. Can be run manually or after the optional full deployment workflow; daily scheduling is disabled in this fork.
+- [prober-wikitree.yml](prober-wikitree.yml): Reusable prober that smoke-tests the WikiTree direct API path on the live WikiTree deployment. Can be run manually or after the optional full deployment workflow; daily scheduling is disabled in this fork.
+- [prober-wikitree-cors.yml](prober-wikitree-cors.yml): Reusable prober that smoke-tests the CORS proxy from the WikiTree deployment with GEDCOM-from-URL. Can be run manually or after the optional full deployment workflow; daily scheduling is disabled in this fork.
+- [prober-docker.yml](prober-docker.yml): Reusable prober that smoke-tests the published Docker image from GHCR (Dockerfile, Caddy config, app startup) by pulling and running it locally. Can be run manually or after the optional full deployment workflow; daily scheduling is disabled in this fork.
+
+## Fork policy (November 2026)
+
+The four Prober workflows retain `workflow_dispatch` and `workflow_call`, but their daily `schedule` triggers have been disabled. They can still be run manually and are used by the optional `deploy-everywhere.yml` workflow. Normal commits continue to run `node.js.yml` CI and `pages.yml` GitHub Pages deployment.
