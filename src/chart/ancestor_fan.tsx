@@ -12,8 +12,12 @@ import {
   fanVisibleBounds,
 } from './ancestor_fan_data';
 import {ancestorNameLines} from './ancestor_fan_labels';
-import {associatedEventDetails, eventNoteHtml, placesMatch} from './hover_helpers';
 import {EventPopup, EventPopupData} from './event_popup';
+import {
+  associatedEventDetails,
+  eventNoteHtml,
+  placesMatch,
+} from './hover_helpers';
 
 interface Props {
   data: JsonGedcomData;
@@ -134,10 +138,7 @@ export function AncestorFanChart(props: Props) {
           id: kind === 'birth' ? 'fan.birth' : 'fan.death',
           defaultMessage: kind === 'birth' ? 'Birth' : 'Death',
         }),
-        value: [
-          formatDateOrRange(person[kind], intl),
-          person[kind]?.place,
-        ]
+        value: [formatDateOrRange(person[kind], intl), person[kind]?.place]
           .filter(Boolean)
           .join(' · '),
       },
@@ -146,7 +147,11 @@ export function AncestorFanChart(props: Props) {
     setPopup({
       heading: personName(person),
       rows,
-      notes: eventNoteHtml(props.gedcom, props.gedcom?.indis[person.id], gedcomTags),
+      notes: eventNoteHtml(
+        props.gedcom,
+        props.gedcom?.indis[person.id],
+        gedcomTags,
+      ),
       x: event.clientX,
       y: event.clientY,
     });
@@ -253,7 +258,9 @@ export function AncestorFanChart(props: Props) {
       true,
     );
     const clip = (value: string, limit: number) =>
-      value.length > limit ? value.slice(0, Math.max(1, limit - 1)) + '…' : value;
+      value.length > limit
+        ? value.slice(0, Math.max(1, limit - 1)) + '…'
+        : value;
     const born = person.birth?.date?.year;
     const died = person.death?.date?.year;
     const birthDate = shortMonthDate(
@@ -272,7 +279,10 @@ export function AncestorFanChart(props: Props) {
     );
     const dateLabel = (symbol: string, date: string, year?: number) =>
       date || year
-        ? clip(symbol + ' ' + (generation >= 5 && year ? String(year) : date), eventFontLimit)
+        ? clip(
+            symbol + ' ' + (generation >= 5 && year ? String(year) : date),
+            eventFontLimit,
+          )
         : '';
     const details: Array<{
       kind: 'birth' | 'death';
@@ -306,20 +316,27 @@ export function AncestorFanChart(props: Props) {
     const showId = props.hideIds === Ids.SHOW;
     const allLines = [
       ...nameLines.map((text) => ({text, kind: 'name' as const})),
-      ...details.map((line) => ({...line, kind: line.kind as 'birth' | 'death'})),
+      ...details.map((line) => ({
+        ...line,
+        kind: line.kind as 'birth' | 'death',
+      })),
       ...(showId ? [{text: person.id, kind: 'id' as const}] : []),
     ];
     const spacing = 13;
     const startY = -((allLines.length - 1) * spacing) / 2;
     // Inner sectors follow circular arcs; the outer sectors keep radial, straight labels.
-    const rotation = generation >= 5 ? middle - 90 + (middle < 0 ? 180 : 0) : middle;
+    const rotation =
+      generation >= 5 ? middle - 90 + (middle < 0 ? 180 : 0) : middle;
     const curvedPath = (radius: number) => {
       const clockwise = Math.abs(middle) <= 90;
       const from = clockwise ? start : end;
       const to = clockwise ? end : start;
       const point = (angle: number) => {
         const radians = ((angle - 90) * Math.PI) / 180;
-        return [+(radius * Math.cos(radians)).toFixed(3), +(radius * Math.sin(radians)).toFixed(3)];
+        return [
+          +(radius * Math.cos(radians)).toFixed(3),
+          +(radius * Math.sin(radians)).toFixed(3),
+        ];
       };
       const [x1, y1] = point(from);
       const [x2, y2] = point(to);
@@ -356,7 +373,10 @@ export function AncestorFanChart(props: Props) {
         {isCurved ? (
           <g className="fan-labels" textAnchor="middle">
             {allLines.map((line, row) => {
-              const r = Math.max(15, textRadius + (row - (allLines.length - 1) / 2) * spacing);
+              const r = Math.max(
+                15,
+                textRadius + (row - (allLines.length - 1) / 2) * spacing,
+              );
               const id = `fan-arc-${generation}-${index}-${row}`;
               const isPlace = 'type' in line && line.type === 'place';
               const fullPlace = 'fullPlace' in line ? line.fullPlace || '' : '';
@@ -367,22 +387,38 @@ export function AncestorFanChart(props: Props) {
                 placesMatch(fullPlace, hoveredPlace);
               return (
                 <g key={id}>
-                  <defs><path id={id} d={curvedPath(r)} /></defs>
+                  <defs>
+                    <path id={id} d={curvedPath(r)} />
+                  </defs>
                   <text
-                    className={line.kind === 'id' ? 'fan-identification' : undefined}
-                    fontSize={line.kind === 'id' ? 8 : line.kind === 'name' ? fontSize : dateFontSize}
+                    className={
+                      line.kind === 'id' ? 'fan-identification' : undefined
+                    }
+                    fontSize={
+                      line.kind === 'id'
+                        ? 8
+                        : line.kind === 'name'
+                          ? fontSize
+                          : dateFontSize
+                    }
                     fontWeight={line.kind === 'name' ? 600 : 400}
                     onMouseEnter={(event) => {
-                      if (line.kind === 'birth' || line.kind === 'death') personPopup(person, event, line.kind);
-                      if (isPlace && props.highlightMatchingPlaces !== false) setHoveredPlace(fullPlace);
+                      if (line.kind === 'birth' || line.kind === 'death')
+                        personPopup(person, event, line.kind);
+                      if (isPlace && props.highlightMatchingPlaces !== false)
+                        setHoveredPlace(fullPlace);
                     }}
-                    onMouseLeave={isPlace ? () => setHoveredPlace(undefined) : undefined}
+                    onMouseLeave={
+                      isPlace ? () => setHoveredPlace(undefined) : undefined
+                    }
                   >
                     <textPath
                       href={`#${id}`}
                       startOffset="50%"
                       className={isPlaceMatch ? 'fan-place-match' : undefined}
-                    >{line.text}</textPath>
+                    >
+                      {line.text}
+                    </textPath>
                   </text>
                 </g>
               );
@@ -396,7 +432,10 @@ export function AncestorFanChart(props: Props) {
             dominantBaseline="middle"
           >
             {allLines.map((line, row) => {
-              const isPlace = line.kind !== 'name' && line.kind !== 'id' && line.type === 'place';
+              const isPlace =
+                line.kind !== 'name' &&
+                line.kind !== 'id' &&
+                line.type === 'place';
               const fullPlace = isPlace ? line.fullPlace || '' : '';
               const isPlaceMatch =
                 isPlace &&
@@ -410,16 +449,30 @@ export function AncestorFanChart(props: Props) {
                   className={
                     line.kind === 'id'
                       ? 'fan-identification'
-                      : isPlaceMatch ? 'fan-place-match' : undefined
+                      : isPlaceMatch
+                        ? 'fan-place-match'
+                        : undefined
                   }
-                  fontSize={line.kind === 'id' ? 8 : line.kind === 'name' ? fontSize : dateFontSize}
+                  fontSize={
+                    line.kind === 'id'
+                      ? 8
+                      : line.kind === 'name'
+                        ? fontSize
+                        : dateFontSize
+                  }
                   fontWeight={line.kind === 'name' ? 600 : 400}
                   onMouseEnter={(event) => {
-                    if (line.kind === 'birth' || line.kind === 'death') personPopup(person, event, line.kind);
-                    if (isPlace && props.highlightMatchingPlaces !== false) setHoveredPlace(fullPlace);
+                    if (line.kind === 'birth' || line.kind === 'death')
+                      personPopup(person, event, line.kind);
+                    if (isPlace && props.highlightMatchingPlaces !== false)
+                      setHoveredPlace(fullPlace);
                   }}
-                  onMouseLeave={isPlace ? () => setHoveredPlace(undefined) : undefined}
-                >{line.text}</text>
+                  onMouseLeave={
+                    isPlace ? () => setHoveredPlace(undefined) : undefined
+                  }
+                >
+                  {line.text}
+                </text>
               );
             })}
           </g>
@@ -578,7 +631,11 @@ export function AncestorFanChart(props: Props) {
                 setPopup({
                   heading: marker.partnerNames,
                   notes: marker.familyId
-                    ? eventNoteHtml(props.gedcom, props.gedcom?.fams[marker.familyId], ['MARR', 'MARB', 'MARC', 'MARL', 'MARS'])
+                    ? eventNoteHtml(
+                        props.gedcom,
+                        props.gedcom?.fams[marker.familyId],
+                        ['MARR', 'MARB', 'MARC', 'MARL', 'MARS'],
+                      )
                     : [],
                   rows: [
                     {
@@ -654,13 +711,16 @@ export function AncestorFanChart(props: Props) {
                   onMouseEnter={
                     index >= rootNameLines.length &&
                     index < rootNameLines.length + rootEvents.length
-                      ? (event) => personPopup(
-                          root,
-                          event,
-                          index < rootNameLines.length + Math.ceil(rootEvents.length / 2)
-                            ? 'birth'
-                            : 'death',
-                        )
+                      ? (event) =>
+                          personPopup(
+                            root,
+                            event,
+                            index <
+                              rootNameLines.length +
+                                Math.ceil(rootEvents.length / 2)
+                              ? 'birth'
+                              : 'death',
+                          )
                       : undefined
                   }
                 >

@@ -110,9 +110,7 @@ export function eventNoteHtml(
     .flatMap((event) =>
       event.tree
         .filter((part) => part.tag === 'NOTE')
-        .map((note) =>
-          dereference(note, gedcom, (data) => data.other),
-        )
+        .map((note) => dereference(note, gedcom, (data) => data.other))
         .filter((note) => !!note.data)
         .map((note) => getData(note).join('\n'))
         .filter(Boolean),
