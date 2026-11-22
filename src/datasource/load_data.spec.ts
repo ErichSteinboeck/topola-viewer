@@ -2,7 +2,7 @@ import {describe, expect, it} from '@jest/globals';
 import {Blob, Buffer} from 'buffer';
 import {zipSync} from 'fflate';
 import {readFileSync} from 'fs';
-import {loadFile} from './load_data';
+import {loadFile, resolveGedcomFetchUrl} from './load_data';
 
 describe('loadFile', () => {
   global.URL.createObjectURL = jest.fn();
@@ -26,5 +26,29 @@ describe('loadFile', () => {
     const {gedcom, images} = await loadFile(blob);
     expect([4549, 4909]).toContain(gedcom.length);
     expect(images.size).toBe(1);
+  });
+});
+
+describe('resolveGedcomFetchUrl', () => {
+  const origin = 'https://erichsteinboeck.github.io';
+
+  it('loads a same-origin GEDCOM directly, even for legacy proxy links', () => {
+    const url = origin + '/topola-viewer/examples/reinhold-halmenschlager.ged';
+    expect(resolveGedcomFetchUrl(url, true, origin)).toBe(url);
+  });
+
+  it('loads a same-origin ZIP directly', () => {
+    const url = origin + '/topola-viewer/examples/reinhold-halmenschlager.zip';
+    expect(resolveGedcomFetchUrl(url, false, origin)).toBe(url);
+  });
+
+  it('loads external GEDCOM directly when proxy was not requested', () => {
+    expect(resolveGedcomFetchUrl('https://example.org/people.ged', false, origin))
+      .toBe('https://example.org/people.ged');
+  });
+
+  it('uses the proxy only when explicitly requested for an external URL', () => {
+    expect(resolveGedcomFetchUrl('https://example.org/tree.zip', true, origin))
+      .toBe('https://topolaproxy.bieda.it/https://example.org/tree.zip');
   });
 });
