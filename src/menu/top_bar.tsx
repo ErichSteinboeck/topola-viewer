@@ -98,7 +98,7 @@ export function TopBar(props: Props) {
             <Icon name="users" />
             <FormattedMessage
               id="menu.relatives"
-              defaultMessage="All relatives"
+              defaultMessage="Hourglass (all relatives)"
             />
           </Dropdown.Item>
         ) : null}
@@ -109,20 +109,8 @@ export function TopBar(props: Props) {
             defaultMessage="Ancestor fan chart"
           />
         </Dropdown.Item>
-        <Dropdown.Item onClick={() => changeView('donatso')}>
-          <Icon name="users" />
-          <FormattedMessage
-            id="menu.donatso"
-            defaultMessage="Donatso family chart"
-          />
-        </Dropdown.Item>
-        <Dropdown.Item onClick={() => changeView('fancy')}>
-          <Icon name="users" />
-          <FormattedMessage
-            id="menu.fancy"
-            defaultMessage="Fancy tree (experimental)"
-          />
-        </Dropdown.Item>
+        {/* Donatso and Fancy remain supported by URL and in the code,
+            but are hidden from the standard chart selection menu. */}
       </>
     );
     switch (screenSize) {
