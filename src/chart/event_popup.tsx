@@ -71,7 +71,7 @@ export function EventPopup({
       {!!data.notes?.length && (
         <div className="fan-popup-notes">
           {data.notes.map((note, index) => (
-            <SafeNoteHtml key={index} text={note.slice(0, 1500)} />
+            <SafeNoteHtml key={index} text={note} />
           ))}
         </div>
       )}
