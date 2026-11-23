@@ -792,20 +792,18 @@ export function AncestorFanChart(props: Props) {
                 stroke="#a7a7a7"
                 strokeWidth={0.85}
               />
-              <text
-                x={0}
-                y={1}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                fontFamily="Arial, Helvetica, sans-serif"
-                fontSize={17}
-                fontWeight={400}
-                fill="#111"
+              {/* Two interlocking rings drawn as vectors: optically centered
+                  independent of the browser's Unicode glyph metrics. */}
+              <g
+                fill="none"
+                stroke="#111"
+                strokeWidth={1.3}
                 pointerEvents="none"
                 aria-label="Heirat"
               >
-                ⚭
-              </text>
+                <circle cx={-3.2} cy={0} r={3.8} />
+                <circle cx={3.2} cy={0} r={3.8} />
+              </g>
             </g>
           ))}
           <g
