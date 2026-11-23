@@ -367,11 +367,14 @@ export function AncestorFanChart(props: Props) {
       Math.floor(textWidth / (dateFontSize * 0.54)),
     );
     const halfLimit = Math.max(3, Math.floor((compactLimit - 3) / 2));
-    const compactDetails = [compactBirth, compactDeath]
+    const compactBirthText = compactBirth
+      ? clip(compactBirth, compactDeath ? halfLimit : compactLimit)
+      : '';
+    const compactDeathText = compactDeath
+      ? clip(compactDeath, compactBirth ? halfLimit : compactLimit)
+      : '';
+    const compactDetails = [compactBirthText, compactDeathText]
       .filter(Boolean)
-      .map((value) =>
-        compactBirth && compactDeath ? clip(value, halfLimit) : clip(value, compactLimit),
-      )
       .join(' – ');
     const allLines = [
       ...nameLines.map((text) => ({text, kind: 'name' as const})),
@@ -381,7 +384,7 @@ export function AncestorFanChart(props: Props) {
             kind: line.kind as 'birth' | 'death',
           }))
         : compactDetails
-          ? [{text: compactDetails, kind: 'birth' as const}]
+          ? [{text: compactDetails, kind: 'combined' as const}]
           : []),
       ...(showId ? [{text: person.id, kind: 'id' as const}] : []),
     ];
@@ -401,9 +404,10 @@ export function AncestorFanChart(props: Props) {
       };
       const [startX, startY] = point(start);
       const [endX, endY] = point(end);
-      // SVG textPath follows path direction. Choose it by the actual
-      // horizontal tangent: left-to-right also below the horizontal axis.
-      const clockwise = Math.cos((middle * Math.PI) / 180) >= 0;
+      // On the lower sectors the earlier direction reversal made the
+      // glyphs upside-down. Keep the SVG arc's forward direction everywhere;
+      // the five curved rings share the same upright baseline.
+      const clockwise = true;
       const x1 = clockwise ? startX : endX;
       const y1 = clockwise ? startY : endY;
       const x2 = clockwise ? endX : startX;
@@ -536,7 +540,25 @@ export function AncestorFanChart(props: Props) {
                     isPlace ? () => setHoveredPlace(undefined) : undefined
                   }
                 >
-                  {line.text}
+                  {line.kind === 'combined' ? (
+                    <>
+                      {compactBirthText && (
+                        <tspan onMouseEnter={(event) => personPopup(person, event, 'birth')}>
+                          {compactBirthText}
+                        </tspan>
+                      )}
+                      {compactBirthText && compactDeathText && (
+                        <tspan>{' – '}</tspan>
+                      )}
+                      {compactDeathText && (
+                        <tspan onMouseEnter={(event) => personPopup(person, event, 'death')}>
+                          {compactDeathText}
+                        </tspan>
+                      )}
+                    </>
+                  ) : (
+                    line.text
+                  )}
                 </text>
               );
             })}
