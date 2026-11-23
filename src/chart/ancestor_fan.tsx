@@ -99,6 +99,16 @@ export function AncestorFanChart(props: Props) {
     }
   }, [props.onFirstRender]);
   const [generations, setGenerations] = useState(5);
+  const [generationInput, setGenerationInput] = useState('5');
+  const changeGenerations = (value: number) => {
+    const next = Math.max(1, Math.min(MAX_GENERATIONS, value));
+    setGenerations(next);
+    setGenerationInput(String(next));
+  };
+  const commitGenerations = () => {
+    const next = Number(generationInput);
+    changeGenerations(Number.isInteger(next) && next >= 1 ? next : generations);
+  };
   const svgRef = useRef<SVGSVGElement>(null);
   const zoomBehavior = useRef<ZoomBehavior<SVGSVGElement, unknown> | null>(
     null,
@@ -656,24 +666,51 @@ export function AncestorFanChart(props: Props) {
             defaultMessage: 'Generations',
           })}
         </label>
-        <input
-          id="fanGenerations"
-          type="number"
-          min={1}
-          max={MAX_GENERATIONS}
-          step={1}
-          value={generations}
-          aria-label={intl.formatMessage({
-            id: 'fan.generations',
-            defaultMessage: 'Ancestor generations',
-          })}
-          onChange={(e) => {
-            const value = Number(e.target.value);
-            if (Number.isInteger(value) && value >= 1) {
-              setGenerations(Math.min(MAX_GENERATIONS, value));
-            }
-          }}
-        />
+        <div className="ancestor-fan-generation-stepper">
+          <button
+            type="button"
+            aria-label="Eine Generation weniger"
+            disabled={generations <= 1}
+            onClick={() => changeGenerations(generations - 1)}
+          >
+            −
+          </button>
+          <input
+            id="fanGenerations"
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            value={generationInput}
+            aria-label={intl.formatMessage({
+              id: 'fan.generations',
+              defaultMessage: 'Ancestor generations',
+            })}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (!/^\\d{0,2}$/.test(value)) return;
+              setGenerationInput(value);
+              const n = Number(value);
+              if (value && n >= 1 && n <= MAX_GENERATIONS) {
+                setGenerations(n);
+              }
+            }}
+            onBlur={commitGenerations}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                commitGenerations();
+                e.currentTarget.blur();
+              }
+            }}
+          />
+          <button
+            type="button"
+            aria-label="Eine Generation mehr"
+            disabled={generations >= MAX_GENERATIONS}
+            onClick={() => changeGenerations(generations + 1)}
+          >
+            +
+          </button>
+        </div>
         <button onClick={resetZoom}>
           {intl.formatMessage({id: 'fan.reset_zoom', defaultMessage: 'Fit'})}
         </button>
@@ -750,18 +787,21 @@ export function AncestorFanChart(props: Props) {
               onMouseLeave={dismissPopupSoon}
             >
               <circle
-                r={8}
+                r={12}
                 fill="white"
-                fillOpacity={0.92}
-                stroke="#805f39"
-                strokeWidth={1.2}
+                stroke="#a7a7a7"
+                strokeWidth={0.85}
               />
               <text
+                x={0}
+                y={1}
                 textAnchor="middle"
-                dominantBaseline="central"
-                fontSize={15}
-                fontWeight={700}
-                fill="#aa6b22"
+                dominantBaseline="middle"
+                fontFamily="Arial, Helvetica, sans-serif"
+                fontSize={17}
+                fontWeight={400}
+                fill="#111"
+                pointerEvents="none"
                 aria-label="Heirat"
               >
                 ⚭
