@@ -142,6 +142,13 @@ aktuellen Quellcode prüfen.
 - **Volltextsuche:** Technische GEDCOM-Kennungen wie `UID`, `_UID`, `RIN`, `CHAN` und `UPD` nicht mehr in Suchindex/-vorschau aufnehmen. Diese Hex-/ID-Felder verdrängten bisher echte Fundstellen, etwa bei `Jäger`. Funktion im Browser erneut prüfen; diese Felder bleiben unabhängig davon in der GEDCOM-Quelle erhalten.
 - **Unverändert:** Mobile/Touch-Geräte verwenden weiterhin DETAILS statt Hover-Popups. GEDCOM-/ZIP-Dateien wurden nicht verändert.
 
+### Heiratsmarkierung im Fächer (23.11.2026)
+
+- **Vom Benutzer bestätigt:** GitHub-Pages-Build und die zuletzt geänderten Funktionen funktionieren. Der größere Heiratskreis bleibt trotz fehlender eigener Heirats-Popup-Funktion auf Touch-Geräten bestehen.
+- **Neu umgesetzt, Browsertest noch offen:** Die beiden schwarzen verschlungenen SVG-Ringe drehen sich passend zur Beschriftung der Braut/des Bräutigams: **Generation 1–5 tangential** (senkrecht zum Radius), **ab Generation 6 radial**.
+- **Hintergrund:** Der bislang weiße Kreis ist in die **beiden tatsächlichen Sektorfarben** der Eltern aufgeteilt, jeweils entsprechend der aktuellen Farb-Einstellung (Generation/Geschlecht/ohne Farben). Kreisradius 12, Umrandung unverändert grau mit Strichstärke 0,85.
+- Die Marker erhalten weiterhin am Desktop einen Heirats-Hover; auf Touch-Geräten öffnet ein Fingertipp auf die Person die DETAILS, nicht ein eigenes Ereignis-Popup.
+
 ### Darstellung und gemeinsame Popups
 
 - **Überarbeitet 22.11.2026:** Fächer: gleiche Namensschriftgröße innerhalb
