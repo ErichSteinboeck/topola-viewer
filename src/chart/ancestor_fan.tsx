@@ -446,7 +446,9 @@ export function AncestorFanChart(props: Props) {
             {allLines.map((line, row) => {
               const r = Math.max(
                 15,
-                textRadius + ((allLines.length - 1) / 2 - row) * spacing,
+                // Shift the curved stack 6px toward the fan center: SVG text
+                // sits above its arc baseline and otherwise looks too far out.
+                textRadius - 6 + ((allLines.length - 1) / 2 - row) * spacing,
               );
               const id = `fan-arc-${generation}-${index}-${row}`;
               const isPlace = 'type' in line && line.type === 'place';
@@ -762,7 +764,7 @@ export function AncestorFanChart(props: Props) {
                 fill="#aa6b22"
                 aria-label="Heirat"
               >
-                ∞
+                ⚭
               </text>
             </g>
           ))}
