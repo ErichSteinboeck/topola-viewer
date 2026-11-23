@@ -606,9 +606,36 @@ div.zoom {
   stroke-width: 3px;
   paint-order: stroke fill;
 }
-.ancestor-fan-controls input[type='number'] {
-  width: 3.3em;
-  padding: 2px 3px;
+/* Accessible touch controls instead of browser-specific number spinners. */
+.ancestor-fan-generation-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.ancestor-fan-generation-stepper input {
+  box-sizing: border-box;
+  width: 3.2em;
+  min-width: 3.2em;
+  padding: 3px;
+  text-align: center;
+}
+.ancestor-fan-generation-stepper button {
+  min-width: 28px;
+  min-height: 28px;
+  padding: 1px 6px;
+}
+.ancestor-fan-generation-stepper button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+@media (pointer: coarse) {
+  .ancestor-fan-generation-stepper button {
+    min-width: 40px;
+    min-height: 40px;
+  }
+  .ancestor-fan-generation-stepper input {
+    min-height: 40px;
+  }
 }
 
 /* Distinguish a selected person from a transient pointer hover. */
