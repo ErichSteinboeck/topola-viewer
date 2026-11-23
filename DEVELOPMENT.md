@@ -224,6 +224,15 @@ Fächerbeschriftungen werden aus Platzgründen unabhängig davon gekürzt.
 derzeit über das Bedienfeld im Fächer geregelt (bis 12); hierfür ist in
 `getArguments` kein eigener URL-Parameter vorgesehen.
 
+### CI und Deployment-Fehler (Diagnose 23.11.2026)
+
+- **Ursache für alte veröffentlichte Version:** GitHub Pages baute `dist` erfolgreich und lud `github-pages` als Artifact ID `14825719121` hoch, aber `actions/deploy-pages@v4` erhielt beim Abruf der Artifact-Liste **0 Artifacts**. Der Workflow hatte trotz `pages: write` kein explizites `actions: read`. **Behoben im Workflow:** `actions: read` ergänzt; erfolgreicher Deployment-Lauf muss noch geprüft werden.
+- **CodeQL:** Workflow-Token erlaubte nur `contents: read` und `packages: read`, nicht den erforderlichen Zugriff auf Code Scanning. **Behoben im Workflow:** `security-events: write` mit `contents: read` und `actions: read` ergänzt. Bei weiterhin fehlenden Berechtigungen sind Repository-Einstellungen für Code Scanning zu prüfen.
+- **Node.js CI:** Der jüngste Lauf scheiterte vor Lint/Build/Tests an `prettier --check` für `src/chart/ancestor_fan.tsx`, `src/chart/chart_wrapper.ts`, `src/chart/event_popup.tsx` und `DEVELOPMENT.md`; es **waren keine Playwright-Fehler**. Formatprüfung **vorübergehend nicht blockierend**, aber die vier Dateien müssen noch formatiert und der Warnstatus wieder zum Fehlerstatus gemacht werden. Build, Lint und Unit-Tests bleiben aktiv.
+- **Playwright:** E2E-/Visualtests sowie Browserinstallation sind über die Repository-Variable `RUN_PLAYWRIGHT=true` zuschaltbar, ansonsten **vorübergehend deaktiviert**. Langfristig wieder aktivieren, wenn die Tests stabil sind. Typprüfung der E2E-Spezifikationen bleibt aktiv.
+- **Viele rote Einträge:** Jeder einzelne Commit auf `master` startet mehrere Workflows (Pages, CodeQL, Node.js CI); dicht aufeinanderfolgende Commits können ältere Pages-Läufe durch `cancel-in-progress: true` abbrechen. Das ist keine Serie von fünf separaten Fehlern pro Änderung.
+- **Arbeitsregel:** Änderungen möglichst bündeln, keine Erfolgsbehauptung zur Veröffentlichung ohne grünen Pages-Run bzw. Prüfung des Versionsstrings.
+
 ## Deployment und Workflows
 
 - `.github/workflows/pages.yml` baut und veröffentlicht GitHub Pages aus
