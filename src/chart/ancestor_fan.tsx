@@ -110,13 +110,45 @@ export function AncestorFanChart(props: Props) {
     typeof window !== 'undefined' &&
     window.matchMedia?.('(hover: none), (pointer: coarse)').matches;
   const dismissRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const replaceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const popupHoveredRef = useRef(false);
+  const popupRef = useRef<EventPopupData | undefined>(undefined);
   const cancelDismiss = () => {
     if (dismissRef.current) clearTimeout(dismissRef.current);
     dismissRef.current = null;
   };
+  const cancelReplace = () => {
+    if (replaceRef.current) clearTimeout(replaceRef.current);
+    replaceRef.current = null;
+  };
+  const displayPopup = (data: EventPopupData) => {
+    cancelDismiss();
+    cancelReplace();
+    // Give the pointer time to cross neighboring sectors on the way into
+    // a scrollable popup. A popup being read is not replaced underneath it.
+    if (popupHoveredRef.current) return;
+    if (!popupRef.current || popupRef.current.heading === data.heading) {
+      popupRef.current = data;
+      setPopup(data);
+    } else {
+      replaceRef.current = setTimeout(() => {
+        if (!popupHoveredRef.current) {
+          popupRef.current = data;
+          setPopup(data);
+        }
+        replaceRef.current = null;
+      }, 450);
+    }
+  };
   const dismissPopupSoon = () => {
     cancelDismiss();
-    dismissRef.current = setTimeout(() => setPopup(undefined), 250);
+    cancelReplace();
+    dismissRef.current = setTimeout(() => {
+      if (!popupHoveredRef.current) {
+        popupRef.current = undefined;
+        setPopup(undefined);
+      }
+    }, 750);
   };
   const clearHover = () => {
     setHoveredPlace(undefined);
@@ -128,7 +160,6 @@ export function AncestorFanChart(props: Props) {
     kind: 'birth' | 'death',
   ) => {
     if (touchDevice) return;
-    cancelDismiss();
     const gedcomTags =
       kind === 'birth' ? ['BIRT', 'CHR', 'BAPM'] : ['DEAT', 'BURI', 'CREM'];
     const rows = [
@@ -143,7 +174,7 @@ export function AncestorFanChart(props: Props) {
       },
       ...associatedEventDetails(props.gedcom, person.id, kind, intl),
     ].filter((row) => !!row.value);
-    setPopup({
+    displayPopup({
       heading: personName(person),
       rows,
       notes: eventNoteHtml(
@@ -361,21 +392,22 @@ export function AncestorFanChart(props: Props) {
     // Normalize all straight labels to an upright reading direction.
     const rotation = ((radialRotation + 90 + 360) % 180) - 90;
     const curvedPath = (radius: number) => {
-      // Follow the arc in the direction whose midpoint tangent points right.
-      // At the horizontal-axis boundaries (±90°), reverse the lower arc;
-      // otherwise its curved text can read upside down.
-      const clockwise = middle > -90 && middle < 90;
-      const from = clockwise ? start : end;
-      const to = clockwise ? end : start;
-      const point = (angle: number) => {
-        const radians = ((angle - 90) * Math.PI) / 180;
+      const point = (a: number) => {
+        const radians = ((a - 90) * Math.PI) / 180;
         return [
           +(radius * Math.cos(radians)).toFixed(3),
           +(radius * Math.sin(radians)).toFixed(3),
         ];
       };
-      const [x1, y1] = point(from);
-      const [x2, y2] = point(to);
+      const [startX, startY] = point(start);
+      const [endX, endY] = point(end);
+      // SVG textPath follows path direction. Choose it by the actual
+      // horizontal tangent: left-to-right also below the horizontal axis.
+      const clockwise = Math.cos((middle * Math.PI) / 180) >= 0;
+      const x1 = clockwise ? startX : endX;
+      const y1 = clockwise ? startY : endY;
+      const x2 = clockwise ? endX : startX;
+      const y2 = clockwise ? endY : startY;
       return `M ${x1} ${y1} A ${radius} ${radius} 0 0 ${clockwise ? 1 : 0} ${x2} ${y2}`;
     };
     const matchingPlace =
@@ -661,8 +693,7 @@ export function AncestorFanChart(props: Props) {
               onMouseEnter={(event) => {
                 if (touchDevice) return;
                 setHoveredPlace(undefined);
-                cancelDismiss();
-                setPopup({
+                displayPopup({
                   heading: marker.partnerNames,
                   notes: marker.familyId
                     ? eventNoteHtml(
@@ -684,7 +715,7 @@ export function AncestorFanChart(props: Props) {
                   y: event.clientY,
                 });
               }}
-                    onMouseLeave={dismissPopupSoon}
+              onMouseLeave={dismissPopupSoon}
             >
               <circle
                 r={8}
@@ -693,7 +724,16 @@ export function AncestorFanChart(props: Props) {
                 stroke="#805f39"
                 strokeWidth={1.2}
               />
-              <path d="M -4 0 L 0 -4 L 4 0 L 0 4 Z" fill="#bb7930" />
+              <text
+                textAnchor="middle"
+                dominantBaseline="central"
+                fontSize={15}
+                fontWeight={700}
+                fill="#aa6b22"
+                aria-label="Heirat"
+              >
+                ∞
+              </text>
             </g>
           ))}
           <g
@@ -775,10 +815,14 @@ export function AncestorFanChart(props: Props) {
       {!touchDevice && popup && (
         <EventPopup
           data={popup}
-          onMouseEnter={cancelDismiss}
-          onMouseLeave={() => {
+          onMouseEnter={() => {
+            popupHoveredRef.current = true;
             cancelDismiss();
-            setPopup(undefined);
+            cancelReplace();
+          }}
+          onMouseLeave={() => {
+            popupHoveredRef.current = false;
+            dismissPopupSoon();
           }}
         />
       )}
