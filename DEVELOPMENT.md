@@ -129,6 +129,12 @@ aktuellen Quellcode prüfen.
 - **Notizen in Ereignis-Popups:** Die bisherige harte Kürzung bei **1.500 Zeichen** (`note.slice(0, 1500)`) wurde entfernt. Scrollleisten und HTML/Matricula-Links bleiben erhalten; vollständige Notizen wie in DETAILS. Bei sehr langen Einträgen muss die Performance im Browser geprüft werden.
 - Bereits im Browser bestätigt: Heiratszeichen `∞`, fünf gebogene Generationen und zweizeilige Beschriftungen der äußeren Generationen.
 
+### Feinabstimmung nach Browserprüfung (23.11.2026)
+
+- **Vom Benutzer bestätigt:** Gebogene Texte sind auch unterhalb der x-Achse richtig herum; Popup-Notizen werden vollständig angezeigt; gerade äußere Ereigniszeilen besitzen getrennte Geburt-/Tod-Popups.
+- **Aktuelle Änderung, noch zu prüfen:** Gebogene Textstapel um 6 SVG-Einheiten radial nach innen verschoben. Hintergrund: Die SVG-Schrift steht oberhalb der Bogen-Baseline; eine rein mathematische Zentrierung der Baselines wirkt dadurch nach außen versetzt.
+- **Aktuelle Änderung, noch zu prüfen:** Das Fächer-Heiratssymbol wurde von `∞` (Unendlich) auf `⚭` (Unicode U+26AD, Heiratszeichen mit zwei verschlungenen Ringen wie in der Sanduhr) geändert. Der Kreisrahmen bleibt.
+
 ### Darstellung und gemeinsame Popups
 
 - **Überarbeitet 22.11.2026:** Fächer: gleiche Namensschriftgröße innerhalb
