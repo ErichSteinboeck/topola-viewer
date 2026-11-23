@@ -118,6 +118,13 @@ export class ChartWrapper {
 
   /** Add date information and transient same-place highlighting to SVG labels. */
   private attachEventTooltips(props: ChartProps, intl: IntlShape) {
+    const touchDevice =
+      typeof window !== 'undefined' &&
+      window.matchMedia?.('(hover: none), (pointer: coarse)').matches;
+    // Native SVG titles also open as tooltips after a tap on mobile.
+    if (touchDevice) {
+      document.querySelectorAll('#chart title').forEach((node) => node.remove());
+    }
     const svgNamespace = 'http://www.w3.org/2000/svg';
     const source = props.originalData ?? props.data;
     const indiById = new Map(source.indis.map((indi) => [indi.id, indi]));
@@ -130,7 +137,7 @@ export class ChartWrapper {
     );
 
     const addTitle = (element: Element, title: string) => {
-      if (!title) return;
+      if (!title || touchDevice) return;
       let node = element.querySelector(':scope > title');
       if (!node) {
         node = document.createElementNS(svgNamespace, 'title');
@@ -297,7 +304,12 @@ export class ChartWrapper {
           const handlers = this.currentProps ?? props;
           this.highlightPerson(info.id);
           const shift = !!info.modifiers?.shiftKey;
-          const focusOnClick = handlers.clickAction === ClickAction.FOCUS;
+          // A touch tap opens DETAILS; focusing remains a separate action.
+          const touchDevice =
+            typeof window !== 'undefined' &&
+            window.matchMedia?.('(hover: none), (pointer: coarse)').matches;
+          const focusOnClick =
+            !touchDevice && handlers.clickAction === ClickAction.FOCUS;
           if (shift === focusOnClick) {
             handlers.onDetailSelection(info);
           } else {
