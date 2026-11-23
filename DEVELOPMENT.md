@@ -1,6 +1,6 @@
 # Topola Viewer – Entwicklungsstand
 
-**Stand: 22. November 2026**  
+**Stand: 23. November 2026**  
 **Repository:** https://github.com/ErichSteinboeck/topola-viewer  
 **GitHub Pages:** https://erichsteinboeck.github.io/topola-viewer/
 
@@ -112,6 +112,14 @@ aktuellen Quellcode prüfen.
 - **Zur Diskussion, noch nicht implementiert:** Auf Geräten mit Touch-/Hover-unfähiger Eingabe keine automatischen Hover-Popups; einfaches Antippen öffnet DETAILS. Neuausrichtung des Baums über eine gut erkennbare Schaltfläche/Aktion **„Als Hauptperson festlegen“**, auch mobil erreichbar. Geburt/Tod/Heirat samt Quellnotizen weiterhin in DETAILS zugänglich machen. Desktop-Hover-Popups und die dortige Klick-Konfiguration bleiben erhalten.
 - **Technische Prüfung offen:** Fähigkeitserkennung nach `(hover: none)` / `(pointer: coarse)` statt allein nach Bildschirmbreite; Test auf Android, iOS, Touch-Laptop sowie mit externer Maus/Tastatur.
 - **Weitere Popup-Korrekturen (Desktop):** Position an tatsächlichen Popup-Abmessungen statt fester Höhe berechnen (besonders bei Personen ohne Daten); beim Weg zum Popup andere Hover-Popups nicht sofort darüberlegen; Verlassen mit sinnvoller Verzögerung. Zusätzlich gerade/gebogene Leserichtung am unteren Fächer kontrollieren und Heiratssymbol mit Sanduhr-Darstellung vereinheitlichen.
+
+### Fächer-Beschriftung und Touch-Verhalten (Änderung 23.11.2026)
+
+- **Implementiert, Browsertest noch offen:** Gebogene Textzeilen in den inneren **fünf** statt vier Vorfahrengenerationen. Datum und Ort erhalten kleinere Schrift als Namen (analog zum Sanduhr-Diagramm).
+- **Äußere Generationen 6–12:** Gerader Text, kleinere Schrift (Name ca. 8 px); standardmäßig **eine Namenszeile + eine zusammengefasste Zeile** für Geburtsjahr/-ort und Sterbejahr/-ort. Lange Inhalte werden für die knappen Sektoren gekürzt; vollständige Daten verbleiben in DETAILS und am Desktop in Ereignis-Popups. Bei eingeblendeter IDENTIFIKATION kommt eine zusätzliche kleine ID-Zeile hinzu.
+- **Touch-Geräte:** Mit `(hover: none), (pointer: coarse)` erkannt; kein automatisches Fächer-Ereignis-Popup. In Sanduhr/Verwandten-Diagrammen werden hinzugefügte SVG-`title`-Tooltips bei Touch unterdrückt. Tippen auf eine Person zeigt DETAILS unabhängig von `click`-Einstellung (Desktop-Verhalten bleibt unverändert).
+- **Noch offen:** Browserprüfung auf Handy/Tablet/Hybrid-Laptop und SVG-Export; alternative gut sichtbare Aktion **„Als Hauptperson festlegen“** für Touch, damit ohne Shift-Taste auch die Neuausrichtung möglich ist. Gegebenenfalls Donatso-/weitere Bibliotheks-Tooltips separat prüfen.
+- **Weiter offen:** Gebogene Beschriftungen in manchen unteren Sektoren sind umgedreht; Desktop-Popup-Überlappung und tatsächliche Höhe/Position; gemeinsames Heiratssymbol.
 
 ### Darstellung und gemeinsame Popups
 
