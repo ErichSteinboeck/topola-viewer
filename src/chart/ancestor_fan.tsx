@@ -349,7 +349,7 @@ export function AncestorFanChart(props: Props) {
     // Straight outer sectors have one name and one combined birth/death line.
     // Preserve the complete values in DETAILS and the desktop event popup.
     const compactYear = (year: number | undefined, date: string) =>
-      year ? String(year) : date.match(/\\d{4}/)?.[0] || '';
+      year ? String(year) : date.match(/\d{4}/)?.[0] || '';
     const compactEvent = (symbol: string, year: string, place: string) =>
       [year ? symbol + year : '', place].filter(Boolean).join(' ');
     const compactBirth = compactEvent(
@@ -543,7 +543,11 @@ export function AncestorFanChart(props: Props) {
                   {line.kind === 'combined' ? (
                     <>
                       {compactBirthText && (
-                        <tspan onMouseEnter={(event) => personPopup(person, event, 'birth')}>
+                        <tspan
+                          onMouseEnter={(event) =>
+                            personPopup(person, event, 'birth')
+                          }
+                        >
                           {compactBirthText}
                         </tspan>
                       )}
@@ -551,7 +555,11 @@ export function AncestorFanChart(props: Props) {
                         <tspan>{' – '}</tspan>
                       )}
                       {compactDeathText && (
-                        <tspan onMouseEnter={(event) => personPopup(person, event, 'death')}>
+                        <tspan
+                          onMouseEnter={(event) =>
+                            personPopup(person, event, 'death')
+                          }
+                        >
                           {compactDeathText}
                         </tspan>
                       )}
