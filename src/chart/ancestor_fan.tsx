@@ -798,6 +798,14 @@ export function AncestorFanChart(props: Props) {
               }}
               onMouseLeave={dismissPopupSoon}
             >
+              {/* The painted children deliberately ignore pointer events.
+                  This transparent hit target makes the entire marker hoverable
+                  instead of letting the underlying ancestor capture the mouse. */}
+              <circle
+                r={12}
+                fill="transparent"
+                pointerEvents="all"
+              />
               {/* Match the adjacent parental sectors on each side of the
                   radial boundary; keep both colors when coloring by sex. */}
               <g transform={`rotate(${marker.boundary})`} pointerEvents="none">
