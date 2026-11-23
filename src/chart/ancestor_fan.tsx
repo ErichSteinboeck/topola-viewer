@@ -222,7 +222,7 @@ export function AncestorFanChart(props: Props) {
     person: JsonIndi,
   ) => {
     const info = {id: person.id, generation: 0};
-    const focusOnClick = props.clickAction === ClickAction.FOCUS;
+    const focusOnClick = !touchDevice && props.clickAction === ClickAction.FOCUS;
     if (event.shiftKey === focusOnClick) props.onDetailSelection(info);
     else props.onSelection(info);
   };
