@@ -122,6 +122,13 @@ aktuellen Quellcode prüfen.
 - **Nachbesserung 23.11.2026; Browserkontrolle noch offen:** Bogenpfade verwenden explizit die zur Leserichtung passende Tangente (links nach rechts, auch unterhalb der x-Achse). Desktop-Popups werden anhand ihrer tatsächlich gemessenen Größe am verfügbaren Bildschirmplatz ausgerichtet. Verlassen des Auslösers schließt nach 750 ms; ein anderes Popup ersetzt ein vorhandenes erst nach 450 ms, beim Betreten des Popups werden beide Timer abgebrochen, damit Scrollen/Links erreichbar bleiben. Das Heiratszeichen im Fächer ist nun `∞` innerhalb des bisherigen Kreises (statt orangefarbener Raute).
 - **Noch offen:** Gemeinsame Popups auch im Sanduhr-Chart; Browserprüfung von Leserichtung, Popup-Wechseln und `∞`-Symbol bei verschiedenem Zoom und Bildschirmgrößen.
 
+### Nachbesserungen aus Browser-Screenshots (23.11.2026)
+
+- **Gebogene Beschriftungen unterhalb der x-Achse:** Die bisherige Bogenumkehr wurde zurückgenommen: Der SVG-`textPath` verwendet die vorwärts gerichtete Bogenlinie auch in den unteren Sektoren, damit die dort beobachtete um 180° verkehrte Schrift korrigiert wird. **Browserkontrolle ausständig.**
+- **Äußere zweizeilige Beschriftungen:** Geburt und Tod bleiben optisch in **derselben zweiten Zeile**, sind aber getrennte `tspan`-Hover-Bereiche. Geburt öffnet Geburt/Taufe, Tod öffnet Tod/Beerdigung. **Browserkontrolle ausständig.**
+- **Notizen in Ereignis-Popups:** Die bisherige harte Kürzung bei **1.500 Zeichen** (`note.slice(0, 1500)`) wurde entfernt. Scrollleisten und HTML/Matricula-Links bleiben erhalten; vollständige Notizen wie in DETAILS. Bei sehr langen Einträgen muss die Performance im Browser geprüft werden.
+- Bereits im Browser bestätigt: Heiratszeichen `∞`, fünf gebogene Generationen und zweizeilige Beschriftungen der äußeren Generationen.
+
 ### Darstellung und gemeinsame Popups
 
 - **Überarbeitet 22.11.2026:** Fächer: gleiche Namensschriftgröße innerhalb
