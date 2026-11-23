@@ -687,7 +687,7 @@ export function AncestorFanChart(props: Props) {
             })}
             onChange={(e) => {
               const value = e.target.value;
-              if (!/^\\d{0,2}$/.test(value)) return;
+              if (!/^[0-9]{0,2}$/.test(value)) return;
               setGenerationInput(value);
               const n = Number(value);
               if (value && n >= 1 && n <= MAX_GENERATIONS) {
