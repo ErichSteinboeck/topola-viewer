@@ -68,8 +68,22 @@ function readable(text: string): string {
 }
 
 function collect(entry: GedcomEntry, out: string[]): void {
-  // CONC/CONT are reconstructed as part of the parent, not independent hits.
-  if (entry.tag !== 'CONC' && entry.tag !== 'CONT') {
+  // Technical identifiers and timestamps are not useful search snippets.
+  // Their hexadecimal UUIDs otherwise obscure matching place/note text.
+  const ignored = new Set([
+    'CONC',
+    'CONT',
+    'RIN',
+    'UID',
+    '_UID',
+    'UPD',
+    '_UPD',
+    'CHAN',
+    'RFN',
+    'AFN',
+    'REFN',
+  ]);
+  if (!ignored.has(entry.tag)) {
     if (entry.data && !/^@[^@]+@$/.test(entry.data)) {
       out.push(readable(getData(entry).join(' ')));
     }
