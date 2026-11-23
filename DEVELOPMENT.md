@@ -144,6 +144,9 @@ aktuellen Quellcode prüfen.
 
 ### Heiratsmarkierung im Fächer (23.11.2026)
 
+- **Hover-Korrektur 23.11.2026:** Das neu eingeführte Vektor-Heiratssymbol hatte nur Elemente mit `pointerEvents="none"`, sodass Mausereignisse auf dem darunterliegenden Vorfahren-Sektor landeten und dessen Geburts-Popup öffneten. Ein transparenter SVG-Kreis mit `pointerEvents="all"` deckt nun den gesamten Marker ab und steuert das Heirats-Popup; Darstellung und Touch-Verhalten bleiben unverändert. Browsertest noch offen.
+
+
 - **Vom Benutzer bestätigt:** GitHub-Pages-Build und die zuletzt geänderten Funktionen funktionieren. Der größere Heiratskreis bleibt trotz fehlender eigener Heirats-Popup-Funktion auf Touch-Geräten bestehen.
 - **Neu umgesetzt, Browsertest noch offen:** Die beiden schwarzen verschlungenen SVG-Ringe drehen sich passend zur Beschriftung der Braut/des Bräutigams: **Generation 1–5 tangential** (senkrecht zum Radius), **ab Generation 6 radial**.
 - **Hintergrund:** Der bislang weiße Kreis ist in die **beiden tatsächlichen Sektorfarben** der Eltern aufgeteilt, jeweils entsprechend der aktuellen Farb-Einstellung (Generation/Geschlecht/ohne Farben). Kreisradius 12, Umrandung unverändert grau mit Strichstärke 0,85.
