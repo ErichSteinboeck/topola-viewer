@@ -137,7 +137,7 @@ aktuellen Quellcode prüfen.
 
 ### Feinkorrekturen 23.11.2026: Heirat, mobile Generationen und Volltext
 
-- **Heiratssymbol im Fächer:** `⚭` schwarz und leichter gesetzt, optisch auf die Mitte des Kreises ausgerichtet; Kreisradius von 8 auf 12 SVG-Einheiten (+50 %) vergrößert. Kreislinie wie Sektor-Trennlinie `#a7a7a7` / 0,85, Hintergrund weiß. Browserkontrolle auf Desktop/Mobile offen.
+- **Heiratssymbol im Fächer:** zwei ineinandergreifende schwarze Ringe als SVG-Vektoren (statt fontabhängigem `⚭`), geometrisch mittig im Kreis; Kreisradius von 8 auf 12 SVG-Einheiten (+50 %) vergrößert. Kreislinie wie Sektor-Trennlinie `#a7a7a7` / 0,85, Hintergrund weiß. Browserkontrolle auf Desktop/Mobile offen.
 - **Generationen auf Touch-Geräten:** Explizite `−`- und `+`-Schaltflächen (mit größeren Touch-Flächen) statt fehlender Browser-Zahlenspinner. Das Zahleneingabefeld akzeptiert einen temporär leeren Wert, so dass Backspace und Neueingabe funktionieren; bei Verlust des Fokus wird auf 1–12 geprüft bzw. die letzte gültige Zahl wiederhergestellt.
 - **Volltextsuche:** Technische GEDCOM-Kennungen wie `UID`, `_UID`, `RIN`, `CHAN` und `UPD` nicht mehr in Suchindex/-vorschau aufnehmen. Diese Hex-/ID-Felder verdrängten bisher echte Fundstellen, etwa bei `Jäger`. Funktion im Browser erneut prüfen; diese Felder bleiben unabhängig davon in der GEDCOM-Quelle erhalten.
 - **Unverändert:** Mobile/Touch-Geräte verwenden weiterhin DETAILS statt Hover-Popups. GEDCOM-/ZIP-Dateien wurden nicht verändert.
