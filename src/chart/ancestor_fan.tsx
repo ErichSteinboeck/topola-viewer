@@ -105,6 +105,10 @@ export function AncestorFanChart(props: Props) {
   );
   const [hoveredPlace, setHoveredPlace] = useState<string>();
   const [popup, setPopup] = useState<EventPopupData>();
+  // Touch devices do not have a stable hover state; use DETAILS instead.
+  const touchDevice =
+    typeof window !== 'undefined' &&
+    window.matchMedia?.('(hover: none), (pointer: coarse)').matches;
   const dismissRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const cancelDismiss = () => {
     if (dismissRef.current) clearTimeout(dismissRef.current);
@@ -123,6 +127,7 @@ export function AncestorFanChart(props: Props) {
     event: React.MouseEvent<SVGElement>,
     kind: 'birth' | 'death',
   ) => {
+    if (touchDevice) return;
     cancelDismiss();
     const gedcomTags =
       kind === 'birth' ? ['BIRT', 'CHR', 'BAPM'] : ['DEAT', 'BURI', 'CREM'];
@@ -237,19 +242,21 @@ export function AncestorFanChart(props: Props) {
     const y = textRadius * Math.sin(angle);
     const isSelected =
       person.id === (props.selectedPersonId || props.selection.id);
-    const isCurved = generation <= 4;
+    const isCurved = generation <= 5;
     // Keep the same font size within a generation, including long names.
     // Wrap names rather than compressing individual glyphs.
-    const fontSize = generation <= 2 ? 12 : generation <= 4 ? 11 : 9;
-    const dateFontSize = generation <= 2 ? 10.5 : generation <= 4 ? 10 : 9;
+    const fontSize =
+      generation <= 2 ? 12 : generation <= 4 ? 11 : generation === 5 ? 9.5 : 8;
+    const dateFontSize =
+      generation <= 2 ? 9 : generation <= 4 ? 8.5 : generation === 5 ? 7.5 : 6.8;
     const arcWidth = (textRadius * (end - start) * Math.PI) / 180;
     const textWidth = isCurved ? Math.max(12, arcWidth - 8) : RING_SIZE - 12;
     const charLimit = Math.max(4, Math.floor(textWidth / (fontSize * 0.55)));
     const nameLines = ancestorNameLines(
       person.firstName,
       person.lastName,
-      Math.min(16, charLimit),
-      true,
+      Math.min(isCurved ? 16 : 23, charLimit),
+      isCurved,
     );
     const clip = (value: string, limit: number) =>
       value.length > limit
@@ -308,15 +315,46 @@ export function AncestorFanChart(props: Props) {
       },
     ].filter((line) => !!line.text);
     const showId = props.hideIds === Ids.SHOW;
+    // Straight outer sectors have one name and one combined birth/death line.
+    // Preserve the complete values in DETAILS and the desktop event popup.
+    const compactYear = (year: number | undefined, date: string) =>
+      year ? String(year) : date.match(/\\d{4}/)?.[0] || '';
+    const compactEvent = (symbol: string, year: string, place: string) =>
+      [year ? symbol + year : '', place].filter(Boolean).join(' ');
+    const compactBirth = compactEvent(
+      '*',
+      compactYear(born, birthDate),
+      birthPlace,
+    );
+    const compactDeath = compactEvent(
+      '†',
+      compactYear(died, deathDate),
+      deathPlace,
+    );
+    const compactLimit = Math.max(
+      6,
+      Math.floor(textWidth / (dateFontSize * 0.54)),
+    );
+    const halfLimit = Math.max(3, Math.floor((compactLimit - 3) / 2));
+    const compactDetails = [compactBirth, compactDeath]
+      .filter(Boolean)
+      .map((value) =>
+        compactBirth && compactDeath ? clip(value, halfLimit) : clip(value, compactLimit),
+      )
+      .join(' – ');
     const allLines = [
       ...nameLines.map((text) => ({text, kind: 'name' as const})),
-      ...details.map((line) => ({
-        ...line,
-        kind: line.kind as 'birth' | 'death',
-      })),
+      ...(isCurved
+        ? details.map((line) => ({
+            ...line,
+            kind: line.kind as 'birth' | 'death',
+          }))
+        : compactDetails
+          ? [{text: compactDetails, kind: 'birth' as const}]
+          : []),
       ...(showId ? [{text: person.id, kind: 'id' as const}] : []),
     ];
-    const spacing = 13;
+    const spacing = isCurved ? 11 : 12;
     const startY = -((allLines.length - 1) * spacing) / 2;
     // Inner sectors follow circular arcs; the outer sectors keep radial, straight labels.
     const radialRotation = middle - 90 + (middle < 0 ? 180 : 0);
@@ -430,9 +468,7 @@ export function AncestorFanChart(props: Props) {
           >
             {allLines.map((line, row) => {
               const isPlace =
-                line.kind !== 'name' &&
-                line.kind !== 'id' &&
-                line.type === 'place';
+                'type' in line && line.type === 'place';
               const fullPlace = isPlace ? line.fullPlace || '' : '';
               const isPlaceMatch =
                 isPlace &&
@@ -623,6 +659,7 @@ export function AncestorFanChart(props: Props) {
               className="fan-marriage"
               transform={`translate(${marker.x} ${marker.y})`}
               onMouseEnter={(event) => {
+                if (touchDevice) return;
                 setHoveredPlace(undefined);
                 cancelDismiss();
                 setPopup({
@@ -735,7 +772,7 @@ export function AncestorFanChart(props: Props) {
           })}
         </p>
       )}
-      {popup && (
+      {!touchDevice && popup && (
         <EventPopup
           data={popup}
           onMouseEnter={cancelDismiss}
