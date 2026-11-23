@@ -608,10 +608,18 @@ export function AncestorFanChart(props: Props) {
       const text = [formatDateOrRange(marriage, intl), marriage.place]
         .filter(Boolean)
         .join(' · ');
-      const partnerNames = [
-        family?.husb ? personById.get(family.husb) : undefined,
-        family?.wife ? personById.get(family.wife) : undefined,
-      ].map((person) => (person ? personName(person) : '?'));
+      const husband = family?.husb ? personById.get(family.husb) : undefined;
+      const wife = family?.wife ? personById.get(family.wife) : undefined;
+      const partnerNames = [husband, wife].map((person) =>
+        person ? personName(person) : '?',
+      );
+      // The marker sits on the radial border between the two parents.
+      // Inner labels are tangential, outer labels follow the radius.
+      const radialRotation = boundary - 90 + (boundary < 0 ? 180 : 0);
+      const markerRotation =
+        parentGeneration <= 5
+          ? boundary
+          : ((radialRotation + 90 + 360) % 180) - 90;
       return [
         {
           key: `${parentGeneration}-${childNode.index}`,
@@ -620,6 +628,10 @@ export function AncestorFanChart(props: Props) {
           text,
           partnerNames: partnerNames.join(' & '),
           familyId: family?.id,
+          boundary,
+          markerRotation,
+          husbandFill: personFill(husband, parentGeneration, props.colors),
+          wifeFill: personFill(wife, parentGeneration, props.colors),
         },
       ];
     });
@@ -786,15 +798,23 @@ export function AncestorFanChart(props: Props) {
               }}
               onMouseLeave={dismissPopupSoon}
             >
+              {/* Match the adjacent parental sectors on each side of the
+                  radial boundary; keep both colors when coloring by sex. */}
+              <g transform={`rotate(${marker.boundary})`} pointerEvents="none">
+                <path d="M 0 -12 A 12 12 0 0 0 0 12 Z" fill={marker.husbandFill} />
+                <path d="M 0 -12 A 12 12 0 0 1 0 12 Z" fill={marker.wifeFill} />
+              </g>
               <circle
                 r={12}
-                fill="white"
+                fill="none"
                 stroke="#a7a7a7"
                 strokeWidth={0.85}
+                pointerEvents="none"
               />
-              {/* Two interlocking rings drawn as vectors: optically centered
-                  independent of the browser's Unicode glyph metrics. */}
+              {/* Orient the marriage rings like the parent labels: tangential
+                  in the inner five generations, radial in the outer rings. */}
               <g
+                transform={`rotate(${marker.markerRotation})`}
                 fill="none"
                 stroke="#111"
                 strokeWidth={1.3}
