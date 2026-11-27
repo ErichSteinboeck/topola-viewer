@@ -10,66 +10,94 @@
 2 _RTLSAVE RTL
 2 CORP MyHeritage.com
 1 DEST MYHERITAGE
-1 DATE 06 NOV 2026
-1 FILE Exported by MyHeritage.com from Wienfluss: Mathilde Huber in Stammbaum Familie Steinböck on Fri, 06 Nov 2026
+1 DATE 27 NOV 2026
+1 FILE Mathilde Huber research export, 27 Nov 2026
 0 @I500001@ INDI
-1 _UPD 19 JUN 2026 10:37:53 GMT -0600 
+1 _UPD 27 NOV 2026 11:59:36 GMT -0600 
 1 NAME Karl Heinrich /Huber/
 2 GIVN Karl Heinrich
 2 SURN Huber
+2 _FORMERNAME Carl Heinrich
 1 SEX M
+1 BIRT
+2 DATE 2 DEC 1813
+2 PLAC Haugasse 41
+2 NOTE <p>Wien: Ev. Kirche H.B. Wien-Innere Stadt (Reformierte Stadtkirche) Taufbuch TFB01 fol. 148<br />https://data.matricula-online.eu/de/oesterreich/wien-evang-dioezese-HB/wien-innere-stadt-reformierte-s
+3 CONC tadtkirche/TFB01/?pg=128<br />1813. Dec. 3 [Taufe, Geburt siehe Anmerkungen]<br />Ort: Wieden Haugasse 41 [seit 1911: Prinz-Eugen-Stra&szlig;e]<br />Carl Heinrich<br />m&auml;nnlich, ehelich<br />Vate
+3 CONC r: HC Johann Rudolph Huber Gro&szlig;handlungs-Commis, Religion: HC<br />Mutter: Fr. Anna Maria Holzinger, Religion: kath<br />Pathen: Herr Heinrich von Geym&uuml;ller d:j:<br />Anmerkungen: geboren a
+3 CONC m zweyten December [2.12.1813]<br />Hebamme: Frau Catharina Gro&szlig;[.] Landstra&szlig;e [.] 265<br />Gegen Entrichtung der Consistorialtaxe im Hause getauft u. bescheiniget. Von C: C:</p>
+1 CHR
+2 DATE 3 DEC 1813
+2 NOTE Godparents:Heinrich von Geymüller d. J.
 1 DEAT Y
 2 DATE 21 MAR 1855
 2 PLAC Wieden 327
-2 NOTE https://www.familysearch.org/ark:/61903/3:1:3Q9M-C39M-BSXG-5?cat=22998&view=explore&lang=de&groupId=TH-909-81928-66203-94
-2 NOTE <p>Beschauzettel<br />https://www.familysearch.org/ark:/61903/3:1:3Q9M-C39M-BSXG-5?cat=22998&amp;view=explore&amp;lang=de&amp;groupId=TH-909-81928-66203-94<br />1855 H<br />Sterbtag: 21. Marz 1855 [21
-3 CONC .3.1855]<br />Huber Karl<br />Eigenschaft: Doctor der Medizin und Chirurgie<br />Alter: 41 J.<br />Stand: verh.<br />Religion: kath.[nicht protestantisch?]<br />Ort: Wien Wieden 327<br />Todesart: Lun
-3 CONC gentuberkulose<br />Sterbort: Wieden 327<br />beschaut: D Handl[?]</p>
-3 CONC <p>ANNO<br />https://anno.onb.ac.at/cgi-content/anno?aid=wrz&amp;datum=18550325&amp;query=%22Karl+Huber+Chirurgie%22~10&amp;seit
-3 CONC e=11<br />25. M&auml;rz 1855<br />Verstorbene zu Wien<br />Den 21. Marz<br />Herr Huber Karl, Doktor der Med. und Chirurgie, dann Eisenbahnarzt, alt 41 Jahr, Wieden Nr. 327, an der Lungentuberkulose.<
-3 CONC /p>
-2 CAUS Lungentuberkulose
-1 BIRT
-2 DATE ABT 1814
-2 NOTE ca. 1814 wg. 41 Jahre beim Tod 1855 bzw. wg. 29 Jahre bei Trauung 1843
+2 NOTE <p>Wien-Innere Stadt (Reformierte Stadtkirche) Sterbebuch STB04 fol. 93<br />https://data.matricula-online.eu/de/oesterreich/wien-evang-dioezese-HB/wien-innere-stadt-reformierte-stadtkirche/STB04/?pg=
+3 CONC 96<br />1855. einundzwanzigsten 21. M&auml;rz [21.3.1855] um 10 1/2 Uhr<br />Ort: Wieden 327<br />Herr Carl Huber, Doktor der Medizin u Chirurgie, Eisenbahnarzt, aus Wien geb&uuml;rtig, verehlicht<br 
+3 CONC />m&auml;nnlich, 42 Jahre<br />Krankheit: Lungentuberculose<br />Begraben: Matzleinsdorf 23 M&auml;rz 1855</p>
+<p>ANNO<br />https://anno.onb.ac.at/cgi-content/anno?aid=wrz&amp;datum=18550325&amp;quer
+3 CONC y=%22Karl+Huber+Chirurgie%22~10&amp;seite=11<br />25. M&auml;rz 1855<br />Verstorbene zu Wien<br />Den 21. Marz<br />Herr Huber Karl, Doktor der Med. und Chirurgie, dann Eisenbahnarzt, alt 41 Jahr, Wi
+3 CONC eden Nr. 327, an der Lungentuberkulose.<br />[KI vermutet zu "Eisenbahnarzt":<br />&nbsp;Vom Bezirk Wieden aus gelangte man direkt vor die Belvederelinie (den heutigen S&uuml;dtiroler Platz/Hauptbahnh
+3 CONC of), wo sich die beiden gro&szlig;en s&uuml;dlichen Kopfbahnh&ouml;fe Wiens befanden: der Wien-Gloggnitzer Bahnhof (S&uuml;dbahn) und der Wien-Raaber Bahnhof (Ostbahn).<br />&nbsp;Anfang 1855, also we
+3 CONC nige Wochen vor Hubers Tod, wurden diese Linien von der neu gegr&uuml;ndeten k. k. privaten &Ouml;sterreichischen Staatseisenbahngesellschaft (StEG) beziehungsweise der S&uuml;dbahn &uuml;bernommen. D
+3 CONC r. Huber war mit an Sicherheit grenzender Wahrscheinlichkeit als Betriebsarzt f&uuml;r den Bereich dieser beiden Bahnh&ouml;fe und der dortigen gro&szlig;en Maschinenfabriken und Werkst&auml;tten zust
+3 CONC &auml;ndig.<br />]</p>
+<p>Beschauzettel<br />https://www.familysearch.org/ark:/61903/3:1:3Q9M-C39M-BSXG-5?cat=22998&amp;view=explore&amp;lang=de&amp;groupId=TH-909-81928-66203-94<br />1855 H<br />Ste
+3 CONC rbtag: 21. Marz 1855 [21.3.1855]<br />Huber Karl<br />Eigenschaft: Doctor der Medizin und Chirurgie<br />Alter: 41 J.<br />Stand: verh.<br />Religion: kath.[nicht protestantisch?]<br />Ort: Wien Wiede
+3 CONC n 327 [= Gemeindegasse 327, heute: Floragasse 7]<br />Todesart: Lungentuberkulose<br />Sterbort: Wieden 327<br />beschaut: D Handl[?]</p>
+2 CAUS Lungentuberculose
+1 BURI
+2 DATE 26 MAR 1855
+2 PLAC Friedhof Matzleinsdorf
+2 NOTE <p>Friedhofsprotokolle<br />Wien. Friedhofsurkunden 1850-1856<br />https://www.familysearch.org/ark:/61903/3:1:3QHN-B3BM-PBP9?cat=koha%3A94477&amp;view=explore&amp;lang=de&amp;groupId=TH-7702-106223-2
+3 CONC 7371-95<br />1855<br />Huber Karl, Dr d. Medizin, E. G. sammt Denkmal im Matzlsdf. Leichhofe laut Prot No 382 vom 26. M&auml;rz. Wieden 327<br />382</p>
 1 FAMS @F500001@
+1 FAMC @F500002@
+1 NOTE <p>genteam, Mediziner in Wien<br />https://www.genteam.at/de/wien/db10?view=db&amp;id=10<br />lfd Nr. 28301, Karl Huber, 1813.12.02, Wien, Religion k<br />Quelle 170-87r (Rigorosenprotokoll 1821-1871)
+2 CONC , Rigorosen Datum 1837</p>
+<p>Stadtarchiv Schaffhausen, fol. 52<br />https://stadtarchiv-schaffhausen.ch/online_archivp/daten/bildgross/350813.pdf</p>
+<p>[mglw. dieser Johann Rudolph]<br />ANNO, Wie
+2 CONC ner Zeitung, 25. April 1844<br />&nbsp;https://anno.onb.ac.at/cgi-content/anno?aid=wrz&amp;datum=18440425&amp;query=%22Johann%20Rudolph%20Huber%20Wien%22~15&amp;seite=16&amp;<br />&nbsp;"auf Anlangen 
+2 CONC des Johann Rudolph Huber, privatisirend. wohnhaft auf der Wieden Nr. 897"</p>
 1 RIN MH:I500001
-1 _UID 6A3195D2CC7117BE3196609E3759A257
+1 _UID 6B09BA0A169E8CBA6BC623C5CF7D071A
 0 @I500002@ INDI
-1 _UPD 19 JUN 2026 06:58:17 GMT -0600 
-1 NAME Theresia Margaretha Karoline /Falk/
-2 GIVN Theresia Margaretha Karoline
+1 _UPD 27 NOV 2026 12:00:12 GMT -0600 
+1 NAME Theresia /Falk/
+2 GIVN Theresia
 2 SURN Falk
+2 _FORMERNAME Theresia Margarethe Karolina
 1 SEX F
 1 BIRT
 2 DATE 1 NOV 1813
-2 PLAC Kohlmarkt 298 [heute: Kohlmarkt 4]
-2 NOTE https://data.matricula-online.eu/de/oesterreich/wien/01-st-michael/01-19/?pg=153
-2 NOTE <p>01., St. Michael Taufbuch 01-19 fol. 124<br />https://data.matricula-online.eu/de/oesterreich/wien/01-st-michael/01-19/?pg=153<br />1813<br />Baptizans: Benedictus Monnier<br />den 1ten Novbr [1.11
-3 CONC .1813]<br />Haus: Auf dem Kohlmarckt No. 298 [heute: Kohlmarkt 4]<br />Theresia Margarethe Karolina<br />katholisch, M&auml;dchen, ehelich<br />Vater: Karl Falck b&uuml;rgl. Handelsmann<br />Mutter: T
-3 CONC heresia geb. [...] Pavlovski. F&uuml;rst Esterhazisches [...]mannstochter<br />Pathen: Margaretha Schwarz ledige Pfr&uuml;ndlerin<br />Anmerkungen: Johanna [...]stergasse No. 171. Die Trauung ist beka
-3 CONC nnt.&nbsp;</p>
+2 PLAC Kohlmarckt 298 [heute: Kohlmarkt 4]
+2 NOTE <p>01., St. Michael Taufbuch 01-19 fol. 124<br />https://data.matricula-online.eu/de/oesterreich/wien/01-st-michael/01-19/?pg=153<br />November 1813.<br />Baptizans: Benedictus Monnier<br />den 1ten N
+3 CONC ovbr [1.11.1813]<br />Haus: Auf dem Kohlmarckt No. 298 [heute: Kohlmarkt 4]<br />Theresia Margarethe Karolina<br />katholisch, M&auml;dchen, ehlich<br />Vater: Karl Falck b&uuml;rgl. Handelsmann<br />
+3 CONC Mutter: Theresia geb. d. Pavlovski, F&uuml;rst Esterhazischer Gardehauptmannstochter<br />Pathen: Margaretha Schwarz ledige Pfr&uuml;ndlerin<br />Anmerkungen: Johanna Jackel[?] in der Alstergasse No. 
+3 CONC 171. Die Trauung ist bekannt.</p>
 1 DEAT Y
 2 DATE 4 OCT 1894
-2 PLAC VI., Kollergerngasse 6
-2 NOTE https://data.matricula-online.eu/de/oesterreich/wien/06-mariahilf/03-14/?pg=54
+2 PLAC 6., Kollergerngasse 6
 2 NOTE <p>06., Mariahilf Sterbebuch 03-14 fol. 51<br />https://data.matricula-online.eu/de/oesterreich/wien/06-mariahilf/03-14/?pg=54<br />Don Alexander Gr&uuml;bel Coop.<br />4. Oktober 1894<br />Kollergern
 3 CONC gasse 6<br />Huber Theresia Margaretha Caroline geb. Falk, Arztenswitwe, von Wien geb&uuml;rtig<br />weiblich, katholisch, 80 Jahre 11 Monate<br />Todesart: Laut Beschauzettel Nr. 133 an Altersschw&au
 3 CONC ml;che<br />Begr&auml;bnis: Im Central Friedhofe, am 6. Oktober 1894</p>
-3 CONC <p>Beschauzettel<br />https://www.familysearch.org/ark:/61903/3:1:3Q9M-C39S-WSW1-N?cat=22998&amp;view=explore&amp;lang=de&amp;
+<p>Beschauzettel<br />https://www.familysearch.org/ark:/61903/3:1:3Q9M-C39S-WSW1-N?cat=22998&amp;view=explore&amp;lang=de&amp;
 3 CONC groupId=M9FS-84V<br />1894 H<br />Sterbetag: Octbr 4 [4.10.1894]<br />Name: Therese Margaretha Carolina<br />Eigenschaft: geb. Falk Arztenswitwe<br />Alter: 80 11/12 J.<br />Stand: W<br />Religion: ka
 3 CONC th<br />Ort: Wien<br />Todesart: Altersschw&auml;che<br />Sterbeort: VI. Kollergerngasse 6<br />beschaut: D Woller</p>
-3 CONC <p>ANNO https://anno.onb.ac.at/cgi-content/anno?aid=wrz&amp;datum=18941011&amp;q
-3 CONC uery=%22Huber+Theresia%22&amp;seite=14<br />11. Oktober 1894<br />Verstorbene den 2. October 1894<br />Huber Theresia Margarethe Karoline, Arztens-Wittwe, 80 J., VI., Kollergerngasse 6, Altersschw&aum
-3 CONC l;che.</p>
-3 CONC <p>ANNO https://anno.onb.ac.at/cgi-content/anno?aid=apr&amp;datum=18941011&amp;query=%22Huber+Theresia%22&amp;seite=16<br />11. Oktober 1894<br />Verzeichni&szlig; der Verstorbenen in Wien
-3 CONC . Vom 3. October.<br />Huber Theresia, Arztens-Witwe, 80 J., 6. Bez., Kollergerngasse 6, Altersschw&auml;che.</p>
 2 CAUS Altersschwäche
+1 BURI lt. Sterbebuch
+2 DATE 6 OCT 1894
+2 PLAC Zentralfriedhof
+2 NOTE <p>ANNO https://anno.onb.ac.at/cgi-content/anno?aid=wrz&amp;datum=18941011&amp;query=%22Huber+Theresia%22&amp;seite=14<br />11. Oktober 1894<br />Verstorbene den 2. October 1894<br />Huber Theresia Ma
+3 CONC rgarethe Karoline, Arztens-Wittwe, 80 J., VI., Kollergerngasse 6, Altersschw&auml;che.</p>
+<p>ANNO https://anno.onb.ac.at/cgi-content/anno?aid=apr&amp;datum=18941011&amp;query=%22Huber+Theresia%22&am
+3 CONC p;seite=16<br />11. Oktober 1894<br />Verzeichni&szlig; der Verstorbenen in Wien. Vom 3. October.<br />Huber Theresia, Arztens-Witwe, 80 J., 6. Bez., Kollergerngasse 6, Altersschw&auml;che.</p>
 1 FAMS @F500001@
+1 FAMC @F500003@
 1 RIN MH:I500002
-1 _UID 6A3195D2D73EB7BF3196609E3759A257
+1 _UID 6B09BA0A224BDCBB6BC623C5CF7D071A
 0 @I500003@ INDI
-1 _UPD 18 JUN 2026 15:26:10 GMT -0600 
+1 _UPD 27 NOV 2026 12:57:06 GMT -0600 
 1 NAME Mathilde /Huber/
 2 GIVN Mathilde
 2 SURN Huber
@@ -77,34 +105,195 @@
 1 BIRT
 2 DATE 22 NOV 1846
 2 PLAC Wieden 931
-2 NOTE https://data.matricula-online.eu/de/oesterreich/wien/04-wieden/01-16/?pg=582
-2 NOTE <p>04., Wieden (Paulanerkirche) Taufbuch 01-16 fol. 505<br />https://data.matricula-online.eu/de/oesterreich/wien/04-wieden/01-16/?pg=582<br />1846<br />Geboren am 22. getauft am 26. November<br />Hau
-3 CONC s: Wieden 931 [Karolygasse, heute: Graf-Starhemberg-Gasse 1C]<br />Mathilde<br />katholisch, ehelich<br />Vater: Karl Heinrich Huber, protestantischer Religion, Doktor der Medizin und Chirurgie, des J
-3 CONC ohann Rudolph Huber, Fabriksinhabers und der Anna Maria geb. Holzinger, ehelicher Sohn<br />Mutter: Theresia Margaretha Karoline Falk katholisch, des Karl Falk b&uuml;rgl. Handelsmanns<br />und der T
-3 CONC heresia geb: Balowsky, eheliche Tochter.<br />Pathen: Maria Anna Huber[?] Procuraf&uuml;hrerswitwe wohnhaft in Wien Gloggnitz [.] Einserbahnhof[?]<br />Anmerkungen: Ana Reimal Hebamme Wieden 342<br />
-3 CONC [T. Treschu zum s. ?] Karl in Wien getraut am 21. Oktober 1843.</p>
+2 NOTE <p>04., Wieden (Paulanerkirche) Taufbuch 01-16 fol. 505<br />https://data.matricula-online.eu/de/oesterreich/wien/04-wieden/01-16/?pg=582<br />1846. Geboren am 22. getauft am 26. November [26.11.1846]
+3 CONC <br />Haus: Wieden 931 [Karolygasse, heute: Graf-Starhemberg-Gasse 1C]<br />Mathilde<br />katholisch, ehelich<br />Vater: Karl Heinrich Huber, protestantischer Religion, Doktor der Medizin und Chirurg
+3 CONC ie, des Johann Rudolph Huber, Fabriksinhabers und der Anna Maria geb. Holzinger, ehelicher Sohn<br />Mutter: Theresia Margaretha Karoline Falk katholisch, des Karl Falk b&uuml;rgl. Handelsmannes und d
+3 CONC er Theresia geb: Balovsky, eheliche Tochter.<br />Pathen: Maria Anna Huber[?] Procuraf&uuml;hrerswitwe wohnhaft in Wien Gloggnitzer Eisenbahnhof<br />[https://de.wikipedia.org/wiki/Wien_Gloggnitzer_Ba
+3 CONC hnhof<br />&nbsp;https://www.wien.gv.at/kultur/kulturgut-plaene-stadtplan-1858<br />&nbsp;Wieden 908, Wohngeb&auml;ude zwischen Wien-Gloggnitzer Bahnhof (S&uuml;dbahn) und Wien-Raaber Bahnhof (Ostbahn
+3 CONC )<br />]<br />Anmerkungen: Anna Reindl Hebamme Wieden 342<br />[T. Treschu zum s. ?] Karl in Wien getraut am 21. Oktober 1843.</p>
+1 CHR
+2 DATE 26 NOV 1846
+2 PLAC Pf. 04., Wieden (Paulanerkirche)
 1 DEAT Y
 2 DATE 15 JAN 1918
-2 NOTE lt. Grabstein Wienfluss
-1 CHR lt. Taufbuch
-2 DATE 26 NOV 1846
-2 NOTE Godparents:Maria Anna Huber[?] Wien/Gloggnitz
+2 PLAC 5., Pilgramgasse 22
+2 NOTE <p>Wien. Todesf&auml;lle 1918. Verzeichnis der Verstorbenen<br />https://www.familysearch.org/ark:/61903/3:1:3Q9M-C399-PSS7-K?cat=koha%3A96269&amp;view=explore&amp;lang=de&amp;groupId=TH-909-81953-558
+3 CONC 40-3<br />Huber Mathilde, Private, 71 J., zstdg. nach Wien, w. g. 5. Bezirk, Pilgramgasse 22, an Herzmuskelentz&uuml;ndung</p>
+2 CAUS Herzmuskelentzündung
 1 FAMC @F500001@
 1 RIN MH:I500003
-1 _UID 6A3195D2E36317C13196609E3759A257
+1 _UID 6B09BA0A2B759CBD6BC623C5CF7D071A
+0 @I500004@ INDI
+1 _UPD 27 NOV 2026 11:57:50 GMT -0600 
+1 NAME Johann Rudolph /Huber/
+2 GIVN Johann Rudolph
+2 SURN Huber
+1 SEX F
+1 BIRT
+2 DATE ABT 1778
+2 NOTE ca. *1778 wg. 68J +1846
+1 DEAT Y
+2 DATE 27 JUN 1846
+2 PLAC Wieden 122, Heugasse 122 [Prinz-Eugen-Straße]
+2 NOTE <p>Wien: Ev. Kirche H.B. Wien-Innere Stadt (Reformierte Stadtkirche) Sterbebuch STB04 fol. 3<br />https://data.matricula-online.eu/de/oesterreich/wien-evang-dioezese-HB/wien-innere-stadt-reformierte-s
+3 CONC tadtkirche/STB04/?pg=6<br />1846 Juny 27ter ([...])<br />Ort: Heugasse 122<br />Herr Johann Rudolph Huber, gew. Gro&szlig;handlungs Commis, verehlicht, geb&uuml;rtig aus Schaffhausen<br />m&auml;nnlic
+3 CONC h, 6[8 Jahre].<br />Gehirnl&auml;hmung<br />Begraben: 29. Juny Matzleinsdorf<br />[detto]<br />04., St. Karl Borromaeus Sterbebuch 03-09 fol. 106<br />https://data.matricula-online.eu/de/oesterreich/w
+3 CONC ien/04-st-karl-borromaeus/03-09/?pg=108<br />1846. 27ter Juni<br />Wieden 122<br />Huber Johann Rudolph, gewes. Gro&szlig;handlungs-Prokuraf&uuml;hrer, geb&uuml;rtig von Schaffhausen in der Schweiz - 
+3 CONC am Schlagfluss<br />m&auml;nnlich, AKatholisch H:C., 68 Jahre<br />[Protestantisch Helvetischer Konfession<br />&nbsp;https://evang-museum.at/rundgang/1848-bis-1918/protestantenpatent/das-protestanten
+3 CONC patent<br />]<br />Krankheit: gew&ouml;hnlich<br />Begraben: Matzleinsdorf den 29ten Juni 1846<br />Anmerkung: 3. Kl. 5te Rubrik</p>
+2 CAUS Gehirnlähmung
+1 BURI
+2 DATE 29 JUN 1846
+2 PLAC Friedhof Matzleinsdorf
+1 FAMS @F500002@
+1 NOTE <p>Stadtarchiv Schaffhausen, fol. 46<br />https://stadtarchiv-schaffhausen.ch/online_archivp/daten/bildgross/350592.pdf</p>
+1 RIN MH:I500004
+1 _UID 6B09C27B0E7C2C53D5D2979E847F819C
+0 @I500005@ INDI
+1 _UPD 27 NOV 2026 11:57:08 GMT -0600 
+1 NAME Anna Maria /Holzinger/
+2 GIVN Anna Maria
+2 SURN Holzinger
+1 SEX F
+1 DEAT Y
+1 FAMS @F500002@
+1 RIN MH:I500005
+1 _UID 6B09C4741EC80D6996AAFC7DA3555210
+0 @I500006@ INDI
+1 _UPD 27 NOV 2026 12:09:38 GMT -0600 
+1 NAME Karl /Falk/
+2 GIVN Karl
+2 SURN Falk
+1 SEX M
+1 FAMS @F500003@
+1 NOTE <p>b&uuml;rgerlicher Handelsmann</p>
+1 RIN MH:I500006
+1 _UID 6B09C52C4A39AE15C3FAC93B98BF9039
+0 @I500007@ INDI
+1 _UPD 27 NOV 2026 12:04:35 GMT -0600 
+1 NAME Theresia /Balovsky/
+2 GIVN Theresia
+2 SURN Balovsky
+2 _FORMERNAME von Pavlovski
+1 SEX F
+1 FAMS @F500003@
+1 NOTE <p>F&uuml;rst Esterhazische Gardehauptmannstochter</p>
+1 RIN MH:I500007
+1 _UID 6B09C6135F877199A8CD4AA16A29B3D1
+0 @I500008@ INDI
+1 _UPD 27 NOV 2026 12:13:26 GMT -0600 
+1 NAME Johann Rudolph /Huber/
+2 GIVN Johann Rudolph
+2 SURN Huber
+1 SEX M
+1 BIRT
+2 DATE 8 FEB 1806
+2 PLAC Wieden 24
+2 NOTE Sohn, Vater und Pate heißen alle drei Johann Rudolph Huber!
+2 NOTE <p>Wien: Ev. Kirche H.B. Wien-Innere Stadt (Reformierte Stadtkirche) Taufbuch TFB01 fol. 66<br />https://data.matricula-online.eu/de/oesterreich/wien-evang-dioezese-HB/wien-innere-stadt-reformierte-st
+3 CONC adtkirche/TFB01/?pg=69<br />1806. Febr. 8 [8.2.1806]<br />Ort: Wieden 24<br />Johann Rudolph<br />m&auml;nnlich, ehelich<br />Vater: HC Johann Rudolph Huber, Gro&szlig;handlungs Commis [(VVV)], Religi
+3 CONC on: HC<br />Mutter: Fr. Anna Maria Holzinger, Religion: kath<br />Pathen: Herr Johann Rudolph Huber, Silber Arbeiter zu Schafhausen und &nbsp;[...] Elisabeth Hlzinger<br />Anmerkungen: geboren am sech
+3 CONC sten Feber. Abends.<br />Hebamme: Frau Barbara Hofer, Wieden 76<br />[...] getauft u. bescheinigt v [...]</p>
+1 DEAT Y
+2 DATE 7 JAN 1847
+2 PLAC Wieden 907
+2 NOTE <p>Wien-Innere Stadt (Reformierte Stadtkirche) Sterbebuch STB04 fol. 10<br />https://data.matricula-online.eu/de/oesterreich/wien-evang-dioezese-HB/wien-innere-stadt-reformierte-stadtkirche/STB04/?pg=
+3 CONC 13<br />1847. Januar 7ter [7.1.1847] /:sieben:/ Abends 6 Uhr<br />Wieden 907 Gloggnitzer-Bahnhof<br />Herr Johann Rudolph Huber, Haupt-Expeditor der Gloggnitzer Eisenbahn, von Wien geb&uuml;rtig, vere
+3 CONC hlicht<br />[Expeditor: Betriebsbediensteter an Bahnh&ouml;fen]<br />m&auml;nnlich, 41 Jahre<br />Abdominal-Typhus<br />Begraben: Matzleinsdorf den 9ten /:neunten:/ Januar 1847<br />[detto]<br />04., 
+3 CONC Wieden (Paulanerkirche) Sterbebuch 03-12 pag. 2<br />https://data.matricula-online.eu/de/oesterreich/wien/04-wieden/03-12/?pg=4<br />J&auml;nner 1847. 7.<br />Wieden 907<br />Herr Johann Rudolf Huber 
+3 CONC Haupt-Expeditor Wien-Gloggnitzer Eisenbahn [...]<br />m&auml;nnlich, protestatntisch Helv. Conf, 41 Jahre<br />[...]</p>
+<p>ANNO, Wiener Zeitung, 12. Januar 1847<br />https://anno.onb.ac.at/cgi-conte
+3 CONC nt/anno?aid=wrz&amp;datum=18470112&amp;query=%22Johann+Rudolph+Huber+Wien%22~15&amp;seite=5<br />Den 7. Januar.<br />Hr. Johann Rudolph Huber, Haupt-Expeditor der Wien Gloggnitzer-Eisenbahn, alt 41 J.
+3 CONC , auf der Wieden Nr. 907 im Bahnhof, am Abdominal-Typhus.</p>
+2 CAUS Abdominal-Typhus
+1 BURI lt. Sterbebuch
+2 DATE 9 JAN 1847
+2 PLAC Friedhof Matzleinsdorf
+1 FAMC @F500002@
+1 RIN MH:I500008
+1 _UID 6B09C8459BA3E385D2252C76E8334051
+0 @I500009@ INDI
+1 _UPD 27 NOV 2026 12:18:53 GMT -0600 
+1 NAME Simon Richard /Huber/
+2 GIVN Simon Richard
+2 SURN Huber
+1 SEX M
+1 BIRT
+2 DATE 17 OCT 1844
+2 PLAC Wieden 931
+2 NOTE <p>04., Wieden (Paulanerkirche) Taufbuch 01-15 fol. 784<br />https://data.matricula-online.eu/de/oesterreich/wien/04-wieden/01-15/?pg=500<br />Taufender: Gottfried Franz k:k: Consistorialrath, Superin
+3 CONC tendent und erster Prediger evang. Gemeinde H:C:<br />1844. geboren am 17. Oktober [17.10.1844] getauft am 20. Oktober<br />Ort: Wieden 931<br />Simon Richard<br />protestantisch H:C:, m&auml;nnlich<b
+3 CONC r />Vater: Karl Heinrich Huber Doctor der Medizin und Chirurgie, evangelisch H:C: des Johann Rudolph Huber Gro&szlig;handlungscommis unde der Anna Maria geb: Holzinger, ehelicher Sohn<br />Mutter: The
+3 CONC resia Margaretha Karoline Falk katholisch des Karl Falk b&uuml;rgl. Handelsmann und der Theresia geb. von Balovsky eheliche Tochter<br />Pathen: Johann Rudolph Huber f&uuml;r Herrn Simon Freyherr von 
+3 CONC Sina<br />Anmerkungen: Anna Kerl[?] Hebamme Wieden 342<br />Die Eltern des Kindes sind dem [Trauenden?] als verehelichet bekannt.<br />Nachtr&auml;glich: Laut Matrikenschein vom 29. Oktober 1843 ad [.
+3 CONC ..] in Wien verehelichet</p>
+1 DEAT Y
+2 DATE 21 OCT 1844
+2 PLAC Wieden 931
+2 NOTE <p>04., Wieden (Paulanerkirche) Sterbebuch 03-11 fol. 131<br />https://data.matricula-online.eu/de/oesterreich/wien/04-wieden/03-11/?pg=133<br />Oktober 1844. 21. [21.10.1844]<br />Wieden 931<br />Dem
+3 CONC  Herren Karl Huber, Dr. der Medizin, sein Kind Simon<br />m&auml;nnlich, protestantisch A. C [korrekt: H. C.], 4 Tage<br />Krankheit: Lebensschw&auml;che<br />Begraben: 23. Oktober 1844 auf dem Friedh
+3 CONC of zu Matzleinsdorf</p>
+2 CAUS Lebensschwäche
+1 BURI lt. Sterbebuch
+2 DATE 23 OCT 1844
+2 PLAC Friedhof Matzleinsdorf
+1 FAMC @F500001@
+1 RIN MH:I500009
+1 _UID 6B09C98CB78B114C789DC7A760C380CA
+0 @I500010@ INDI
+1 _UPD 27 NOV 2026 12:23:57 GMT -0600 
+1 NAME Simon Ernst /Huber/
+2 GIVN Simon Ernst
+2 SURN Huber
+1 SEX M
+1 BIRT
+2 DATE 11 NOV 1845
+2 PLAC Wieden 931
+2 NOTE <p>04., Wieden (Paulanerkirche) Taufbuch 01-16 fol. 239 ff<br />https://data.matricula-online.eu/de/oesterreich/wien/04-wieden/01-16/?pg=273<br />Taufender: Gottfried Franz k.k. Cons. Rath, Superinden
+3 CONC t u. Prediger 1ter &nbsp;der evang. Gemd. Helv. Conf.<br />geboren am 11. Novb 845 [11.11.1845] getauft am 13. Novber 845<br />Ort: Wieden 931<br />Simon Ernst<br />protestantisch Helv. C., m&auml;nnl
+3 CONC ich<br />Vater: HC. Carl Heinrich Huber Dr. der Medizin und Chir. Mitglied der Hie[?].mediz. Fakult&auml;t u. Eisenbahnarzt, von Wiengeb. Evang. .. Helv. C.<br />Mutter: Fr. Theresia Margaretha Caroli
+3 CONC ne Falk geb. Falk aus Wien geb. katholisch<br />Pathen: Simon Freih. v. Serile [Sina] n&ouml;. Landstand Stadt 512.<br />Hebamme Frau Clara Reimel<br />Anmerkungen: Trauungschein vom 21. Oktob 1843 du
+3 CONC rch pa[...] copul.</p>
+1 DEAT Y
+1 FAMC @F500001@
+1 RIN MH:I500010
+1 _UID 6B09CAAD18EB54496D3E96D981B8A6FB
 0 @F500001@ FAM
-1 _UPD 16 JUN 2026 13:28:34 GMT -0600
+1 _UPD 27 NOV 2026 11:12:42 GMT -0600
 1 HUSB @I500001@
 1 WIFE @I500002@
+1 CHIL @I500009@
+1 CHIL @I500010@
 1 CHIL @I500003@
 1 RIN MH:F500001
-1 _UID 6A3195D2E14007C03196609E3759A257
+1 _UID 6B09BA0A28FC3CBC6BC623C5CF7D071A
 1 MARR
 2 DATE 21 OCT 1843
-2 PLAC Wieden 897 [heute vmtl. Wohllebengasse]
-2 NOTE https://data.matricula-online.eu/de/oesterreich/wien/04-st-karl-borromaeus/02-09/?pg=191
+2 PLAC Wieden 897
 2 NOTE <p>04., St. Karl Borromaeus Trauungsbuch 02-09 fol. 187<br />https://data.matricula-online.eu/de/oesterreich/wien/04-st-karl-borromaeus/02-09/?pg=191<br />1843.<br />den 21ten Oktober 1843 [21.10.1843
-3 CONC ] No. 113<br />Br&auml;utigam:<br />Karl Heinrich[?] Huber Doktor der Medizin und Chirurgie,<br />geb&uuml;rtig aus Wien, ehelicher Sohn des Johann Rudolph Huber Fabriksinhabers<br />und der Anna Mari
-3 CONC a geborene Holzinger [...]<br />Wieden N 897 [heute vmtl. Wohllebengasse]<br />protestantisch H.O., 39 Jahre, unverehelicht<br />[...]<br />Braut:<br />Theresia Margaretha Caroline Falk, geb&uuml;rtig
-3 CONC  aus Wien, ehehliche Tochters des Karl Falk b&uuml;rgerlicher Handelsmanns, und der Theresia geborene B&auml;lovsky. [...]<br />Wieden No 897<br />katholisch, 29 Jahre</p>
+3 CONC ] No. 113<br />Br&auml;utigam:<br />Karl Heinrich Huber Doktor der Medizin und Chirurgie,<br />geb&uuml;rtig aus Wien, ehelicher Sohn des Johann Rudolph Huber Fabriksinhabers,<br />und der Anna Maria 
+3 CONC geborene Holzinger /: beide leben :/<br />Wieden N 897 [heute vmtl. Wohllebengasse]<br />protestantisch H.C., 29 Jahre, unverehelicht<br />Haben am 21. Oktober 1843[?] [...] Adam Stracka[?] Pfarrer, u
+3 CONC nd den beiden mitgebrachten Zeuge die Ehe geschlossen<br />Braut:<br />Theresia Margaretha Caroline Falk, geb&uuml;rtig aus Wien, eheliche Tochters des Karl Falk b&uuml;rgerlicher Handelsmanns, und de
+3 CONC r Theresia geborene Balovsky [Pavlovski lt. Taufbuch Theresia]. /: beide ledig :/<br />Wieden No 897<br />katholisch, 29 Jahre<br />Beyst&auml;nde: Simon Freiherr v Sina, [...] Landstand Stadt Nr. 512
+3 CONC , Johann [...] k.k. Wieden Nr. 100<br />[zu Stadt 512 sagt die AI:<br />&nbsp;Konskriptionsnummer 512 entspricht dem heutigen Hohen Markt 9 (bzw. Berghof 1 / Judengasse 1). Die Familie Sina hatte dies
+3 CONC es Geb&auml;ude bereits 1814 erworben (direkt neben dem ber&uuml;hmten Palais Sina am Hohen Markt 8, Konskriptionsnummer 511) und nutzte es als Wohn- und Bankhaus.<br />]<br />Anmerkungen: Er hat am 2
+3 CONC 6 November 1838 d[...] erhalten. [...] Taufschein vorgezeigt, [...]zeugni&szlig; und Verk&uuml;ndschein [...] protestantischen [...] H.C. beigebracht. Verk&uuml;ndigt 17. 24. Septb und 1 Oktber 1843</
+3 CONC p>
+0 @F500002@ FAM
+1 _UPD 27 NOV 2026 11:57:08 GMT -0600
+1 HUSB @I500004@
+1 WIFE @I500005@
+1 CHIL @I500008@
+1 CHIL @I500001@
+1 RIN MH:F500002
+1 _UID 6B09C27B1C1CBC54D5D2979E847F819C
+1 MARR
+0 @F500003@ FAM
+1 _UPD 27 NOV 2026 12:04:03 GMT -0600
+1 HUSB @I500006@
+1 WIFE @I500007@
+1 CHIL @I500002@
+1 RIN MH:F500003
+1 _UID 6B09C52C5510CE16C3FAC93B98BF9039
+1 MARR
 0 TRLR
