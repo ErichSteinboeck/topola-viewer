@@ -1,6 +1,6 @@
 # Topola Viewer – Entwicklungsstand
 
-**Stand: 23. November 2026**  
+**Stand: 27. November 2026**  
 **Repository:** https://github.com/ErichSteinboeck/topola-viewer  
 **GitHub Pages:** https://erichsteinboeck.github.io/topola-viewer/
 
@@ -24,8 +24,7 @@ aktuellen Quellcode prüfen.
 
 ## Daten und Beispiele
 
-- `public/examples/wienfluss-huber.ged`: Beispiel mit Mathilde Huber als
-  gewünschter Startperson (`I500003`).
+- **Aktualisiert 27.11.2026:** `public/examples/wienfluss-huber.ged`: öffentliches Beispiel mit Mathilde Huber als gewünschter Startperson (`I500003`). Neuer MyHeritage-Export `mathilde-huber.ged` vom 27.11.2026, statt vorher 3 Personen/1 Familie jetzt **10 Personen/3 Familien**. Die ursprüngliche Datei wurde am selben Pfad ersetzt, damit URLs gültig bleiben. Datenschutzprüfung vor Publikation: eine private E-Mail-Adresse (`RESI/EMAIL`), ein MyHeritage-Medienverweis (`OBJE`) sowie private MyHeritage-Site/Projekt-Kennungen im Header wurden aus der **öffentlichen Kopie** entfernt. Die Forschungsnotizen blieben erhalten. Exportabweichung: `I500003` Mathilde Huber war im neuen Export als `SEX M` markiert, in der alten Fassung als `SEX F`; die veröffentlichte Kopie behält bewusst `SEX F`. Beim nächsten MyHeritage-Export diesen Datenfehler an der Quelle prüfen. Technisch geprüft: UTF-8-GEDCOM mit 10 INDI, 3 FAM, korrekter Start-ID, ohne die entfernten privaten Inhalte; Dateiprüfsumme beim Import geprüft. Einmaliger Veröffentlichungsworkflow nach erfolgreicher Ausführung wieder entfernt. GitHub-Pages-Browsertest nach Deployment noch separat prüfen.
 - `public/examples/reinhold-halmenschlager.ged` **und** `.zip` liegen
   **bereits** im öffentlichen Repository. Vor einem Update Inhalt, Privatsphäre
   und URLs überprüfen.
